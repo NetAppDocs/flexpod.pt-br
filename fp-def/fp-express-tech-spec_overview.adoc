@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec_overview.html 
+keywords: flexpod, express, technical, specifications, architecture, cisco, ucs 
+summary: 'O FlexPod Express é uma arquitetura pré-projetada e de práticas recomendadas, desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS) e na família de switches Cisco Nexus, e a camada de storage foi criada com o uso do NetApp FAS ou do storage NetApp e-Series.' 
+---
+= TR-4293: Especificações técnicas do FlexPod Express
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Mais informações sobre Karthick Radhakrishnan, NetApp
+
+[role="lead"]
+O FlexPod Express é uma arquitetura pré-projetada e de práticas recomendadas, desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS) e na família de switches Cisco Nexus, e a camada de storage foi criada com o uso do NetApp FAS ou do storage NetApp e-Series. O FlexPod Express é uma plataforma adequada para executar vários hipervisores de virtualização e sistemas operacionais (SO) bare metal e cargas de trabalho empresariais.
+
+O FlexPod Express oferece não apenas uma configuração de linha de base, mas também a flexibilidade de ser dimensionada e otimizada para acomodar vários casos de uso e requisitos diferentes. Este documento categoriza as configurações do FlexPod Express com base no sistema de storage usado, no FlexPod Express com NetApp FAS e no FlexPod Express com e-Series.

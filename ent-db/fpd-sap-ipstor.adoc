@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-sap-ipstor.html 
+keywords: flexpod, data,center, sap, cisco, aff, a-series, ucs, manager 
+summary: A arquitetura de referência detalhada neste documento destaca a resiliência, o custo-benefício e a facilidade de implantação de uma solução de storage baseada em IP. 
+---
+= Solução FlexPod Datacenter para SAP com storage baseado em IP usando o NetApp AFF A-Series e o Cisco UCS Manager 3,2
+:allow-uri-read: 
+
+
+Cisco, Cisco, NetApp
+
+[role="lead"]
+A arquitetura de referência detalhada neste documento destaca a resiliência, o custo-benefício e a facilidade de implantação de uma solução de storage baseada em IP. Um sistema de storage capaz de atender a vários protocolos em uma única interface permite a escolha do cliente e a proteção do investimento, pois ele realmente é uma arquitetura completa. A solução foi projetada para hospedar workloads SAP HANA escaláveis.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_saphana_n9k_aff_ucsm.html["Solução FlexPod Datacenter para SAP com storage baseado em IP usando o NetApp AFF A-Series e o Cisco UCS Manager 3,2"^]

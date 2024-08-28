@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-deploy_netapp_aff_storage_deployment_procedure_@part_2@.html 
+keywords: san, map, boot, storage, setup, aff, deployment, procedure, igroups 
+summary: Para criar grupos, você precisa do iniciador iSCSI IQNs e deve concluir as etapas a seguir. 
+---
+= Procedimento de implantação de armazenamento NetApp AFF (parte 2)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+
+
+== Configuração de armazenamento de inicialização SAN ONTAP
+
+
+
+=== Criar grupos iSCSI
+
+Para criar grupos, execute o seguinte passo:
+
+Você precisa do iniciador iSCSI IQNs da configuração do servidor para esta etapa.
+
+. A partir da conexão SSH do nó de gerenciamento de cluster, execute os seguintes comandos. Para exibir os três grupos criados nesta etapa, execute o comando igrop show.
++
+....
+igroup create –vserver Infra-SVM –igroup VM-Host-Infra-A –protocol iscsi –ostype vmware –initiator <<var_vm_host_infra_a_iSCSI-A_vNIC_IQN>>, <<var_vm_host_infra_a_iSCSI-B_vNIC_IQN>>
+igroup create –vserver Infra-SVM –igroup VM-Host-Infra-B –protocol iscsi –ostype vmware –initiator <<var_vm_host_infra_b_iSCSI-A_vNIC_IQN>>, <<var_vm_host_infra_b_iSCSI-B_vNIC_IQN>>
+....
++
+
+NOTE: Esta etapa deve ser concluída ao adicionar servidores adicionais da série C do Cisco UCS.
+
+
+
+
+
+== Mapeie LUNs de inicialização para grupos
+
+Para mapear LUNs de inicialização para grupos, execute os seguintes comandos da conexão SSH de gerenciamento de cluster:
+
+....
+lun map –vserver Infra-SVM –volume esxi_boot –lun VM-Host-Infra- A –igroup VM-Host-Infra- A –lun-id 0
+lun map –vserver Infra-SVM –volume esxi_boot –lun VM-Host-Infra- B –igroup VM-Host-Infra- B –lun-id 0
+....
+
+NOTE: Esta etapa deve ser concluída ao adicionar servidores Cisco UCS C-Series adicionais.
+
+link:express-c-series-aff220-deploy_vmware_vsphere_6.7_deployment_procedure.html["Próximo: Procedimento de implantação do VMware vSphere 6,7."]

@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/fhc-cvoe-conclusion.html 
+keywords: conclusion 
+summary: Criar uma nuvem híbrida é o objetivo que a maioria das organizações de saúde forneça disponibilidade de dados a qualquer momento. Nessa solução, implementamos uma solução de nuvem híbrida da FlexPod com o Cloud Volumes ONTAP, utilizando a tecnologia de replicação NetApp SnapMirror para validar alguns casos de uso para fazer backup e recuperar aplicações e workloads do setor de saúde. 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:fhc-cvoe-solution-validation.html["Anterior: Validação da solução."]
+
+[role="lead"]
+Criar uma nuvem híbrida é o objetivo que a maioria das organizações de saúde forneça disponibilidade de dados a qualquer momento. Nessa solução, implementamos uma solução de nuvem híbrida da FlexPod com o Cloud Volumes ONTAP, utilizando a tecnologia de replicação NetApp SnapMirror para validar alguns casos de uso para fazer backup e recuperar aplicações e workloads do setor de saúde.
+
+O FlexPod, uma infraestrutura convergente pré-validada e rigorosamente testada da parceria estratégica da Cisco e do NetApp, foi projetada para fornecer alta disponibilidade e performance previsível do sistema de baixa latência. Esta abordagem resulta em elevados níveis de conforto da EHR e, em última análise, o melhor tempo de resposta para os utilizadores do sistema EHR.
+
+Com o NetApp, você pode executar produção de EHR, recuperação de desastres, backup ou disposição em camadas na nuvem, como faria com que os recursos de storage do NetApp fossem executados em um data center local. Com o NetApp Cloud Volumes ONTAP, o NetApp fornece os recursos de classe empresarial e o desempenho necessário para executar eficazmente as EHR na nuvem. As opções de nuvem da NetApp fornecem bloco sobre iSCSI e arquivo sobre NFS ou SMB.
+
+Essa solução atende à necessidade das organizações de saúde e permite que elas deem um passo em direção à transformação digital. Ele também pode ajudá-los a gerenciar suas aplicações e workloads de maneira eficiente.
+
+link:fhc-cvoe-where-to-find-additional-information.html["Próximo: Onde encontrar informações adicionais."]

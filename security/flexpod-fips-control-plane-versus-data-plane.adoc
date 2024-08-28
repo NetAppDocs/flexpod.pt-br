@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: security/flexpod-fips-control-plane-versus-data-plane.html 
+keywords: control plane, data plane 
+summary: Ao implementar uma estratégia FIPS 140-2, é importante entender o que está sendo protegido. Isso pode ser facilmente dividido em duas áreas, plano de controle e plano de dados. 
+---
+= Plano de controle versus plano de dados
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:flexpod-fips-overview-of-fips-140-2.html["Anterior: Visão geral do FIPS 140-2."]
+
+[role="lead"]
+Ao implementar uma estratégia FIPS 140-2, é importante entender o que está sendo protegido. Isso pode ser facilmente dividido em duas áreas: Plano de controle e plano de dados. Um plano de controle refere-se aos aspetos que afetam o controle e a operação dos componentes dentro do sistema FlexPod: Por exemplo, acesso administrativo aos controladores de storage NetApp, switches Cisco Nexus e servidores Cisco UCS. A proteção nesta camada é fornecida limitando os protocolos e cifras criptográficas que os administradores podem usar para se conetar a dispositivos e fazer alterações. Um plano de dados refere-se às informações reais, como a PHI, no sistema FlexPod. Isso é protegido criptografando dados em repouso e novamente para FIPS, garantindo que os módulos criptográficos em uso atendam aos padrões.
+
+link:flexpod-fips-flexpod-cisco-ucs-compute-and-fips-140-2.html["Próximo: Computação do FlexPod Cisco UCS e FIPS 140-2."]

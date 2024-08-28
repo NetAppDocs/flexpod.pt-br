@@ -1,0 +1,182 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-design_design_choices.html 
+keywords: AFF C190, CIFS, NFS, iSCSI, FCP, SnapMirror, SnapVault, SnapRestore, SnapManager, SnapCenter, FabricPool 
+summary: As tecnologias listadas nesta seção foram escolhidas durante a fase de projeto arquitetônico. Cada tecnologia atende a um propósito específico na solução de infraestrutura FlexPod Express. 
+---
+= Opções de design
+:allow-uri-read: 
+
+
+[role="lead"]
+As tecnologias listadas nesta seção foram escolhidas durante a fase de projeto arquitetônico. Cada tecnologia atende a um propósito específico na solução de infraestrutura FlexPod Express.
+
+
+
+== Série NetApp AFF C190 com ONTAP 9 .6
+
+Essa solução aproveita dois dos mais novos produtos NetApp: O sistema NetApp AFF C190 e o software ONTAP 9.6.
+
+
+
+=== Sistema AFF C190
+
+O grupo-alvo são os clientes que querem modernizar a INFRAESTRUTURA DE TI com tecnologia all-flash a um preço acessível. O sistema AFF C190 vem com o novo ONTAP 9.6 e licenciamento de pacotes flash, o que significa que as seguintes funções estão integradas:
+
+* CIFS, NFS, iSCSI e FCP
+* Software de replicação de dados NetApp SnapMirror, software de backup NetApp SnapVault, software de recuperação de dados NetApp SnapRestore, pacote de produtos de software de gerenciamento de storage NetApp SnapManager e software NetApp SnapCenter
+* Tecnologia FlexVol
+* Deduplicação, compressão e compactação
+* Thin Provisioning
+* QoS de storage
+* Tecnologia NetApp RAID DP
+* Tecnologia NetApp Snapshot
+* FabricPool
+
+
+As figuras a seguir mostram as duas opções de conetividade de host.
+
+A figura a seguir ilustra as portas UTA 2 onde o módulo SFP pode ser inserido.
+
+image:express-c-series-c190-design_image4.png["Erro: Imagem gráfica em falta"]
+
+A figura a seguir ilustra portas 10GBASEBASE-T para conexão por meio de cabos Ethernet RJ-45 convencionais.
+
+image:express-c-series-c190-design_image5.png["Erro: Imagem gráfica em falta"]
+
+
+NOTE: Para a opção de porta 10GBASEBASE-T, você deve ter um switch uplink baseado em 10GBASEBASE-T.
+
+O sistema AFF C190 é oferecido exclusivamente com SSDs de 960GB TB. Existem quatro estágios de expansões a partir dos quais você pode escolher:
+
+* 8x 960GB
+* 12x 960GB
+* 18x 960GB
+* 24x 960GB
+
+
+Para obter informações completas sobre o sistema de hardware AFF C190, consulte https://www.netapp.com/us/products/entry-level-aff.aspx["Página de array all-flash NetApp AFF C190"^].
+
+
+
+=== ONTAP 9 1.6 software
+
+Os sistemas NetApp AFF C190 usam o novo software de gerenciamento de dados ONTAP 9.6. O ONTAP 9.6 é o software empresarial de gerenciamento de dados líder do setor. Ele combina novos níveis de simplicidade e flexibilidade com funcionalidades avançadas de gerenciamento de dados, eficiências de storage e integração com a nuvem líder.
+
+O ONTAP 9.6 tem vários recursos que são adequados para a solução FlexPod Express. O mais importante é o compromisso da NetApp com a eficiência de storage, que pode ser um dos recursos mais importantes para implantações de pequeno porte. Os recursos de eficiência de storage da NetApp, como deduplicação, compressão, compactação e thin Provisioning, estão disponíveis no ONTAP 9.6. O sistema NetApp WAFL grava sempre 4KB blocos; portanto, a compactação combina vários blocos em um bloco 4KB quando os blocos não estão usando o espaço alocado de 4KB. A figura a seguir ilustra esse processo.
+
+image:express-c-series-c190-design_image6.png["Erro: Imagem gráfica em falta"]
+
+O ONTAP 9.6 agora oferece suporte a um tamanho de bloco opcional de 512 bytes para volumes NVMe. Essa capacidade funciona bem com o VMware Virtual Machine File System (VMFS), que usa nativamente um bloco de 512 bytes. Você pode ficar com o tamanho padrão 4K ou opcionalmente definir o tamanho do bloco de 512 bytes.
+
+Outras melhorias de recursos no ONTAP 9.6 incluem:
+
+* *Criptografia agregada NetApp (NAE).* O NAE atribui chaves no nível agregado, criptografando assim todos os volumes no agregado. Esse recurso permite que os volumes sejam criptografados e desduplicados no nível agregado.
+* * NetApp ONTAP FlexGroup aumento de volume*. No ONTAP 9.6, você pode facilmente renomear um volume FlexGroup. Não é necessário criar um novo volume para o qual migrar os dados. O tamanho do volume também pode ser reduzido usando o Gerenciador de sistemas ou a CLI do ONTAP.
+* *Aprimoramento de FabricPool.* O ONTAP 9.6 adicionou suporte adicional para armazenamentos de objetos como camadas de nuvem. O suporte ao Google Cloud e ao Alibaba Cloud Object Storage Service (OSS) também foi adicionado à lista. O FabricPool é compatível com vários armazenamentos de objetos, incluindo AWS S3, Azure Blob, storage de objetos IBM Cloud e software de storage baseado em objetos NetApp StorageGRID.
+* *Aprimoramento de SnapMirror.* No ONTAP 9.6, uma nova relação de replicação de volume é criptografada por padrão antes de sair da matriz de origem e é descriptografada no destino do SnapMirror.
+
+
+
+
+== Cisco Série Nexus 3000
+
+O Cisco Nexus 31108PC-V é um switch topo de rack (Tor) baseado em 10Gbps SFP com mais de 48 portas SFP e 6 QSFP28 portas. Cada porta SFP pode operar em 100Mbps GbE, 10Gbps GbE e cada porta QSFP28 GbE pode operar em modo nativo 100Gbps GbE ou 40Gbps GbE ou modo 4x 10Gbps GbE, oferecendo opções de migração flexíveis. Esse switch é um verdadeiro switch sem PHY otimizado para baixa latência e baixo consumo de energia.
+
+A especificação Cisco Nexus 31108PC-V inclui os seguintes componentes:
+
+* Capacidade de comutação de 2,16Tbps W e taxa de encaminhamento de até 1,2Tbps Mbps para 31108PC V
+* 48 portas SFP suportam 1 e 10 Gigabit Ethernet (10GbE); 6x QSFP28 portas suportam 4x 10GbE ou 40GbE cada ou 100GbE
+
+
+A figura a seguir ilustra o switch Cisco Nexus 31108PC-V.
+
+image:express-c-series-c190-design_image7.png["Erro: Imagem gráfica em falta"]
+
+Para obter mais informações sobre os switches Cisco Nexus 31108PC-V, https://www.cisco.com/c/en/us/products/collateral/switches/nexus-3000-series-switches/data_sheet_c78-729483.html["Ficha de dados dos switches Cisco Nexus 3172PQ, 3172TQ, 3172TQ-32T, 3172PQ-XL e 3172TQ-XL"^] consulte .
+
+
+
+== Cisco UCS C-Series
+
+O servidor de rack Cisco UCS C-Series foi escolhido para o FlexPod Express porque suas muitas opções de configuração permitem que ele seja adaptado para requisitos específicos em uma implantação do FlexPod Express.
+
+Os servidores de rack Cisco UCS C-Series oferecem computação unificada em um fator forma padrão do setor para reduzir o TCO e aumentar a agilidade.
+
+Os servidores de rack Cisco UCS C-Series oferecem os seguintes benefícios:
+
+* Um ponto de entrada independente de fator de forma no Cisco UCS
+* Implantação de aplicações simplificada e rápida
+* Extensão das inovações e benefícios da computação unificada para servidores em rack
+* Maior escolha do cliente com benefícios exclusivos em um pacote de rack familiar
+
+
+image:express-c-series-c190-design_image8.png["Erro: Imagem gráfica em falta"]
+
+O servidor de rack Cisco UCS C220 M5, mostrado na figura acima, está entre os servidores de aplicativos e infraestrutura empresarial de uso geral mais versáteis do setor. É um servidor em rack de dois soquetes de alta densidade que oferece desempenho e eficiência líderes do setor para uma ampla variedade de workloads, incluindo virtualização, colaboração e aplicações bare-metal. Os servidores de rack Cisco UCS C-Series podem ser implantados como servidores autônomos ou como parte do Cisco UCS para aproveitar as inovações de computação unificada baseadas em padrões da Cisco que ajudam a reduzir o TCO dos clientes e a aumentar a agilidade nos negócios.
+
+Para obter mais informações sobre servidores C220 M5, https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/datasheet-c78-739281.html["Folha de dados do servidor de rack Cisco UCS C220 M5"^] consulte .
+
+
+
+=== Conetividade Cisco UCS VIC 1457 para servidores de rack C220 M5
+
+O adaptador Cisco UCS VIC 1457 mostrado na figura a seguir é uma placa de rede local modular conetável de fator de forma pequeno (SFP28) de quatro portas na placa-mãe (mLOM) projetada para a geração M5 de servidores Cisco UCS C-Series. A placa suporta Ethernet 10/25Gbps ou FCoE. A placa pode apresentar interfaces compatíveis com padrões PCIe para o host, e estas podem ser configuradas dinamicamente como NICs ou HBAs.
+
+image:express-c-series-c190-design_image9.png["Erro: Imagem gráfica em falta"]
+
+Para obter informações completas sobre o adaptador Cisco UCS VIC 1457, https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/unified-computing-system-adapters/datasheet-c78-741130.html["Folha de dados da série 1400 da placa de interface virtual do Cisco UCS"^] consulte .
+
+
+
+== VMware vSphere 6.7U2
+
+O VMware vSphere 6.7U2 é uma das opções de hypervisor para uso com o FlexPod Express. O VMware vSphere permite que as organizações reduzam sua capacidade de energia e refrigeração, ao mesmo tempo em que confirmam que a capacidade de computação comprada é usada ao máximo. Além disso, o VMware vSphere permite a proteção contra falhas de hardware (VMware High Availability, ou VMware HA) e o balanceamento de carga de recursos de computação em um cluster de hosts vSphere (VMware Distributed Resource Scheduler no modo de manutenção ou VMware DRS-MM).
+
+Como ele reinicia apenas o kernel, o VMware vSphere 6.7U2 permite que os clientes iniciem rapidamente, carregando o vSphere ESXi sem reiniciar o hardware. O cliente vSphere 6.7U2 vSphere (cliente baseado em HTML5) tem algumas novas melhorias, como o Developer Center com captura de código e exploração de API. Com o Code Capture, você pode gravar suas ações no cliente vSphere para fornecer saída de código simples e utilizável. O vSphere 6.7U2 também contém novos recursos, como DRS no modo de manutenção (DRS-MM).
+
+O VMware vSphere 6.7U2 oferece os seguintes recursos:
+
+* A VMware está depreciando o modelo de implantação externa do VMware Platform Services Controller (PSC).
+
+
+
+NOTE: A partir da próxima versão principal do vSphere, o PSC externo não será uma opção disponível.
+
+* Novo suporte ao protocolo para fazer backup e restaurar um dispositivo do vCenter Server. Apresentando o NFS e o SMB como opções de protocolo compatíveis, até um total de 7 (HTTP, HTTPS, FTP, FTPS, SCP, NFS e SMB) ao configurar um vCenter Server para operações de backup ou restauração baseadas em arquivos.
+* Nova funcionalmente ao usar a biblioteca de conteúdo. A sincronização de um modelo de VM nativo entre bibliotecas de conteúdo agora está disponível quando o vCenter Server é configurado para o modo vinculado aprimorado.
+* Atualize para o https://blogs.vmware.com/vsphere/2019/04/vcenter-server-6-7-update-2-whats-new.html["Página de plug-ins do cliente"^].
+* O VMware vSphere Update Manager também adiciona melhorias ao cliente vSphere. Você pode executar a conformidade de verificação de anexação e as ações corretivas, tudo em uma única tela.
+
+
+Para obter mais informações sobre o VMware vSphere 6,7 U2, consulte https://blogs.vmware.com/vsphere/2019/04/vcenter-server-6-7-update-2-whats-new.html["Página do blog do VMware vSphere"^].
+
+Para obter mais informações sobre as atualizações do VMware vCenter Server 6,7 U2, consulte o https://docs.vmware.com/en/VMware-vSphere/6.7/rn/vsphere-vcenter-server-67u2-release-notes.html["Notas de versão"^].
+
+
+NOTE: Embora essa solução tenha sido validada com o vSphere 6.7U2, ela oferece suporte a qualquer versão do vSphere qualificada com os outros componentes pelo https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade NetApp (IMT)"^]. A NetApp recomenda que você implante a próxima versão lançada do vSphere para suas correções e recursos aprimorados.
+
+
+
+== Arquitetura de inicialização
+
+As opções suportadas para a arquitetura de arranque do FlexPod Express incluem:
+
+* ISCSI SAN LUN
+* Cartão SD Cisco FlexFlash
+* Disco local
+
+
+O FlexPod Datacenter é inicializado a partir de iSCSI LUNs; portanto, a capacidade de gerenciamento da solução também é aprimorada usando o iSCSI boot para FlexPod Express.
+
+
+
+=== Layout da placa de interface de rede virtual do host ESXi
+
+Cisco UCS VIC 1457 tem quatro portas físicas. Essa validação da solução inclui essas quatro portas físicas no uso do host ESXi. Se você tiver um número menor ou maior de NICs, poderá ter números VMNIC diferentes.
+
+Numa implementação de arranque iSCSI, o arranque iSCSI requer placas de interface de rede virtual (vNICs) separadas para o arranque iSCSI. Esses vNICs usam a VLAN iSCSI da malha apropriada como VLAN nativa e são conetados aos vSwitches de inicialização iSCSI, como mostrado na figura a seguir.
+
+image:express-c-series-c190-design_image10.png["Erro: Imagem gráfica em falta"]
+
+link:express-c-series-c190-design_conclusion.html["Próximo: Conclusão."]

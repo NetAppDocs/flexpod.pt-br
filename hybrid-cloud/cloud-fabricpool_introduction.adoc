@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_introduction.html 
+keywords: flexpod, fabricpool, inactive, data, tiering, amazon, aws, s3 
+summary: Este relatório técnico analisa o recurso de disposição em camadas de dados do FabricPool do NetApp ONTAP no contexto de uma arquitetura de infraestrutura convergente do FlexPod da NetApp e do Cisco. 
+---
+= TR-4801: FlexPod com FabricPool - disposição em camadas de dados inativos no Amazon AWS S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Scott Kovacs, NetApp
+
+[role="lead"]
+Os preços do storage flash continuam a cair, tornando-os disponíveis para workloads e aplicações que não eram consideradas anteriormente candidatas ao storage flash. No entanto, fazer o uso mais eficiente do investimento em armazenamento ainda é extremamente importante para os gerentes DE TI. Os departamentos DE TI continuam pressionados a fornecer serviços de alto desempenho com pouco ou nenhum aumento do orçamento. Para ajudar a atender a essas necessidades, o NetApp FabricPool permite que você aproveite a economia da nuvem movendo dados pouco usados de storage flash caro no local para uma camada de storage mais econômica na nuvem pública. A migração de dados que não são acessados com frequência para a nuvem libera espaço valioso de storage flash em sistemas AFF ou FAS para fornecer mais capacidade para workloads essenciais aos negócios para a camada flash de alta performance.
+
+Este relatório técnico analisa o recurso de disposição em camadas de dados do FabricPool do NetApp ONTAP no contexto de uma arquitetura de infraestrutura convergente do FlexPod da NetApp e do Cisco. Você deve se familiarizar com a arquitetura da infraestrutura convergente do data center do FlexPod e o software de storage do ONTAP para se beneficiar totalmente dos conceitos discutidos neste relatório técnico. Com base na familiaridade com o FlexPod e o ONTAP, discutimos o FabricPool, como ele funciona e como ele pode ser usado para uso mais eficiente do storage flash no local. Grande parte do conteúdo deste relatório é abordado com mais detalhes na https://www.netapp.com/pdf.html?item=/media/17239-tr4598pdf.pdf["TR-4598 melhores práticas da FabricPool"^] documentação do produto ONTAP e em outras documentações. O conteúdo foi condensado para uma infraestrutura do FlexPod e não cobre completamente todos os casos de uso do FabricPool. Todos os recursos e conceitos examinados estão disponíveis no ONTAP 9.6.
+
+Para mais informações sobre o FlexPod, consulte https://www.netapp.com/pdf.html?item=/media/12424-tr4036.pdf["TR-4036 FlexPod Datacenter Especificações técnicas"^].

@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: infrastructure/nvme-vsphere-abstract.html 
+keywords:  
+summary:  
+---
+= Resumo
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Este relatório técnico fornece uma visão geral de alto nível da performance de NVMe em Fibre Channel (FC-NVMe) com o VMware vSphere 7 on FlexPod. O FlexPod é a base ideal de infraestrutura compartilhada para implantar o FC-NVMe a fim de fornecer acesso ao storage de alta performance às aplicações.

@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/fpd-cisco-vm-vs-design.html 
+keywords: flexpod, cisco, intersight, vmware, vsphere, ontap 
+summary: Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para implantar as tecnologias Cisco e NetApp como infraestrutura de nuvem compartilhada. 
+---
+= Centro de dados FlexPod com Cisco Intersight e NetApp ONTAP 9 .7 - Design
+:allow-uri-read: 
+
+
+John George, Cisco Scott Kovacs, NetApp
+
+[role="lead"]
+Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para implantar as tecnologias Cisco e NetApp como infraestrutura de nuvem compartilhada. Esse design validado fornece uma estrutura para implantar o VMware vSphere, a plataforma de virtualização mais popular em data centers de classe empresarial, no FlexPod.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/fp_dc_ontap_97_ucs_4_vmw_vs_67_U3_design.html["Centro de dados FlexPod com Cisco Intersight e NetApp ONTAP 9 .7 - Design"^]

@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: healthcare/flexpod-genomics-introduction.html 
+keywords: tr-4911, tr4911, 4911, genomics, healthcare, life sciences, medical imaging, pathology 
+summary: A plataforma de infraestrutura convergente do FlexPod permite que uma organização de saúde hospede um ou mais workloads genômicos, além de outras aplicações clínicas e não clínicas do setor de saúde. Este relatório técnico usa uma ferramenta de genômica padrão do setor de código aberto chamada GATK durante a validação da plataforma FlexPod. 
+---
+= TR-4911: Genômica de FlexPod
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+JayaKishore Esanakula, NetApp
+
+[role="lead"]
+Há poucos campos da medicina que são mais importantes do que a genômica para a saúde e as ciências da vida, e a genômica está rapidamente se tornando uma ferramenta clínica chave para médicos e enfermeiros. A genômica, quando combinada com imagens médicas e patologia digital, nos ajuda a entender como os genes de um paciente podem ser afetados por protocolos de tratamento. O sucesso da genômica na saúde depende cada vez mais da interoperabilidade de dados em escala. O objetivo final é fazer sentido dos enormes volumes de dados genéticos e identificar correlações e variantes clinicamente relevantes que melhoram o diagnóstico e tornam a medicina de precisão uma realidade. A genômica nos ajuda a entender a origem dos surtos de doenças, como as doenças evoluem e quais tratamentos e estratégias podem ser eficazes. Claramente, a genômica tem muitos benefícios que abrangem a prevenção, o diagnóstico e o tratamento. As organizações de saúde estão enfrentando vários desafios, incluindo os seguintes:
+
+* Melhoria da qualidade dos cuidados
+* Cuidado baseado em valor
+* Explosão de dados
+* Medicina de precisão
+* Pandemias
+* Wearables, monitoração remota, e cuidado
+* Segurança cibernética
+
+
+Vias clínicas padronizadas e protocolos clínicos são um dos componentes críticos da medicina moderna. Um dos principais aspetos da padronização é a interoperabilidade entre os prestadores de cuidados, não apenas para Registros médicos, mas também para dados genômicos. A grande questão é que as organizações de saúde abandonarão a propriedade de dados genômicos em vez da propriedade dos pacientes de seus dados pessoais de genômica e Registros médicos relacionados?
+
+Os dados interoperáveis dos pacientes são fundamentais para permitir a medicina de precisão, uma das forças impulsionadoras da recente explosão de crescimento de dados. O objetivo da medicina de precisão é tornar a manutenção da saúde, prevenção de doenças, diagnósticos e soluções de tratamento mais eficazes e precisas.
+
+A taxa de crescimento de dados tem sido exponencial. No início de fevereiro de 2021, os laboratórios dos EUA sequenciaram aproximadamente 8.000 cepas de COVID-19 por semana. O número de genomas sequenciados aumentou para 29.000 por semana em abril de 2021. Cada genoma humano totalmente sequenciado tem cerca de 125GB mm de tamanho. Portanto, a uma taxa de 29.000 genomas sequenciados por semana, o armazenamento total do genoma em repouso seria mais de 180 petabytes por ano. Vários países comprometeram recursos para a epidemiologia genômica para melhorar a vigilância genômica e se preparar para a próxima onda de desafios globais de saúde.
+
+O custo reduzido da pesquisa genômica está impulsionando testes genéticos e pesquisas a um ritmo sem precedentes. Os três PS estão em um ponto de inflexão: Poder do computador, privacidade de dados e personalização da medicina. Em 2025, os pesquisadores estimam que 100 milhões a 2 bilhões de genomas humanos serão sequenciados. Para que a genômica seja eficaz e uma proposta valiosa, os recursos de genômica devem ser parte perfeita dos fluxos de trabalho de cuidados; eles devem ser fáceis de acessar e úteis durante a visita do paciente. Também é igualmente importante que os dados de registo médico eletrónico do paciente sejam integrados com os dados genómicos do paciente. Com o advento da infraestrutura convergente de última geração, como o FlexPod, as organizações podem levar suas capacidades genômicas para os fluxos de trabalho diários de médicos, enfermeiros e gerentes clínicos. Para obter as informações mais recentes sobre a plataforma FlexPod, consulte este https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-x-series-modular-system/flex-pod-datacenter-ucs-intersight.html["FlexPod Datacenter com Cisco UCS X-Series White Paper"^].
+
+Para um médico, o verdadeiro valor da genômica inclui medicina de precisão e planos de tratamento personalizados com base nos dados genômicos de um paciente. Nunca houve tal sinergia entre clínicos e cientistas de dados no passado, e a genômica está se beneficiando das inovações tecnológicas no passado recente, e também parcerias reais entre organizações de saúde e líderes de tecnologia no setor.
+
+Centros médicos acadêmicos e outras organizações de saúde e ciências da vida estão a caminho de estabelecer o centro de excelência (COE) na ciência do genoma. De acordo com o Dr. Charlie Gersbach, Dr. Greg Crawford, e o Dr. Tim e Reddy da Duke University, "sabemos que os genes não são ligados ou desligados por um simples interrutor binário, mas em vez disso é um resultado de vários interrutores reguladores de genes que trabalham juntos. Eles também determinaram que "nenhuma dessas partes do genoma funciona isoladamente. O genoma é uma teia muito complicada que a evolução tem tecido" ( https://genome.duke.edu/news/thu-09242020-1054/multimillion-dollar-nih-grant-creates-first-duke-center-excellence-genome["ref"^] ).
+
+A NetApp e a Cisco têm trabalhado arduamente na implementação de melhorias incrementais na plataforma FlexPod há mais de 10 anos. Todo o feedback do cliente é ouvido, avaliado e vinculado aos fluxos de valor e conjuntos de recursos no FlexPod. É esse loop contínuo de feedback, colaboração, aprimoramento e celebração que diferencia a FlexPod como uma plataforma de infraestrutura convergente confiável em todo o mundo. Ela foi simplificada e projetada do zero para ser a plataforma mais confiável, robusta, versátil e ágil para organizações de saúde.
+
+
+
+== Âmbito de aplicação
+
+A plataforma de infraestrutura convergente do FlexPod permite que uma organização de saúde hospede um ou mais workloads genômicos, além de outras aplicações clínicas e não clínicas do setor de saúde. Este relatório técnico usa uma ferramenta de genômica padrão do setor de código aberto chamada GATK durante a validação da plataforma FlexPod. No entanto, uma discussão mais profunda sobre genômica ou GATK está fora do escopo deste documento.
+
+
+
+== Público-alvo
+
+Este documento destina-se a líderes técnicos do setor de saúde e a engenheiros de soluções de parceiros da Cisco e da NetApp e à equipe de serviços profissionais. O NetApp presume que o leitor entenda bem os conceitos de dimensionamento de storage e computação, além de ter familiaridade técnica com ameaças ao setor de saúde, segurança do setor de saúde, sistemas DE TI do setor de saúde, Cisco UCS e sistemas de storage NetApp.
+
+
+
+== Recursos hospitalares implantados no FlexPod
+
+Um hospital típico tem um conjunto diversificado de SISTEMAS DE TI. A maioria desses sistemas é comprada de um fornecedor, enquanto muito poucos são construídos pelo sistema hospitalar em casa. Portanto, o sistema hospitalar deve gerenciar um ambiente de infraestrutura diversificado em seus data centers. Quando os hospitais unificam seus sistemas em uma plataforma de infraestrutura convergente, como a FlexPod, as organizações podem padronizar as operações de data center. Com o FlexPod, as organizações de saúde podem implementar sistemas clínicos e não clínicos na mesma plataforma, unificando as operações do data center.
+
+image:flexpod-genomics-image2.png["Erro: Imagem gráfica em falta"]
+
+link:flexpod-genomics-benefits-of-deploying-genomic-workloads-on-flexpod.html["Próximo: Benefícios da implantação de workloads genômicos no FlexPod."]

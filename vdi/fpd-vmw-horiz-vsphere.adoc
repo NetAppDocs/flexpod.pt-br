@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: vdi/fpd-vmw-horiz-vsphere.html 
+keywords: flexpod, cisco, data, center, design, deployment, aff, fas, a300, 
+summary: 'Este documento fornece uma arquitetura de referência, um guia de design e uma implantação para um ambiente de computação de usuário final com carga de trabalho mista de até 5000 lugares no data center do FlexPod com storage Cisco UCS e NetApp All Flash FAS (AFF) A300.' 
+---
+= FlexPod Datacenter com VMware Horizon View 7,3 e VMware vSphere 6,5 Update 1 com Cisco UCS Manager 3,2 para 5000 assentos
+:allow-uri-read: 
+
+
+Ramesh Guduru, Cisco David Arnette, NetApp
+
+[role="lead"]
+Este documento fornece uma arquitetura de referência, um guia de design e uma implantação para um ambiente de computação de usuário final com carga de trabalho mista de até 5000 lugares no data center do FlexPod com storage Cisco UCS e NetApp All Flash FAS (AFF) A300. A solução inclui sessões hospedadas do servidor de desktop remoto baseadas no servidor VMware Horizon, desktops virtuais persistentes do Microsoft Windows 10 do VMware Horizon e desktops virtuais de clone instantâneo do Microsoft Windows 10 não persistentes no VMware vSphere 6,5.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_vmware_horizon_n9k_aff_ucsm32.html["FlexPod Datacenter com VMware Horizon View 7,3 e VMware vSphere 6,5 Update 1 com Cisco UCS Manager 3,2 para 5000 assentos"^]

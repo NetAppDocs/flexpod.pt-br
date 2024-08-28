@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: modern-apps/fpd-docker-contm-design.html 
+keywords: flexpod, docket, cisco, container, management, data 
+summary: O Docker é a plataforma de contentor de software líder mundial para desenvolvedores e operações DE TI para criar, enviar e executar aplicativos distribuídos em qualquer lugar. 
+---
+= Data center do FlexPod com Docker Enterprise Edition para gerenciamento de contêineres
+:allow-uri-read: 
+
+
+Cisco, Cisco Amit Borulkar, NetApp, são Paulo, são Paulo, são Paulo, Brasil
+
+[role="lead"]
+O Docker é a plataforma de contentor de software líder mundial para desenvolvedores e operações DE TI para criar, enviar e executar aplicativos distribuídos em qualquer lugar. Com a arquitetura de microsserviços moldando a próxima geração DE TI, empresas com grandes investimentos em aplicações monolíticas estão encontrando maneiras de adotar o Docker como uma estratégia para modernizar suas arquiteturas de aplicativos e manter a organização competitiva e econômica. A Conteinerização fornece a agilidade, o controle e a portabilidade que os desenvolvedores e as operações DE TI exigem para criar e implantar aplicativos em qualquer infraestrutura. A plataforma Docker permite que aplicativos distribuídos sejam facilmente compostos em um contentor de aplicativos leve que pode mudar dinamicamente, mas sem interrupções. Esse recurso torna os aplicativos portáteis em ambientes de desenvolvimento, teste e produção executados em máquinas físicas ou virtuais localmente, em data centers e em redes de diferentes provedores de serviços em nuvem.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_docker_deploy_design.html["Data center do FlexPod com Docker Enterprise Edition para gerenciamento de contêineres"^]

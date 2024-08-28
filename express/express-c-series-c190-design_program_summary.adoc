@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-design_program_summary.html 
+keywords: Converged Infrastructure, Cisco Validated Design, CVD, NVA, Express, Datacenter, UCS C220 M5, AFF C190, Nexus 31108 switch, VMware vSphere 6.7U2. 
+summary: As arquiteturas de referência do FlexPod são entregues como designs validados da Cisco ou como arquiteturas verificadas da NetApp. Desvios que são baseados nos requisitos do cliente de um determinado CVD ou NVA são permitidos se essas variações não resultarem na implantação de configurações não suportadas. 
+---
+= Resumo do programa
+:allow-uri-read: 
+
+
+
+
+== Portfólio de infraestrutura convergente do FlexPod
+
+As arquiteturas de referência do FlexPod são entregues como Cisco Validated designs (CVDs) ou como NetApp Verified Architectures (NVAs). Desvios que são baseados nos requisitos do cliente de um determinado CVD ou NVA são permitidos se essas variações não resultarem na implantação de configurações não suportadas.
+
+Conforme ilustrado na figura a seguir, o portfólio do FlexPod inclui as seguintes soluções: FlexPod Express e FlexPod Datacenter.
+
+* *O FlexPod Express* é uma solução de nível básico com tecnologias da Cisco e da NetApp.
+* *O FlexPod Datacenter* oferece uma base ideal para uso geral para várias cargas de trabalho e aplicações.
+
+
+image:express-c-series-c190-design_image1.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Programa NetApp Verified Architecture
+
+O programa NetApp Verified Architecture oferece aos clientes uma arquitetura verificada para soluções NetApp. Uma solução NVA tem as seguintes qualidades:
+
+* É completamente testado
+* É prescritiva por natureza
+* Minimiza os riscos de implantação
+* Este guia detalha o design do FlexPod Express com o VMware vSphere.
+
+
+Além disso, esse design utiliza o novo sistema AFF C190, que executa o software NetApp ONTAP 9.6, os switches Cisco Nexus 31108 e os servidores Cisco UCS C220 M5 como nós de hipervisor.
+
+
+
+== Visão geral da solução
+
+O FlexPod Express foi projetado para executar workloads de virtualização mistos. Ele é destinado a escritórios remotos e filiais e para empresas de pequeno e médio porte. Também é ideal para grandes empresas que desejam implementar uma solução dedicada para um propósito específico. Essa nova solução para o FlexPod Express adiciona novas tecnologias, como o NetApp ONTAP 9.6, o sistema NetApp AFF C190 e o VMware vSphere 6.7U2.
+
+A figura a seguir mostra os componentes de hardware incluídos na solução FlexPod Express.
+
+image:express-c-series-c190-design_image2.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Público-alvo
+
+Este documento destina-se a pessoas que desejam aproveitar uma infraestrutura construída para fornecer eficiência DE TI e permitir a inovação DE TI. O público-alvo deste documento inclui, entre outros, engenheiros de vendas, consultores de campo, pessoal de serviços profissionais, gerentes DE TI, engenheiros DE parceiros e clientes.
+
+
+
+== Tecnologia da solução
+
+Essa solução utiliza as tecnologias mais recentes da NetApp, Cisco e VMware. Ele apresenta o novo sistema NetApp AFF C190, que executa o software ONTAP 9.6, os switches Cisco Nexus 31108 duplos e os servidores de rack Cisco UCS C220 M5 que executam o VMware vSphere 6.7U2. Esta solução validada, ilustrada na figura a seguir, usa a tecnologia 10 Gigabit Ethernet (10GbE). Também são fornecidas orientações sobre como escalar adicionando dois nós de hipervisor de cada vez, para que a arquitetura FlexPod Express se adapte às crescentes necessidades de negócios da organização.
+
+image:express-c-series-c190-design_image3.png["Erro: Imagem gráfica em falta"]
+
+link:express-c-series-c190-design_technology_requirements.html["Próximo: Requisitos de tecnologia."]

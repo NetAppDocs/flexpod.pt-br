@@ -1,0 +1,205 @@
+---
+sidebar: sidebar 
+permalink: ontap-connector-for-intersight/ci-qsg_new.html 
+keywords: 'netapp, cisco, ontap, intersight, flexpod, what"s new, features, release notes, enhancements' 
+summary: O Cisco Intersight apresenta novas versões para oferecer novos recursos, melhorias e correções de bugs. 
+---
+= O que há de novo
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta seção lista os novos recursos e funcionalidades disponíveis para o Cisco Intersight com armazenamento NetApp ONTAP.
+
+
+
+== Janeiro de 2024
+
+* Orquestração de armazenamento do NetApp usando fluxos de trabalho de referência agora disponíveis para download no GitHub através do https://github.com/ucs-compute-solutions/FlexPod-Intersight-Workflow["Repositório do fluxo de trabalho do FlexPod Intersight"^]. Para obter mais informações sobre os novos fluxos de trabalho de referência no GitHub, link:ci-qsg_use_cases.html["Caso de uso 2: Orquestração de storage do NetApp usando workflows de referência"^]consulte .
+
+
+
+
+== Novembro de 2023
+
+* Adicionada página namespaces NVMe sob a seção Inventário da interface do usuário.
+
+
+
+
+== Agosto de 2023
+
+
+NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9,13GA para garantir a compatibilidade e a funcionalidade completa com a versão mais recente.
+
+* Melhorada a tarefa de LUN inteligente de novo NetApp para indicar claramente a disponibilidade de opções de seleção para criar um novo grupo de iniciadores ou selecionar um grupo de iniciadores existente. Quando os usuários agora selecionam a caixa para criar um novo grupo de iniciadores, o parâmetro para escolher um grupo de iniciadores existente não está mais disponível. Se os usuários desmarcar a caixa para criar um novo grupo de iniciadores, o parâmetro do grupo de iniciadores existente ficará disponível.
+* Melhorou o novo mapa LUN NetApp e Remover tarefas de mapa LUN NetApp. A nova relação entre o LUN e o grupo de iniciadores é agora atualizada. O inventário da IU é atualizado imediatamente para o LUN e para o grupo de iniciadores na execução da tarefa.
+* A página verificações agora carrega corretamente os usuários pela primeira vez que fazem login e não requer mais uma atualização.
+
+
+
+
+== Julho de 2023
+
+
+NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9,13GA para garantir a compatibilidade e a funcionalidade completa com a versão mais recente.
+
+* Nomes atualizados para tarefas de armazenamento do NetApp. Consulte caso de uso 3 fluxos de trabalho personalizados usando formulário livre de designer para obter a lista completa de tarefas renomeadas.
+* O endereço IP da interface NFS foi adicionado como uma saída da tarefa novo volume inteligente do NetApp nas.
+* Uma verificação de que o transporte ASUP é HTTPS foi adicionada à guia Cheques.
+* O tipo de camada correto para todos os níveis agora é exibido corretamente na interface do usuário de camadas.
+* Todas as licenças compatíveis agora são exibidas corretamente na página licenças.
+* O valor preciso para compartilhamentos CIFS sem ou sem um diretório inicial agora é exibido na página compartilhamentos.
+* Classificação e filtragem agora ativados para a coluna mapeada na página LUNS.
+* A classificação e filtragem agora habilitaram a coluna Autenticação ativada na página servidores NTP.
+* Adicionadas novas verificações e as seguintes categorias correspondentes ao separador verificações.
++
+** Segurança
+** Anti-ransomware
+** Disponibilidade
+** Outros
+
+
+* Na visualização de detalhes do inventário, o relatório agora é usado em vez da capacidade física usada.
+
+
+
+
+== Junho de 2023
+
+
+NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9.13RC1 para garantir a compatibilidade e a funcionalidade completa com a versão mais recente.
+
+* Nomes atualizados para tarefas de armazenamento do NetApp. Consulte link:ci-qsg_use_cases.html["Use Case 3 fluxos de trabalho personalizados usando formulário livre de designer"^] para obter a lista completa de tarefas renomeadas.
+
+
+
+
+== Abril de 2023
+
+* Adicionadas as guias políticas de proteção (SnapMirror) e políticas de captura instantânea na página políticas na seção Inventário da interface do usuário.
+* Adicionada página clientes NFS na seção Inventário da interface do usuário.
+* Coluna protegida adicionada na página VMs de armazenamento na seção Inventário da interface do usuário.
+* Modificado como as informações de redução de dados são relatadas e exibidas.
+* Adicionadas guias nível local e nível de nuvem sob a página camadas na seção Inventário da interface do usuário.
+* A coluna nó agora é exibida após a coluna Nome na página portas na seção Inventário da interface do usuário.
+
+
+
+
+== Janeiro de 2023
+
+
+NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9,12 GA para garantir a compatibilidade e a funcionalidade total com a versão mais recente. Para obter uma lista de problemas conhecidos relacionados a esta versão, <<Problemas conhecidos>>consulte .
+
+* As verificações de interoperabilidade do Intersight podem agora distinguir entre os modos de firmware do UCSM e do IMM ao efetuar verificações de compatibilidade.
+* As relações de proteção não serão exibidas no Intersight para ONTAP 9.7. Este problema foi corrigido no ONTAP 9.8RC1.
+
+
+
+
+== Agosto de 2022
+
+
+NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9,11 GA para garantir a compatibilidade e a funcionalidade total com a versão mais recente. Para obter uma lista de problemas conhecidos relacionados a esta versão, <<Problemas conhecidos>>consulte .
+
+* Cálculo atualizado da capacidade disponível do cluster para corresponder ao System Manager
+* Página geral do cluster atualizado para ocultar o resumo das métricas de desempenho até que os dados de desempenho sejam preenchidos
+* Corrigido o problema geral da interface de usuário da página que ocasionalmente fazia com que a página fosse suspensa
+* Adição de políticas de compartilhamentos CIFS, serviços CIFS, Qtrees e SVM SnapMirror para inventário de back-end.
+* Adicionados compartilhamentos e Qtrees ao menu de navegação da IU na seção Inventário lógico
+* Compartilhamentos adicionados como guia de uma VM de armazenamento selecionada
+* Foram adicionadas informações de Serviço CIFS na guia Geral da VM de armazenamento se a VM de armazenamento estiver ativada por CIFS
+* Adicionada uma página de verificações de cluster que permite que os usuários validem a configuração dos sistemas de armazenamento NetApp aderem às práticas recomendadas
+
+
+
+
+== Julho de 2022
+
+* Recursos visuais aprimorados para a taxa de redução de dados de cluster agora disponíveis sob o Widget de capacidade
+* Adicionada a guia interfaces FC à página interfaces de rede
+* Criar um novo volume usando a tarefa genérica "novo volume de armazenamento" agora define a garantia de espaço de volume para nenhum e a porcentagem de reserva de snapshot para 0%
+* O campo de comentário na tarefa Editar política de instantâneo agora é opcional e não é mais obrigatório
+* Consistência aprimorada de inventário e orquestração da IU
+* As informações de capacidade do Intersight em capacidade de cluster agora são consistentes com o System Manager
+* Caixa de seleção adicionada na tarefa New Storage Virtual Machine para exibir todos os parâmetros ao criar uma nova interface de gerenciamento para melhorar a usabilidade
+* Protocolos movidos abaixo da correspondência do cliente, agora consistentes com o System Manager
+* Página geral da política de exportação agora exibindo o(s) Protocolo(s) de acesso
+* remoção do igroup agora registrado condicionalmente
+* Adicionados parâmetros de "Política de failover" e "reversão automática" para nas em Nova Interface de dados nas de armazenamento e Nova Interface de dados iSCSI de armazenamento
+* Reverter para a tarefa New Storage nas Smart volume agora remove a política de exportação se nenhum outro volume estiver anexado
+* Aperfeiçoamentos feitos para tarefas Smart volume e Smart LUN
+
+
+
+
+== Abril de 2022
+
+
+NOTE: Para garantir a compatibilidade e a funcionalidade completa com versões futuras, recomenda-se que você atualize seu NetApp Active IQ Unified Manager para a versão 9.10P1.
+
+* Adicionado domínio de transmissão à página de detalhes da porta Ethernet
+* Alterado o termo "agregado" para "Categoria" para agregado e SVM na interface de usuário
+* Alterado o termo "Estado do cluster" para "Estado da matriz"
+* O filtro MTU agora funciona para carateres
+* Adicionada página de interface de rede ao inventário de cluster
+* Adicionado AutoSupport ao inventário de cluster
+* Opção adicionada `cdpd.enable` ao nó
+* Adicionado um objeto para o vizinho CDP
+* Adicionadas tarefas de storage de fluxo de trabalho do NetApp no Cisco Intersight. Consulte link:ci-qsg_use_cases.html["Use Case 3 fluxos de trabalho personalizados usando formulário livre de designer"^] para obter uma lista completa das tarefas de armazenamento do NetApp.
+
+
+
+
+== Janeiro de 2022
+
+* Foram adicionados alarmes de Intersight baseados em eventos para NetApp Active IQ Unified Manager 9,10 ou superior.
+
+
+
+NOTE: Para garantir a compatibilidade e a funcionalidade completa com versões futuras, recomenda-se que você atualize seu NetApp Active IQ Unified Manager para a versão 9,10.
+
+* Defina explicitamente cada protocolo habilitado (verdadeiro ou falso) para Storage Virtual Machine
+* Mapeado o estado do cluserHealthStatus ok-with-suppressed para OK
+* Coluna Saúde renomeada para coluna Status do cluster na página Lista de Cluster
+* Mostrar matriz de armazenamento "inalcançável" se o cluster estiver inativo ou de outra forma inalcançável
+* Coluna Saúde renomeada para coluna Status da matriz na página Geral do cluster
+* O SVM agora tem uma guia "volumes" que mostra todos os volumes do SVM
+* O volume tem uma seção de capacidade de snapshot
+* As licenças agora são apresentadas corretamente
+
+
+
+
+== Outubro de 2021
+
+* Lista atualizada de tarefas de storage do NetApp disponíveis no Cisco Intersight. Consulte link:ci-qsg_use_cases.html["Use Case 3 fluxos de trabalho personalizados usando formulário livre de designer"^] para obter uma lista completa das tarefas de armazenamento do NetApp.
+* Coluna Saúde adicionada sob a página de lista de cluster.
+* Detalhes expandidos agora disponíveis na página Geral para um cluster selecionado.
+* Tabela do servidor NTP agora acessível através do painel de navegação.
+* Adicionada uma nova guia Sensores contendo a página Geral da Máquina Virtual de armazenamento.
+* Resumo do grupo de agregação de VLAN e link agora disponível na página Geral da porta.
+* Coluna capacidade total de dados adicionada sob a tabela capacidade total de volume.
+* Colunas latência, IOPS e throughput adicionadas nas tabelas Estatísticas de volume médio, Estatísticas de LUN médias, Estatísticas de agregado médio, Estatísticas de VM de armazenamento médio e Estatísticas de nó médias
++
+
+NOTE: As métricas de performance acima estão disponíveis apenas para storage arrays monitorados pelo NetApp Active IQ Unified Manager 9,9 ou superior.
+
+
+
+
+
+== Problemas conhecidos
+
+* Se estiver a utilizar uma versão do AIQUM 9,11 ou anterior, ocorrerá uma discrepância entre os valores apresentados na página Lista de armazenamento e o gráfico de barras de capacidade na página Geral armazenamento. Para resolver este problema, atualize para AIQUM 9,12 ou superior para garantir a precisão dos valores de capacidade apresentados.
+* Se você estiver usando o AIQUM 9,11 ou anterior, quaisquer verificações realizadas pela guia "interoperabilidade" na página "sistemas integrados" não conseguirão distinguir os componentes IMM e UCSM Cisco com precisão. Para resolver este problema, atualize para o AIQUM 9,12 para garantir que todos os componentes estão devidamente identificados.
+* Para garantir que os dados do inventário de armazenamento do Intersight não sejam afetados durante o processo de coleta de dados, quaisquer clusters ONTAP não suportados (ou seja, versões abaixo do ONTAP 9.7P1) devem ser removidos do Active IQ Unified Manager (AIQUM).
+* Todos os alvos reivindicados requerem uma versão mínima do AIQUM do 9,11 para consultas de interoperabilidade do sistema integrado FlexPod para serem concluídas com êxito.
+* A página verificações de inventário de armazenamento não será preenchida se o cluster ONTAP for adicionado ao AIQUM usando um FQDN. Os usuários devem adicionar clusters ONTAP ao AIQUM usando um endereço IP.
+

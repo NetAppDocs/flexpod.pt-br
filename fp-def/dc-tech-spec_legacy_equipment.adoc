@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: fp-def/dc-tech-spec_legacy_equipment.html 
+keywords: legacy, equipment, cisco, end, life, eol, flexpod, datacenter, technical, specifications 
+summary: 'O FlexPod é uma solução flexível que permite utilizar os equipamentos existentes e os novos equipamentos atualmente à venda pela Cisco e NetApp. Ocasionalmente, certos modelos de equipamentos da Cisco e da NetApp são designados como fim de vida útil (EOL).' 
+---
+= Equipamento legado
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O FlexPod é uma solução flexível que permite utilizar os equipamentos existentes e os novos equipamentos atualmente à venda pela Cisco e NetApp. Ocasionalmente, certos modelos de equipamentos da Cisco e da NetApp são designados como fim de vida útil (EOL).
+
+Mesmo que esses modelos de equipamentos não estejam mais disponíveis, se você comprou um desses modelos antes da data de fim de disponibilidade (EOA), você pode usar esse equipamento em uma configuração do FlexPod. Uma lista completa dos modelos de equipamentos antigos suportados no FlexPod que não estão mais à venda pode ser referenciada no https://mysupport.netapp.com/info/eoa/index.html["Índice de término da disponibilidade dos programas de produtos de suporte e Serviço NetApp"^].
+
+Para obter mais informações sobre equipamentos Cisco legados, consulte os avisos EOL e EOA do Cisco para http://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-c-series-rack-servers/eos-eol-notice-listing.html["Servidores em rack Cisco UCS C-Series"^], http://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-b-series-blade-servers/eos-eol-notice-listing.html["Servidores blade Cisco UCS B-Series"^] e https://www.cisco.com/c/en/us/products/eos-eol-listing.html["Switches Nexus"^].
+
+O suporte à malha FC legada inclui o seguinte:
+
+* 2GB tecido
+* 4GB tecido
+
+
+O software legado inclui o seguinte:
+
+* NetApp Data ONTAP operando no modo 7D, 7.3.5D e posterior
+* ONTAP 8,1.x a 9,0.x
+* Cisco UCS Manager 1,3 e posterior
+* Cisco UCS Manager 2,1 a 2.2.7
+

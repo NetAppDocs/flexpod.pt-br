@@ -1,0 +1,84 @@
+---
+sidebar: sidebar 
+permalink: healthcare/ehr-meditech-deploy_netapp_configuration.html 
+keywords: configuration, storage, meditech, software, environments, controllers, hardware, takeover, licenses 
+summary: O storage NetApp implantado para ambientes de software MEDITECH usa controladores de storage em uma configuração de par de alta disponibilidade. O storage deve ser apresentado de ambas as controladoras para servidores de banco de dados MEDITECH pelo protocolo FC. A configuração apresenta armazenamento de ambos os controladores para equilibrar uniformemente a carga da aplicação durante a operação normal. 
+---
+= Configuração do NetApp
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O storage NetApp implantado para ambientes de software MEDITECH usa controladores de storage em uma configuração de par de alta disponibilidade. O storage deve ser apresentado de ambas as controladoras para servidores de banco de dados MEDITECH pelo protocolo FC. A configuração apresenta armazenamento de ambos os controladores para equilibrar uniformemente a carga da aplicação durante a operação normal.
+
+
+
+== Configuração ONTAP
+
+Esta seção descreve um exemplo de procedimentos de implantação e provisionamento que usam os comandos ONTAP relevantes. A ênfase é mostrar como o storage é provisionado para implementar o layout de storage recomendado pela NetApp, que usa um par de controladores de alta disponibilidade. Uma das principais vantagens do ONTAP é a capacidade de fazer escalabilidade horizontal sem perturbar os pares de alta disponibilidade existentes.
+
+
+
+=== Licenças ONTAP
+
+Depois de configurar os controladores de storage, aplique licenças para ativar os recursos do ONTAP recomendados pela NetApp. As licenças para workloads MEDITECH são as tecnologias FC, CIFS e NetApp Snapshot, SnapRestore, FlexClone e SnapMirror.
+
+Para configurar licenças, abra o Gerenciador de sistema do NetApp ONTAP, vá para licenças de configuração e adicione as licenças apropriadas.
+
+Como alternativa, execute o seguinte comando para adicionar licenças usando a CLI:
+
+....
+license add -license-code <code>
+....
+
+
+=== Configuração do AutoSupport
+
+A ferramenta NetApp AutoSupport envia informações de suporte resumidas para o NetApp por meio de HTTPS. Para configurar o AutoSupport, execute os seguintes comandos ONTAP:
+
+....
+autosupport modify -node * -state enable
+autosupport modify -node * -mail-hosts <mailhost.customer.com>
+autosupport modify -node prod1-01 -from prod1-01@customer.com
+autosupport modify -node prod1-02 -from prod1-02@customer.com
+autosupport modify -node * -to storageadmins@customer.com
+autosupport modify -node * -support enable
+autosupport modify -node * -transport https
+autosupport modify -node * -hostnamesubj true
+....
+
+
+=== Configuração de takeover assistido por hardware
+
+Em cada nó, habilite o takeover assistido por hardware para minimizar o tempo necessário para iniciar um takeover no caso improvável de uma falha do controlador. Para configurar a aquisição assistida por hardware, execute as seguintes etapas:
+
+. Execute o seguinte comando ONTAP para xxx.
++
+Defina a opção endereço do parceiro como endereço IP da porta de gerenciamento `prod1-01` do .
+
++
+....
+MEDITECH::> storage failover modify -node prod1-01 -hwassist-partner-ip <prod1-02-mgmt-ip>
+....
+. Execute o seguinte comando ONTAP para xxx:
++
+Defina a opção endereço do parceiro como endereço IP da porta de gerenciamento `cluster1-02` do .
+
++
+....
+MEDITECH::> storage failover modify -node prod1-02 -hwassist-partner-ip <prod1-01-mgmt-ip>
+....
+. Execute o seguinte comando ONTAP para habilitar o takeover assistido por hardware no `prod1-01` par de controladores de HA e no `prod1-02` par.
++
+....
+MEDITECH::> storage failover modify -node prod1-01 -hwassist true
+MEDITECH::> storage failover modify -node prod1-02 -hwassist true
+....
+
+
+link:ehr-meditech-deploy_aggregate_configuration.html["Próximo: Configuração agregada."]

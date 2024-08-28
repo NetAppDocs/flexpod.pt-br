@@ -1,0 +1,39 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec_additional_information.html 
+keywords: additional, information, websites, documents, express, technical, specifications 
+summary: Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e sites 
+---
+= Informações adicionais
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e sites:
+
+* Centro de Documentação do sistema AFF e FAS
++
+https://docs.netapp.com/platstor/index.jsp["https://docs.netapp.com/platstor/index.jsp"^]
+
+* Página de recursos da documentação do AFF
++
+https://www.netapp.com/us/documentation/all-flash-fas.aspx["https://www.netapp.com/us/documentation/all-flash-fas.aspx"^]
+
+* Página de recursos de documentação dos sistemas de armazenamento FAS
++
+https://www.netapp.com/us/documentation/fas-storage-systems.aspx["https://www.netapp.com/us/documentation/fas-storage-systems.aspx"^]
+
+* FlexPod
++
+https://flexpod.com/["https://flexpod.com/"^]
+
+* Documentação do NetApp
++
+https://docs.netapp.com["https://docs.netapp.com"^]
+
+

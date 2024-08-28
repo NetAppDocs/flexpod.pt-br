@@ -1,0 +1,95 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/sm-bcs-virtualization.html 
+keywords: network connectivity, virtual networking, vm-host, affinity, groups, rules, vsphere ha heartbeat 
+summary: Na solução FlexPod SM-BC para vários locais, um único VMware vCenter gerencia os recursos de infraestrutura virtual para toda a solução. Os hosts de ambos os data centers participam do único cluster VMware HA que abrange ambos os data centers. Os hosts têm acesso à solução NetApp SM-BC, onde o storage com relações SM-BC definidas pode ser acessado de ambos os locais. 
+---
+= Validação da solução - virtualização
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sm-bcs-storage.html["Anterior: Validação da solução - armazenamento."]
+
+[role="lead"]
+Na solução FlexPod SM-BC para vários locais, um único VMware vCenter gerencia os recursos de infraestrutura virtual para toda a solução. Os hosts de ambos os data centers participam do único cluster VMware HA que abrange ambos os data centers. Os hosts têm acesso à solução NetApp SM-BC, onde o storage com relações SM-BC definidas pode ser acessado de ambos os locais.
+
+O storage da solução SM-BC está em conformidade com o modelo de acesso uniforme no recurso vMSC (VMware vSphere Metro Storage Cluster) para evitar desastres e tempo de inatividade. Para um desempenho ideal da máquina virtual, os discos da máquina virtual devem ser hospedados nos sistemas NetApp AFF A250 locais para minimizar a latência e o tráfego nos links WAN em operação normal.
+
+Como parte da implementação do projeto, a distribuição das máquinas virtuais nos dois locais deve ser determinada. Você pode determinar a afinidade do site da máquina virtual e a distribuição de aplicativos entre os dois sites de acordo com as preferências do site e os requisitos do aplicativo. Os grupos VM/Host do cluster VMware e as regras VM/Host são usados para configurar afinidade VM/Host para garantir que as VMs estejam sendo executadas em hosts no local desejado.
+
+No entanto, as configurações que permitem que as VMs sejam executadas em ambos os locais garantirão que as VMs possam ser reiniciadas pelo VMware HA em hosts remotos para fornecer resiliência da solução. Para acomodar máquinas virtuais para serem executadas em ambos os locais, todos os armazenamentos de dados compartilhados iSCSI devem ser montados em todos os hosts ESXi para garantir uma operação suave do vMotion de máquinas virtuais entre locais.
+
+A figura a seguir mostra uma visualização de virtualização de solução FlexPod SM-BC de alto nível, que inclui recursos VMware HA e vMSC para fornecer alta disponibilidade para serviços de computação e storage. A arquitetura da solução de data center ativo-ativo permite a mobilidade da carga de trabalho entre locais e fornece proteção de DR/BC.
+
+image:sm-bcs-image39.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Conetividade de rede de ponta a ponta
+
+A solução FlexPod SM-BC inclui infraestruturas FlexPod em cada local, conectividade de rede entre locais e o mediador ONTAP implantado em um terceiro local para atender aos objetivos de RPO e rto necessários. A figura a seguir mostra a conetividade de rede de ponta a ponta entre os servidores Cisco UCS B200M5 em cada local e o armazenamento NetApp com recursos SM-BC em um local e em vários locais.
+
+image:sm-bcs-image40.png["Erro: Imagem gráfica em falta"]
+
+A arquitetura de implantação do FlexPod é idêntica em cada local para validação dessa solução. No entanto, a solução dá suporte a implantações assimétricas e também pode ser adicionada a soluções FlexPod existentes se elas atenderem aos requisitos.
+
+A arquitetura de camada 2 estendida é usada para um Data Fabric otimizado em vários locais que fornece conectividade entre a computação Cisco UCS canalizada por porta e o storage NetApp em cada data center, bem como conectividade entre data centers. A configuração do canal de porta e a configuração do canal de porta virtual, quando apropriado, são usadas para agregação de largura de banda e tolerância a falhas entre as camadas de computação, rede e armazenamento, bem como para os links entre sites. Como resultado, os servidores blade UCS têm conetividade e acesso multipath ao storage NetApp local e remoto.
+
+
+
+== Rede virtual
+
+Cada host no cluster é implantado usando redes virtuais idênticas, independentemente de sua localização. O design separa os diferentes tipos de tráfego usando os switches virtuais VMware (vSwitch) e os switches distribuídos virtuais VMware (vDS). O VMware vSwitch é usado principalmente para as redes de infraestrutura FlexPod e vDS para redes de aplicativos, mas não é necessário.
+
+Os switches virtuais (vSwitch, vDS) são implantados com dois uplinks por switch virtual; os uplinks no nível do hypervisor ESXi são referidos como vmnics e NICs virtuais (vNICs) no software Cisco UCS. Os vNICs são criados no adaptador Cisco UCS VIC em cada servidor usando perfis de serviço Cisco UCS. São definidos seis vNICs, dois para vSwitch0, dois para vDS0, dois para vSwitch1 e dois para uplinks iSCSI, como mostrado na figura a seguir.
+
+image:sm-bcs-image41.png["Erro: Imagem gráfica em falta"]
+
+O vSwitch0 é definido durante a configuração do host VMware ESXi e contém a VLAN de gerenciamento da infraestrutura do FlexPod e as portas VMK (host ESXi) para gerenciamento. Um grupo de portas de máquinas virtuais de gerenciamento de infraestrutura também é colocado no vSwitch0 para qualquer máquina virtual de gerenciamento de infraestrutura crítica que seja necessária.
+
+É importante colocar essas máquinas virtuais de infraestrutura de gerenciamento no vSwitch0 em vez do vDS, porque se a infraestrutura do FlexPod for desligada ou desligada e você tentar ativar essa máquina virtual de gerenciamento em um host diferente do host no qual estava sendo executado originalmente, ele inicializa bem na rede no vSwitch0. Esse processo é particularmente importante se o VMware vCenter for a máquina virtual de gerenciamento. Se o vCenter estivesse no vDS e fosse movido para outro host e então iniciasse, ele não seria conetado à rede após a inicialização.
+
+Dois vSwitches de inicialização iSCSI são usados neste projeto. A inicialização iSCSI do Cisco UCS requer vNICs separados para inicialização iSCSI. Esses vNICs usam VLAN iSCSI da malha apropriada como VLAN nativa e são conetados ao vSwitch de inicialização iSCSI apropriado. Opcionalmente, você também pode implantar redes iSCSI no vDS implantando um novo vDS ou usando um existente.
+
+
+
+== Grupos e regras de afinidade do VM-Host
+
+Para permitir que as máquinas virtuais sejam executadas em qualquer host ESXi em ambos os sites SM-BC, todos os hosts ESXi devem montar os datastores iSCSI de ambos os sites. Se os armazenamentos de dados de ambos os sites forem corretamente montados por todos os hosts ESXi, você poderá migrar uma máquina virtual entre todos os hosts com vMotion e a VM ainda mantém acesso a todos os discos virtuais criados a partir desses datastores.
+
+Para uma máquina virtual que usa datastores locais, seu acesso a discos virtuais se torna remoto se for migrado para um host no local remoto e, assim, aumentando a latência da operação de leitura devido à distância física entre os sites. Portanto, é uma prática recomendada manter as máquinas virtuais nos hosts locais e utilizar o armazenamento local no local.
+
+Usando um mecanismo de afinidade de VM/host, você pode usar grupos de VM/host para criar um grupo de VM e um grupo de hosts para máquinas virtuais e hosts localizados em um determinado site. Usando regras de VM/host, você pode especificar a política para as VMs e hosts a seguir. Para permitir a migração de máquina virtual em locais durante um cenário de manutenção ou desastre, use a especificação de política "deve ser executada em hosts em grupo" para essa flexibilidade.
+
+A captura de tela a seguir mostra que dois grupos de hosts e dois grupos de VM são criados para hosts e VMs do local A e do local B.
+
+image:sm-bcs-image42.png["Erro: Imagem gráfica em falta"]
+
+Além disso, as duas figuras a seguir mostram as regras de VM/host criadas para as VMs do local A e do local B para serem executadas nos hosts em seus respetivos sites usando a política "deve ser executada em hosts no grupo".
+
+image:sm-bcs-image43.png["Erro: Imagem gráfica em falta"]
+
+image:sm-bcs-image44.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Heartbeat do vSphere HA
+
+O VMware vSphere HA tem um mecanismo de heartbeat para validação do estado do host. O mecanismo de heartbeat primário é através da rede, e o mecanismo de heartbeat secundário é através do datastore. Se os heartbeats não forem recebidos, ele decide se ele é isolado da rede fazendo ping no gateway padrão ou nos endereços de isolamento configurados manualmente. Para o heartbeat do datastore, a VMware recomenda aumentar os datastores de heartbeat do mínimo de dois para quatro para um cluster estendido.
+
+Para a validação da solução, os dois endereços IP de gerenciamento de cluster ONTAP são usados como endereço de isolamento. Além disso, a opção avançada recomendada do vSphere HA `ds.heartbeatDsPerHost` com um valor de 4 foi adicionada, conforme mostrado na figura a seguir.
+
+image:sm-bcs-image45.png["Erro: Imagem gráfica em falta"]
+
+Para o datastore heartbeat, especifique os quatro datastores compartilhados do cluster e complemente automaticamente, como mostrado na figura a seguir.
+
+image:sm-bcs-image46.png["Erro: Imagem gráfica em falta"]
+
+Para obter práticas recomendadas e configurações adicionais para o cluster de armazenamento VMware HA Cluster e VMware vSphere Metro, consulte https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html["Criação e uso de clusters de HA do vSphere"^] https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro Storage Cluster (vMSC)"^] e o KB da VMware para https://kb.vmware.com/s/article/83370["NetApp ONTAP com NetApp SnapMirror Business Continuity (SM-BC) e VMware vSphere Metro Storage Cluster (vMSC)"^].
+
+link:sm-bcs-validated-scenarios.html["Próximo: Validação da solução - cenários validados."]

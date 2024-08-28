@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-deploy_deployment_procedures.html 
+keywords:  
+summary:  
+---
+= Procedimentos de implantação
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+

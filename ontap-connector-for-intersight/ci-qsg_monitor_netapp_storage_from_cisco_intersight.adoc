@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: ontap-connector-for-intersight/ci-qsg_monitor_netapp_storage_from_cisco_intersight.html 
+keywords: netapp, storage, cisco intersight, monitor, orchestrate, orchestration, storage inventory, storage widgets 
+summary: Depois que os destinos são reivindicados, os widgets de armazenamento do NetApp, o inventário de armazenamento e as guias de virtualização ficam disponíveis se você tiver uma licença de nível Advantage. As guias de orquestração estão disponíveis se você tiver uma licença do nível Premier. 
+---
+= Monitore o storage do NetApp do Cisco Intersight
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Depois que os destinos são reivindicados, os widgets de armazenamento do NetApp, o inventário de armazenamento e as guias de virtualização ficam disponíveis se você tiver uma licença de nível Advantage. As guias de orquestração estão disponíveis se você tiver uma licença do nível Premier.
+
+
+
+== Visão geral do inventário de armazenamento
+
+A captura de tela a seguir exibe a tela *operar > armazenamento*.
+
+image:ci-qsg_image9.png["A captura de ecrã apresenta o ecrã Operate > Storage (Operate "]
+
+A captura de tela a seguir mostra a visão geral do cluster de armazenamento.
+
+
+NOTE: As informações de resumo da métrica de desempenho a seguir serão exibidas somente se o storage array for monitorado pelo NetApp Active IQ Unified Manager 9,9 ou superior.
+
+image:ci-qsg_image10.png["a captura de tela mostra a visão geral do cluster de armazenamento"]
+
+
+
+== Widgets de armazenamento
+
+Para visualizar widgets de armazenamento, navegue até *Monitoramento > painéis > Exibir widgets de armazenamento do NetApp*.
+
+* A captura de tela a seguir mostra o widget Resumo da versão do armazenamento.
+
+
+image:ci-qsg_image11.jpg["A captura de tela mostra o widget Resumo da versão do armazenamento"]
+
+* Esta captura de tela mostra os 5 principais arrays de armazenamento por widget de utilização de capacidade.
+
+
+image:ci-qsg_image12.png["A captura de tela mostra os 5 principais arrays de armazenamento por widget de utilização de capacidade"]
+
+* Esta captura de tela mostra os 5 principais volumes de armazenamento por widget de utilização de capacidade.
+
+
+image:ci-qsg_image13.png["A captura de tela mostra os 5 principais volumes de armazenamento por widget de utilização de capacidade"]

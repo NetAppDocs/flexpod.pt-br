@@ -1,0 +1,110 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_fabricpool.html 
+keywords: flexpod, cloud, fabricpool, overview, hybrid, storage, solution sdd, performance 
+summary: 'O FabricPool é uma solução de storage híbrido no ONTAP que usa um agregado all-flash (SSD) como uma categoria de performance e um armazenamento de objetos em um serviço de nuvem pública como uma categoria de nuvem. Essa configuração permite a movimentação de dados baseada em políticas, dependendo se os dados são acessados ou não com frequência.' 
+---
+= FabricPool
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+
+
+== Visão geral do FabricPool
+
+O FabricPool é uma solução de storage híbrido no ONTAP que usa um agregado all-flash (SSD) como uma categoria de performance e um armazenamento de objetos em um serviço de nuvem pública como uma categoria de nuvem. Essa configuração permite a movimentação de dados baseada em políticas, dependendo se os dados são acessados ou não com frequência. O FabricPool é compatível com ONTAP para agregados AFF e all-SSD em plataformas FAS. O Data Processing é executado no nível do bloco, com blocos de dados acessados com frequência na camada de desempenho all-flash marcados como blocos ativos e acessados com pouca frequência marcados como inativos.
+
+O uso do FabricPool ajuda a reduzir os custos de storage sem comprometer a performance, a eficiência, a segurança ou a proteção. O FabricPool é transparente para as aplicações empresariais e aproveita as eficiências de nuvem ao reduzir o TCO de storage sem precisar rearquitetar a infraestrutura de aplicações.
+
+O FlexPod pode se beneficiar das funcionalidades de disposição em camadas de storage do FabricPool para usar mais eficiência o storage flash ONTAP. As máquinas virtuais (VMs) inativas, modelos de VM pouco usados e backups de VMs do NetApp SnapCenter para vSphere podem consumir espaço valioso no volume do datastore. Mover dados inativos para a camada de nuvem libera espaço e recursos para aplicações de alta performance e essenciais hospedadas na infraestrutura do FlexPod.
+
+
+NOTE: Os protocolos Fibre Channel e iSCSI geralmente demoram mais tempo antes de ocorrerem um tempo limite (60 a 120 segundos), mas eles não tentam estabelecer uma conexão da mesma maneira que os protocolos nas o fazem. Se um protocolo SAN expirar, o aplicativo deve ser reiniciado. Mesmo uma breve interrupção pode ser desastrosa para aplicativos de produção usando protocolos SAN, porque não há como garantir a conetividade com nuvens públicas. Para evitar esse problema, a NetApp recomenda o uso de nuvens privadas ao dispor dados em camadas acessados por protocolos SAN.
+
+No ONTAP 9.6, o FabricPool se integra a todos os principais fornecedores de nuvem pública: Alibaba Cloud Object Storage Service, Amazon AWS S3, Google Cloud Storage, IBM Cloud Object Storage e Microsoft Azure Blob Storage. Esse relatório concentra o storage do Amazon AWS S3 como a camada de objeto de nuvem escolhida.
+
+
+
+== O agregado composto
+
+Uma instância do FabricPool é criada associando um agregado flash ONTAP a um armazenamento de objetos na nuvem, como um bucket do AWS S3, para criar um agregado composto. Quando os volumes são criados dentro do agregado composto, eles podem aproveitar as funcionalidades de disposição em camadas do FabricPool. Quando os dados são gravados no volume, o ONTAP atribui uma temperatura a cada um dos blocos de dados. Quando o bloco é escrito pela primeira vez, é atribuída uma temperatura de quente. Com o passar do tempo, se os dados não forem acessados, eles passam por um processo de resfriamento até que finalmente seja atribuído um status de frio. Esses blocos de dados acessados com pouca frequência são dispostos fora do agregado SSD de desempenho e no armazenamento de objetos na nuvem.
+
+O período de tempo entre quando um bloco é designado como inativo e quando é movido para o storage de objetos em nuvem é modificado pela política de disposição em categorias de volume no ONTAP. Maior granularidade é obtida modificando as configurações do ONTAP que controlam o número de dias necessários para que um bloco fique frio. Os candidatos à disposição em camadas de dados são snapshots de volume tradicionais, backups de VM do SnapCenter para vSphere e outros backups baseados em Snapshot do NetApp e quaisquer blocos pouco usados em um datastore do vSphere, como modelos de VM e dados de VM acessados com pouca frequência.
+
+
+
+=== Relatórios de dados inativos
+
+O relatório de dados inativos (IDR) está disponível no ONTAP para ajudar a avaliar a quantidade de dados inativos que podem ser dispostos de um agregado. O IDR é habilitado por padrão no ONTAP 9.6 e usa uma política de resfriamento padrão de 31 dias para determinar quais dados no volume estão inativos.
+
+
+NOTE: A quantidade de dados inativos em camadas depende das políticas de disposição em camadas definidas no volume. Essa quantidade pode ser diferente da quantidade de dados frios detetados pelo IDR usando o período de resfriamento padrão de 31 dias.
+
+
+
+== Criação de objetos e movimentação de dados
+
+O FabricPool funciona no nível de bloco do NetApp WAFL, resfriando blocos, concatenando-os em objetos de storage e migrando esses objetos para uma camada de nuvem. Cada objeto FabricPool é 4MB e é composto por 1.024 4KB blocos. O tamanho do objeto é fixado em 4MB com base nas recomendações de desempenho dos principais fornecedores de nuvem e não pode ser alterado. Se os blocos frios forem lidos e ficarem quentes, somente os blocos solicitados no objeto 4MB serão obtidos e movidos de volta para o nível de desempenho. Nem todo o objeto nem todo o arquivo são migrados de volta. Apenas os blocos necessários são migrados.
+
+
+NOTE: Se o ONTAP detetar uma oportunidade de readahheads sequenciais, ele solicita que sejam bloqueados da categoria de nuvem antes que eles sejam lidos para melhorar a performance.
+
+Por padrão, os dados são movidos para a categoria de nuvem somente quando o agregado de desempenho é maior que 50% utilizado. Esse limite pode ser definido para uma porcentagem menor para permitir que uma quantidade menor de storage de dados na categoria flash de performance seja movida para a nuvem. Isso pode ser útil se a estratégia de disposição em camadas for mover dados inativos somente quando o agregado estiver próximo da capacidade.
+
+Se a utilização de categorias de performance tiver capacidade superior a 70%, os dados inativos serão lidos diretamente na categoria de nuvem sem serem gravados de volta na categoria de performance. Ao impedir a gravação de dados inativos em agregados altamente usados, o FabricPool preserva o agregado para dados ativos.
+
+
+
+== Recupere espaço em camadas de performance
+
+Como mencionado anteriormente, o principal caso de uso do FabricPool é facilitar o uso mais eficiente do storage flash no local de alta performance. Dados inativos na forma de snapshots de volume e backups de VMs da infraestrutura virtual FlexPod podem ocupar uma quantidade significativa de storage flash caro. Com a implementação de uma das duas políticas de disposição em camadas: Somente snapshot ou Automático.
+
+
+
+=== Política de disposição em camadas somente snapshot
+
+A política de disposição em camadas somente Snapshot, ilustrada na figura a seguir, move os dados de snapshot de volume frio e os backups do SnapCenter para vSphere de VMs que estão ocupando espaço, mas não estão compartilhando blocos com o sistema de arquivos ativo em um armazenamento de objetos na nuvem. A política de disposição em camadas somente Snapshot move blocos de dados inativos para a camada de nuvem. Se for necessária uma restauração, os blocos inativos na nuvem ficam ativos e são movidos de volta para a camada flash de performance no local.
+
+image:cloud-fabricpool_image4.png["Erro: Imagem gráfica em falta"]
+
+
+
+=== Política de disposição automática em categorias
+
+A política de disposição automática em camadas do FabricPool, ilustrada na figura a seguir, além de migrar blocos de dados de snapshot frio para a nuvem, além de migrar blocos inativos no sistema de arquivos ativo. Isso pode incluir modelos de VM e quaisquer dados de VM não utilizados no volume do datastore. Que blocos frios são movidos é controlado pela `tiering-minimum-cooling-days` definição do volume. Se os blocos frios do nível de nuvem forem lidos aleatoriamente por uma aplicação, esses blocos ficarão ativos e serão devolvidos ao nível de performance. No entanto, se os blocos inativos forem lidos por um processo sequencial, como um antivírus, os blocos permanecem frios e persistem no armazenamento de objetos em nuvem; eles não são movidos de volta para o nível de desempenho.
+
+Ao usar a política de disposição automática em camadas, os blocos acessados com pouca frequência são retirados da camada de nuvem na velocidade da conectividade da nuvem. Isso pode afetar o desempenho da VM se o aplicativo for sensível à latência, o que deve ser considerado antes de usar a política de disposição automática em camadas no datastore. A NetApp recomenda a colocação de LIFs Intercluster em portas com uma velocidade de 10GbEMbps para um desempenho adequado.
+
+
+NOTE: O profiler de armazenamento de objetos deve ser usado para testar a latência e a taxa de transferência ao armazenamento de objetos antes de anexá-lo a um agregado FabricPool.
+
+image:cloud-fabricpool_image5.png["Erro: Imagem gráfica em falta"]
+
+
+
+=== Todas as políticas de disposição em camadas
+
+Diferentemente das políticas Auto e somente Snapshot, a política de categorias all move volumes inteiros de dados imediatamente para a camada de nuvem. Essa política é mais adequada para proteção de dados secundária ou volumes de arquivamento para os quais os dados devem ser mantidos para fins históricos ou regulatórios, mas raramente acessados. A política All (tudo) não é recomendada para volumes do VMware datastore porque todos os dados gravados no datastore são movidos imediatamente para a camada de nuvem. Operações de leitura subsequentes são executadas a partir da nuvem e podem potencialmente introduzir problemas de desempenho para VMs e aplicações que residem no volume do datastore.
+
+
+
+== Segurança
+
+A segurança é uma preocupação central para a nuvem e para o FabricPool. Todos os recursos de segurança nativos do ONTAP são compatíveis na camada de performance, e a movimentação dos dados é protegida à medida que são transferidos para a camada de nuvem. O FabricPool usa o https://tools.ietf.org/html/rfc5288["AES-256-GCM"^] algoritmo de criptografia na camada de performance e mantém essa criptografia de ponta a ponta na camada de nuvem. Os blocos de dados movidos para o armazenamento de objetos em nuvem são protegidos com TLS (Transport Layer Security) v1,2 para manter a confidencialidade e a integridade dos dados entre as camadas de storage.
+
+
+NOTE: A comunicação com o armazenamento de objetos em nuvem através de uma conexão não criptografada é suportada, mas não recomendada pelo NetApp.
+
+
+
+=== Criptografia de dados
+
+A criptografia de dados é vital para a proteção da propriedade intelectual, informações comerciais e informações de clientes pessoalmente identificáveis. O FabricPool é totalmente compatível com o NetApp volume Encryption (NVE) e o NetApp Storage Encryption (NSE) para manter as estratégias de proteção de dados existentes. Todos os dados criptografados na camada de performance permanecem criptografados quando migrados para a camada de nuvem. As chaves de criptografia do lado do cliente são propriedade do ONTAP e as chaves de criptografia do armazenamento de objetos do lado do servidor são propriedade do respetivo armazenamento de objetos na nuvem. Todos os dados não criptografados com NVE são criptografados com o algoritmo AES-256-GCM. Não são suportadas outras cifras AES-256.
+
+
+NOTE: O uso de NSE ou NVE é opcional e não é necessário para usar o FabricPool.

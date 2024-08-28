@@ -1,0 +1,161 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-insights_use_cases_01.html 
+keywords: use, cases, active, iq, integration, dashboards, troubleshooting, storage, optimization, custom, real, time 
+summary: Com o Cloud Insights configurado e configurado para monitorar sua solução de data center FlexPod, podemos explorar algumas das tarefas que você pode executar no painel para avaliar e monitorar seu ambiente. Nesta seção, destacamos cinco casos de uso principais para o Cloud Insights. 
+---
+= Casos de uso
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Com o Cloud Insights configurado e configurado para monitorar sua solução de data center FlexPod, podemos explorar algumas das tarefas que você pode executar no painel para avaliar e monitorar seu ambiente. Nesta seção, destacamos cinco casos de uso principais para o Cloud Insights:
+
+* Integração com Active IQ
+* Explorando painéis em tempo real
+* Criando painéis personalizados
+* Solução de problemas avançada
+* Otimização de storage
+
+
+
+
+== Integração com Active IQ
+
+O Cloud Insights é totalmente integrado à plataforma de monitoramento de storage da Active IQ. Um sistema ONTAP, implantado como parte de uma solução de data center FlexPod, é configurado automaticamente para enviar informações de volta para o NetApp por meio da função AutoSupport, que está integrada em cada sistema. Esses relatórios são gerados em uma base programada, ou dinamicamente sempre que uma falha é detetada no sistema. Os dados comunicados por meio do AutoSupport são agregados e exibidos em painéis de fácil acesso no menu Active IQ no Cloud Insights.
+
+
+
+=== Acesse as informações do Active IQ por meio do painel do Cloud Insights
+
+Para acessar as informações do Active IQ por meio do painel do Cloud Insights, execute as seguintes etapas:
+
+. Clique na opção Coletor de dados no menu Admin à esquerda.
++
+image:cloud-insights_image13.png["Erro: Imagem gráfica em falta"]
+
+. Filtro para o coletor de dados específico em seu ambiente. Neste exemplo, filtramos pelo termo FlexPod.
++
+image:cloud-insights_image23.png["Erro: Imagem gráfica em falta"]
+
+. Clique no coletor de dados para obter um resumo do ambiente e dos dispositivos que estão sendo monitorados por esse coletor.
++
+image:cloud-insights_image24.png["Erro: Imagem gráfica em falta"]
+
++
+Na lista de dispositivos perto da parte inferior, clique no nome do sistema de armazenamento ONTAP que está a ser monitorizado. Isso exibe um painel de informações coletadas sobre o sistema, incluindo os seguintes detalhes:
+
++
+** Modelo
+** Família
+** Versão do ONTAP
+** Capacidade bruta
+** IOPS médio
+** Latência média
+** Taxa de transferência média
++
+image:cloud-insights_image25.png["Erro: Imagem gráfica em falta"]
+
++
+Além disso, nesta página, na seção políticas de desempenho, você pode encontrar um link para o NetApp Active IQ.
+
++
+image:cloud-insights_image26.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Para abrir uma nova guia do navegador e levá-lo à página de mitigação de riscos, que mostra quais nós são afetados, quão críticos são os riscos e qual é a ação apropriada que precisa ser tomada para corrigir os problemas identificados, clique no link para Active IQ.
++
+image:cloud-insights_image27.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Explore painéis em tempo real
+
+O Cloud Insights pode exibir painéis em tempo real das informações que foram pesquisadas do sistema de storage da ONTAP implantado em uma solução de data center FlexPod. A Unidade de aquisição Cloud Insights recolhe dados em intervalos regulares e preenche o painel do sistema de armazenamento predefinido com as informações recolhidas.
+
+
+
+==== Acesse gráficos em tempo real através do painel do Cloud Insights
+
+No painel do sistema de armazenamento, você pode ver a última vez que o Data Collector atualizou as informações. Um exemplo disso é mostrado na figura abaixo.
+
+image:cloud-insights_image28.png["Erro: Imagem gráfica em falta"]
+
+Por padrão, o painel do sistema de armazenamento exibe vários gráficos interativos que mostram métricas de todo o sistema do sistema de armazenamento a ser polled, ou de cada nó individual, incluindo: Latência, IOPS e taxa de transferência, na seção Expert View. Exemplos desses gráficos padrão são mostrados na figura abaixo.
+
+image:cloud-insights_image29.png["Erro: Imagem gráfica em falta"]
+
+Por padrão, os gráficos mostram informações das últimas três horas, mas você pode definir isso para um número de valores diferentes ou um valor personalizado na lista suspensa próxima à parte superior direita do painel do sistema de armazenamento. Isto é mostrado na figura abaixo.
+
+image:cloud-insights_image30.png["Erro: Imagem gráfica em falta"]
+
+
+
+=== Crie painéis personalizados
+
+Além de usar os painéis padrão que exibem informações em todo o sistema, você pode usar o Cloud Insights para criar painéis totalmente personalizados que permitem que você se concentre no uso de recursos para volumes de storage específicos na solução de data center FlexPod e, assim, os aplicativos implantados na infraestrutura convergente que dependem desses volumes para serem executados com eficiência. Isso pode ajudar você a criar uma melhor visualização de aplicações específicas e dos recursos que elas consomem no ambiente de data center.
+
+
+
+==== Crie um painel personalizado para avaliar os recursos de storage
+
+Para criar um painel personalizado para avaliar os recursos de armazenamento, execute as seguintes etapas:
+
+. Para criar um painel personalizado, passe o Mouse sobre painéis no menu principal do Cloud Insights e clique em novo painel na lista suspensa.
++
+image:cloud-insights_image31.png["Erro: Imagem gráfica em falta"]
+
++
+Abre-se a janela novo painel de instrumentos.
+
+. Nomeie o painel e selecione o tipo de widget usado para exibir os dados. Você pode selecionar entre vários tipos de gráfico ou até mesmo notas ou tipos de tabela para apresentar os dados coletados.
++
+image:cloud-insights_image32.png["Erro: Imagem gráfica em falta"]
+
+. Escolha variáveis personalizadas no menu Adicionar variável.
++
+Isso permite que os dados apresentados sejam focados para exibir fatores mais específicos ou especializados.
+
++
+image:cloud-insights_image33.png["Erro: Imagem gráfica em falta"]
+
+. Para criar um painel personalizado, selecione o tipo de widget que você gostaria de usar, por exemplo, um gráfico de pizza para exibir a utilização do armazenamento por volume:
++
+.. Selecione o widget Gráfico de pizza na lista suspensa Adicionar widget.
+.. Nomeie o widget com um identificador descritivo, como `Capacity Used` .
+.. Selecione o objeto que deseja exibir. Por exemplo, você pode pesquisar pelo volume do termo-chave e `volume.performance.capacity.used` selecionar .
+.. Para filtrar por sistemas de storage, use o filtro e digite o nome do sistema de storage na solução FlexPod Datacenter.
+.. Personalize as informações a serem exibidas. Por padrão, essa seleção mostra os volumes de dados do ONTAP e lista os 10 principais.
+.. Para salvar o painel personalizado, clique em Salvar.
++
+image:cloud-insights_image34.png["Erro: Imagem gráfica em falta"]
+
++
+Depois de salvar o widget personalizado, o navegador retorna à página novo painel, onde exibe o widget recém-criado e permite a ação interativa a ser realizada, como modificar o período de polling de dados.
+
++
+image:cloud-insights_image35.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+
+
+=== Solução de problemas avançada
+
+O Cloud Insights permite que métodos avançados de solução de problemas sejam aplicados a qualquer ambiente de storage em uma infraestrutura convergente do data center FlexPod. Usando componentes de cada um dos recursos mencionados acima: Integração com Active IQ, painéis padrão com estatísticas em tempo real e painéis personalizados, os problemas que podem surgir são detetados com antecedência e resolvidos rapidamente. Usando a lista de riscos no Active IQ, um cliente pode encontrar erros de configuração relatados que podem levar a problemas ou descobrir bugs que foram relatados e corrigidos versões de código que podem remediá-los. Observar os dashboards em tempo real na página inicial do Cloud Insights pode ajudar a descobrir padrões de desempenho do sistema que podem ser um indicador precoce de um problema em ascensão e ajudar a resolvê-lo rapidamente. Por fim, a capacidade de criar painéis personalizados permite que os clientes se concentrem nos ativos mais importantes de sua infraestrutura e monitorem os mesmos diretamente para garantir que eles possam atender aos objetivos de continuidade de negócios.
+
+
+
+=== Otimização de storage
+
+Além da solução de problemas, é possível usar os dados coletados pela Cloud Insights para otimizar o sistema de storage ONTAP implantado em uma solução de infraestrutura convergente do FlexPod Datacenter. Se um volume mostrar uma alta latência, talvez porque várias VMs com demandas de alta performance estejam compartilhando o mesmo datastore, essas informações serão exibidas no painel do Cloud Insights. Com essas informações, um administrador de storage pode optar por migrar uma ou mais VMs para outros volumes, migrar volumes de storage entre camadas de agregados ou entre nós no sistema de storage ONTAP, o que resulta em um ambiente otimizado para performance. As informações obtidas com a integração do Active IQ com o Cloud Insights podem destacar problemas de configuração que levam a um desempenho inferior ao esperado e fornecer a ação corretiva recomendada que, se implementada, pode corrigir quaisquer problemas e garantir um sistema de armazenamento otimizado.

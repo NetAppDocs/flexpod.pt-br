@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_cost_of_ownership.html 
+keywords: cost, ownership, evaluator, group, savings, fabricpool, cloud 
+summary: A calculadora econômica da FabricPool está disponível por meio da empresa independente de análise DE TI Evaluator Group para ajudar a projetar a economia de custos entre o local e a nuvem para storage de dados inativos. 
+---
+= Custo de propriedade
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O https://www.evaluatorgroup.com/FabricPool/["Calculadora econômica da FabricPool"^] está disponível por meio da empresa independente de analistas DE TI Evaluator Group para ajudar a projetar a economia de custos entre o local e a nuvem para storage de dados inativos. A calculadora fornece uma interface simples para determinar o custo de armazenar dados acessados com pouca frequência em uma camada de performance, em vez de enviá-los para uma camada de nuvem pelo restante do ciclo de vida dos dados. Com base em um cálculo de 5 anos, os quatro principais fatores, capacidade de origem, crescimento de dados, capacidade Snapshot e porcentagem de dados inativos, são usados para determinar os custos de storage no período de tempo.

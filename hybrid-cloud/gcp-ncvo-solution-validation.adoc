@@ -1,0 +1,106 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/gcp-ncvo-solution-validation.html 
+keywords: validation, data replication workflow, measurements 
+summary: Nesta página, revisitamos a solução com um fluxo de trabalho de exemplo de replicação de dados e fazemos algumas medições para verificar a integridade da replicação de dados da instância do NetApp ONTAP em execução no FlexPod para o NetApp Cloud Volumes ONTAP em execução no Google Cloud. 
+---
+= Validação da solução
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:gcp-ncvo-terraform-execution-from-controller.html["Anterior: Execução do Terraform do controlador."]
+
+[role="lead"]
+Nesta seção, revisitamos a solução com um fluxo de trabalho de exemplo de replicação de dados e fazemos algumas medições para verificar a integridade da replicação de dados da instância do NetApp ONTAP em execução no FlexPod para o NetApp Cloud Volumes ONTAP em execução no Google Cloud.
+
+Usamos o orquestrador de fluxo de trabalho do Cisco Intersight nesta solução e continuaremos a usá-lo para nosso caso de uso.
+
+Notavelmente, o conjunto limitado de fluxos de trabalho do Cisco Intersight usado nesta solução não representa o conjunto completo de fluxos de trabalho com os quais o Cisco Intersight está equipado. Você pode criar fluxos de trabalho personalizados com base em seus requisitos específicos e acioná-los a partir do Cisco Intersight.
+
+Para executar a validação de um cenário de DR bem-sucedido, primeiro mova dados de um volume no ONTAP que faz parte do FlexPod para o Cloud Volumes ONTAP usando o SnapMirror. Depois, você pode tentar acessar os dados da instância de computação em nuvem do Google, seguido de uma verificação de integridade de dados.
+
+As etapas de alto nível a seguir são usadas para verificar os critérios de sucesso desta solução:
+
+. Gere um checksum SHA256 no conjunto de dados de amostra que está presente em um volume ONTAP no FlexPod.
+. Configure uma relação de volume SnapMirror entre o ONTAP no FlexPod e o Cloud Volumes ONTAP.
+. Replique o conjunto de dados de amostra do FlexPod para o Cloud Volumes ONTAP.
+. Quebre a relação SnapMirror e promova o volume em Cloud Volumes ONTAP para a produção.
+. Mapear o volume Cloud Volumes ONTAP com o conjunto de dados para uma instância de computação no Google Cloud.
+. Gere um checksum SHA256 no conjunto de dados de amostra no Cloud Volumes ONTAP.
+. Compare a soma de verificação na origem e no destino; presumivelmente, as somas de verificação em ambos os lados coincidem.
+
+
+Para executar o fluxo de trabalho no local, execute as seguintes etapas:
+
+. Crie um fluxo de trabalho no Intersight para FlexPod on-premises.
++
+image:gcp-ncvo-image78.png["Captura de tela"]
+
+. Forneça as entradas necessárias e execute o fluxo de trabalho.
++
+image:gcp-ncvo-image79.png["Captura de tela"]
+
+. Verifique o SVM recém-criado no gerente do sistema.
++
+image:gcp-ncvo-image80.png["Captura de tela"]
+
+. Crie e execute outro fluxo de trabalho de recuperação de desastres para criar um volume no FlexPod local e estabelecer uma relação de SnapMirror entre esse volume no FlexPod e no Cloud Volumes ONTAP.
++
+image:gcp-ncvo-image81.png["Captura de tela"]
+
+. Verifique o volume recém-criado no gerenciador de sistema do ONTAP.
++
+image:gcp-ncvo-image82.png["Captura de tela"]
+
+. Monte o mesmo volume NFS em uma máquina virtual no local, copie o conjunto de dados de amostra e execute o checksum.
++
+image:gcp-ncvo-image83.png["Captura de tela"]
+
++
+image:gcp-ncvo-image84.png["Captura de tela"]
+
+. Verifique o status da replicação no Cloud Manager. A transferência de dados pode levar alguns minutos com base no tamanho dos dados. Depois de concluído, você pode ver o status do SnapMirror como *Idle*.
++
+image:gcp-ncvo-image85.png["Captura de tela"]
+
+. Quando a transferência de dados estiver concluída, simule um desastre no lado da fonte parando o SVM que hospeda o `Test_vol1` volume.
++
+Depois que o SVM tiver sido interrompido, o `Test_vol1` volume não ficará visível no Cloud Manager.
+
++
+image:gcp-ncvo-image86.png["Captura de tela"]
+
+. Quebre a relação de replicação e promova o volume de destino do Cloud Volumes ONTAP para a produção.
++
+image:gcp-ncvo-image87.png["Captura de tela"]
+
++
+image:gcp-ncvo-image88.png["Captura de tela"]
+
+. Edite o volume e ative o acesso do cliente associando-o a uma política de exportação.
++
+image:gcp-ncvo-image89.png["Captura de tela"]
+
+. Obtenha o comando READY-to-use mount para o volume.
++
+image:gcp-ncvo-image90.png["Captura de tela"]
+
++
+image:gcp-ncvo-image91.png["Captura de tela"]
+
+. Monte o volume em uma instância de computação, verifique se os dados estão presentes no volume de destino e gere a soma de verificação SHA256 do `sample_dataset_2GB` arquivo.
++
+image:gcp-ncvo-image92.png["Captura de tela"]
+
+. Compare os valores da soma de verificação tanto na origem (FlexPod) como no destino (Cloud Volumes ONTAP).
+. As somas de verificação correspondem à origem e ao destino.
+
+
+Você pode confirmar se a replicação de dados da origem para o destino foi concluída com sucesso e a integridade dos dados foi mantida. Esses dados agora podem ser consumidos com segurança pelos aplicativos para atender clientes enquanto o site de origem passa por restauração.
+
+link:gcp-ncvo-conclusion.html["Próximo: Conclusão."]

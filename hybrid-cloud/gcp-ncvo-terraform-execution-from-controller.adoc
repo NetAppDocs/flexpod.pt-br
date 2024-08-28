@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/gcp-ncvo-terraform-execution-from-controller.html 
+keywords: prerequisites, clone github repo, terraform execution, init, plan, apply, destroy 
+summary: Podemos executar o plano Terraform usando um controlador. Você pode ignorar esta seção se já tiver executado o plano Terraform usando um fluxo de trabalho do ICO. 
+---
+= Execução do Terraform a partir do controlador
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:gcp-ncvo-dr-workflow.html["Anterior: Fluxo de trabalho de DR."]
+
+[role="lead"]
+Podemos executar o plano Terraform usando um controlador. Você pode ignorar esta seção se já tiver executado o plano Terraform usando um fluxo de trabalho do ICO.
+
+
+
+== Pré-requisitos
+
+A configuração da solução começa com uma estação de trabalho de gerenciamento que tem acesso à Internet e com uma instalação funcional do Terraform.
+
+Um guia para instalar o Terraform pode ser encontrado https://learn.hashicorp.com/tutorials/terraform/install-cli["aqui"^].
+
+
+
+== Clone o repositório do GitHub
+
+O primeiro passo no processo é clonar o repositório do GitHub para uma nova pasta vazia na estação de trabalho de gerenciamento. Para clonar o repositório do GitHub, execute as seguintes etapas:
+
+. Na estação de trabalho de gerenciamento, crie uma nova pasta para o projeto. Crie uma nova pasta dentro dessa pasta chamada `/root/snapmirror-cvo` e clone o repositório do GitHub nela.
+. Abra uma interface de linha de comando ou console na estação de trabalho de gerenciamento e mude os diretórios para a nova pasta recém-criada.
+. Clonar a coleção GitHub usando o seguinte comando:
+
+
+....
+Git clone https://github.com/NetApp-Automation/FlexPod-hybrid-cloud-for-GCP-with-Intersight-and-CVO
+....
+. Mude os diretórios para a nova pasta chamada `snapmirror-cvo`.
+
+
+*Execução do Terraform*
+
+image:gcp-ncvo-image77.png["Esquemático para execução do Terraform."]
+
+* *Init.* Inicialize o ambiente (local) do Terraform. Normalmente executado apenas uma vez por sessão.
+* *Plano.* Compare o estado do Terraform com o estado as-in na nuvem e crie e exiba um plano de execução. Isso não altera a implantação (somente leitura).
+* *Aplicar.* Aplique o plano a partir da fase do plano. Isso potencialmente altera a implantação (leitura e gravação).
+* *Destrua.* Todos os recursos que são governados por esse ambiente específico do Terraform.
++
+Para obter detalhes, https://www.terraform.io/cli/commands["aqui"^] consulte .
+
+
+
+link:gcp-ncvo-solution-validation.html["Próximo: Validação da solução."]

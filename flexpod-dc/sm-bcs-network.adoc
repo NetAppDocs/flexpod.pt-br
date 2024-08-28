@@ -1,0 +1,193 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/sm-bcs-network.html 
+keywords: network, connectivity, port channel, virtual port channels, vlan 
+summary: A configuração de rede para a solução FlexPod SM-BC segue as práticas recomendadas típicas da solução FlexPod em cada local. Para conetividade entre locais, a configuração de validação da solução coneta os switches FlexPod Nexus nos dois locais para fornecer conetividade entre locais que estende VLANs entre os dois locais. As seções a seguir destacam algumas das configurações e conetividade usadas para a validação. 
+---
+= Validação da solução - rede
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sm-bcs-compute.html["Anterior: Validação da solução - Compute."]
+
+[role="lead"]
+A configuração de rede para a solução FlexPod SM-BC segue as práticas recomendadas típicas da solução FlexPod em cada local. Para conetividade entre locais, a configuração de validação da solução coneta os switches FlexPod Nexus nos dois locais para fornecer conetividade entre locais que estende VLANs entre os dois locais. As seções a seguir destacam algumas das configurações e conetividade usadas para a validação.
+
+
+
+== Conetividade
+
+Os switches FlexPod Nexus em cada local fornecem conectividade local entre a computação UCS e o storage ONTAP em uma configuração altamente disponível. Os componentes redundantes e a conetividade redundante fornecem resiliência em cenários de ponto único de falha.
+
+O diagrama a seguir mostra a conetividade local do switch Nexus em cada local. Além do que é mostrado no diagrama, há também conexões de rede de console e gerenciamento para cada componente que não são mostrados. Os cabos multiconexões de 40G a 4 x 10G são usados para conetar os switches Nexus às FIs UCS e aos controladores de armazenamento ONTAP AFF A250. Como alternativa, os cabos multiconexões 100g a 4 x 25G podem ser usados para aumentar a velocidade de comunicação entre os switches Nexus e os controladores de armazenamento AFF A250. Para simplificar, os dois controladores AFF A250 são mostrados logicamente como lado a lado para ilustração de cabeamento. As duas conexões entre os dois controladores de armazenamento permitem que o armazenamento forme um cluster sem switch.
+
+image:sm-bcs-image20.png["Erro: Imagem gráfica em falta"]
+
+A tabela a seguir mostra a conectividade entre switches Nexus e controladoras de storage AFF A250 em cada local.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Nexus A. | 1/10/1 | AFF A250 A. | e1a 
+
+
+|  | 1/10/2 |  | e1b 
+
+
+|  | 1/10/3 | AFF A250 B | e1a 
+
+
+|  | 1/10/4 |  | e1b 
+
+
+| Nexus B | 1/10/1 | AFF A250 A. | e1c 
+
+
+|  | 1/10/2 |  | e1d 
+
+
+|  | 1/10/3 | AFF A250 B | e1c 
+
+
+|  | 1/10/4 |  | e1d 
+|===
+A conectividade entre os switches FlexPod no local A e o local B é mostrada na figura a seguir, com os detalhes do cabeamento listados na tabela a seguir. As conexões entre os dois switches em cada local são para os links de ponto de VPC. Por outro lado, as conexões entre os switches entre os sites fornecem os links entre os sites. Os links estendem as VLANs entre locais para comunicação entre clusters, replicação de dados SM-BC, gerenciamento na banda e acesso a dados para os recursos do local remoto.
+
+image:sm-bcs-image21.png["Erro: Imagem gráfica em falta"]
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Coloque Um interrutor A | 33 | Interrutor A do local B. | 31 
+
+
+|  | 34 |  | 32 
+
+
+|  | 25 | Interrutor B do local A | 25 
+
+
+|  | 26 |  | 26 
+
+
+| Interrutor B do local A | 33 | Interrutor B do local B. | 31 
+
+
+|  | 34 |  | 32 
+
+
+|  | 25 | Coloque Um interrutor A | 25 
+
+
+|  | 26 |  | 26 
+
+
+| Interrutor A do local B. | 31 | Coloque Um interrutor A | 33 
+
+
+|  | 32 |  | 34 
+
+
+|  | 25 | Interrutor B do local B. | 25 
+
+
+|  | 26 |  | 26 
+
+
+| Interrutor B do local B. | 31 | Interrutor B do local A | 33 
+
+
+|  | 32 |  | 34 
+
+
+|  | 25 | Interrutor A do local B. | 25 
+
+
+|  | 26 |  | 26 
+|===
+
+NOTE: A tabela acima lista a conetividade a partir das perspetivas de cada switch FlexPod. Como resultado, a tabela contém informações duplicadas para legibilidade.
+
+
+
+== Canal de porta e canal de porta virtual
+
+O canal de porta permite a agregação de links usando o Link Aggregation Control Protocol (LACP) para agregação de largura de banda e resiliência de falha de link. O canal de porta virtual (VPC) permite que as conexões de canal de porta entre dois switches Nexus apareçam logicamente como um. Isso aumenta ainda mais a resiliência de falhas em cenários como uma falha de link único ou uma falha única de switch.
+
+O tráfego do servidor UCS para armazenamento assume os caminhos da IOM A para FI A e IOM B para FI B antes de chegar aos switches Nexus. Como as CONEXÕES FI aos switches Nexus utilizam canal de porta no lado FI e canal de porta virtual no lado do switch Nexus, o servidor UCS pode efetivamente usar caminhos através de ambos os switches Nexus e pode sobreviver a cenários de ponto único de falha. Entre os dois locais, os switches Nexus são interconetados como ilustrado na figura anterior. Há dois links cada um para conetar os pares de switches entre os sites e eles também usam uma configuração de canal de porta.
+
+A conetividade do protocolo de storage de dados iSCSI/NFS, entre clusters e gerenciamento na banda é fornecida pela interconexão dos controladores de storage em cada local com os switches locais Nexus em uma configuração redundante. Cada controlador de storage é conetado a dois switches Nexus. As quatro conexões são configuradas como parte de um grupo de interfaces no storage para aumentar a resiliência. No lado do switch Nexus, essas portas também fazem parte de uma VPC entre os switches.
+
+A tabela a seguir lista o ID do canal da porta e o uso em cada local.
+
+|===
+| ID do canal da porta | Utilização 
+
+
+| 10 | Link local Nexus peer 
+
+
+| 15 | Interconexão de malha A links 
+
+
+| 16 | Links B de interconexão de malha 
+
+
+| 27 | Links A do controlador de armazenamento 
+
+
+| 28 | Ligações B do controlador de armazenamento 
+
+
+| 100 | Alternar entre sites A links 
+
+
+| 200 | Ligações B do interrutor inter-local 
+|===
+
+
+== VLANs
+
+A tabela a seguir lista as VLANs configuradas para configurar o ambiente de validação da solução FlexPod SM-BC juntamente com seu uso.
+
+|===
+| Nome | ID DA VLAN | Utilização 
+
+
+| VLAN nativa | 2 | VLAN 2 usado como VLAN nativa em vez de VLAN padrão (1) 
+
+
+| OOB-MGMT-VLAN | 3333 | VLAN de gerenciamento fora da banda para dispositivos 
+
+
+| IB-MGMT-VLAN | 3334 | VLAN de gerenciamento na banda para hosts ESXi, gerenciamento de VM, etc. 
+
+
+| NFS-VLAN | 3335 | VLAN NFS opcional para tráfego NFS 
+
+
+| ISCSI-A-VLAN | 3336 | VLAN de malha iSCSI-A para tráfego iSCSI 
+
+
+| ISCSI-B-VLAN | 3337 | VLAN de malha iSCSI-B para tráfego iSCSI 
+
+
+| VMotion-VLAN | 3338 | VLAN de tráfego VMware vMotion 
+
+
+| VM-tráfego-VLAN | 3339 | VLAN de tráfego VMware VM 
+
+
+| VLAN entre clusters | 3340 | VLAN entre clusters para comunicações peer de cluster ONTAP 
+|===
+
+NOTE: Embora o SM-BC não ofereça suporte a protocolos NFS ou CIFS para continuidade dos negócios, você ainda pode usá-los para workloads que não precisam ser protegidos para manter a continuidade dos negócios. Armazenamentos de dados NFS não foram criados para essa validação.
+
+link:sm-bcs-storage.html["Próximo: Validação da solução - armazenamento."]

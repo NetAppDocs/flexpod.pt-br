@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: ontap-connector-for-intersight/ci-qsg_requirements.html 
+keywords: netapp, ontap, cisco, intersight, hardware, software, licensing, requirements 
+summary: Verifique se você atende aos requisitos de hardware, software e licenciamento da integração de storage do NetApp ONTAP com o Cisco Intersight. 
+---
+= Requisitos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Verifique se você atende aos requisitos de hardware, software e licenciamento para a integração de storage do NetApp ONTAP com o Cisco Intersight.
+
+
+
+== Requisitos de hardware e software
+
+Estes são os componentes mínimos de hardware e software necessários para implementar a solução. Os componentes que são usados em qualquer implementação específica da solução podem variar com base nos requisitos do cliente.
+
+|===
+| Componente | Detalhes da exigência 
+
+
+| NetApp ONTAP | ONTAP 9.7P1 e posterior 
+
+
+| NetApp Active IQ Unified Manager | É necessária a versão mais recente do NetApp Active IQ Unified Manager (atualmente 9.14RC1) 
+
+
+| Array de storage NetApp | Todos os storage arrays ONTAP ASA, AFF e FAS são compatíveis com o ONTAP 9.7P1 e posterior 
+
+
+| Hipervisor de virtualização | VSphere 7,0 e posterior 
+|===
+
+NOTE:  https://intersight.com/help/saas/supported_systems["Sistemas compatíveis com Cisco Intersight"^]Consulte para obter os requisitos mínimos dos componentes de computação do Cisco UCS e da versão do UCSM.
+
+
+
+== Requisitos de licenciamento do Cisco Intersight
+
+O Cisco Intersight oferece serviços como o serviço de infraestrutura e o serviço Cloud Orchestrator para gerenciar, automatizar e otimizar o storage físico (storage NetApp). Você pode usar esses serviços para gerenciar o servidor Cisco UCS e o sistema Cisco HyperFlex. O serviço de infraestrutura e o Cloud Orchestrator usam um modelo de licenciamento baseado em subscrição com várias camadas. Você pode escolher o nível de volume de servidor Cisco UCS necessário para o período de assinatura selecionado.
+
+.Modelo de licenciamento
+O modelo de licenciamento dos Serviços de infraestrutura do Cisco Intersight foi simplificado e agora oferece os dois níveis a seguir:
+
+* *Princípios Básicos dos Serviços de infraestrutura Intersight da Cisco* - a camada de licença Essentials oferece gerenciamento de servidores, incluindo funcionalidade global de monitoramento de integridade, inventário, suporte proativo por meio da integração Cisco TAC, autenticação multifator, além de fornecer acesso a SDK e API.
+* *Vantagem dos Serviços de infraestrutura Intersight da Cisco* - a camada de licença Advantage oferece gerenciamento avançado de servidores com visibilidade estendida, integração de ecossistemas, automação de Cisco e hardware e software de terceiros, além de fornecer soluções de vários domínios.
+
+
+Para obter mais informações sobre os recursos cobertos por vários níveis de licenciamento, https://intersight.com/help/saas/getting_started/licensing_requirements/lic_infra#licensing_model["Licença dos Serviços de infraestrutura"^] acesse .

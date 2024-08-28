@@ -1,0 +1,400 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-deploy_cisco_nexus_3172p_deployment_procedure.html 
+keywords: cisco, nexus, deployment, vlans, switches, server, configuration 
+summary: A seção a seguir detalha a configuração do switch Cisco Nexus 3172P usada em um ambiente FlexPod Express. 
+---
+= Procedimento de implantação do Cisco Nexus 3172P
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A seção a seguir detalha a configuração do switch Cisco Nexus 3172P usada em um ambiente FlexPod Express.
+
+
+
+== Configuração inicial do switch Cisco Nexus 3172P
+
+Os procedimentos a seguir descrevem como configurar os switches Cisco Nexus para uso em um ambiente FlexPod Express básico.
+
+
+NOTE: Este procedimento pressupõe que você está usando um Cisco Nexus 3172P executando o software NX-os versão 7,0(3)i7(5).
+
+. Após a inicialização inicial e a conexão à porta do console do switch, a configuração do Cisco NX-os é iniciada automaticamente. Esta configuração inicial aborda as configurações básicas, como o nome do switch, a configuração da interface mgmt0 e a configuração do Secure Shell (SSH).
+. A rede de gerenciamento FlexPod Express pode ser configurada de várias maneiras. As interfaces mgmt0 nos switches 3172P podem ser conetadas a uma rede de gerenciamento existente, ou as interfaces mgmt0 dos switches 3172P podem ser conetadas em uma configuração back-to-back. No entanto, este link não pode ser usado para acesso de gerenciamento externo, como tráfego SSH.
++
+Neste guia de implantação, os switches FlexPod Express Cisco Nexus 3172P são conetados a uma rede de gerenciamento existente.
+
+. Para configurar os switches Cisco Nexus 3172P, ligue o switch e siga as instruções na tela, conforme ilustrado aqui para a configuração inicial de ambos os switches, substituindo os valores apropriados pelas informações específicas do switch.
++
+....
+This setup utility will guide you through the basic configuration of
+the system. Setup configures only enough connectivity for management
+of the system.
+*Note: setup is mainly used for configuring the system initially,
+when no configuration is present. So setup always assumes system
+defaults and not the current system configuration values.
+Press Enter at anytime to skip a dialog. Use ctrl-c at anytime
+to skip the remaining dialogs.
+Would you like to enter the basic configuration dialog (yes/no): y
+Do you want to enforce secure password standard (yes/no) [y]: y
+  Create another login account (yes/no) [n]: n
+  Configure read-only SNMP community string (yes/no) [n]: n
+  Configure read-write SNMP community string (yes/no) [n]: n
+  Enter the switch name : 3172P-B
+  Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]: y
+    Mgmt0 IPv4 address : <<var_switch_mgmt_ip>>
+    Mgmt0 IPv4 netmask : <<var_switch_mgmt_netmask>>
+  Configure the default gateway? (yes/no) [y]: y
+    IPv4 address of the default gateway : <<var_switch_mgmt_gateway>>
+  Configure advanced IP options? (yes/no) [n]: n
+  Enable the telnet service? (yes/no) [n]: n
+  Enable the ssh service? (yes/no) [y]: y
+    Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa
+    Number of rsa key bits <1024-2048> [1024]:  <enter>
+  Configure the ntp server? (yes/no) [n]: y
+    NTP server IPv4 address : <<var_ntp_ip>>
+  Configure default interface layer (L3/L2) [L2]: <enter>
+  Configure default switchport interface state (shut/noshut) [noshut]:  <enter>
+  Configure CoPP system profile (strict/moderate/lenient/dense) [strict]:  <enter>
+....
+. Em seguida, você verá um resumo de sua configuração e será perguntado se deseja editá-la. Se a configuração estiver correta, introduza `n`.
++
+....
+Would you like to edit the configuration? (yes/no) [n]: n
+....
+. Então, você será perguntado se deseja usar essa configuração e salvá-la. Em caso afirmativo, introduza `y`.
++
+....
+Use this configuration and save it? (yes/no) [y]: Enter
+....
+. Repita este procedimento para o interrutor B do Cisco Nexus
+
+
+
+
+== Ativar funcionalidades avançadas
+
+Certos recursos avançados devem ser ativados no Cisco NX-os para fornecer opções de configuração adicionais.
+
+
+NOTE: O `interface-vlan` recurso só é necessário se você usar a opção voltar para trás `mgmt0` descrita em todo este documento. Esse recurso permite que você atribua um endereço IP à interface VLAN (switch virtual interface), que permite a comunicação de gerenciamento na banda para o switch (como por meio de SSH).
+
+. Para habilitar os recursos apropriados no switch A e no switch B do Cisco Nexus, entre no modo de configuração usando o comando `(config t)` e execute os seguintes comandos:
++
+....
+feature interface-vlan
+feature lacp
+feature vpc
+....
++
+O hash padrão de balanceamento de carga do canal de porta usa os endereços IP de origem e destino para determinar o algoritmo de balanceamento de carga entre as interfaces no canal de porta. Você pode obter uma melhor distribuição entre os membros do canal de porta fornecendo mais entradas para o algoritmo hash além dos endereços IP de origem e destino. Pela mesma razão, o NetApp recomenda fortemente adicionar as portas TCP de origem e destino ao algoritmo de hash.
+
+. No modo de configuração (`config t`), digite os seguintes comandos para definir a configuração de balanceamento de carga do canal de porta global no switch A e no switch B do Cisco Nexus:
++
+....
+port-channel load-balance src-dst ip-l4port
+....
+
+
+
+
+== Execute a configuração global de spanning-tree
+
+A plataforma Cisco Nexus usa um novo recurso de proteção chamado bridge Assurance. O Bridge Assurance ajuda a proteger contra uma ligação unidirecional ou outra falha de software com um dispositivo que continua a encaminhar o tráfego de dados quando não está mais a executar o algoritmo spanning-tree. As portas podem ser colocadas em um dos vários estados, incluindo rede ou borda, dependendo da plataforma.
+
+A NetApp recomenda a configuração da garantia de ponte para que todas as portas sejam consideradas como portas de rede por padrão. Essa configuração força o administrador de rede a revisar a configuração de cada porta. Ele também revela os erros de configuração mais comuns, como portas de borda não identificadas ou um vizinho que não tenha o recurso de garantia de ponte ativado. Além disso, é mais seguro ter o bloco de árvore de expansão muitas portas em vez de muito poucas, o que permite que o estado de porta padrão aumente a estabilidade geral da rede.
+
+Preste muita atenção ao estado de spanning-tree ao adicionar servidores, armazenamento e switches uplink, especialmente se eles não suportarem a garantia de bridge. Nesses casos, talvez seja necessário alterar o tipo de porta para tornar as portas ativas.
+
+A proteção da Unidade de dados do Protocolo de Ponte (BPDU) é ativada por padrão nas portas de borda como outra camada de proteção. Para evitar loops na rede, esse recurso desliga a porta se BPDUs de outro switch forem vistos nessa interface.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar as opções de spanning-tree padrão, incluindo o tipo de porta padrão e a proteção BPDU, no switch A do Cisco Nexus e no switch B:
+
+....
+spanning-tree port type network default
+spanning-tree port type edge bpduguard default
+....
+
+
+== Definir VLANs
+
+Antes que portas individuais com VLANs diferentes sejam configuradas, as VLANs de camada 2 devem ser definidas no switch. Também é uma boa prática nomear as VLANs para facilitar a solução de problemas no futuro.
+
+No modo de configuração (`config t`), execute os seguintes comandos para definir e descrever as VLANs de camada 2 no switch A e no switch B do Cisco Nexus:
+
+....
+vlan <<nfs_vlan_id>>
+  name NFS-VLAN
+vlan <<iSCSI_A_vlan_id>>
+  name iSCSI-A-VLAN
+vlan <<iSCSI_B_vlan_id>>
+  name iSCSI-B-VLAN
+vlan <<vmotion_vlan_id>>
+  name vMotion-VLAN
+vlan <<vmtraffic_vlan_id>>
+  name VM-Traffic-VLAN
+vlan <<mgmt_vlan_id>>
+  name MGMT-VLAN
+vlan <<native_vlan_id>>
+  name NATIVE-VLAN
+exit
+....
+
+
+== Configurar descrições de portas de acesso e gerenciamento
+
+Como acontece com a atribuição de nomes às VLANs de camada 2, as descrições de configuração para todas as interfaces podem ajudar no provisionamento e na solução de problemas.
+
+A partir do modo de configuração (`config t`) em cada um dos switches, insira as seguintes descrições de porta para a configuração grande do FlexPod Express:
+
+
+
+=== Switch Cisco Nexus A
+
+....
+int eth1/1
+  description AFF A220-A e0c
+int eth1/2
+  description AFF A220-B e0c
+int eth1/3
+  description UCS-Server-A: MLOM port 0
+int eth1/4
+  description UCS-Server-B: MLOM port 0
+int eth1/25
+  description vPC peer-link 3172P-B 1/25
+int eth1/26
+  description vPC peer-link 3172P-B 1/26
+int eth1/33
+  description AFF A220-A e0M
+int eth1/34
+  description UCS Server A: CIMC
+....
+
+
+=== Switch Cisco Nexus B
+
+....
+int eth1/1
+  description AFF A220-A e0d
+int eth1/2
+  description AFF A220-B e0d
+int eth1/3
+  description UCS-Server-A: MLOM port 1
+int eth1/4
+  description UCS-Server-B: MLOM port 1
+int eth1/25
+  description vPC peer-link 3172P-A 1/25
+int eth1/26
+  description vPC peer-link 3172P-A 1/26
+int eth1/33
+  description AFF A220-B e0M
+int eth1/34
+  description UCS Server B: CIMC
+....
+
+
+== Configurar interfaces de gerenciamento de storage e servidor
+
+As interfaces de gerenciamento para o servidor e o storage normalmente usam apenas uma única VLAN. Portanto, configure as portas da interface de gerenciamento como portas de acesso. Defina a VLAN de gerenciamento para cada switch e altere o tipo de porta spanning-tree para Edge.
+
+No modo de configuração (`config t`), digite os seguintes comandos para configurar as configurações de porta para as interfaces de gerenciamento dos servidores e do armazenamento:
+
+
+
+=== Switch Cisco Nexus A
+
+....
+int eth1/33-34
+  switchport mode access
+  switchport access vlan <<mgmt_vlan>>
+  spanning-tree port type edge
+  speed 1000
+exit
+....
+
+
+=== Switch Cisco Nexus B
+
+....
+int eth1/33-34
+  switchport mode access
+  switchport access vlan <<mgmt_vlan>>
+  spanning-tree port type edge
+  speed 1000
+exit
+....
+
+
+== Execute a configuração global do canal de porta virtual
+
+Um canal de porta virtual (VPC) permite que os links fisicamente conetados a dois switches Cisco Nexus diferentes apareçam como um canal de porta única para um terceiro dispositivo. O terceiro dispositivo pode ser um switch, servidor ou qualquer outro dispositivo de rede. Uma VPC pode fornecer multipathing de camada 2, o que permite criar redundância aumentando a largura de banda, habilitando vários caminhos paralelos entre nós e o tráfego de balanceamento de carga onde existem caminhos alternativos.
+
+Uma VPC oferece os seguintes benefícios:
+
+* Ativar um único dispositivo para usar um canal de porta em dois dispositivos upstream
+* Eliminação de portas bloqueadas de protocolo spanning-tree
+* Fornecendo uma topologia sem loop
+* Usando toda a largura de banda de uplink disponível
+* Fornecendo convergência rápida se o link ou um dispositivo falhar
+* Fornecer resiliência no nível de link
+* Ajudando a fornecer alta disponibilidade
+
+
+O recurso VPC requer alguma configuração inicial entre os dois switches Cisco Nexus para funcionar corretamente. Se você usar a configuração back-to-back mgmt0, use os endereços definidos nas interfaces e verifique se eles podem se comunicar usando o comando ping `<<switch_A/B_mgmt0_ip_addr>>vrf` Management.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar a configuração global da VPC para ambos os switches:
+
+
+
+=== Switch Cisco Nexus A
+
+....
+vpc domain 1
+ role priority 10
+  peer-keepalive destination <<switch_B_mgmt0_ip_addr>> source <<switch_A_mgmt0_ip_addr>> vrf management
+  peer-gateway
+  auto-recovery
+  ip arp synchronize
+int eth1/25-26
+  channel-group 10 mode active
+int Po10
+  description vPC peer-link
+  switchport
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<nfs_vlan_id>>,<<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>, <<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>>
+  spanning-tree port type network
+  vpc peer-link
+  no shut
+exit
+copy run start
+....
+
+
+=== Switch Cisco Nexus B
+
+....
+vpc domain 1
+  peer-switch
+  role priority 20
+  peer-keepalive destination <<switch_A_mgmt0_ip_addr>> source <<switch_B_mgmt0_ip_addr>> vrf management
+  peer-gateway
+  auto-recovery
+  ip arp synchronize
+int eth1/25- 26
+  channel-group 10 mode active
+int Po10
+  description vPC peer-link
+  switchport
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<nfs_vlan_id>>,<<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>>, <<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>>
+  spanning-tree port type network
+  vpc peer-link
+no shut
+exit
+copy run start
+....
+
+
+== Configurar canais de porta de armazenamento
+
+Os controladores de armazenamento NetApp permitem uma conexão ativo-ativo à rede usando o protocolo de controle de agregação de link (LACP). O uso do LACP é preferido porque adiciona negociação e Registro entre os switches. Como a rede está configurada para VPC, essa abordagem permite que você tenha conexões ativo-ativo do armazenamento para switches físicos separados. Cada controlador tem dois links para cada um dos switches. No entanto, todos os quatro links fazem parte do mesmo VPC e grupo de interfaces (IFGRP).
+
+No modo de configuração (`config t`), execute os seguintes comandos em cada um dos switches para configurar as interfaces individuais e a configuração de canal de porta resultante para as portas conetadas ao controlador NetApp AFF.
+
+. Execute os seguintes comandos no interrutor A e no interrutor B para configurar os canais de porta para o controlador de armazenamento A:
++
+....
+int eth1/1
+  channel-group 11 mode active
+int Po11
+  description vPC to Controller-A
+  switchport
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<nfs_vlan_id>>,<<mgmt_vlan_id>>,<<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>>
+  spanning-tree port type edge trunk
+  mtu 9216
+  vpc 11
+  no shut
+....
+. Execute os seguintes comandos no interrutor A e no interrutor B para configurar os canais de porta para o controlador de armazenamento B.
++
+....
+int eth1/2
+  channel-group 12 mode active
+int Po12
+  description vPC to Controller-B
+  switchport
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<nfs_vlan_id>>,<<mgmt_vlan_id>>, <<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>>
+  spanning-tree port type edge trunk
+  mtu 9216
+  vpc 12
+  no shut
+exit
+copy run start
+....
++
+
+NOTE: Na validação desta solução, foi utilizada uma MTU de 9000. No entanto, com base nos requisitos do aplicativo, você pode configurar um valor apropriado de MTU. É importante definir o mesmo valor MTU na solução FlexPod. Configurações incorretas de MTU entre componentes resultarão em pacotes sendo descartados e esses pacotes.
+
+
+
+
+
+== Configure as conexões do servidor
+
+Os servidores Cisco UCS têm uma placa de interface virtual de duas portas, VIC1387, que é usada para tráfego de dados e inicialização do sistema operacional ESXi usando iSCSI. Essas interfaces são configuradas para fazer failover entre si, proporcionando redundância adicional além de um único link. Espalhar esses links por vários switches permite que o servidor sobreviva até mesmo a uma falha completa do switch.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar as configurações de porta para as interfaces conetadas a cada servidor.
+
+
+
+=== Switch Cisco Nexus A: Configuração do servidor Cisco UCS-A e do servidor Cisco UCS-B.
+
+....
+int eth1/3-4
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<iSCSI_A_vlan_id>>,<<nfs_vlan_id>>,<<vmotion_vlan_id>>,<<vmtraffic_vlan_id>>,<<mgmt_vlan_id>>
+  spanning-tree port type edge trunk
+  mtu9216
+  no shut
+exit
+copy run start
+....
+
+
+=== Switch Cisco B: Configuração do Cisco UCS Server-A e do Cisco UCS Server-B.
+
+....
+int eth1/3-4
+  switchport mode trunk
+  switchport trunk native vlan <<native_vlan_id>>
+  switchport trunk allowed vlan <<iSCSI_B_vlan_id>>,<<nfs_vlan_id>>,<<vmotion_vlan_id>>,<<vmtraffic_vlan_id>>,<<mgmt_vlan_id>>
+  spanning-tree port type edge trunk
+  mtu 9216
+  no shut
+exit
+copy run start
+....
+Na validação desta solução, foi utilizada uma MTU de 9000. No entanto, com base nos requisitos do aplicativo, você pode configurar um valor apropriado de MTU. É importante definir o mesmo valor MTU na solução FlexPod. Configurações incorretas de MTU entre componentes resultarão em pacotes sendo descartados e esses pacotes precisarão ser transmitidos novamente. Isso afetará o desempenho geral da solução.
+
+Para escalar a solução adicionando servidores Cisco UCS adicionais, execute os comandos anteriores com as portas de switch às quais os servidores recém-adicionados foram conetados nos switches A e B.
+
+
+
+== Uplink em infra-estrutura de rede existente
+
+Dependendo da infraestrutura de rede disponível, vários métodos e recursos podem ser usados para uplink o ambiente FlexPod. Se um ambiente Cisco Nexus existente estiver presente, a NetApp recomenda o uso de VPCs para uplink os switches Cisco Nexus 3172P incluídos no ambiente FlexPod na infraestrutura. Os uplinks podem ser 10GbE uplinks para uma solução de infraestrutura 10GbE ou 1GbE para uma solução de infraestrutura 1GbE, se necessário. Os procedimentos descritos anteriormente podem ser usados para criar uma VPC uplink no ambiente existente. Certifique-se de executar o copy run start para salvar a configuração em cada switch depois que a configuração for concluída.
+
+link:express-c-series-aff220-deploy_netapp_storage_deployment_procedure_@part_1@.html["Próximo: Procedimento de implantação de armazenamento NetApp (parte 1)"]

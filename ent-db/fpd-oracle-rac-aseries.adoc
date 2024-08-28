@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-oracle-rac-aseries.html 
+keywords: flexpod, cisco, oracle, rac, ucs, aff, a-series, cvd 
+summary: O data center FlexPod com o sistema NetApp All Flash AFF é uma plataforma de infraestrutura convergente que combina as melhores tecnologias do Cisco e do NetApp em uma poderosa plataforma convergente para aplicações empresariais. 
+---
+= FlexPod Datacenter com bancos de dados Oracle RAC no Cisco UCS e NetApp AFF Série A.
+:allow-uri-read: 
+
+
+Tushar Patel, Cisco Hardikkkumar Vyas, Cisco
+
+[role="lead"]
+O data center FlexPod com o sistema NetApp All Flash AFF é uma plataforma de infraestrutura convergente que combina as melhores tecnologias do Cisco e do NetApp em uma poderosa plataforma convergente para aplicações empresariais. A Cisco e a NetApp trabalham em conjunto com a Oracle para dar suporte aos bancos de dados transacionais e sensíveis ao tempo de resposta mais exigentes exigidos pelos negócios atuais.
+
+Este Cisco Validated Design (CVD) descreve a arquitetura de data center FlexPod de referência usando Cisco UCS e NetApp All Flash AFF Storage para implantar um ambiente de banco de dados Oracle RAC altamente disponível. Este documento mostra a configuração de hardware e software dos componentes envolvidos e os resultados de vários testes. Além disso, este documento oferece orientação de implementação e práticas recomendadas usando servidores de computação UCS Cisco, switches de interconexão de malha Cisco, switches MDS Cisco, switches Cisco Nexus, armazenamento NetApp AFF e banco de dados RAC Oracle.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_orc12cr2_affaseries.html["FlexPod Datacenter com bancos de dados Oracle RAC no Cisco UCS e NetApp AFF Série A."^]

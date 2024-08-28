@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-sap-fibrechan-design.html 
+keywords: flexpod, data center, sap, fibre, channel, cisco, ucs, ontap 
+summary: A Cisco e a NetApp fizeram uma parceria para fornecer uma série de soluções FlexPod que permitem plataformas estratégicas de data center. 
+---
+= Solução FlexPod Datacenter para SAP usando SAN Fibre Channel com Cisco UCS Manager 4,0 e NetApp ONTAP 9.7 - Design
+:allow-uri-read: 
+
+
+Ramamurthy, Cisco Marco Schoen, NetApp
+
+[role="lead"]
+A Cisco e a NetApp fizeram uma parceria para fornecer uma série de soluções FlexPod que permitem plataformas estratégicas de data center. A solução FlexPod oferece uma arquitetura integrada que incorpora práticas recomendadas de computação, storage e design de rede, minimizando os riscos DE TI validando a arquitetura integrada para garantir a compatibilidade entre vários componentes. A solução também aborda os pontos problemáticos DA TI, fornecendo orientação de projeto documentada, orientação de implantação e suporte que podem ser usados em várias etapas (Planejamento, projeto e implementação) de uma implantação.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_sap_ucsm40_fcsan_design.html["Solução FlexPod Datacenter para SAP usando SAN Fibre Channel com Cisco UCS Manager 4,0 e NetApp ONTAP 9.7 - Design"^]

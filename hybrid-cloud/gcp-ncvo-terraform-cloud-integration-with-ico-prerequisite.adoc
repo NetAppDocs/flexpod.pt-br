@@ -1,0 +1,99 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/gcp-ncvo-terraform-cloud-integration-with-ico-prerequisite.html 
+keywords: user token, terraform cloud target, agents, api 
+summary: Esta página descreve como conetar o Cisco Intersight e o Terraform Cloud, como gerar um token de usuário, como reivindicar um destino na nuvem do Terraform e como adicionar agentes do Terraform Cloud. 
+---
+= Pré-requisito do Terraform Cloud Integration com ICO
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:gcp-ncvo-cisco-intersight-configuration.html["Anterior: Configuração do Cisco Intersight."]
+
+
+
+== Procedimento 1: Conete o Cisco Intersight e o Terraform Cloud
+
+. Solicite ou crie um destino de nuvem do Terraform fornecendo os detalhes relevantes da conta do Terraform Cloud.
+. Crie um destino do Terraform Cloud Agent para nuvens privadas para que os clientes possam instalar o agente no data center e ativar a comunicação com o Terraform Cloud.
++
+Para obter mais informações, siga https://intersight.com/help/saas/features/terraform_cloud/admin["este link"^].
+
+
+
+
+
+== Procedimento 2: Gerar token de usuário
+
+Como parte da adição de um destino para o Terraform Cloud, você deve fornecer o nome de usuário e o token da API na página de configurações do Terraform Cloud.
+
+. Faça login no Terraform Cloud e vá para *tokens de usuário*: https://app.terraform.io/app/settings/tokens["https://app.terraform.io/app/settings/tokens"^].
+. Clique em *criar um novo token de API*.
+. Atribua um nome para lembrar e salve o token em um local seguro.
+
+
+
+
+== Procedimento 3: Solicite o Terraform Cloud Target
+
+. Inicie sessão no Intersight com o Administrador de conta, o Administrador de dispositivo ou o Técnico de dispositivos Privileges.
+. Navegue até *ADMIN > Targets > reivindicar um novo alvo*.
+. Em *categorias*, clique em *nuvem*.
+. Clique em *Terraform Cloud* e clique em *Iniciar*.
++
+image:gcp-ncvo-image3.png["Captura de tela da seleção do tipo de destino no Cisco Intersight."]
+
+. Insira um nome para o destino, seu nome de usuário para o Terraform Cloud, o token da API e uma organização padrão no Terraform Cloud, conforme exibido na imagem a seguir.
+. No campo *Default Managed hosts*, certifique-se de adicionar os seguintes links junto com outros hosts gerenciados:
++
+** github.com
+** github-releases.githubusercontent.com
++
+image:gcp-ncvo-image4.png["Captura de tela do campo Host gerenciado padrão."]
+
+
+
+
+
+Se tudo for inserido corretamente, você verá o destino do Terraform Cloud exibido na seção *Intersight Targets*.
+
+
+
+== Procedimento 4: Adicionar agentes Terraform Cloud
+
+Pré-requisitos:
+
+* Destino do Terraform Cloud.
+* Reivindicou o Intersight Assist no Intersight antes de implantar o Terraform Cloud Agent.
+
+
+
+NOTE: Só é possível solicitar cinco agentes para cada assistência.
+
+
+NOTE: Depois de criar a conexão com o Terraform, é necessário ativar um Terraform Agent para executar o código Terraform.
+
+. Clique em *solicitar o Terraform Cloud Agent* na lista suspensa do destino do Terraform Cloud.
+. Insira os detalhes do agente Terraform Cloud. A captura de tela a seguir mostra os detalhes de configuração do agente Terraform.
++
+image:gcp-ncvo-image5.png["Captura de tela mostrando detalhes de configuração para o agente Terraform."]
+
+
+
+
+NOTE: Você pode atualizar qualquer propriedade do Terraform Agent. Se o destino estiver no estado *não conetado* e nunca estiver no estado *conetado*, um token não foi gerado para o agente Terraform.
+
+Depois que a validação do agente for bem-sucedida e um token de agente for gerado, você não poderá reconfigurar a Organização e/ou o pool de agentes. A implantação bem-sucedida de um agente Terraform é indicada por um status *conectado*.
+
+Depois de ativar e reivindicar a integração do Terraform Cloud, você pode implantar um ou mais agentes do Terraform Cloud no Cisco Intersight Assist. O agente Terraform Cloud é modelado como um destino filho do destino Terraform Cloud. Ao reivindicar o destino do agente, você verá uma mensagem indicando que o pedido de destino está em andamento.
+
+Após alguns segundos, o destino é movido para o estado *conectado* e a plataforma Intersight roteia pacotes HTTPS do agente para o gateway Terraform Cloud.
+
+Seu Terraform Agent deve ser reivindicado corretamente e deve aparecer em alvos como *conectado*.
+
+link:gcp-ncvo-configure-public-cloud-service-provider.html["Próximo: Configurar provedor de serviços de nuvem pública."]

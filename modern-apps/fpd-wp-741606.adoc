@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: modern-apps/fpd-wp-741606.html 
+keywords:  
+summary:  
+---
+= Visualização de gráficos 3DD com VMware e NVIDIA no Cisco UCS - White paper
+:allow-uri-read: 
+
+
+[role="lead"]
+Este documento descreve o desempenho do hypervisor VMware ESXi e do VMware Horizon com a solução NVIDIA Tesla P4, P6 e P40 em servidores de rack Cisco UCS C240 M5 e servidores blade B200 M5.
+
+link:https://www.cisco.com/c/dam/en/us/solutions/collateral/data-center-virtualization/desktop-virtualization-solutions-vmware-horizon-view/whitepaper-c11-741606.pdf["Visualização de gráficos 3DD com VMware e NVIDIA no Cisco UCS - White paper"^]

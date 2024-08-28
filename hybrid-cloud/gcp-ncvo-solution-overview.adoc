@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/gcp-ncvo-solution-overview.html 
+keywords: tr4939, 4939, introduction, audience, solution topology 
+summary: Esse relatório técnico reúne a solução de infraestrutura convergente da FlexPod, o NetApp Cloud Volumes ONTAP no Google Cloud e o Cisco Intersight para formar um data center de nuvem híbrida para recuperação de desastres. Nesta solução, discutimos o design e a execução de um fluxo de trabalho ONTAP no local usando o Cisco Intersight Cloud Orchestrator. Também discutimos a implantação do NetApp Cloud Volumes ONTAP e a orquestração e automação da replicação de dados e DR entre o FlexPod e o Cloud Volumes ONTAP usando o Serviço de Intersight Cisco para o HashiCorp Terraform. 
+---
+= TR-4939: Nuvem híbrida da FlexPod para Google Cloud Platform com NetApp Cloud Volumes ONTAP e Cisco Intersight
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Ruchika Lahoti, NetApp
+
+
+
+== Introdução
+
+Proteger dados com recuperação de desastres (DR) é um objetivo essencial para a continuidade dos negócios. O DR permite que as organizações façam failover de suas operações de negócios em um local secundário e, posteriormente, recuperem e façam failback para o local primário de forma eficiente e confiável. Várias preocupações, como desastres naturais, falhas de rede, vulnerabilidades de software e erro humano, tornam o desenvolvimento de uma estratégia de DR uma prioridade DE TI principal.
+
+Para a recuperação de desastres, todos os workloads executados no local principal precisam ser fielmente reproduzidos no local de recuperação de desastres. Uma organização também precisa ter uma cópia atualizada de todos os dados empresariais, incluindo banco de dados, serviços de arquivos, storage NFS e iSCSI, etc. Como os dados no ambiente de produção são constantemente atualizados, as alterações precisam ser transferidas regularmente para o local de DR.
+
+A implantação de ambientes de DR é um desafio para a maioria das organizações devido ao requisito de independência de infraestrutura e local. O número de recursos necessários e os custos de configuração, teste e manutenção de um data center secundário podem ser muito altos, geralmente se aproximando do custo de todo o ambiente de produção. É difícil manter um espaço físico mínimo dos dados com proteção adequada, sincronizando os dados continuamente e estabelecendo failover e failback aprimorados. Depois de criar o local de DR, o desafio passa a ser replicar dados do ambiente de produção e mantê-los sincronizados no futuro.
+
+Esse relatório técnico reúne a solução de infraestrutura convergente da FlexPod, o NetApp Cloud Volumes ONTAP no Google Cloud e o Cisco Intersight para formar um data center de nuvem híbrida para recuperação de desastres. Nesta solução, discutimos o design e a execução de um fluxo de trabalho ONTAP no local usando o Cisco Intersight Cloud Orchestrator. Também discutimos a implantação do NetApp Cloud Volumes ONTAP e a orquestração e automação da replicação de dados e DR entre o FlexPod e o Cloud Volumes ONTAP usando o Serviço de Intersight Cisco para o HashiCorp Terraform.
+
+A figura a seguir fornece uma visão geral da solução.
+
+image:gcp-ncvo-image1.png["Visão geral da solução."]
+
+Essa solução oferece várias vantagens, incluindo:
+
+* *Orquestração e automação.* O Cisco Intersight simplifica as operações diárias da infraestrutura de nuvem híbrida da FlexPod com estruturas de orquestração consistentes fornecidas por meio de automação.
+* * Proteção personalizada. * O Cloud Volumes ONTAP fornece replicação de dados em nível de bloco da ONTAP para a nuvem, o que mantém o destino atualizado por meio de atualizações incrementais. Os usuários podem especificar uma programação de sincronização a cada 5 minutos ou a cada hora, por exemplo, com base nas alterações na origem que são transferidas.
+* * Failover contínuo e failback.* Quando ocorre um desastre, os administradores de storage podem fazer failover rapidamente para os volumes de nuvem. Quando o local principal é recuperado, os novos dados criados no ambiente de DR são sincronizados de volta para os volumes de origem, restabelecendo a replicação de dados secundários.
+* *Eficiência:* o espaço de armazenamento e os custos da cópia de nuvem secundária são otimizados por meio do uso de compactação de dados, thin Provisioning e deduplicação. Os dados são transferidos no nível do bloco de forma comprimida e desduplicada, melhorando a velocidade de transferência. Os dados também são automaticamente dispostos em camadas em storage de objetos de baixo custo e somente retornados ao storage de alto desempenho quando acessados, como em um cenário de DR. Isso reduz significativamente os custos contínuos de storage.
+* *Aumento da produtividade DE TI.* O uso do Intersight como a única plataforma segura de nível empresarial para gerenciamento do ciclo de vida da infraestrutura e do aplicativo simplifica o gerenciamento de configuração e a automação de tarefas manuais em escala para a solução.
+
+
+
+
+== Público-alvo
+
+O público-alvo deste documento inclui, entre outros, engenheiros de vendas, consultores de campo, serviços profissionais, gerentes DE TI, engenheiros de parceiros, engenheiros de confiabilidade do site, arquitetos de nuvem, engenheiros de nuvem e clientes que desejam aproveitar uma infraestrutura criada para fornecer eficiência DE TI e permitir inovação DE TI.
+
+
+
+== Topologia da solução
+
+Esta seção descreve a topologia lógica da solução. A figura a seguir representa a topologia da solução do ambiente FlexPod no local, do NetApp Cloud Volumes ONTAP executado no Google Cloud, do Cisco Intersight e do NetApp Cloud Manager.
+
+image:gcp-ncvo-image2.png["Topologia da solução."]
+
+Os planos de controlo e os planos de dados são claramente indicados entre os pontos finais. O plano de dados usa uma conexão VPN site a site segura para conetar a instância do ONTAP em execução no FlexPod All Flash FAS à instância do NetApp Cloud Volumes ONTAP no Google Cloud.
+
+A replicação dos dados de workload do FlexPod para o NetApp Cloud Volumes ONTAP é gerenciada pelo NetApp SnapMirror, e o processo geral é orquestrado por meio do Cisco Intersight Cloud Orchestrator para ambientes locais e de nuvem. O Cisco Intersight Cloud Orchestrator consome os provedores de recursos Terraform para que o NetApp execute operações relacionadas à implantação do NetApp Cloud Volumes ONTAP e estabeleça relacionamentos de replicação de dados.
+
+
+NOTE: Essa solução também oferece suporte ao backup e à disposição em camadas opcionais de dados inativos que residem na instância do NetApp Cloud Volumes ONTAP no Google Cloud Storage.
+
+link:gcp-ncvo-solution-components.html["Próximo: Componentes da solução."]

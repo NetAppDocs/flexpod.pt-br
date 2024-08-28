@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: healthcare/ehr-meditech-deploy_esxi_configuration_best_practices.html 
+keywords: esxi, configuration, practices, vsc, vmware, vaai, host, multipathing 
+summary: Para a configuração do lado do host ESXi, configure os hosts VMware como você executaria qualquer workload de banco de dados empresarial. 
+---
+= Práticas recomendadas de configuração do ESXi
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Para a configuração do lado do host ESXi, configure os hosts VMware como você executaria qualquer workload de banco de dados empresarial:
+
+* O VSC para VMware vSphere verifica e define as configurações de multipathing do host ESXi e as configurações de tempo limite do HBA que funcionam melhor com os sistemas de armazenamento NetApp. Os valores que o VSC define são baseados em rigorosos testes internos da NetApp.
+* Para obter um desempenho ideal de storage, considere o uso de hardware de storage compatível com VMware vStorage APIs - Array Integration (VAAI). O plug-in do NetApp para VAAI é uma biblioteca de software que integra as bibliotecas de disco virtual da VMware instaladas no host ESXi. O pacote VMware VAAI permite o descarregamento de certas tarefas dos hosts físicos para o storage array.
++
+É possível executar tarefas como provisionamento de thin Provisioning e aceleração de hardware no nível do array para reduzir o workload nos hosts ESXi. O recurso de descarga de cópia e o recurso de reserva de espaço melhoram o desempenho das operações do VSC. Você pode baixar o pacote de instalação do plug-in e obter as instruções para instalar o plug-in no site de suporte da NetApp.
+
++
+O VSC define tempos limite de host ESXi, configurações de multipath e configurações de tempo limite HBA e outros valores para desempenho ideal e failover bem-sucedido dos controladores de armazenamento NetApp. Siga estes passos:
+
++
+.. Na página inicial do VMware vSphere Web Client, selecione vCenter > hosts.
+.. Clique com o botão direito do rato num anfitrião e selecione ações > NetApp VSC > Definir valores recomendados.
+.. Na caixa de diálogo Configurações recomendadas do NetApp , selecione os valores que funcionam melhor com o sistema.
++
+Os valores padrão recomendados são definidos por padrão.
+
++
+image:ehr-meditech-deploy_image7.png["Erro: Imagem gráfica em falta"]
+
+.. Clique em OK.
+
+
+
+
+link:ehr-meditech-deploy_netapp_configuration.html["Próximo: Configuração do NetApp."]

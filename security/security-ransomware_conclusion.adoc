@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: security/security-ransomware_conclusion.html 
+keywords: ransomware, attack, data, backup, recovery, business, planning 
+summary: Os autores recomendam não pagar um resgate em caso de ataque, porque isso reforça a fé do invasor em seu modelo de negócios. As operações de backup e restauração de dados desempenham um papel importante na recuperação de ransomware. Portanto, eles devem ser incluídos como parte integrante do Planejamento de negócios. 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O ransomware é um produto do crime organizado, e os atacantes não operam com ética. Eles podem abster-se de fornecer a chave para descriptografia, mesmo depois de receber o resgate. A vítima não só perde seus dados, mas também uma quantidade substancial de dinheiro e enfrentará consequências associadas à perda de dados de produção.
+
+De acordo com a https://www.forbes.com/sites/leemathews/2018/03/09/why-you-should-never-pay-a-ransomware-ransom/["Artigo da Forbes"^], apenas 19% das vítimas de ransomware recuperam os dados depois de pagar o resgate. Portanto, os autores recomendam não pagar um resgate em caso de ataque, porque isso reforça a fé do invasor em seu modelo de negócios.
+
+As operações de backup e restauração de dados desempenham um papel importante na recuperação de ransomware. Portanto, eles devem ser incluídos como parte integrante do Planejamento de negócios. A implementação dessas operações deve ser orçamentada para que não haja comprometimento das capacidades de recuperação em caso de ataque.
+
+A chave é selecionar o parceiro de tecnologia correto nessa jornada, e a FlexPod oferece a maioria das funcionalidades necessárias de forma nativa, sem custo adicional em um sistema all-flash FAS.

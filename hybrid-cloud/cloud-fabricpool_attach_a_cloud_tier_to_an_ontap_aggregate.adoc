@@ -1,0 +1,62 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_attach_a_cloud_tier_to_an_ontap_aggregate.html 
+keywords: attach, cloud, tier, ontap, aggregate, fabricpool, flexpod, ontap, cli, oncommand, system, manager 
+summary: Depois que um armazenamento de objetos tiver sido adicionado e identificado pelo ONTAP, ele deve ser anexado a um agregado para criar um FabricPool. Essa tarefa pode ser concluída usando o OnCommand System Manager ou a CLI do ONTAP. 
+---
+= Anexar uma camada de nuvem a um agregado da ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Depois que um armazenamento de objetos tiver sido adicionado e identificado pelo ONTAP, ele deve ser anexado a um agregado para criar um FabricPool. Essa tarefa pode ser concluída usando o OnCommand System Manager ou a CLI do ONTAP.
+
+Mais de um tipo de armazenamento de objetos pode ser conetado a um cluster, mas apenas um tipo de armazenamento de objetos pode ser anexado a cada agregado. Por exemplo, um agregado pode usar o Google Cloud e outro agregado pode usar o Amazon S3, mas um agregado não pode ser anexado a ambos.
+
+
+NOTE: Conectar uma camada de nuvem a um agregado é uma ação permanente. Um nível de nuvem não pode ser desanexado de um agregado ao qual ele foi anexado.
+
+
+
+== OnCommand System Manager
+
+Para anexar um nível de nuvem a um agregado usando o OnCommand System Manager, siga estas etapas:
+
+. Inicie o OnCommand System Manager.
+. Clique em aplicações e camadas.
++
+image:cloud-fabricpool_image14.png["Erro: Imagem gráfica em falta"]
+
+. Clique em camadas de armazenamento.
+. Clique em um agregado.
+. Clique em ações e selecione Anexar nível de nuvem.
++
+image:cloud-fabricpool_image15.png["Erro: Imagem gráfica em falta"]
+
+. Selecione um nível de nuvem.
+. Visualizar e atualizar as políticas de disposição em camadas dos volumes no agregado (opcional). Por padrão, a política de disposição em categorias de volume é definida como somente Snapshot.
+. Clique em Guardar.
+
+
+
+
+== CLI do ONTAP
+
+Para anexar um nível de nuvem a um agregado usando a CLI do ONTAP, execute os seguintes comandos:
+
+....
+storage aggregate object-store attach
+-aggregate <name>
+-object-store-name <name>
+....
+Exemplo:
+
+....
+storage aggregate object-store attach -aggregate aggr1 -object-store-name - aws_infra_fp_bk_1
+....
+link:cloud-fabricpool_set_volume_tiering_policy.html["Próximo: Definir a política de disposição em categorias de volume."]

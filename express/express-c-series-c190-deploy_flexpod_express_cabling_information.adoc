@@ -1,0 +1,132 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-deploy_flexpod_express_cabling_information.html 
+keywords: flexpod, express, cabling, information, storage, controller, switch, cisco, nexus 
+summary: Esta validação de referência é cabeada como mostrado nas figuras e tabelas a seguir. 
+---
+= Informações de cabeamento do FlexPod Express
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta validação de referência é cabeada como mostrado nas figuras e tabelas a seguir.
+
+Esta figura mostra o cabeamento de validação de referência.
+
+image:express-c-series-c190-deploy_image3.png["Erro: Imagem gráfica em falta"]
+
+A tabela a seguir lista as informações de cabeamento do switch Cisco Nexus 31108PC-V-A.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+.10+| Interrutor Cisco Nexus 31108PC-V A | Eth1/1 | Controlador de storage NetApp AFF C190 A | e0c 
+
+
+| Eth1/2 | Controlador de storage NetApp AFF C190 B | e0c 
+
+
+| Eth1/3 | Servidor independente A do Cisco UCS C220 C-Series | MLOM0 
+
+
+| Eth1/4 | Servidor independente B do Cisco UCS C220 C-Series | MLOM0 
+
+
+| Eth1/5 | Servidor independente A do Cisco UCS C220 C-Series | MLOM1 
+
+
+| Eth1/6 | Servidor independente B do Cisco UCS C220 C-Series | MLOM1 
+
+
+| Eth1/25 | Interrutor Cisco Nexus 31108PC-V B | Eth1/25 
+
+
+| Eth1/26 | Interrutor Cisco Nexus 31108PC-V B | Eth1/26 
+
+
+| Eth1/33 | Controlador de storage NetApp AFF C190 A | e0M 
+
+
+| Eth1/34 | Servidor independente A do Cisco UCS C220 C-Series | CIMC (FEX135/1/25) 
+|===
+Esta tabela lista as informações de cabeamento do switch Cisco Nexus 31108PC-V- B.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+.10+| Interrutor Cisco Nexus 31108PC-V B | Eth1/1 | Controlador de storage NetApp AFF C190 A | e0d 
+
+
+| Eth1/2 | Controlador de storage NetApp AFF C190 B | e0d 
+
+
+| Eth1/3 | Servidor independente A do Cisco UCS C220 C-Series | MLOM2 
+
+
+| Eth1/4 | Servidor independente B do Cisco UCS C220 C-Series | MLOM2 
+
+
+| Eth1/5 | Servidor independente A do Cisco UCS C220 C-Series | MLOM3 
+
+
+| Eth1/6 | Servidor independente B do Cisco UCS C220 C-Series | MLOM3 
+
+
+| Eth1/25 | Switch Cisco Nexus 31108 A | Eth1/25 
+
+
+| Eth1/26 | Switch Cisco Nexus 31108 A | Eth1/26 
+
+
+| Eth1/33 | Controlador de storage NetApp AFF C190 B | e0M 
+
+
+| Eth1/34 | Servidor independente B do Cisco UCS C220 C-Series | CIMC (FEX135/1/26) 
+|===
+Esta tabela lista as informações de cabeamento para o controlador de armazenamento NetApp AFF C190 A..
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+.5+| Controlador de storage NetApp AFF C190 A | e0a | Controlador de storage NetApp AFF C190 B | e0a 
+
+
+| e0b | Controlador de storage NetApp AFF C190 B | e0b 
+
+
+| e0c | Interrutor Cisco Nexus 31108PC-V A | Eth1/1 
+
+
+| e0d | Interrutor Cisco Nexus 31108PC-V B | Eth1/1 
+
+
+| e0M | Interrutor Cisco Nexus 31108PC-V A | Eth1/33 
+|===
+Esta tabela lista as informações de cabeamento do controlador de armazenamento NetApp AFF C190 B.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+.5+| Controlador de storage NetApp AFF C190 B | e0a | Controlador de storage NetApp AFF C190 A | e0a 
+
+
+| e0b | Controlador de storage NetApp AFF C190 A | e0b 
+
+
+| e0c | Interrutor Cisco Nexus 31108PC-V A | Eth1/2 
+
+
+| e0d | Interrutor Cisco Nexus 31108PC-V B | Eth1/2 
+
+
+| e0M | Interrutor Cisco Nexus 31108PC-V B | Eth1/33 
+|===

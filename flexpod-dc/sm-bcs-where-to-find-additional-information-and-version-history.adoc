@@ -1,0 +1,188 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/sm-bcs-where-to-find-additional-information-and-version-history.html 
+keywords:  
+summary:  
+---
+= Onde encontrar informações adicionais e histórico de versões
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sm-bcs-conclusion.html["Anterior: Conclusão."]
+
+[role="lead"]
+Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites:
+
+
+
+== FlexPod
+
+* Página inicial do FlexPod
++
+https://www.flexpod.com["https://www.flexpod.com"^]
+
+* Cisco validou guias de design e implantação para FlexPod
++
+https://www.cisco.com/c/en/us/solutions/design-zone/data-center-design-guides/flexpod-design-guides.html["https://www.cisco.com/c/en/us/solutions/design-zone/data-center-design-guides/flexpod-design-guides.html"^]
+
+* Servidores Cisco - sistema de computação unificada (UCS)
++
+https://www.cisco.com/c/en/us/products/servers-unified-computing/index.html["https://www.cisco.com/c/en/us/products/servers-unified-computing/index.html"^]
+
+* Documentação do produto NetApp
++
+https://www.netapp.com/support-and-training/documentation/["https://www.netapp.com/support-and-training/documentation/"^]
+
+* FlexPod Datacenter com Cisco UCS 4,2(1) no modo gerenciado UCS, VMware vSphere 7,0 U2 e NetApp ONTAP 9.9 Guia de Design
++
+https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2_design.html["https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2_design.html"^]
+
+* FlexPod Datacenter com Cisco UCS 4,2(1) no modo gerenciado do UCS, VMware vSphere 7,0 U2 e Guia de implantação do NetApp ONTAP 9.9
++
+https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2.html["https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2.html"^]
+
+* FlexPod Datacenter com Cisco UCS X-Series, VMware 7,0 U2 e NetApp ONTAP 9.9 Guia de Design
++
+https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_esxi7u2_design.html["https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_esxi7u2_design.html"^]
+
+* FlexPod Datacenter com Cisco UCS X-Series, VMware 7,0 U2 e NetApp ONTAP 9.9 Guia de implantação
++
+https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_vmware_7u2.html["https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_vmware_7u2.html"^]
+
+* FlexPod Express para VMware vSphere 7,0 com o Cisco UCS Mini e o Guia de design NetApp AFF/FAS NVA
++
+https://www.netapp.com/pdf.html?item=/media/22621-nva-1154-DESIGN.pdf[]
+
+* FlexPod Express para VMware vSphere 7,0 com o Cisco UCS Mini e o Guia de implantação do NetApp AFF/FAS NVA
++
+https://www.netapp.com/pdf.html?item=/media/21938-nva-1154-DEPLOY.pdf[]
+
+* FlexPod MetroCluster IP com malha frontal multi-local VXLAN
++
+https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/flexpod-metrocluster-ip-vxlan-multi-site-wp.pdf["https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/flexpod-metrocluster-ip-vxlan-multi-site-wp.pdf"^]
+
+* NAbox
++
+https://nabox.org["https://nabox.org"^]
+
+* Colheita de NetApp
++
+https://github.com/NetApp/harvest/releases["https://github.com/NetApp/harvest/releases"^]
+
+
+
+
+
+== SM-BC
+
+* SM-BC
++
+https://docs.netapp.com/us-en/ontap/smbc/index.html["https://docs.netapp.com/us-en/ontap/smbc/index.html"^]
+
+* TR-4878: Continuidade de Negócios SnapMirror (SM-BC) ONTAP 9.8
++
+https://www.netapp.com/pdf.html?item=/media/21888-tr-4878.pdf["https://www.netapp.com/pdf.html?item=/media/21888-tr-4878.pdf"^]
+
+* Como excluir corretamente um SnapMirror Relationship ONTAP 9
++
+https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_correctly_delete_a_SnapMirror_relationship_ONTAP_9["https://kb.netapp.com/Advice_and_Troubleshooting/Data_Protection_and_Security/SnapMirror/How_to_correctly_delete_a_SnapMirror_relationship_ONTAP_9"^]
+
+* Noções básicas de recuperação de desastres síncronas do SnapMirror
++
+https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-synchronous-disaster-recovery-basics-concept.html["https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-synchronous-disaster-recovery-basics-concept.html"^]
+
+* Noções básicas de recuperação de desastres do SnapMirror assíncrono
++
+https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-disaster-recovery-concept.html["https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-disaster-recovery-concept.html#data-protection-relationships"^]
+
+* Proteção de dados e recuperação de desastres
++
+https://docs.netapp.com/us-en/ontap/data-protection-disaster-recovery/index.html["https://docs.netapp.com/us-en/ontap/data-protection-disaster-recovery/index.html"^]
+
+* Instale ou atualize o serviço do Mediador ONTAP
++
+https://docs.netapp.com/us-en/ontap/mediator/index.html["https://docs.netapp.com/us-en/ontap/mediator/index.html"^]
+
+
+
+
+
+== VMware vSphere HA e vSphere Metro Storage Cluster
+
+* Criação e uso de clusters de HA do vSphere
++
+https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html["https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html"^]
+
+* VMware vSphere Metro Storage Cluster (vMSC)
++
+https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc"^]
+
+* Práticas recomendadas do VMware vSphere Metro Storage Cluster
++
+https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices"^]
+
+* NetApp ONTAP com NetApp SnapMirror Business Continuity (SM-BC) com VMware vSphere Metro Storage Cluster (vMSC). (83370)
++
+https://kb.vmware.com/s/article/83370["https://kb.vmware.com/s/article/83370"^]
+
+* Proteja aplicativos e bancos de dados de camada 1 com o VMware vSphere Metro Storage Cluster e o ONTAP
++
+https://community.netapp.com/t5/Tech-ONTAP-Blogs/Protect-tier-1-applications-and-databases-with-VMware-vSphere-Metro-Storage/ba-p/171636["https://community.netapp.com/t5/Tech-ONTAP-Blogs/Protect-tier-1-applications-and-databases-with-VMware-vSphere-Metro-Storage/ba-p/171636"^]
+
+
+
+
+
+== Microsoft SQL e HammerDB
+
+* Microsoft SQL Server 2019
++
+https://www.microsoft.com/en-us/sql-server/sql-server-2019["https://www.microsoft.com/en-us/sql-server/sql-server-2019"^]
+
+* Arquitetando o Microsoft SQL Server no Guia de práticas recomendadas do VMware vSphere
++
+https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/solutions/sql-server-on-vmware-best-practices-guide.pdf["https://www.vmware.com/content/dam/digitalmarketing/vmware/en/pdf/solutions/sql-server-on-vmware-best-practices-guide.pdf"^]
+
+* HammerDB website
++
+https://www.hammerdb.com["https://www.hammerdb.com"^]
+
+
+
+
+
+== Matriz de compatibilidade
+
+* Matriz de compatibilidade de hardware Cisco UCS
++
+https://ucshcltool.cloudapps.cisco.com/public/["https://ucshcltool.cloudapps.cisco.com/public/"^]
+
+* Ferramenta de Matriz de interoperabilidade do NetApp
++
+https://support.netapp.com/matrix/["https://support.netapp.com/matrix/"^]
+
+* NetApp Hardware Universe
++
+https://hwu.netapp.com["https://hwu.netapp.com"^]
+
+* Guia de compatibilidade da VMware
++
+http://www.vmware.com/resources/compatibility/search.php["http://www.vmware.com/resources/compatibility/search.php"^]
+
+
+
+
+
+== Histórico de versões
+
+|===
+| Versão | Data | Histórico de versões do documento 
+
+
+| Versão 1,0 | Abril de 2022 | Lançamento inicial. 
+|===

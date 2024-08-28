@@ -1,0 +1,100 @@
+---
+sidebar: sidebar 
+permalink: healthcare/ehr-meditech-deploy_meditech_modules_and_components.html 
+keywords: meditech, modules, components, application, function, type 
+summary: A aplicação MEDITECH abrange vários módulos e componentes. 
+---
+= Módulos e componentes DA MEDITECH
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A aplicação MEDITECH abrange vários módulos e componentes. A tabela a seguir lista as funções que são cobertas por esses módulos. Para obter informações adicionais sobre como configurar e implantar esses módulos, consulte a documentação da MEDITECH.
+
+|===
+| Função | Tipo 
+
+
+| Conetividade  a| 
+* Servidor Web
+* Servidor de aplicações Live (WI – integração Web)
+* Servidor de aplicativos de teste (Wi)
+* Servidor de autenticação SAML (Wi)
+* Servidor proxy SAML (Wi)
+* Servidor de banco de dados
+
+
+
+
+| Infraestrutura  a| 
+* Servidor de arquivos
+* Cliente trabalho em segundo plano
+* Servidor de conexão
+* Servidor de transações
+
+
+
+
+| Digitalização e arquivamento  a| 
+* Servidor de imagens
+
+
+
+
+| Repositório de dados  a| 
+* SQL Server
+
+
+
+
+| Análises comerciais e clínicas  a| 
+* Servidor de inteligência em tempo real (BCA)
+* Servidor de inteligência de teste (BCA)
+* Servidor de banco de dados (BCA)
+
+
+
+
+| Cuidados domésticos  a| 
+* Solução local remoto
+* Conetividade
+* Infraestrutura
+* Impressão
+* Dispositivos de campo
+* Digitalização
+* Requisitos do site hospedado
+* Configuração da firewall
+
+
+
+
+| Suporte  a| 
+* Cliente de trabalho em segundo plano (CALs – Licença de Acesso ao Cliente)
+
+
+
+
+| Dispositivos do utilizador  a| 
+* Comprimidos
+* Dispositivos fixos
+
+
+
+
+| Impressão  a| 
+* Servidor de impressão em rede ativa (necessário; pode já existir)
+* Servidor de impressão de rede de teste (necessário; pode já existir)
+
+
+
+
+| Requisito de terceiros  a| 
+* Primeiro Databank (FDB) MedKnowledge Framework v4,3
+
+
+|===

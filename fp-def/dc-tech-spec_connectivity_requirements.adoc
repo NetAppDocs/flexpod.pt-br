@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: fp-def/dc-tech-spec_connectivity_requirements.html 
+keywords: connectivity, requirements, cisco, ucs, fabric, interconnect, uplink, direct, san 
+summary: Listados abaixo estão os requisitos de conetividade para a configuração do FlexPod. 
+---
+= Requisitos de conetividade
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Uma configuração do FlexPod tem os seguintes requisitos de conetividade:
+
+* Uma rede de gerenciamento fora da banda Ethernet 100Mbps/1GB Ethernet separada é necessária para todos os componentes.
+* A NetApp recomenda que você habilite o suporte a quadros jumbo em todo o ambiente, mas isso não é necessário.
+* As portas do dispositivo de interconexão de malha Cisco UCS são recomendadas apenas para conexões iSCSI e nas.
+* Nenhum equipamento adicional pode ser colocado em linha entre os componentes principais do FlexPod.
+
+
+Ligações uplink:
+
+* As portas nos controladores de armazenamento NetApp devem ser conetadas aos switches Cisco Nexus 5000, 7000 ou série 9000 para habilitar o suporte a canais de portas virtuais (VPCs).
+* Os VPCs são necessários dos switches Cisco Nexus 5000, 7000 ou 9000 Series para os controladores de armazenamento NetApp.
+* Os VPCs são necessários dos switches Cisco Nexus 5000, 7000 ou 9000 Series para as interconexões de malha.
+* Um mínimo de duas conexões são necessárias para uma VPC. O número de conexões em uma VPC pode ser aumentado com base na carga do aplicativo e nos requisitos de desempenho.
+
+
+Ligações diretas:
+
+* As portas do controlador de storage do NetApp que estão diretamente conectadas às interconexões de malha podem ser agrupadas para habilitar um canal de porta. A VPC não é compatível com esta configuração.
+* Os canais de porta FCoE são recomendados para designs FCoE de ponta a ponta.
+
+
+Inicialização SAN:
+
+* As soluções FlexPod são projetadas em torno de uma arquitetura de inicialização SAN usando protocolos iSCSI, FC ou FCoE. O uso das tecnologias boot-from-SAN fornece a configuração mais flexível para a infraestrutura do data center e permite os recursos avançados disponíveis em cada componente da infraestrutura. Embora a inicialização a partir de SAN seja a configuração mais eficiente, a inicialização a partir de armazenamento de servidor local é uma configuração válida e suportada.
+* A inicialização DE SAN em FC-NVME não é compatível.
+

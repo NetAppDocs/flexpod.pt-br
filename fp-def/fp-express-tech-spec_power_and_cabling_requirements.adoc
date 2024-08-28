@@ -1,0 +1,181 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec__power_and_cabling_requirements.html 
+keywords: power, cabling, requirements, flexpod, express, cisco, ucs, minimum, cabling 
+summary: Esta seção descreve os requisitos mínimos de energia e cabeamento para um design do FlexPod Express. 
+---
+= Requisitos de alimentação e cabeamento
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta seção descreve os requisitos mínimos de energia e cabeamento para um design do FlexPod Express.
+
+
+
+== Requisitos de energia
+
+Os requisitos de energia são baseados nas especificações dos EUA e assumem o uso de energia CA. Outros países podem ter diferentes requisitos de energia. As opções de alimentação de corrente contínua (DC) também estão disponíveis para a maioria dos componentes. Para obter dados adicionais sobre a potência máxima necessária, bem como outras informações detalhadas sobre a energia, consulte as especificações técnicas detalhadas para cada componente de hardware.
+
+Para obter dados de energia detalhados do Cisco UCS, consulte http://www.cisco.com/assets/cdc_content_elements/flash/dataCenter/cisco_ucs_power_calculator/["Calculadora de energia Cisco UCS"^].
+
+A tabela a seguir lista as portas de alimentação necessárias por dispositivo.
+
+|===
+| Switches Cisco Nexus | São necessários cabos de alimentação 
+
+
+| Cisco Nexus 3048 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 3000 
+
+
+| Cisco Nexus 3524 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 3000 
+
+
+| Cisco Nexus 9396 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 9000 
+|===
+|===
+| Chassi do Cisco UCS | São necessários cabos de alimentação 
+
+
+| Cisco UCS 5108 | 2 CAB-US515P-C19-US/CAB-US520-C19-US para cada chassi Cisco UCS 
+|===
+|===
+| Servidores Cisco UCS B-Series | São necessários cabos de alimentação 
+
+
+| Cisco UCS B200 M4 | N/A; o servidor blade é alimentado pelo chassi 
+
+
+| Cisco UCS B420 M4 | N/A; o servidor blade é alimentado pelo chassi 
+
+
+| Cisco UCS B200 M5 | N/A; o servidor blade é alimentado pelo chassi 
+
+
+| Cisco UCS B480 M5 | N/A; o servidor blade é alimentado pelo chassi 
+|===
+|===
+| Servidores Cisco UCS C-Series | Portas de alimentação necessárias 
+
+
+| Cisco UCS C220 M4 .3+| 2 cabos de alimentação C13/C14 para cada servidor Cisco UCS 
+
+
+| Cisco UCS C240 M4 
+
+
+| Cisco UCS C460 M4 Cisco UCS C220 M5 Cisco UCS C240 M5 Cisco UCS C480 M5 
+|===
+|===
+| Controladores NetApp FAS | Portas de alimentação necessárias (por par de HA) 
+
+
+| FAS2554 | 2 x C13/C14 
+
+
+| FAS2552 | 2 x C13/C14 
+
+
+| FAS2520 | 2 x C13/C14 
+
+
+| FAS8020 | 2 x C13/C14 
+|===
+|===
+| Controladores e-Series | Portas de alimentação necessárias (por par de HA) 
+
+
+| E2824 | 2 x C14/C20 
+|===
+|===
+| Compartimentos de disco NetApp FAS | Portas de alimentação necessárias 
+
+
+| DS212C | 2 x C13/C14 
+
+
+| DS224C | 2 x C13/C14 
+
+
+| DS460C | 2 x C13/C14 
+
+
+| DS2246 | 2 x C13/C14 
+
+
+| DS4246 | 4 x C13/C14 
+|===
+|===
+| Compartimentos de disco e-Series | Portas de alimentação necessárias 
+
+
+| DE460C | 2 x C14/C20 
+
+
+| DE224C | 2 x C14/C20 
+
+
+| DE212C | 2 x C14/C20 
+|===
+
+
+== Requisitos mínimos de cabos
+
+Esta seção descreve os requisitos mínimos de cabo para um design FlexPod Express. A maioria das implementações do FlexPod requer cabos adicionais, mas o número varia de acordo com o tamanho e o escopo da implantação.
+
+A tabela a seguir lista o número mínimo de cabos necessários para cada dispositivo.
+
+|===
+| Switches Cisco Nexus 3000 Series | Cabos necessários 
+
+
+| Cisco Nexus 31108 .5+| Pelo menos dois cabos de fibra 10GbE ou Twinax por switch 
+
+
+| Cisco Nexus 3172PQ 
+
+
+| Cisco Nexus 3048 
+
+
+| Cisco Nexus 3524 
+
+
+| Cisco Nexus 9396 
+
+
+| DS212C |  
+
+
+| DS2246 .4+| O número de cabos SAS depende da configuração específica das gavetas de disco 
+
+
+| DS460C 
+
+
+| DS224C 
+
+
+| DS4246 
+
+
+| E2800  a| 
+* Pelo menos um cabo Gigabit Ethernet (1GbE) para gerenciamento por controlador
+* Pelo menos dois cabos 10GbE por controladora (para iSCSI) ou dois cabos FC que atendem aos requisitos de velocidade
+
+
+
+
+| DE460C | 2 cabos mini-SAS HD por prateleira de disco 
+
+
+| DE224C | 2 cabos mini-SAS HD por prateleira de disco 
+
+
+| DE212C | 2 cabos mini-SAS HD por prateleira de disco 
+|===

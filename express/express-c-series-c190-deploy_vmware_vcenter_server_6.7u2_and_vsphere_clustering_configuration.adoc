@@ -1,0 +1,108 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-deploy_vmware_vcenter_server_6.7u2_and_vsphere_clustering_configuration.html 
+keywords: vmware, vcenter, server, vsphere, clustering, configuration, esxi, host, coredump 
+summary: Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as etapas descritas nesta página. 
+---
+= Configuração de cluster do VMware vCenter Server 6.7U2 e vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as seguintes etapas:
+
+. Navegue até `\https://\<<FQDN or IP of vCenter>>/vsphere-client/`.
+. Clique em Launch vSphere Client.
+. Faça login com o nome de usuário mailto:administrator e a senha SSO que você inseriu durante o processo de configuração do VCSA.
+. Clique com o botão direito no nome do vCenter e selecione novo data center.
+. Introduza um nome para o centro de dados e clique em OK.
+
+
+
+
+== Crie um cluster vSphere
+
+Para criar um cluster vSphere, execute as seguintes etapas:
+
+. Clique com o botão direito do rato no data center recém-criado e selecione novo cluster.
+. Introduza um nome para o cluster.
+. Ative o DR e o vSphere HA selecionando as caixas de seleção.
+. Clique em OK.
++
+image:express-c-series-c190-deploy_image45.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+== Adicione os hosts ESXi ao cluster
+
+Para adicionar os hosts ESXi ao cluster, execute as seguintes etapas:
+
+. Clique com o botão direito do rato no cluster e selecione Adicionar anfitrião.
++
+image:express-c-series-c190-deploy_image46.png["Erro: Imagem gráfica em falta"]
+
+. Para adicionar um host ESXi ao cluster, execute as seguintes etapas:
++
+.. Insira o IP ou FQDN do host. Clique em seguinte.
+.. Introduza o nome de utilizador e a palavra-passe raiz. Clique em seguinte.
+.. Clique em Sim para substituir o certificado do host por um certificado assinado pelo servidor de certificados VMware.
+.. Clique em Next (seguinte) na página Host Summary (Resumo do anfitrião).
+.. Clique no ícone verde para adicionar uma licença ao host vSphere.
+
+
+. Este passo pode ser concluído mais tarde, se desejado.
++
+.. Clique em seguinte para deixar o modo de bloqueio desativado.
+.. Clique em Avançar na página de localização da VM.
+.. Reveja a página Pronto para concluir. Use o botão voltar para fazer quaisquer alterações ou selecione concluir.
+
+
+. Repita as etapas 1 e 2 para o host B. do Cisco UCS
++
+
+NOTE: Esse processo deve ser concluído para quaisquer hosts adicionais adicionados à configuração do FlexPod Express.
+
+
+
+
+
+== Configure o coredump nos hosts ESXi
+
+Para configurar o coredump nos hosts ESXi, execute as seguintes etapas:
+
+. Inicie sessão em https:// https://172.21.181.105:5480/ui/services["VCenter"^] IP:5480/, introduza root para o nome de utilizador e introduza a palavra-passe de raiz.
+. Clique em serviços e selecione o coletor de despejo VMware vSphere ESXI.
+. Inicie o serviço coletor de despejo VMware vSphere ESXI.
++
+image:express-c-series-c190-deploy_image47.png["Erro: Imagem gráfica em falta"]
+
+. Usando SSH, conete-se ao host IP ESXi de gerenciamento, insira raiz para o nome de usuário e insira a senha raiz.
+. Execute os seguintes comandos:
++
+....
+esxcli system coredump network set -i ip_address_of_core_dump_collector -v vmk0 -o 6500
+esxcli system coredump network set --enable=true
+esxcli system coredump network check
+....
+. A mensagem `Verified the configured netdump server is running` aparece depois de inserir o comando final.
++
+image:express-c-series-c190-deploy_image48.png["Erro: Imagem gráfica em falta"]
+
++
+
+NOTE: Esse processo deve ser concluído para quaisquer hosts adicionais adicionados ao FlexPod Express.
+
++
+
+NOTE: `ip_address_of_core_dump_collector` Nesta validação está o vCenter IP.
+
+
+
+link:express-c-series-c190-deploy_netapp_virtual_storage_console_9.6_deployment_procedures.html["Próximo: Procedimentos de implantação do console de storage virtual NetApp 9,6."]

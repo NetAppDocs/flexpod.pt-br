@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: express/express-direct-attach-aff220-deploy_conclusion.html 
+keywords: flexpod, express, vmware, direct, attached, storage 
+summary: O FlexPod Express fornece uma solução simples e eficaz fornecendo um design validado que usa componentes líderes do setor. 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O FlexPod Express fornece uma solução simples e eficaz fornecendo um design validado que usa componentes líderes do setor. Com o dimensionamento por meio da adição de componentes adicionais, o FlexPod Express pode ser personalizado para necessidades específicas de negócios. O FlexPod Express foi projetado tendo em mente empresas de pequeno e médio porte, ROBOs e outras empresas que exigem soluções dedicadas.

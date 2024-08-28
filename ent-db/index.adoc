@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: ent-db/index.html 
+keywords: index, introduction, sap, hana, storage 
+summary: Esta página fornece uma introdução ao uso do FlexPod com SAP HANA e outras aplicações SAP. 
+---
+= Introdução ao SAP no FlexPod
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+A plataforma FlexPod é uma arquitetura de data center pré-projetada e com práticas recomendadas desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS), na família de switches Cisco Nexus e nas controladoras de storage da NetApp.
+
+O FlexPod é uma plataforma adequada para a execução de aplicativos SAP, e as soluções fornecidas aqui permitem que você implante o SAP HANA de forma rápida e confiável com um modelo de integração de data center personalizada. O FlexPod oferece não apenas uma configuração de linha de base, mas também a flexibilidade de ser dimensionada e otimizada para acomodar vários casos de uso e requisitos diferentes.

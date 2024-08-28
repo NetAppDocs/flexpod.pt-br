@@ -1,0 +1,118 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-deploy_flexpod_express_cabling_information.html 
+keywords: cabling, information, validation, cisco, nexus, switches 
+summary: Esta seção detalha uma referência para informações de cabeamento e cabeamento de validação para os switches Cisco Nexus 3172P A e B e as controladoras de storage NetApp AFF A220 A e B. 
+---
+= Informações de cabeamento do FlexPod Express
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A figura a seguir mostra o cabeamento de validação de referência.
+
+image:express-c-series-aff220-deploy_image5.png["Erro: Imagem gráfica em falta"]
+
+A tabela a seguir mostra as informações de cabeamento do switch Cisco Nexus 3172P A.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Switch Cisco Nexus 3172P A | Eth1/1 | Controlador de storage NetApp AFF A220 A | e0c 
+
+
+|  | Eth1/2 | Controlador de storage NetApp AFF A220 B | e0c 
+
+
+|  | Eth1/3 | Servidor independente A do Cisco UCS C220 C-Series | MLOM1 com adaptador CVR-QSFP-SFP10G 
+
+
+|  | Eth1/4 | Servidor independente B do Cisco UCS C220 C-Series | MLOM1 com adaptador CVR-QSFP-SFP10G 
+
+
+|  | Eth1/25 | Interrutor Cisco Nexus 3172P B | Eth1/25 
+
+
+|  | Eth1/26 | Interrutor Cisco Nexus 3172P B | Eth1/26 
+
+
+|  | Eth1/33 | Controlador de storage NetApp AFF A220 A | e0M 
+
+
+|  | Eth1/34 | Servidor independente A do Cisco UCS C220 C-Series | CIMC 
+|===
+A tabela a seguir mostra as informações de cabeamento do switch Cisco Nexus 3172P B.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Interrutor Cisco Nexus 3172P B | Eth1/1 | Controlador de storage NetApp AFF A220 A | e0d 
+
+
+|  | Eth1/2 | Controlador de storage NetApp AFF A220 B | e0d 
+
+
+|  | Eth1/3 | Servidor independente A do Cisco UCS C220 C-Series | MLOM2 com adaptador CVR-QSFP-SFP10G 
+
+
+|  | Eth1/4 | Servidor independente B do Cisco UCS C220 C-Series | MLOM2 com adaptador CVR-QSFP-SFP10G 
+
+
+|  | Eth1/25 | Switch Cisco Nexus 3172P A | Eth1/25 
+
+
+|  | Eth1/26 | Switch Cisco Nexus 3172P A | Eth1/26 
+
+
+|  | Eth1/33 | Controlador de storage NetApp AFF A220 B | e0M 
+
+
+|  | Eth1/34 | Servidor independente B do Cisco UCS C220 C-Series | CIMC 
+|===
+A tabela a seguir mostra as informações de cabeamento do controlador de armazenamento NetApp AFF A220 A.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Controlador de storage NetApp AFF A220 A | e0a | Controlador de storage NetApp AFF A220 B | e0a 
+
+
+|  | e0b | Controlador de storage NetApp AFF A220 B | e0b 
+
+
+|  | e0c | Switch Cisco Nexus 3172P A | Eth1/1 
+
+
+|  | e0d | Interrutor Cisco Nexus 3172P B | Eth1/1 
+
+
+|  | e0M | Switch Cisco Nexus 3172P A | Eth1/33 
+|===
+A tabela a seguir mostra informações de cabeamento para o controlador de armazenamento NetApp AFF A220 B.
+
+|===
+| Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
+
+
+| Controlador de storage NetApp AFF A220 B | e0a | Controlador de storage NetApp AFF A220 A | e0a 
+
+
+|  | e0b | Controlador de storage NetApp AFF A220 A | e0b 
+
+
+|  | e0c | Switch Cisco Nexus 3172P A | Eth1/2 
+
+
+|  | e0d | Interrutor Cisco Nexus 3172P B | Eth1/2 
+
+
+|  | e0M | Interrutor Cisco Nexus 3172P B | Eth1/33 
+|===

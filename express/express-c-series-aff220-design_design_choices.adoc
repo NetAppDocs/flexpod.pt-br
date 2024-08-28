@@ -1,0 +1,140 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-design_design_choices.html 
+keywords: AFF A220, ontap 9, Nexus 3172P, UCS C-Series, VMware vSphere 
+summary: As tecnologias listadas nesta página foram escolhidas durante o processo de arquitetura deste projeto. Cada tecnologia atende a um propósito específico na solução de infraestrutura FlexPod Express. 
+---
+= Opções de design
+:allow-uri-read: 
+
+
+[role="lead"]
+As seguintes tecnologias foram escolhidas durante o processo de arquitetura deste projeto. Cada tecnologia atende a um propósito específico na solução de infraestrutura FlexPod Express.
+
+
+
+== Série NetApp AFF A220 com ONTAP 9 .4
+
+Essa solução aproveita dois dos mais novos produtos NetApp: O software NetApp AFF A220 e ONTAP 9.4.
+
+
+
+=== Sistema AFF A220
+
+Para obter mais informações sobre o sistema de hardware AFF A220, consulte https://www.netapp.com/us/products/storage-systems/all-flash-array/aff-a-series.aspx["Página inicial do AFF Série A."^].
+
+
+
+=== Software ONTAP 9.4
+
+Os sistemas NetApp AFF A220 usam o novo software ONTAP 9.4. O ONTAP 9.4 é o software empresarial de gerenciamento de dados líder do setor. Ele combina novos níveis de simplicidade e flexibilidade com funcionalidades avançadas de gerenciamento de dados, eficiências de storage e integração com a nuvem líder.
+
+O ONTAP 9.4 tem vários recursos que são adequados para a solução FlexPod Express. O mais importante é o compromisso da NetApp com a eficiência de storage, que pode ser um dos recursos mais importantes para implantações de pequeno porte. Os recursos de eficiência de storage da NetApp, como deduplicação, compressão e thin Provisioning, estão disponíveis no ONTAP 9.4 com uma nova adição e compactação. Como o sistema NetApp WAFL grava sempre blocos 4KB, a compactação combina vários blocos em um bloco 4KB quando os blocos não estão usando o espaço alocado de 4KB. A figura a seguir ilustra esse processo.
+
+image:express-c-series-aff220-design_image5.png["Erro: Imagem gráfica em falta"]
+
+Além disso, o particionamento de dados raiz pode ser aproveitado no sistema AFF A220. Esse particionamento permite que o agregado raiz e dois agregados de dados sejam distribuídos pelos discos no sistema. Portanto, ambas as controladoras em um cluster de AFF A220 de dois nós podem aproveitar o desempenho de todos os discos no agregado. Consulte a figura a seguir.
+
+image:express-c-series-aff220-design_image6.png["Erro: Imagem gráfica em falta"]
+
+Esses são apenas alguns dos principais recursos que complementam a solução FlexPod Express. Para obter detalhes sobre os recursos adicionais e a funcionalidade do ONTAP 9.4, consulte https://www.netapp.com/pdf.html?item=/media/7413-ds-3231.pdf["Folha de dados do software de gerenciamento de dados ONTAP 9"^]. Além disso, consulte o NetApp http://docs.netapp.com/ontap-9/index.jsp["Centro de Documentação do ONTAP 9"^] , que foi atualizado para incluir o ONTAP 9.4.
+
+
+
+== Cisco Série Nexus 3000
+
+O Cisco Nexus 3172P é um switch robusto e econômico que oferece comutação 1/10/40/100Gbps. O switch Cisco Nexus 3172PQ, parte da família Unified Fabric, é um switch compacto de 1 unidades de rack (1RUU) para implantações de data center topo do rack. (Consulte a figura a seguir.) Ele oferece até setenta e duas portas 1/10GbE em 1RU ou quarenta e oito 1/10GbE mais seis portas 40GbE em 1RU. E para a máxima flexibilidade da camada física, ele também suporta 1/10/40Gbps.
+
+Como todos os vários modelos da série Cisco Nexus executam o mesmo sistema operacional subjacente, NX-os, vários modelos Cisco Nexus são suportados nas soluções FlexPod Express e FlexPod Datacenter.
+
+As especificações de desempenho incluem:
+
+* Taxa de transferência de tráfego de taxa de linha (ambas as camadas 2 e 3) em todas as portas
+* Unidades de transmissão máxima configuráveis (MTUs) de até 9216 bytes (quadros jumbo)
+
+
+image:express-c-series-aff220-design_image7.png["Erro: Imagem gráfica em falta"]
+
+Para obter mais informações sobre os switches Cisco Nexus 3172, consulte https://www.cisco.com/c/en/us/products/collateral/switches/nexus-3000-series-switches/data_sheet_c78-729483.html["Ficha de dados dos switches Cisco Nexus 3172PQ, 3172TQ, 3172TQ-32T, 3172PQ-XL e 3172TQ-XL"^].
+
+
+
+== Cisco UCS C-Series
+
+O servidor de rack Cisco UCS C-Series foi escolhido para o FlexPod Express porque suas muitas opções de configuração permitem que ele seja adaptado para requisitos específicos em uma implantação do FlexPod Express.
+
+Os servidores de rack Cisco UCS C-Series oferecem computação unificada em um fator forma padrão do setor para reduzir o TCO e aumentar a agilidade.
+
+Os servidores de rack Cisco UCS C-Series oferecem os seguintes benefícios:
+
+* Um ponto de entrada independente de fator de forma no Cisco UCS
+* Implantação de aplicações simplificada e rápida
+* Extensão das inovações e benefícios da computação unificada para servidores em rack
+* Maior escolha do cliente com benefícios exclusivos em um pacote de rack familiar
+
+
+image:express-c-series-aff220-design_image8.png["Erro: Imagem gráfica em falta"]
+
+O servidor de rack Cisco UCS C220 M5 (na figura anterior) está entre os servidores de aplicativos e infraestrutura empresarial de uso geral mais versáteis do setor. É um servidor em rack de dois soquetes de alta densidade que oferece desempenho e eficiência líderes do setor para uma ampla variedade de workloads, incluindo virtualização, colaboração e aplicações bare-metal. Os servidores em rack Cisco UCS C-Series podem ser implantados como servidores autônomos ou como parte do Cisco UCS para aproveitar as inovações de computação unificada baseadas em padrões da Cisco que ajudam a reduzir o TCO dos clientes e a aumentar a agilidade nos negócios.
+
+Para obter mais informações sobre servidores C220 M5, consulte https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/datasheet-c78-739281.html["Folha de dados do servidor de rack Cisco UCS C220 M5"^].
+
+
+
+=== Opções de conetividade para C220 M5 servidores de rack
+
+As opções de conetividade para os servidores de rack C220 M5 são as seguintes:
+
+* *Cisco 1387*
++
+O Cisco UCS VIC 1387 (na figura a seguir) oferece duas portas melhoradas QSFP 40GbE e FC sobre Ethernet (FCoE) em um fator de forma modular-laN-on-motherboard (mLOM). O slot mLOM pode ser usado para instalar um VIC Cisco sem consumir um slot PCIe (Peripheral Component Interconnect Express), proporcionando maior capacidade de expansão de e/S.
+
+
+
+image:express-c-series-aff220-design_image9.png["Erro: Imagem gráfica em falta"]
+
+Para obter mais informações sobre o adaptador Cisco UCS VIC 1387, consulte a https://www.cisco.com/c/en/us/products/interfaces-modules/ucs-virtual-interface-card-1387/index.html["Placa de interface virtual Cisco UCS 1387"^] folha de dados.
+
+* *ADAPTADOR CVR-QSFP-SFP10G*
++
+O módulo Cisco QSA converte uma porta QSFP em uma porta SFP ou SFP. Com este adaptador, os clientes têm a flexibilidade de usar qualquer módulo ou cabo SFP ou SFP para se conetar a uma porta de menor velocidade na outra extremidade da rede. Essa flexibilidade permite uma transição econômica para o 40GbE, maximizando o uso de plataformas QSFP de alta densidade 40GbE. Este adaptador suporta todas as óticas SFP e alcances de cabo, e suporta vários módulos SFP 1GbE. Como este projeto foi validado usando a conetividade 10GbE e como o VIC 1387 usado é 40GbE, o adaptador CVR-QSFP-SFP10G (na figura a seguir) é usado para conversão.
+
+
+
+image:express-c-series-aff220-design_image10.png["Erro: Imagem gráfica em falta"]
+
+
+
+== VMware vSphere 6,7
+
+O VMware vSphere 6,7 é uma opção de hipervisor para uso com o FlexPod Express. O VMware vSphere permite que as organizações reduzam sua capacidade de energia e refrigeração, ao mesmo tempo em que confirmam que a capacidade de computação comprada é usada ao máximo. Além disso, o VMware vSphere permite a proteção contra falhas de hardware (VMware High Availability, ou VMware HA) e o balanceamento de carga de recursos de computação em um cluster de hosts vSphere (VMware Distributed Resource Scheduler ou VMware DRS).
+
+Como ele reinicia apenas o kernel, o VMware vSphere 6,7 permite que os clientes "iniciem rápido" onde carrega o vSphere ESXi sem reiniciar o hardware. Esse recurso está disponível apenas com plataformas e drivers que estão na lista de permissões de Inicialização rápida. O vSphere 6,7 amplia os recursos do vSphere Client, que pode fazer cerca de 90% do que o vSphere Web Client pode fazer.
+
+No vSphere 6,7, a VMware estendeu essa capacidade para permitir que os clientes definam a compatibilidade aprimorada do vMotion (EVC) por máquina virtual (VM) em vez de por host. No vSphere 6,7, a VMware também expôs as APIs que podem ser usadas para criar clones instantâneos.
+
+Veja a seguir alguns dos recursos do vSphere 6,7 U1:
+
+* VSphere Client baseado na Web HTML5 totalmente equipado
+* VMotion para VMs vGPU DA GRADE do NVIDIA. Suporte para Intel FPGA.
+* VCenter Server Converge Tool para passar de PSC externo para PCS internos.
+* Aprimoramentos para VSAN (atualizações de HCI).
+* Biblioteca de conteúdo aprimorada.
+
+
+Para obter detalhes sobre o vSphere 6,7 U1, https://blogs.vmware.com/vsphere/2018/10/whats-new-in-vcenter-server-6-7-update-1.html["Novidades no vCenter Server 6,7 Update 1"^] consulte . Embora essa solução tenha sido validada com o vSphere 6,7, ela suporta qualquer versão do vSphere qualificada com os outros componentes pela ferramenta de Matriz de interoperabilidade do NetApp. A NetApp recomenda a implantação do vSphere 6.7U1 para suas correções e recursos aprimorados.
+
+
+
+== Arquitetura de inicialização
+
+A seguir estão as opções suportadas para a arquitetura de arranque do FlexPod Express:
+
+* ISCSI SAN LUN
+* Cartão SD Cisco FlexFlash
+* Disco local
+
+
+Como o FlexPod Datacenter é inicializado a partir de iSCSI LUNs, a capacidade de gerenciamento da solução é aprimorada também usando o iSCSI boot para FlexPod Express.
+
+link:express-c-series-aff220-design_solution_verification.html["Próximo: Verificação da solução."]

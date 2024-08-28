@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-sap-deploy.html 
+keywords: flexpod, cisco, ontap, 9.7, aff, a400, ucs, sap, hana 
+summary: 'Este documento descreve o data center Cisco e NetApp FlexPod com o NetApp ONTAP 9.7 no armazenamento NetApp AFF A400 e o software unificado do Cisco UCS Manager versão 4,1 (1) com processadores escaláveis Intel Xeon de segunda geração para SAP HANA em particular' 
+---
+= Solução FlexPod Datacenter para SAP usando SAN Fibre Channel com Cisco UCS Manager 4,0 e NetApp ONTAP 9.7
+:allow-uri-read: 
+
+
+Ramamurthy, Cisco Marco Schoen, NetApp
+
+[role="lead"]
+Este documento descreve o data center Cisco e NetApp FlexPod com o NetApp ONTAP 9.7 no armazenamento NetApp AFF A400 e o software unificado do Cisco UCS Manager versão 4,1 (1) com processadores escaláveis Intel Xeon de segunda geração para SAP HANA em particular.
+
+O FlexPod Datacenter com o NetApp ONTAP 9.7 e o Cisco UCS Unified Software Release 4,1() é uma arquitetura de data center pré-projetada e de práticas recomendadas, desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS), a família de switches Cisco Nexus 9000, switches de malha multicamadas MDS 9000 e arrays de armazenamento NetApp AFF A-Series executando o sistema operacional de armazenamento ONTAP 9 1.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_sap_ucsm40_fcsan.html["Solução FlexPod Datacenter para SAP usando SAN Fibre Channel com Cisco UCS Manager 4,0 e NetApp ONTAP 9.7"^]

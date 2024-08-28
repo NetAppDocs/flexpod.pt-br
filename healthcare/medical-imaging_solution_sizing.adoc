@@ -1,0 +1,149 @@
+---
+sidebar: sidebar 
+permalink: healthcare/medical-imaging_solution_sizing.html 
+keywords: solution, sizing, storage, comput, network, cisco, ucs, infrastructure 
+summary: Esta secção descreve o número de estudos e os requisitos de infra-estrutura correspondentes. 
+---
+= Dimensionamento da solução
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+
+
+== Dimensionamento do storage
+
+Esta secção descreve o número de estudos e os requisitos de infra-estrutura correspondentes.
+
+Os requisitos de storage listados na tabela a seguir pressupõem que os dados existentes valem 1 ano, mais o crescimento projetado para 1 ano de estudo no sistema primário (camada 1, 2). As necessidades de storage adicionais para crescimento projetado por 3 anos além dos primeiros 2 anos são listadas separadamente.
+
+|===
+|  | Pequeno | Média | Grande 
+
+
+| Estudos anuais | Menos de 250K estudos | 250k–500K estudos | 500K–1 milhões de estudos 
+
+
+4+| Storage de camada 1 
+
+
+| IOPS (média) | 1,5K–5K | 5K–15K | 15K–40K 
+
+
+| IOPS (pico) | 5K | 20K | 65K 
+
+
+| Taxa de transferência | 50–100Mbps | 50–150MBps | 100–300Mbps 
+
+
+| Data center de capacidade 1 (1 ano de dados antigos e 1 ano de novo estudo) | 70 TB | 140 TB | 260 TB 
+
+
+| Data center de capacidade 1 (necessidade adicional de 4 anos para novo estudo) | 25 TB | 45 TB | 80 TB 
+
+
+| Data center de capacidade 2 (1 ano de dados antigos e 1 ano de novo estudo) | 45 TB | 110 TB | 165 TB 
+
+
+| Data center de capacidade 2 (necessidade adicional de 4 anos para novo estudo) | 25 TB | 45 TB | 80 TB 
+
+
+4+| Storage de camada 2 
+
+
+| IOPS (média) | 1K | 2K | 3K 
+
+
+| Data center de capacidade 1 | 320 TB | 800 TB | 2000 TB 
+|===
+
+
+== Dimensionamento da computação
+
+A tabela abaixo lista os requisitos de computação para sistemas de imagem médica pequenos, médios e grandes.
+
+|===
+|  | Pequeno | Média | Grande 
+
+
+| Estudos anuais | Menos de 250K estudos | 250k–500K estudos | 500K–1 milhões de estudos 
+
+
+4+| Centro de dados 1 
+
+
+| Número de VMs | 21 | 27 | 35 
+
+
+| Contagem total de CPU virtual (vCPU) | 56 | 124 | 220 
+
+
+| Requisito total de memória | 225 GB | 450 GB | 900 GB 
+
+
+| Especificações de servidor físico (blades) (suponha 1 vCPU - 1 núcleo) | 4 servidores com 20 núcleos e 192GB GB de RAM cada | 8 servidores com 20 núcleos e 128GB GB de RAM cada | 14 servidores com 20 núcleos e 128GB GB de RAM cada 
+
+
+4+| Centro de dados 2 
+
+
+| Número de VMs | 15 | 17 | 22 
+
+
+| Contagem total de vCPU | 42 | 72 | 140 
+
+
+| Requisito total de memória | 179 GB | 243 GB | 513 GB 
+
+
+| Especificações do servidor físico (blades) (suponha que 1 vCPU seja 1 núcleo) | 3 servidores com 20 núcleos e 168GB GB de RAM cada | 6 servidores com 20 núcleos e 128GB GB de RAM cada | 8 servidores com 24 núcleos e 128GB GB de RAM cada 
+|===
+
+
+== Rede e dimensionamento da infraestrutura do Cisco UCS
+
+A tabela abaixo lista os requisitos de rede e infraestrutura do Cisco UCS para sistemas de imagem médica de pequeno, médio e grande porte.
+
+|===
+|  | Pequeno | Média | Grande 
+
+
+4+| Centro de dados 1 
+
+
+| Número de portas de nó de storage | 2 adaptadores de rede convergidos (CNAs); 2 FCS | 2 CNAs; 2 FCS | 2 CNAs; 2 FCS 
+
+
+| Portas de switch de rede IP (Cisco Nexus 9000) | switch de 48 portas | switch de 48 portas | switch de 48 portas 
+
+
+| Switch FC (Cisco MDS) | switch de 32 portas | switch de 32 portas | switch de 48 portas 
+
+
+| Contagem de chassis do Cisco UCS | 1 x 5108 | 1 x 5108 | 2 x 5108 
+
+
+| Interconexão de malha Cisco UCS | 2 x 6332 | 2 x 6332 | 2 x 6332 
+
+
+4+| Centro de dados 2 
+
+
+| Contagem de chassis do Cisco UCS | 1 x 5108 | 1 x 5108 | 1 x 5108 
+
+
+| Interconexão de malha Cisco UCS | 2 x 6332 | 2 x 6332 | 2 x 6332 
+
+
+| Número de portas de nó de storage | 2 CNAs; 2 FCS | 2 CNAs; 2 FCS | 2 CNAs; 2 FCS 
+
+
+| Portas de switch de rede IP (Cisco Nexus 9000) | switch de 48 portas | switch de 48 portas | switch de 48 portas 
+
+
+| Switch FC (Cisco MDS) | switch de 32 portas | switch de 32 portas | switch de 48 portas 
+|===

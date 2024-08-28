@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-c190-deploy_version_history.html 
+keywords: version, history, express, c, series, c190, deploy 
+summary: Abaixo está o histórico de versões deste documento. 
+---
+= Histórico de versões
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+|===
+| Versão | Data | Histórico de versões do documento 
+
+
+| Versão 1,0 | Novembro de 2019 | Lançamento inicial. 
+|===

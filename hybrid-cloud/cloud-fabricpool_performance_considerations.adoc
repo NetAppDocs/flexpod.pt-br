@@ -1,0 +1,42 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_performance_considerations.html 
+keywords: performance, considerations, size, tier, cloud, fabricpool 
+summary: Ao considerar o dimensionamento, as seguintes coisas devem ser avaliadas. 
+---
+= Considerações de desempenho
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+
+
+== Dimensione o nível de performance
+
+Ao considerar o dimensionamento, tenha em mente que o nível de desempenho deve ser capaz das seguintes tarefas:
+
+* Suporte a dados ativos
+* Dá suporte a dados inativos até que a digitalização em categorias mova os dados para a camada de nuvem
+* Dando suporte a dados de categorias de nuvem que se tornam ativos e são gravados de volta na categoria de performance
+* Compatível com metadados do WAFL associados à categoria de nuvem anexada
+
+
+Para a maioria dos ambientes, uma taxa de performance/capacidade de 1:10 em agregados FabricPool é extremamente conservadora, ao mesmo tempo em que proporciona uma economia significativa de storage. Por exemplo, se o objetivo for categorizar 200TB na categoria de nuvem, o agregado da categoria de desempenho deve ser de 20TB no mínimo.
+
+
+NOTE: As gravações da categoria de nuvem para a categoria de performance serão desativadas se a capacidade da categoria de performance for superior a 70%. Se isso ocorrer, os blocos serão lidos diretamente na camada de nuvem.
+
+
+
+== Dimensione a camada de nuvem
+
+Ao considerar o dimensionamento, o armazenamento de objetos que atua como a camada de nuvem deve ser capaz das seguintes tarefas:
+
+* Compatível com leituras de dados inativos existentes
+* Suporte a gravações de novos dados inativos
+* Suporte à exclusão e desfragmentação de objetos
+

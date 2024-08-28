@@ -1,0 +1,51 @@
+---
+sidebar: sidebar 
+permalink: infrastructure/nvme-vsphere-test-results.html 
+keywords: test, results, iops, latency 
+summary:  
+---
+= Resultados do teste
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:nvme-vsphere-testing-approach.html["Anterior: Abordagem de teste."]
+
+[role="lead"]
+Os testes consistiram na execução de workloads FIO para medir o desempenho de FC-NVMe em termos de IOPS e latência.
+
+O gráfico a seguir ilustra nossas descobertas ao executar uma carga de trabalho de leitura aleatória de 100% usando 8KB tamanhos de bloco.
+
+image:nvme-vsphere-image3.png["Erro: Imagem gráfica em falta"]
+
+Em nossos testes, descobrimos que o sistema alcançou mais de 1,2M IOPS enquanto mantinha pouco menos de 0,35ms ms de latência no lado do servidor.
+
+O gráfico a seguir ilustra nossas descobertas ao executar uma carga de trabalho de gravação aleatória de 100% usando 8KB tamanhos de bloco.
+
+image:nvme-vsphere-image4.png["Erro: Imagem gráfica em falta"]
+
+Em nossos testes, descobrimos que o sistema alcançou perto de 300k IOPS, mantendo pouco menos de 1ms ms de latência no lado do servidor.
+
+Para o tamanho de bloco 8KB com 80% de leituras aleatórias e 20% de gravações, observamos os seguintes resultados:
+
+image:nvme-vsphere-image5.png["Erro: Imagem gráfica em falta"]
+
+Em nossos testes, descobrimos que o sistema alcançou mais de 1M IOPS enquanto mantinha pouco menos de 1ms ms de latência no lado do servidor.
+
+Para o tamanho de bloco 64KB e leituras sequenciais de 100%, foram observados os seguintes resultados:
+
+image:nvme-vsphere-image6.png["Erro: Imagem gráfica em falta"]
+
+Em nossos testes, descobrimos que o sistema alcançou cerca de 250k IOPS, mantendo pouco menos de 1ms ms de latência no lado do servidor.
+
+Para o tamanho de bloco 64KB e 100% de gravações sequenciais, observamos os seguintes resultados:
+
+image:nvme-vsphere-image7.png["Erro: Imagem gráfica em falta"]
+
+Em nossos testes, descobrimos que o sistema alcançou cerca de 120k IOPS, mantendo menos de 1ms ms de latência no lado do servidor.
+
+link:nvme-vsphere-conclusion.html["Próximo: Conclusão."]

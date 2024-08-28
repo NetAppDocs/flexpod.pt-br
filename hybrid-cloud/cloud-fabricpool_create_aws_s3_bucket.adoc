@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_create_aws_s3_bucket.html 
+keywords: create, aws, s3, bucket, cloud, fabricpool, flexpod, tiers, create 
+summary: Buckets são contêineres de armazenamento de objetos que armazenam dados. Você precisa fornecer o nome e o local do bucket no qual os dados são armazenados antes que possam ser adicionados a um agregado como uma categoria de nuvem. 
+---
+= Crie o bucket do AWS S3
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Buckets são contêineres de armazenamento de objetos que armazenam dados. Você precisa fornecer o nome e o local do bucket no qual os dados são armazenados antes que possam ser adicionados a um agregado como uma categoria de nuvem.
+
+
+NOTE: Buckets não podem ser criados com o OnCommand System Manager, o OnCommand Unified Manager ou o ONTAP.
+
+O FabricPool suporta a fixação de um balde por agregado, conforme ilustrado na figura seguinte. Um único bucket pode ser anexado a um único agregado e um único bucket pode ser anexado a vários agregados. No entanto, um único agregado não pode ser anexado a vários buckets. Embora um único bucket possa ser anexado a vários agregados em um cluster, o NetApp não recomenda a vinculação de um único bucket a agregados em vários clusters.
+
+Ao Planejar uma arquitetura de storage, considere como o relacionamento bucket-to-agregado pode afetar o desempenho. Muitos provedores de armazenamento de objetos definem um número máximo de IOPS compatíveis no nível do bucket ou do contêiner. Os ambientes que exigem desempenho máximo devem usar vários buckets para reduzir a possibilidade de que as limitações de IOPS do armazenamento de objetos possam afetar o desempenho em vários agregados FabricPool. Conectar um único bucket ou contêiner a todos os agregados do FabricPool em um cluster pode ser mais benéfico para ambientes que valorizam a capacidade de gerenciamento sobre o desempenho de camada de nuvem.
+
+image:cloud-fabricpool_image10.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Crie um bucket do S3
+
+. No console de gerenciamento da AWS na página inicial, digite S3 na barra de pesquisa.
+. Selecione S3 armazenamento escalável na nuvem.
++
+image:cloud-fabricpool_image11.png["Erro: Imagem gráfica em falta"]
+
+. Na página inicial do S3, selecione criar balde.
+. Insira um nome compatível com DNS e escolha a região para criar o intervalo.
++
+image:cloud-fabricpool_image12.png["Erro: Imagem gráfica em falta"]
+
+. Clique em criar para criar o bucket do armazenamento de objetos.
+
+
+link:cloud-fabricpool_add_a_cloud_tier_to_ontap.html["Próximo: Adicionar uma camada de nuvem ao ONTAP"]

@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: express/express-direct-attach-aff220-deploy_additional_information.html 
+keywords: additional, information, websites, documents, express, direct, attach 
+summary: Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites. 
+---
+= Informações adicionais
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites:
+
+* DESIGN de NVA- 1130: FlexPod Express com VMware vSphere 6.7U1 e NetApp AFF A220 com design de NVA de armazenamento baseado em IP de conexão direta
++
+https://docs.netapp.com/us-en/flexpod/express/express-direct-attach-aff220-deploy_program_summary.html["https://www.netapp.com/us/media/nva-1130-design.pdf"^]
+
+* Centro de Documentação de sistemas AFF e FAS
++
+http://docs.netapp.com/platstor/index.jsp["http://docs.netapp.com/platstor/index.jsp"^]
+
+* Centro de Documentação do ONTAP 9
++
+http://docs.netapp.com/ontap-9/index.jsp["http://docs.netapp.com/ontap-9/index.jsp"^]
+
+* Documentação do produto NetApp
++
+https://docs.netapp.com["https://docs.netapp.com"^]
+
+

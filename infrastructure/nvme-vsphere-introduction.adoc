@@ -1,0 +1,55 @@
+---
+sidebar: sidebar 
+permalink: infrastructure/nvme-vsphere-introduction.html 
+keywords: tr-4914, tr4914, 4914, nvme, vmware, vsphere, flexpod, fc, fc-nvme 
+summary: Essa solução fornece um resumo de alto nível da performance de FC-NVMe com o VMware vSphere 7 no FlexPod. A solução foi verificada para passar com sucesso no tráfego FC-NVMe, e as metrices de desempenho foram capturadas para FC-NVMe com vários tamanhos de bloco de dados. 
+---
+= TR-4914: NVMe completo para FlexPod com Cisco UCSM, VMware vSphere 7,0 e NetApp ONTAP 9
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+Chris Schmitt e Kamini Singh, NetApp
+
+Em parceria com: image:cisco logo.png["Erro: Imagem gráfica em falta"]
+
+[role="lead"]
+O padrão de storage de dados NVMe, uma nova tecnologia central, está transformando o acesso e o transporte ao storage empresarial, fornecendo largura de banda muito alta e acesso ao storage de latência muito baixa para tecnologias de memória atuais e futuras. O NVMe substitui o conjunto de comandos SCSI pelo conjunto de comandos NVMe.
+
+O NVMe foi projetado para funcionar com unidades flash não voláteis, CPUs multicore e gigabytes de memória. Ele também aproveita os avanços significativos na ciência da computação desde a década de 1970s, permitindo conjuntos de comandos simplificados que analisam e manipulam dados com mais eficiência. Uma arquitetura NVMe completa também permite que os administradores de data center repensem em até que ponto eles podem empurrar seus ambientes virtualizados e em contêiner, bem como a quantidade de escalabilidade que seus bancos de dados orientados a transações podem suportar.
+
+O FlexPod é uma arquitetura de data center com práticas recomendadas que inclui o sistema de computação unificada da Cisco (Cisco UCS), os switches Cisco Nexus, os switches Cisco MDS e os sistemas NetApp AFF. Esses componentes são conectados e configurados de acordo com as práticas recomendadas do Cisco e do NetApp para fornecer uma excelente plataforma para executar uma variedade de workloads empresariais com confiança. O FlexPod pode fazer escalabilidade vertical para aumentar a performance e a capacidade (adicionando recursos de computação, rede ou storage individualmente conforme necessário) ou fazer escalabilidade horizontal para ambientes que exigem várias implantações consistentes (como a implementação de pilhas FlexPod adicionais).
+
+A figura a seguir apresenta as famílias de componentes FlexPod.
+
+image:nvme-vsphere-image1.png["Erro: Imagem gráfica em falta"]
+
+O FlexPod é a plataforma ideal para apresentar o FC-NVMe. Ele pode ser compatível com a adição do Cisco UCS VIC 1400 Series e expansor de portas em servidores Cisco UCS B200 M5 ou M6 existentes ou servidores em rack Cisco UCS C-Series M5 ou M6 e atualizações de software simples e sem interrupções para o sistema Cisco UCS, os switches Cisco MDS 32Gbps e os storage arrays NetApp AFF. Depois que o hardware e o software com suporte estiverem em vigor, a configuração do FC-NVMe será semelhante à configuração FCP.
+
+O NetApp ONTAP 9.5 e posteriores fornecem uma solução FC-NVMe completa. Uma atualização de software ONTAP sem interrupções para arrays AFF A300, AFF A400, AFF A700, AFF A700s e AFF A800 permite que esses dispositivos ofereçam suporte a uma pilha de storage NVMe completa. Portanto, servidores com adaptadores de barramento de host (HBAs) de sexta geração e suporte a driver NVMe podem se comunicar com esses arrays usando NVMe nativo.
+
+
+
+== Objetivo
+
+Essa solução fornece um resumo de alto nível da performance de FC-NVMe com o VMware vSphere 7 no FlexPod. A solução foi verificada para passar com sucesso no tráfego FC-NVMe, e as metrices de desempenho foram capturadas para FC-NVMe com vários tamanhos de bloco de dados.
+
+
+
+== Benefícios da solução
+
+O NVMe completo para FlexPod fornece valor excepcional para os clientes com os seguintes benefícios da solução:
+
+* O NVMe conta com PCIe, um protocolo de hardware de alta velocidade e alta largura de banda que é substancialmente mais rápido do que os padrões mais antigos, como SCSI, SAS e SATA. Conetividade de latência ultrabaixa e alta largura de banda entre o servidor UCS Cisco e o storage array NetApp para a maioria dos aplicativos exigentes.
+* Uma solução FC-NVMe é sem perda e pode lidar com os requisitos de escalabilidade das aplicações de nova geração. Essas novas tecnologias incluem inteligência artificial (AI), aprendizado de máquina (ML), aprendizado profundo (DL), análises em tempo real e outras aplicações essenciais.
+* Reduz o custo DA TI ao usar todos os recursos DE forma eficiente em toda a pilha.
+* Reduz significativamente os tempos de resposta e aumenta o desempenho da aplicação, o que corresponde a IOPS e taxa de transferência aprimorados com latência reduzida. A solução 60 aumenta a performance e reduz a latência em cerca de 50% para os workloads atuais.
+* O FC-NVMe é um protocolo otimizado com excelentes funcionalidades de fila, principalmente em situações com mais operações de e/S por segundo (IOPS; ou seja, mais transações) e atividades paralelas.
+* Oferece atualizações de software sem interrupções nos componentes do FlexPod, como o Cisco UCS, o Cisco MDS e os storage arrays NetApp AFF. Não requer nenhuma modificação para aplicações.
+
+
+link:nvme-vsphere-testing-approach.html["Próximo: Abordagem de teste."]

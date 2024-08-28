@@ -1,0 +1,286 @@
+---
+sidebar: sidebar 
+permalink: fp-def/dc-tech-spec_cisco_components.html 
+keywords: cisco, components, ucs, fabric, interconnect, blade, server, rack, apic, nexus, software, support 
+summary: O Cisco contribuiu substancialmente para o design e a arquitetura do FlexPod, abrangendo as camadas de computação e rede da solução. Esta seção descreve as opções Cisco UCS e Cisco Nexus que estão disponíveis para o FlexPod. O FlexPod suporta servidores Cisco UCS B-Series e C-Series. 
+---
+= Componentes do Cisco
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O Cisco contribuiu substancialmente para o design e a arquitetura do FlexPod, abrangendo as camadas de computação e rede da solução. Esta seção descreve as opções Cisco UCS e Cisco Nexus que estão disponíveis para o FlexPod. O FlexPod suporta servidores Cisco UCS B-Series e C-Series.
+
+
+
+== Opções de interconexão de malha do Cisco UCS
+
+Interconexões de malha redundantes são necessárias na arquitetura do FlexPod. Ao adicionar vários chassis Cisco UCS a um par de interconexões de malha, lembre-se de que o número máximo de chassis em um ambiente é determinado por um limite de arquitetura e de porta.
+
+Os números de peça que são mostrados na tabela a seguir são para as interconexões de tecido base. Eles não incluem a unidade de fonte de alimentação (PSU) ou SFP, QSFP ou módulos de expansão. Há suporte para interconexões de malha adicionais; consulte a https://mysupport.netapp.com/matrix/["NetApp IMT"^] para obter uma lista completa.
+
+|===
+| Interconexão de malha Cisco UCS | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS 6332UP | UCS-FI-6332-UP | http://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-b-series-blade-servers/6332-specsheet.pdf["Interconexão de malha Cisco UCS 6332"] 
+
+
+| Cisco UCS 6454 | UCS-FI-6454-U | https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-b-series-blade-servers/ucs-6454-fab-int-specsheet.pdf["Interconexão de malha Cisco UCS 6454"] 
+|===
+
+
+=== Cisco UCS 6454
+
+A série Cisco UCS 6454 oferece conetividade FCoE e Ethernet de 10/25/40/100GbE com taxa de linha, baixa latência e sem perdas, bem como portas unificadas capazes de operação Ethernet ou FC. As portas 44 10/25Gbps podem operar como Ethernet convergente de 10Gbps GbE ou 25Gbps GbE, das quais oito são portas unificadas capazes de operar a 8 GbE/16 GbE/32Gbps GbE para FC. Quatro portas operam a 1/10/25Gbps para conetividade legada, e seis portas QSFP servem como portas uplink 40/100Gbps ou portas breakout. Você pode estabelecer conectividade de rede 100Gbps de ponta a ponta com controladores de storage NetApp compatíveis com adaptadores 100Gbps. Para obter adaptadores e suporte à plataforma, consulte o https://hwu.netapp.com/Adapter/Index["NetApp Hardware Universe"^].
+
+Para obter detalhes sobre portas, consulte a https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/datasheet-c78-741116.html["Interconexão de malha Cisco UCS 6454"^] Folha de dados.
+
+Para obter especificações técnicas sobre os módulos de dados QSFP 100GB, consulte https://www.cisco.com/c/en/us/products/collateral/interfaces-modules/transceiver-modules/datasheet-c78-736282.html["Folha de dados dos módulos Cisco 100GBASE QSFP"^].
+
+
+
+== Opção de chassi do Cisco UCS B-Series
+
+Para usar os blades da série B do Cisco UCS, é necessário ter um chassi da série B do Cisco UCS. A tabela abaixo descreve a opção de chassi do Cisco UCS BSeries.
+
+|===
+| Chassi da série B do Cisco UCS | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS 5108 | N20-C6508 | http://www.cisco.com/c/en/us/products/servers-unified-computing/ucs-5100-series-blade-server-chassis/index.html["Chassi do servidor blade da série Cisco UCS 5100"] 
+|===
+Cada chassi blade Cisco UCS 5108 deve ter dois IOMs da série Cisco UCS 2200/2300/2400 para fornecer conectividade redundante às interconexões de malha.
+
+
+
+== Opções de servidor blade Cisco UCS B-Series
+
+Os servidores blade da série B Cisco UCS estão disponíveis em variedades de meia largura e largura total, com várias opções de CPU, memória e e e/S. Os números de peça listados na tabela a seguir são para o servidor base. Eles não incluem CPU, memória, unidades ou placas adaptadoras mezzanine. Várias opções de configuração estão disponíveis e são compatíveis com a arquitetura FlexPod.
+
+|===
+| Lâmina da série B Cisco UCS | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS B200 M6 | UCSB-B200-M6 | https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-b-series-blade-servers/datasheet-c78-2368888.html["Servidor blade Cisco UCS B200 M6"] 
+|===
+As gerações anteriores de blades da série B do Cisco UCS podem ser usadas na arquitetura do FlexPod, se forem suportadas no https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware e software do Cisco UCS"^]. Os servidores tipo lâmina da série B Cisco UCS também devem ter um contrato de suporte SMARTnet válido.
+
+
+
+== Opção de chassi do Cisco UCS X-Series
+
+Para usar os nós de computação do Cisco UCS X-Series, você precisa ter um chassi do Cisco UCS X-Series. A tabela a seguir descreve a opção de chassi do Cisco UCS X-Series.
+
+|===
+| Lâmina da série X Cisco UCS | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS 9508 M6 | UCSX-9508 | https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-x-series-modular-system/datasheet-c78-2472574.html["Chassis da série X Cisco UCX9508"] 
+|===
+Cada chassi do Cisco UCS 9508 deve ter dois módulos de malha inteligentes (IFMs) Cisco UCS 9108 para fornecer conetividade redundante às interconexões de malha.
+
+
+
+== Opções de dispositivo Cisco UCS X-Series
+
+Os nós de computação do Cisco UCS X-Series estão disponíveis com várias opções de CPU, memória e e/S. Os números de peça listados na tabela a seguir são para o nó base. Eles não incluem CPU, memória, unidades ou placas adaptadoras mezzanine. Várias opções de configuração estão disponíveis e são compatíveis com a arquitetura FlexPod.
+
+|===
+| Nós de computação do Cisco UCS X-Series | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS X210c M6 | UCSX-210C-M6 | https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-x-series-modular-system/datasheet-c78-2465523.html?ccid=cc002456&oid=dstcsm026318["Nó de computação do Cisco UCS X210c M6"] 
+|===
+
+
+== Opções de servidor de rack Cisco UCS C-Series
+
+Os servidores em rack da série C Cisco UCS estão disponíveis em uma e duas variedades de unidades de rack (RU), com várias opções de CPU, memória e e e/S. Os números de peça listados na segunda tabela abaixo são para o servidor base. Eles não incluem CPUs, memória, unidades, placas PCIe (Peripheral Component Interconnect Express) ou o extensor de malha Cisco. Várias opções de configuração estão disponíveis e são compatíveis com a arquitetura FlexPod.
+
+A tabela a seguir lista as opções do servidor de rack Cisco UCS C-Series.
+
+|===
+| Servidor de rack Cisco UCS C-Series | Número de peça | Especificações técnicas 
+
+
+| Cisco UCS C220 M6 | UCSC-C220-M6 | https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/c220m6-sff-specsheet.pdf["Servidor de rack Cisco UCS C220 M6"] 
+
+
+| Cisco UCS C225 M6 | UCSC-C225-M6 | https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/c225-m6-sff-specsheet.pdf["Servidor de rack Cisco UCS C225 M6"] 
+
+
+| Cisco UCS C240 M6 | UCSC-C240-M6 | https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/c240m6-sff-specsheet.pdf["Servidor de rack Cisco UCS C240 M6"] 
+
+
+| Cisco UCS C245 M6 | UCSC-C245-M6 | https://www.cisco.com/c/dam/en/us/products/collateral/servers-unified-computing/ucs-c-series-rack-servers/c245m6-sff-specsheet.pdf["Servidor de rack Cisco UCS C245 M6"] 
+|===
+As gerações anteriores de servidores da série C do Cisco UCS podem ser usadas na arquitetura do FlexPod, se forem compatíveis com o https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware e software do Cisco UCS"^]. Os servidores Cisco UCS C-Series também devem ter um contrato de suporte SMARTnet válido.
+
+
+
+== Opções de switch da série Cisco Nexus 5000
+
+Switches redundantes da série Cisco Nexus 5000, 7000 ou 9000 são necessários na arquitetura do FlexPod. Os números de peça listados na tabela abaixo são para o chassi do Cisco Nexus 5000 Series; eles não incluem módulos SFP, FC complementar ou módulos Ethernet.
+
+|===
+| Switch Cisco Nexus 5000 Series | Número de peça | Especificações técnicas 
+
+
+| Cisco Nexus 56128P | N5K-C56128P .2+| http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/datasheet-c78-730760.html["Switches da plataforma Cisco Nexus 5600"] 
+
+
+| Cisco Nexus 5672UP-16G | N5K-C5672UP-16G 
+
+
+| Cisco Nexus 5596UP | N5K-C5596UP-FA .2+| http://www.cisco.com/c/en/us/products/collateral/switches/nexus-5000-series-switches/data_sheet_c78-618603.html["Switches Cisco Nexus 5548 e 5596"] 
+
+
+| Cisco Nexus 5548UP | N5K-C5548UP-FA 
+|===
+
+
+== Opções de switch da série Cisco Nexus 7000
+
+Switches redundantes da série Cisco Nexus 5000, 7000 ou 9000 são necessários na arquitetura do FlexPod. Os números de peça listados na tabela abaixo são para o chassi da série Cisco Nexus 7000; eles não incluem módulos SFP, placas de linha ou fontes de alimentação, mas incluem bandejas de ventilador.
+
+|===
+| Switch Cisco Série Nexus 7000 | Número de peça | Especificações técnicas 
+
+
+| Cisco Nexus 7004 | N7K-C7004 | http://www.cisco.com/en/US/products/ps12735/index.html["Switch Cisco Nexus de 7000 4 slots"] 
+
+
+| Cisco Nexus 7009 | N7K-C7009 | http://www.cisco.com/en/US/products/ps11565/index.html["Switch Cisco Nexus de 7000 9 slots"] 
+
+
+| Cisco Nexus 7702 | N7K-C7702 | http://www.cisco.com/c/en/us/products/switches/nexus-7700-2-slot-switch/index.html["Switch Cisco Nexus de 7700 2 slots"] 
+
+
+| Cisco Nexus 7706 | N77-C7706 | http://www.cisco.com/en/US/products/ps13482/index.html["Switch Cisco Nexus de 7700 6 slots"] 
+|===
+
+
+== Opções de switch da série Cisco Nexus 9000
+
+Switches redundantes da série Cisco Nexus 5000, 7000 ou 9000 são necessários na arquitetura do FlexPod. Os números de peça listados na tabela abaixo são para o chassi Cisco Nexus 9000 Series; eles não incluem módulos SFP ou módulos Ethernet.
+
+|===
+| Switch Cisco Série Nexus 9000 | Número de peça | Especificações técnicas 
+
+
+| Cisco Nexus 93180YC-FX | N9K-C93180YC-FX .5+| http://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/datasheet-c78-729405.html["Switches Cisco Nexus 9300 Series"] 
+
+
+| Cisco Nexus 93180YC-EX | N9K-93180YC-EX 
+
+
+| Cisco Nexus 9336PQ em suspensão | N9K-C9336PQ 
+
+
+| Cisco Nexus 9332PQ | N9K-C9332PQ 
+
+
+| Cisco Nexus 9336C-FX2 | N9K-C9336C-FX2 
+
+
+| Cisco Nexus 92304QC | N9K-C92304QC .2+| http://www.cisco.com/c/en/us/products/collateral/switches/nexus-9000-series-switches/datasheet-c78-735989.html["Switches Cisco Nexus 9200 Series"] 
+
+
+| Cisco Nexus 9236C | N9K-9236C 
+|===
+
+NOTE: Alguns switches Cisco Nexus 9000 Series têm variantes adicionais. Estas variantes são suportadas como parte da solução FlexPod. Para obter a lista completa de switches Cisco Nexus 9000 Series, http://www.cisco.com/c/en/us/support/switches/nexus-9000-series-switches/tsd-products-support-series-home.html["Switches Cisco Nexus 9000 Series"^] consulte no site da Cisco.
+
+
+
+== Opções Cisco APIC
+
+Ao implantar o Cisco ACI, você deve configurar os três APICS do Cisco além dos itens na link:dc-tech-spec_technical_specifications_and_references.html#cisco-nexus-9000-series-switches["Switches Cisco Nexus 9000 Series"]seção . Para obter mais informações sobre os tamanhos APIC da Cisco, consulte a. http://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/application-policy-infrastructure-controller-apic/datasheet-c78-732414.html["Datasheet da infraestrutura centrada em aplicações da Cisco."^]
+
+Para obter mais informações sobre as especificações do produto APIC, consulte a Tabela 1 a Tabela 3 no https://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/application-policy-infrastructure-controller-apic/datasheet-c78-739715.html["Folha de dados do controlador de infraestrutura de políticas de aplicações da Cisco"^].
+
+
+
+== Opções de extensão de tecido Cisco Nexus
+
+Os FEXs redundantes de montagem em rack Cisco Nexus 2000 são recomendados para grandes arquiteturas FlexPod que usam servidores série C. A tabela abaixo descreve algumas opções do Cisco Nexus FEX. Também são suportados modelos FEX alternativos. Para obter mais informações, consulte https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware e software do Cisco UCS"^] .
+
+|===
+| Cisco Nexus montado em rack FEX | Número de peça | Especificações técnicas 
+
+
+| Cisco Nexus 2232PP | N2K-C2232PP .2+| http://www.cisco.com/en/US/prod/collateral/switches/ps9441/ps10110/data_sheet_c78-507093.html["Extensores de tecido da série Cisco Nexus 2000"] 
+
+
+| Cisco Nexus 2232TM-E | N2K-C2232TM-E 
+
+
+| Cisco Nexus 2348UPQ | N2K-C2348UPQ .2+| http://www.cisco.com/c/en/us/products/collateral/switches/nexus-2000-series-fabric-extenders/datasheet-c78-731663.html["Extensores de malha de plataforma Cisco Nexus 2300"] 
+
+
+| Cisco Nexus 2348TQCiscoP 2348TQ-e | N2K-C2348TQN2K-C2348TQ-E 
+|===
+
+
+== Opções do Cisco MDS
+
+Os switches Cisco MDS são um componente opcional na arquitetura do FlexPod. Malhas de switch SAN redundantes são necessárias quando você implementa o switch Cisco MDS para FC SAN. A tabela abaixo lista os números de peça e os detalhes de um subconjunto dos switches MDS Cisco suportados. Consulte https://mysupport.netapp.com/matrix/["NetApp IMT"^] e https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware e software do Cisco"^] para obter uma lista completa dos switches SAN suportados.
+
+|===
+| Switch Cisco MDS série 9000 | Número de peça | Descrição 
+
+
+| Cisco MDS 9148T | DS-C9148T-24IK .2+| http://www.cisco.com/c/en/us/products/storage-networking/mds-9100-series-multilayer-fabric-switches/models-listing.html["Switches Cisco MDS série 9100"] 
+
+
+| Cisco MDS 9132T | DS-C9132T-MEK9 
+
+
+| Cisco MDS 9396S | DS-C9396S-K9 | http://www.cisco.com/c/en/us/products/storage-networking/mds-9396s-16g-multilayer-fabric-switch/index.html["Switches Cisco MDS série 9300"] 
+|===
+
+
+== Opções de licenciamento do software Cisco
+
+As licenças são necessárias para habilitar protocolos de storage nos switches Cisco Nexus. Todos os switches das séries Cisco Nexus 5000 e 7000 exigem uma licença de serviços de storage para habilitar o protocolo FC ou FCoE para implementações de inicialização de SAN. Atualmente, os switches Cisco Nexus 9000 não são compatíveis com FC ou FCoE.
+
+As licenças necessárias e os números de peça dessas licenças variam dependendo das opções selecionadas para cada componente da solução FlexPod. Por exemplo, os números de peça de licença de software variam dependendo do número de portas e quais switches da série Cisco Nexus 5000 ou 7000 você escolher. Consulte o seu representante de vendas para obter os números de peça exatos. A tabela abaixo lista as opções de licenciamento do software Cisco.
+
+|===
+| Licenciamento do software Cisco | Número de peça | Informações da licença 
+
+
+| Licença de armazenamento Cisco Nexus 5500, 8, 48 e 96 portas | N55-8P-SSK9/N55-48P-SSK9/N55-96P-SSK9 .5+| http://www.cisco.com/c/en/us/td/docs/switches/datacenter/sw/nx-os/licensing/guide/b_Cisco_NX-OS_Licensing_Guide/b_Cisco_NX-OS_Licensing_Guide_chapter_01.html["Licenciamento de recursos do software Cisco NX-os"] 
+
+
+| Licença de protocolos de storage do Cisco Nexus 5010/5020 | N5010-SSK9/N5020-SSK9 
+
+
+| Licença de protocolos de storage do Cisco Nexus 5600 | N56-16P-SSK9/N5672-72P-SSK9/N56128-128P-SSK9 
+
+
+| Licença empresarial de storage do Cisco Nexus 7000 | N7K-SAN1K9 
+
+
+| Licença de serviços empresariais Cisco Nexus 9000 | N95-LAN1K9/N93-LAN1K9 
+|===
+
+
+== Opções de licenciamento de suporte do Cisco
+
+Contratos de suporte válidos SMARTnet são necessários em todos os equipamentos Cisco na arquitetura FlexPod.
+
+As licenças necessárias e os números de peça dessas licenças devem ser verificados pelo seu representante de vendas, pois podem variar para diferentes produtos. A tabela abaixo lista as opções de licenciamento de suporte do Cisco.
+
+|===
+| Licenciamento do suporte da Cisco | Guia de licença 
+
+
+| Smart Net Total Care Onsite Premium | http://www.cisco.com/c/en/us/products/collateral/cloud-systems-management/smart-net-total-care/datasheet-c78-735459.pdf["Serviço de cuidados totais de rede inteligente Cisco"] 
+|===

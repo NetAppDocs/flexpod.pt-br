@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_conclusion.html 
+keywords: cloud, fabricpool, flexpod, conclusion 
+summary: A jornada para a nuvem varia entre organizações, entre unidades de negócios e até mesmo entre unidades de negócios dentro das organizações. 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A jornada para a nuvem varia entre organizações, entre unidades de negócios e até mesmo entre unidades de negócios dentro das organizações. Alguns escolhem uma adoção rápida, enquanto outros adotam uma abordagem mais conservadora. A FabricPool se encaixa na estratégia de nuvem das organizações, independentemente do seu tamanho e velocidade de adoção da nuvem, demonstrando ainda mais os benefícios de eficiência e escalabilidade de uma infraestrutura FlexPod.

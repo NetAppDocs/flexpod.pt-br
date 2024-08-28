@@ -1,0 +1,23 @@
+---
+section: modern-apps
+title: Aplicativos modernos
+entries:
+- title: Data center FlexPod para IA e ML combinados com Cisco UCS 480 ml e NVIDIA
+    T4 e vGPU para CVD de aprendizagem profunda - Desenho
+  url: "/modern-apps/fpd-ai-dl-design.html"
+- title: Implante o plug-in NetApp Trident CSI na plataforma de contêiner Cisco com
+    o FlexPod - Deploy
+  url: "/modern-apps/fpd-trident-ccp-deploy.html"
+- title: FlexPod Datacenter para OpenShift Container Platform 4 - Deploy
+  url: "/modern-apps/fpd-openshift-deploy.html"
+- title: FlexPod Datacenter com Docker Datacenter para Gestão de contêiner - Design
+  url: "/modern-apps/fpd-docker-contm-design.html"
+- title: FlexPod Datacenter para OpenShift Container Platform 4 - Design
+  url: "/modern-apps/fpd-opens-cont-design.html"
+- title: Data center FlexPod para IA e ML combinados com Cisco UCS 480 ml e NVIDIA
+    T4 e vGPU para CVD de deep learning - implantação
+  url: "/modern-apps/fpd-ai-dl-deploy.html"
+- title: FlexPod para visualização gráfica 3DD com VMware e NVIDIA
+  url: "/modern-apps/fpd-wp-741606.html"
+- title: FlexPod para visualização de gráficos 3DD com Citrix e NVIDIA (white paper)
+  url: "/modern-apps/fpd-wp-741586.html"

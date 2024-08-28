@@ -1,0 +1,26 @@
+---
+settings:
+  name: FlexPod
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  langs: pt-br,us-en,ja-jp,ko-kr,zh-cn,zh-tw,de-de,es-es,fr-fr,it-it
+sidebar:
+  entries:
+  - title: Documentação das soluções da FlexPod
+    url: "/index.html"
+  - section: fp-def
+  - section: flexpod-dc
+  - section: hybrid-cloud
+  - section: ent-db
+  - section: healthcare
+  - section: vdi
+  - section: modern-apps
+  - section: express
+  - section: security
+  - section: ontap-connector-for-intersight
+  - section: infrastructure
+  - title: Avisos legais
+    url: "/legal-notices.html"

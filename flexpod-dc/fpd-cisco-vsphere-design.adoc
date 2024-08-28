@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/fpd-cisco-vsphere-design.html 
+keywords: flexpod, cisco, data, center, vmware, vsphere, 
+summary: Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para implantar as tecnologias Cisco e NetApp como infraestrutura de nuvem compartilhada. 
+---
+= Data center FlexPod com VMware vSphere 6,7 U1, malha de quarta geração Cisco UCS e NetApp AFF A-Series - Design
+:allow-uri-read: 
+
+
+João Jorge, Cisco Sree Lakshmi Lanca, NetApp
+
+[role="lead"]
+Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para implantar as tecnologias Cisco e NetApp como infraestrutura de nuvem compartilhada. Esse design validado fornece uma estrutura para implantar o VMware vSphere, a plataforma de virtualização mais popular em data centers de classe empresarial, no FlexPod.
+
+O FlexPod é uma infraestrutura integrada líder que dá suporte a uma ampla variedade de workloads e casos de uso empresariais. Essa solução permite que os clientes implantem de forma rápida e confiável a nuvem privada baseada no VMware vSphere em uma infraestrutura integrada.
+
+A arquitetura de solução recomendada foi desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS), usando a versão unificada de software para oferecer suporte às plataformas de hardware Cisco UCS, incluindo servidores blade Cisco UCS da série B e servidores de rack da série C, interconexões de malha Cisco UCS 6454, switches Cisco da série 9000, switches de canal de fibra Cisco MDS e arrays de storage NetApp All Flash. Além disso, ele inclui o VMware vSphere 6,7 Update 1, que fornece vários novos recursos para otimizar a utilização do storage e facilitar uma nuvem privada.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_datacenter_vmware_netappaffa_design.html["Data center FlexPod com VMware vSphere 6,7 U1, malha de quarta geração Cisco UCS e NetApp AFF A-Series - Design"^]

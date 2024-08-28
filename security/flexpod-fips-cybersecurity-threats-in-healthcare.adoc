@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: security/flexpod-fips-cybersecurity-threats-in-healthcare.html 
+keywords: ransomware, malware, extortion, data breach, malicious agents 
+summary: As ameaças à saúde são multidimensionais na natureza e no impactos. Os governos em todo o mundo promulgaram várias disposições para garantir a ePHI. Os efeitos prejudiciais e a natureza evolutiva das ameaças aos cuidados de saúde dificultam a defesa de todas as ameaças pelas organizações de saúde. 
+---
+= Ameaças de segurança cibernética na saúde
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:flexpod-fips-introduction.html["Anterior: Introdução."]
+
+[role="lead"]
+Cada problema apresenta uma nova oportunidade: Um exemplo dessa oportunidade é apresentado pela pandemia de COVID. De acordo com a https://www.hhs.gov/sites/default/files/2020-hph-cybersecurty-retrospective-tlpwhite.pdf["relatório"^] do Programa de cibersegurança do Departamento de Saúde e Serviços Humanos (HHS), a resposta à COVID resultou em um número maior de ataques de ransomware. Havia 6.000 novos domínios de internet registrados apenas na terceira semana de março de 2020. Mais de 50% dos domínios hospedaram malware. Os ataques de ransomware foram responsáveis por quase 50% de todas as violações de dados de saúde em 2020, afetando mais de 630 organizações de saúde e aproximadamente 29 milhões de Registros de saúde. Dezenove leakers/sites dobraram a extorsão. Com 24,5%, o setor de saúde registrou o maior número de violações de dados em 2020.
+
+Agentes maliciosos tentaram violar a segurança e a privacidade das informações de saúde protegidas (PHI) vendendo as informações ou ameaçando destruí-las ou expô-las. Tentativas direcionadas e de transmissão em massa são frequentemente feitas para obter acesso não autorizado ao ePHI. Aproximadamente 75% dos prontuários expostos no segundo semestre de 2020 foram devidos a colaboradores comprometidos.
+
+A seguinte lista de organizações de saúde foi direcionada pelos agentes maliciosos:
+
+* Sistemas hospitalares
+* Laboratórios de ciências da vida
+* Laboratórios de pesquisa
+* Instalações de reabilitação
+* Hospitais e clínicas comunitárias
+
+
+A diversidade de aplicações que constituem uma organização de saúde é inegável e cada vez mais crescente em complexidade. Os escritórios de segurança da informação são desafiados a fornecer governança para a vasta gama de sistemas e ativos DE TI. A figura a seguir mostra as capacidades clínicas de um sistema hospitalar típico.
+
+image:flexpod-fips-image2.png["Erro: Imagem gráfica em falta"]
+
+Os dados do paciente estão no centro desta imagem. A perda de dados do paciente e o estigma associado a condições médicas sensíveis são muito reais. Outras questões sensíveis incluem o risco de exclusão social, chantagem, perfil de perfil, vulnerabilidade a marketing direcionado, exploração e potencial responsabilidade financeira para com os pagadores sobre informações médicas além do Privileges do pagador.
+
+As ameaças à saúde são multidimensionais na natureza e no impactos. Os governos em todo o mundo promulgaram várias disposições para garantir a ePHI. Os efeitos prejudiciais e a natureza evolutiva das ameaças aos cuidados de saúde dificultam a defesa de todas as ameaças pelas organizações de saúde.
+
+Aqui está uma lista de ameaças comuns identificadas nos cuidados de saúde:
+
+* Ataques de ransomware
+* Perda ou roubo de equipamentos ou dados com informações confidenciais
+* Ataques de phishing
+* Ataques contra dispositivos médicos conetados que podem afetar a segurança do paciente
+* Ataques de phishing por e-mail
+* Perda ou roubo de equipamentos ou dados
+* Comprometimento do protocolo de desktop remoto
+* Vulnerabilidade de software
+
+
+As organizações de saúde operam em um ambiente legal e regulatório tão complicado quanto seus ecossistemas digitais. Esse ambiente inclui, entre outros, o seguinte:
+
+* Escritório do Coordenador Nacional (para tecnologia de Saúde) padrões de interoperabilidade de tecnologia de Informação em Saúde Eletrônica certificada pela ONC
+* Medicare Access e a Lei de reautorização do Programa de seguro de Saúde Infantil (MACRA)/uso significativo
+* Múltiplas obrigações sob a Food and Drug Administration (FDA)
+* Processos de acreditação da Comissão Conjunta
+* Requisitos da HIPAA
+* Requisitos da HITECH
+* Normas mínimas de risco aceitáveis para os pagadores
+* Regras de privacidade e segurança do Estado
+* Requisitos da Lei Federal de modernização da Segurança da Informação conforme incorporado em contratos federais e bolsas de pesquisa por meio de agências como os Institutos nacionais de Saúde
+* Padrão de segurança de dados do setor de cartões de pagamento (PCI-DSS)
+* Requisitos da Administração de Serviços de Saúde mental e abuso de substâncias (SAMHSA)
+* A Lei Gramm-Leach-Bliley para o processamento financeiro
+* A Lei Stark diz respeito à prestação de serviços a organizações afiliadas
+* Lei de Direitos educacionais e Privacidade da Família (FERPA) para instituições que participam do ensino superior
+* Lei de não discriminação de Informação genética (GINA)
+* O novo Regulamento Geral de proteção de dados (RGPD) na União Europeia
+
+
+Os padrões de arquitetura de segurança estão evoluindo rapidamente para impedir que os agentes mal-intencionados afetem os sistemas de informações de saúde. Um desses padrões é o FIPS 140-2, definido pelo National Institute of Standards and Technology (NIST). A publicação FIPS 140-2 detalha os requisitos governamentais dos EUA para um módulo criptográfico. Os requisitos de segurança abrangem áreas relacionadas com um design seguro e implementação de um módulo criptográfico e podem ser aplicados para HIT. Limites criptográficos bem definidos permitem um gerenciamento de segurança mais fácil, mantendo-se atualizado com os módulos criptográficos. Esses limites ajudam a evitar módulos cripto fracos que podem ser facilmente explorados por agentes maliciosos. Eles também podem ajudar a evitar erros humanos ao gerenciar módulos criptográficos padrão.
+
+O NIST, juntamente com o Communications Security establishment (CSE), estabeleceu o Programa de Validação de módulos criptográficos (CMVP) para certificar módulos criptográficos para níveis de validação FIPS 140-2. Usando um módulo certificado FIPS 140-2, as organizações federais precisam proteger dados confidenciais ou valiosos enquanto em repouso e em movimento. Devido ao seu sucesso na proteção de informações confidenciais ou valiosas, muitos sistemas de saúde optaram por criptografar ePHI usando módulos criptográficos FIPS 140-2 além do nível mínimo de segurança legalmente exigido.
+
+A utilização e a implementação das funcionalidades do FlexPod FIPS 140-2 levam apenas horas (não dias). Tornar-se compatível com FIPS está ao alcance da maioria das organizações de saúde, independentemente do tamanho. Com limites criptográficos claramente definidos e etapas de implementação simples e bem documentadas, uma arquitetura FlexPod compatível com FIPS 140-2 pode definir uma base sólida de segurança para a infraestrutura e permitir melhorias simples para aumentar ainda mais a proteção contra ameaças à segurança.
+
+link:flexpod-fips-overview-of-fips-140-2.html["Próximo: Visão geral do FIPS 140-2."]

@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: modern-apps/fpd-trident-ccp-deploy.html 
+keywords: flexpod, cisco, trident, container, plug, in, deploy 
+summary: 'Este documento fornece procedimentos passo a passo para implantar o plug-in da NetApp Trident Container Storage Interface (CSI) em um cluster de locatário do Kubernetes da plataforma de contêiner da Cisco em uma solução da FlexPod.' 
+---
+= Implante o plug-in NetApp Trident CSI na plataforma de contêiner Cisco com o FlexPod
+:allow-uri-read: 
+
+
+[role="lead"]
+Este documento fornece procedimentos passo a passo para implantar o plug-in da NetApp Trident Container Storage Interface (CSI) em um cluster de locatário do Kubernetes da plataforma de contêiner da Cisco em uma solução da FlexPod.
+
+link:https://www.cisco.com/c/dam/en/us/solutions/collateral/data-center-virtualization/unified-computing/trident-on-container-platform-with-flexpod.pdf["Implante o plug-in NetApp Trident CSI na plataforma de contêiner Cisco com o FlexPod"^]

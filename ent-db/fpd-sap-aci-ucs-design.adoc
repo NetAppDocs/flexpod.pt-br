@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-sap-aci-ucs-design.html 
+keywords: flexpod, cisco, sap, aci, ucs, sles, rhlel, hana, aff, a-series 
+summary: Este documento descreve a arquitetura e os procedimentos de implantação para a opção de integração de data center personalizada do SAP HANA na infraestrutura do FlexPod. 
+---
+= Solução FlexPod Datacenter para SAP com Cisco ACI em servidores Cisco UCS M5 com SLES 12 SP3 e RHEL 7,4
+:allow-uri-read: 
+
+
+Ramamurthy, Cisco Marco Schoen, NetApp
+
+[role="lead"]
+Este documento descreve a arquitetura e os procedimentos de implantação para a opção de integração de data center personalizada do SAP HANA na infraestrutura FlexPod composta por produtos de computação e comutação da Cisco que utilizam a infraestrutura centrada em aplicativos (ACI) da Cisco - a solução de rede definida por software (SDN) líder do setor - junto com os arrays AFF da série A da NetApp. O objetivo deste documento é mostrar os princípios de design com as etapas de configuração detalhadas para a implantação do SAP HANA.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_saphana_aci_UCSM32.html["Solução FlexPod Datacenter para SAP com Cisco ACI em servidores Cisco UCS M5 com SLES 12 SP3 e RHEL 7,4"^]

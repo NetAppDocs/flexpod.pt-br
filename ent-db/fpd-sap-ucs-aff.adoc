@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: ent-db/fpd-sap-ucs-aff.html 
+keywords: flexpod, cisco, data, center, sap, ucs, aff, a-series, tdi, tailored, design 
+summary: 'Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para a implantação de ambientes de integração de data centers personalizados (TDI) do SAP HANA.' 
+---
+= Solução FlexPod Datacenter para SAP com Cisco UCS Manager 4,0 e NetApp AFF A-Series - Design
+:allow-uri-read: 
+
+
+Ramamurthy, Cisco Marco Schoen, NetApp
+
+[role="lead"]
+Este documento descreve a solução Cisco e NetApp FlexPod, que é uma abordagem validada para a implantação de ambientes de integração de data centers personalizados (TDI) do SAP HANA. Esse design validado fornece diretrizes e uma estrutura para implementar o SAP HANA com as práticas recomendadas da Cisco e da NetApp.
+
+O FlexPod é uma infraestrutura integrada líder que dá suporte a uma ampla variedade de workloads e casos de uso empresariais. Essa solução permite que você implante o SAP HANA de forma rápida e confiável com um modelo de modo de integração de data center personalizado.
+
+A arquitetura de solução recomendada foi desenvolvida com base no sistema de computação unificada da Cisco (Cisco UCS) usando uma versão unificada de software para oferecer suporte às plataformas de hardware Cisco UCS que incluem os seguintes componentes:
+
+* Servidores blade da série B do Cisco UCS e servidores em rack da série C do Cisco UCS configuráveis com a opção de módulo de memória persistente do Centro de dados Optane (DCPMM)
+* Interconexões de tecido da série Cisco UCS 6300
+* Switches Cisco Nexus 9000 Series
+* Storage arrays NetApp All Flash Series
+
+
+Além disso, este documento fornece validações para Red Hat Enterprise Linux e SUSE Linux Enterprise Server para SAP HANA.
+
+link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_datacenter_sap_netappaffa_design.html["Solução FlexPod Datacenter para SAP com Cisco UCS Manager 4,0 e NetApp AFF A-Series - Design"^]

@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: healthcare/ehr-meditech-deploy_design.html 
+keywords: architecture, storage, layout, aggregates, database, disk, type, control, failover, hardware, aff 
+summary: A arquitetura da FlexPod para a MEDITECH baseia-se nas orientações da MEDITECH, Cisco e NetApp e na experiência do parceiro em trabalhar com clientes da MEDITECH de todos os tamanhos. A arquitetura é adaptável e aplica as melhores práticas para a MEDITECH, dependendo da sua estratégia de data center, do tamanho da sua organização e se seu sistema é centralizado, distribuído ou multitenant. 
+---
+= Design
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A arquitetura da FlexPod para a MEDITECH baseia-se nas orientações da MEDITECH, Cisco e NetApp e na experiência do parceiro em trabalhar com clientes da MEDITECH de todos os tamanhos. A arquitetura é adaptável e aplica as melhores práticas para a MEDITECH, dependendo da sua estratégia de data center, do tamanho da sua organização e se seu sistema é centralizado, distribuído ou multitenant.
+
+A arquitetura de armazenamento correta pode ser determinada pelo tamanho geral com o total de IOPS. A performance por si só não é o único fator, e você pode decidir usar uma contagem de nós maior com base em requisitos adicionais do cliente. A vantagem de usar o storage NetApp é que você pode escalar o cluster de maneira fácil e sem interrupções, de acordo com suas mudanças de requisitos. Também é possível remover nós do cluster sem interrupções para adaptar o equipamento ou durante atualizações de equipamento.
+
+Aqui estão alguns dos benefícios da arquitetura de storage do NetApp ONTAP:
+
+* *Escalabilidade vertical e horizontal fácil e sem interrupções.* É possível atualizar, adicionar ou remover discos e nós usando operações ininterruptas da ONTAP. Você pode começar com quatro nós e migrar para seis nós ou atualizar para controladoras maiores sem interrupções.
+* * Eficiências de armazenamento.* Reduza seus requisitos de capacidade total com deduplicação, NetApp FlexClone, compressão e compactação in-line, thin replication, thin Provisioning e deduplicação de agregados. Com a funcionalidade FlexClone, você cria clones quase instantaneamente para dar suporte a atualizações de ambiente de backup e teste. Esses clones consomem mais storage somente quando são feitas alterações.
+* *Servidor de banco de dados sombra de recuperação de desastres.* O servidor de banco de dados de sombra de recuperação de desastres faz parte da estratégia de continuidade de negócios (usado para suportar a funcionalidade somente leitura de armazenamento e potencialmente configurado para ser uma instância de leitura/gravação de armazenamento). Portanto, o posicionamento e o dimensionamento do terceiro sistema de storage geralmente são os mesmos do sistema de storage do banco de dados de produção.
+* *Consistência do banco de dados (requer alguma consideração).* Se você usar cópias de backup do NetApp SnapMirror em relação à continuidade dos negócios, http://media.netapp.com/documents/tr-3446.pdf["TR-3446: Visão geral e Guia de melhores práticas do SnapMirror Async"^]consulte .
+
+
+
+
+== Layout de storage
+
+
+
+=== Agregados dedicados para hosts MEDITECH
+
+O primeiro passo para atender aos requisitos de alto desempenho e alta disponibilidade da MEDITECH é projetar adequadamente o layout de armazenamento para o ambiente MEDITECH para isolar a carga de trabalho de produção do host MEDITECH em um armazenamento dedicado de alto desempenho.
+
+Um agregado dedicado deve ser provisionado em cada controlador de armazenamento para armazenar o programa, dicionário e arquivos de dados dos hosts MEDITECH. Para eliminar a possibilidade de outros workloads usarem os mesmos discos e afetarem a performance, nenhum outro storage é provisionado a partir desses agregados.
+
+
+NOTE: O armazenamento que você fornece para os outros servidores MEDITECH não deve ser colocado no agregado dedicado para os LUNs usados pelos hosts MEDITECH. Você deve colocar o armazenamento para outros servidores MEDITECH em um agregado separado. Os requisitos de armazenamento para outros servidores MEDITECH estão disponíveis nos documentos "proposta de configuração de hardware" (para novas implantações) e "tarefa de avaliação de hardware" (para implantações existentes). Você pode obter esses documentos da MEDITECH através do integrador de sistemas MEDITECH ou do seu gerente técnico de contas (TAM) da MEDITECH. Os engenheiros de soluções da NetApp podem consultar a equipe de fornecedores independentes de software (ISV) da NetApp MEDITECH para facilitar uma configuração de dimensionamento de storage da NetApp adequada e completa.
+
+
+
+=== Distribuir uniformemente a carga de trabalho do host MEDITECH em todos os controladores de storage
+
+Os sistemas NetApp FAS e AFF são implantados como um ou mais pares de alta disponibilidade. A NetApp recomenda que você distribua uniformemente as cargas de trabalho 6.x e expansão MEDITECH em cada controlador de storage para aplicar os recursos de computação, rede e armazenamento em cache em cada controlador de storage.
+
+Use as diretrizes a seguir para distribuir uniformemente as cargas de trabalho da MEDITECH em cada controlador de storage:
+
+* Se você conhece as IOPS de cada host MEDITECH, pode espalhar as cargas de trabalho de expansão MEDITECH e 6.x uniformemente entre todas as controladoras de storage, confirmando que cada controladora atende a um número semelhante de IOPS dos hosts MEDITECH.
+* Se você não conhece as IOPS de cada host MEDITECH, ainda poderá distribuir uniformemente as cargas de trabalho de expansão MEDITECH e 6.x em todas as controladoras de storage. Conclua esta tarefa confirmando que a capacidade dos agregados para os hosts MEDITECH é distribuída uniformemente por todas as controladoras de storage. Ao fazer isso, o número de discos é o mesmo em todos os agregados de dados dedicados aos hosts MEDITECH.
+* Use tipos de disco semelhantes e grupos RAID idênticos para criar agregados de storage de ambas as controladoras para distribuir os workloads igualmente. Antes de criar o agregado de storage, entre em Contato com um integrador certificado NetApp.
+
+
+
+NOTE: Segundo a MEDITECH, dois hosts no sistema MEDITECH geram IOPS mais altos do que o restante dos hosts. Os LUNs desses dois hosts devem ser colocados em controladores de storage separados. Você deve identificar esses dois hosts com a ajuda da equipe MEDITECH antes de implantar seu sistema.
+
+
+
+== Posicionamento do storage
+
+
+
+=== Armazenamento de banco de dados para hosts MEDITECH
+
+O armazenamento de banco de dados para um host MEDITECH é apresentado como um dispositivo de bloco (ou seja, um LUN) do sistema NetApp FAS ou AFF. O LUN é normalmente montado no sistema operacional Windows como a unidade E.
+
+
+
+=== Outro armazenamento
+
+O sistema operacional host MEDITECH e o aplicativo de banco de dados normalmente geram uma quantidade considerável de IOPS no storage. O provisionamento de storage das VMs host MEDITECH e seus arquivos VMDK, se necessário, é considerado independente do armazenamento necessário para atender aos limites de desempenho da MEDITECH.
+
+O armazenamento provisionado para os outros servidores MEDITECH não deve ser colocado no agregado dedicado para os LUNs que os hosts MEDITECH usam. Coloque o armazenamento de outros servidores MEDITECH em um agregado separado.
+
+
+
+== Configuração do controlador de storage
+
+
+
+=== Alta disponibilidade
+
+Para atenuar o efeito de falha de controladora e permitir atualizações sem interrupções do sistema de storage, configure seu sistema de storage com controladores em um par de alta disponibilidade no modo de alta disponibilidade.
+
+Com a configuração de par de controladores de alta disponibilidade, os compartimentos de disco devem ser conectados a controladoras por vários caminhos. Essa conexão aumenta a resiliência do storage ao proteger contra uma falha de caminho único e melhora a consistência do desempenho se ocorrer um failover de controladora.
+
+
+
+=== Desempenho de storage durante failover de controladora de storage
+
+Para sistemas de storage configurados com controladores em um par de alta disponibilidade, no caso improvável de uma falha na controladora, o controlador do parceiro assume os recursos de storage e os workloads da controladora com falha. É importante consultar o cliente para determinar os requisitos de desempenho que devem ser atendidos se houver uma falha no controlador e dimensionar o sistema de acordo com isso.
+
+
+
+=== Takeover assistido por hardware
+
+A NetApp recomenda que você ative o recurso de takeover assistido por hardware em ambos os controladores de storage.
+
+A takeover assistido por hardware foi projetada para minimizar o tempo de failover do controlador de storage. Ele permite que o módulo de LAN remota de um controlador ou o módulo de processador de serviço notifique seu parceiro sobre uma falha de controladora mais rápido do que um gatilho de tempo limite de batimento cardíaco pode, reduzindo o tempo necessário para o failover. O recurso de aquisição assistido por hardware é habilitado por padrão para controladores de storage em uma configuração de alta disponibilidade.
+
+Para obter mais informações sobre a aquisição assistida por hardware, consulte o http://docs.netapp.com/ontap-9/index.jsp["Centro de Documentação do ONTAP 9"^].
+
+
+
+=== Tipo de disco
+
+Para dar suporte ao requisito de baixa latência de leitura dos workloads MEDITECH, a NetApp recomenda que você use um SSD de alta performance para agregados em sistemas AFF dedicados aos hosts MEDITECH.
+
+
+
+=== NetApp AFF
+
+A NetApp oferece arrays AFF de alto desempenho para lidar com workloads MEDITECH que exigem alta taxa de transferência e que têm padrões aleatórios de acesso a dados e requisitos de baixa latência. Para workloads MEDITECH, os arrays AFF oferecem vantagens de desempenho em relação aos sistemas baseados em HDDs. A combinação da tecnologia flash e do gerenciamento de dados empresariais oferece vantagens em três áreas principais: Performance, disponibilidade e eficiência de storage.
+
+
+
+=== Ferramentas e serviços de suporte da NetApp
+
+O NetApp oferece um conjunto completo de ferramentas e serviços de suporte. A ferramenta NetApp AutoSupport deve ser ativada e configurada em sistemas NetApp AFF/FAS para ligar para casa se houver uma falha de hardware ou configuração incorreta do sistema. Ligar para casa alerta a equipe de suporte da NetApp para corrigir quaisquer problemas em tempo hábil. O NetApp Active IQ é uma aplicação baseada na Web baseada em informações do AutoSupport de seus sistemas NetApp que fornece insights preditivos e proativos para ajudar a melhorar a disponibilidade, a eficiência e o desempenho.

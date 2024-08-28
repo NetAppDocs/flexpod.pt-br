@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: flexpod-dc/sm-bcs-conclusion.html 
+keywords: conclusion 
+summary: O data center FlexPod com SM-BC usa um design de data center ativo-ativo para fornecer continuidade dos negócios e recuperação de desastres para workloads essenciais aos negócios. A solução normalmente interconeta dois data centers implantados em locais separados e geograficamente dispersos em uma área metropolitana. A solução NetApp SM-BC usa replicação síncrona para proteger serviços de dados essenciais aos negócios contra falhas no local. A solução exige que os dois locais de implantação do FlexPod tenham uma latência de rede de ida e volta inferior a 10 milissegundos. 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:sm-bcs-validated-scenarios.html["Anterior: Validação da solução - cenários validados."]
+
+[role="lead"]
+O data center FlexPod com SM-BC usa um design de data center ativo-ativo para fornecer continuidade dos negócios e recuperação de desastres para workloads essenciais aos negócios. A solução normalmente interconeta dois data centers implantados em locais separados e geograficamente dispersos em uma área metropolitana. A solução NetApp SM-BC usa replicação síncrona para proteger serviços de dados essenciais aos negócios contra falhas no local. A solução exige que os dois locais de implantação do FlexPod tenham uma latência de rede de ida e volta inferior a 10 milissegundos.
+
+O Mediador NetApp ONTAP implantado em um terceiro local monitora a solução SM-BC e permite o failover automatizado quando um desastre no local é detetado. O VMware vCenter com VMware HA e a configuração estendida do cluster de storage VMware vSphere Metro funcionam perfeitamente com o NetApp SM-BC para permitir que a solução atenda aos objetivos de RPO zero e rto quase zero desejados.
+
+A solução FlexPod SM-BC também pode ser implantada em infraestruturas FlexPod existentes se elas atenderem aos requisitos ou adicionando uma solução FlexPod adicional a um FlexPod existente para atingir os objetivos de continuidade dos negócios. Ferramentas adicionais de gerenciamento, monitoramento e automação, como o Cisco Intersight, Ansible e HashiCorp baseadas em Terraform, estão disponíveis no NetApp e no Cisco. Assim, você pode monitorar a solução com facilidade, obter insights sobre suas operações e automatizar a implantação e as operações.
+
+Das perspetivas de uma aplicação essencial aos negócios, como o Microsoft SQL Server, um banco de dados que reside em um armazenamento de dados VMware protegido por uma relação CG do ONTAP SM-BC continua disponível apesar de uma interrupção no storage no local. Conforme verificado durante o teste de validação, após uma interrupção de energia do cluster de storage em que o banco de dados reside, ocorre um failover da relação CG SM-BC e as transações do Microsoft SQL Server são retomadas sem interrupção do aplicativo.
+
+Com proteção granular de dados da aplicação, os relacionamentos de CG do ONTAP SM-BC podem ser criados para suas aplicações essenciais aos negócios a fim de atender a requisitos de RPO zero e rto quase zero. Para que o cluster VMware no qual o aplicativo Microsoft SQL Server está sendo executado possa sobreviver a uma falha no armazenamento no local, os LUNs de inicialização dos hosts ESXi em cada local também são protegidos por um relacionamento CG SM-BC.
+
+A flexibilidade e a escalabilidade do FlexPod permitem que você comece com uma infraestrutura de tamanho certo que pode crescer e evoluir à medida que seus requisitos empresariais mudam. Esse design validado permite que você implante de forma confiável a nuvem privada baseada no VMware vSphere em uma infraestrutura distribuída e integrada, fornecendo assim uma solução resiliente a muitos cenários de ponto único de falha, bem como a falha do local para proteger serviços de dados empresariais críticos.
+
+link:sm-bcs-where-to-find-additional-information-and-version-history.html["Próximo: Onde encontrar informações adicionais e histórico de versões."]

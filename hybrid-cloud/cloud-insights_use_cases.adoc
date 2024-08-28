@@ -1,0 +1,35 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-insights_use_cases.html 
+keywords: target, cases, audience, cloud, insights, flexpod, ontap 
+summary: O público-alvo e os casos aos quais esta solução se aplica estão listados nesta seção. 
+---
+= Casos de uso
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta solução aplica-se aos seguintes casos de uso:
+
+* Organizações que querem monitorar vários recursos e utilização em seu sistema de storage ONTAP implantado como parte de uma solução FlexPod.
+* Organizações que querem solucionar problemas e reduzir o tempo de resolução de incidentes que ocorrem em sua solução FlexPod com seus sistemas AFF ou FAS.
+* Organizações interessadas em projeções de otimização de custos, incluindo painéis personalizados para fornecer informações detalhadas sobre o desperdício de recursos e onde economias de custo podem ser obtidas em seu ambiente FlexPod, incluindo o ONTAP.
+
+
+
+
+== Público-alvo
+
+O público-alvo da solução inclui os seguintes grupos:
+
+* Executivos DE TI e aqueles preocupados com a otimização de custos e a continuidade dos negócios.
+* Arquitetos de soluções com interesse em design e gerenciamento de data center ou nuvem híbrida.
+* Engenheiros de suporte técnico responsáveis pela solução de problemas e resolução de incidentes.
+
+
+Você pode configurar o Cloud Insights para fornecer vários tipos úteis de dados que você pode usar para ajudar no Planejamento, solução de problemas, manutenção e garantir a continuidade dos negócios. Ao monitorar a solução de data center FlexPod com o Cloud Insights e apresentar os dados agregados em painéis personalizados de fácil digestão. Além disso, é possível prever quando os recursos em uma implantação podem precisar ser dimensionados para atender às demandas, também identificar aplicações específicas ou volumes de storage que estão causando problemas no sistema. Isso ajuda a garantir que a infraestrutura que está sendo monitorada seja previsível e tenha desempenho de acordo com as expetativa, permitindo que uma organização entregue com SLA definidos e dimensione a infraestrutura conforme necessário, eliminando desperdício e custos adicionais.

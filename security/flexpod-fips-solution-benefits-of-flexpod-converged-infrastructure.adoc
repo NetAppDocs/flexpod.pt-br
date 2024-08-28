@@ -1,0 +1,117 @@
+---
+sidebar: sidebar 
+permalink: security/flexpod-fips-solution-benefits-of-flexpod-converged-infrastructure.html 
+keywords: benefits, hardware, software, 
+summary: 'Para demonstrar a configuração FIPS num sistema FlexPod, utilizamos uma EHR de código aberto e um sistema de arquivamento e comunicação de imagens (PACS) de código aberto para a configuração do laboratório e validação da carga de trabalho no sistema FlexPod.' 
+---
+= Benefícios da solução da infraestrutura convergente do FlexPod
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:flexpod-fips-flexpod-netapp-ontap-storage-and-fips-140-2.html["Anterior: Armazenamento FlexPod NetApp ONTAP e FIPS 140-2."]
+
+[role="lead"]
+As organizações de saúde têm vários sistemas de missão crítica. Dois dos sistemas mais críticos são os sistemas de registo eletrónico de saúde (EHR) e os sistemas de imagiologia médica. Para demonstrar a configuração FIPS num sistema FlexPod, utilizamos uma EHR de código aberto e um sistema de arquivamento e comunicação de imagens (PACS) de código aberto para a configuração do laboratório e validação da carga de trabalho no sistema FlexPod. Para obter uma lista completa de capacidades EHR, componentes de aplicações lógicas EHR e como os sistemas EHR se beneficiam quando implementados num sistema FlexPod, https://www.netapp.com/pdf.html?item=/media/22199-tr-4881.pdf["TR-4881: FlexPod para sistemas de Registro Eletrônico de Saúde"^]consulte . Para obter uma lista completa das capacidades de um sistema de imagiologia médica, componentes lógicos de aplicação e como os sistemas de imagiologia médica beneficiam quando implementados no FlexPod, https://www.netapp.com/media/19793-tr-4865.pdf["TR-4865: FlexPod para imagens médicas"^] consulte .
+
+Durante a configuração do FIPS e a validação da carga de trabalho, exercemos caraterísticas de carga de trabalho representativas de uma organização típica de saúde. Por exemplo, exercemos um sistema EHR de código aberto para incluir cenários realistas de acesso aos dados do paciente e mudança. Além disso, exercitamos cargas de trabalho de imagem médica que incluíam imagens digitais e comunicações em objetos de medicina (DICOM) em um `*. dcm` formato de arquivo. Os objetos DICOM com metadados foram armazenados no arquivo e no armazenamento de blocos. Além disso, implementamos recursos multipathing de dentro de um servidor virtualizado RedHat Enterprise Linux (RHEL). Armazenamos objetos DICOM em um NFS, LUNs montados usando iSCSI e LUNs montados usando FC. Durante a configuração e validação do FIPS, observamos que a infraestrutura convergente do FlexPod superou nossas expectativas e teve um bom desempenho.
+
+A figura a seguir mostra o sistema FlexPod usado para configuração e validação FIPS. Aproveitamos o https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/fp_vmware_vsphere_7_0_ontap_9_7.html["Data center FlexPod com VMware vSphere 7,0 e NetApp ONTAP 9 .7 Cisco Validated Design (CVD)"^] durante o processo de configuração.
+
+image:flexpod-fips-image6.png["Erro: Imagem gráfica em falta"]
+
+
+
+== Componentes de hardware e software da infraestrutura da solução
+
+As duas figuras a seguir listam os componentes de hardware e software usados respetivamente durante o teste FIPS ativado em um FlexPod. As recomendações nestas tabelas são exemplos; você deve trabalhar com o seu NetApp SME para garantir que os componentes são adequados para a sua organização. Além disso, certifique-se de que os componentes e as versões são suportados nos https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] (IMT) e https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware Cisco (HCL)"^].
+
+|===
+| Camada | Família de produtos | Quantidade e modelo | Detalhes 
+
+
+| Computação | Chassi do Cisco UCS 5108 | 1 ou 2 |  
+
+
+|  | Servidores blade Cisco UCS | 3 B200 M5 | Cada um com 2x 20 ou mais núcleos, 2,7GHz GB e 128-384GB GB de RAM 
+
+
+|  | Cartão de interface virtual Cisco UCS (VIC) | Cisco UCS 1440 | Consulte 
+
+
+|  | 2x interconexões de tecido Cisco UCS | 6332 | - 
+
+
+| Rede | Switches Cisco Nexus | 2x Cisco Nexus 9332 | - 
+
+
+| Rede de armazenamento | Rede IP para acesso ao storage por protocolos SMB/CIFS, NFS ou iSCSI | Mesmos switches de rede como acima | - 
+
+
+|  | Acesso ao storage por FC | 2x Cisco MDS 9148S | - 
+
+
+| Armazenamento | Sistema de storage all-flash NetApp AFF A700 | Cluster de 1 GbE | Cluster com dois nós 
+
+
+|  | Compartimento de disco | Um compartimento de disco de DS224C TB ou NS224 TB | Totalmente preenchido com 24 unidades 
+
+
+|  | SSD | >24, 1,2TB ou maior capacidade | - 
+|===
+|===
+| Software | Família de produtos | Versão ou lançamento | Detalhes 
+
+
+| Vários | Linux | RHEL 7.X | - 
+
+
+|  | Windows | Windows Server 2012 R2 (64 bits) | - 
+
+
+|  | NetApp ONTAP | ONTAP 9,7 ou posterior | - 
+
+
+|  | Interconexão de malha Cisco UCS | Cisco UCS Manager 4,1 ou posterior | - 
+
+
+|  | Switches Ethernet Cisco série 3000 ou 9000 | Para a série 9000, 7,0(3)i7(7) ou posterior para a série 3000, 9,2(4) ou posterior | - 
+
+
+|  | Cisco FC: Cisco MDS 9132T | 8,4(1a) ou posterior | - 
+
+
+|  | Hipervisor | VMware vSphere ESXi 6,7 U2 ou posterior | - 
+
+
+| Armazenamento | Sistema de gerenciamento de hipervisor | VMware vCenter Server 6,7 U3 (vCSA) ou posterior | - 
+
+
+| Rede | Console de storage virtual (VSC) do NetApp | VSC 9,7 ou posterior | - 
+
+
+|  | NetApp SnapCenter | SnapCenter 4,3 ou posterior | - 
+
+
+|  | Gerente do Cisco UCS | 4,1(1c) ou posterior |  
+
+
+| Hipervisor | ESXi |  |  
+
+
+| Gerenciamento | Sistema de gerenciamento de hypervisor VMware vCenter Server 6,7 U3 (vCSA) ou posterior |  |  
+
+
+|  | Console de storage virtual (VSC) do NetApp | VSC 9,7 ou posterior |  
+
+
+|  | NetApp SnapCenter | SnapCenter 4,3 ou posterior |  
+
+
+|  | Gerente do Cisco UCS | 4,1(1c) ou posterior |  
+|===
+link:flexpod-fips-additional-flexpod-security-consideration.html["Próximo: Considerações adicionais de segurança do FlexPod."]

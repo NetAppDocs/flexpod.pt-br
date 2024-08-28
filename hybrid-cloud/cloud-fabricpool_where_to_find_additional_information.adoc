@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_where_to_find_additional_information.html 
+keywords: additional, information, flexpod, cloud, fabricpool 
+summary: Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites. 
+---
+= Onde encontrar informações adicionais
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites:
+
+* Práticas recomendadas da FabricPool
++
+https://www.netapp.com/pdf.html?item=/media/17239-tr-4598.pdf["www.NetApp.com/us/media/tr-4598.pdf"^]
+
+* Documentação do produto NetApp
++
+https://docs.netapp.com["https://docs.netapp.com"^]
+
+* TR-4036: Especificação técnica de datacenter FlexPod
++
+https://docs.netapp.com/us-en/flexpod/fp-def/dc-tech-spec_solution_overview.html["https://www.netapp.com/us/media/tr-4036.pdf"^]
+
+

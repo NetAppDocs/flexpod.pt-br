@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-design_solution_verification.html 
+keywords: verification, express 
+summary: Da redundância e disponibilidade a cada recurso individual, toda a arquitetura do FlexPod Express é validada para incutir confiança em nossos clientes e criar confiança no processo de design. 
+---
+= Verificação da solução
+:allow-uri-read: 
+
+
+[role="lead"]
+A Cisco e a NetApp projetaram e construíram o FlexPod Express para servir como uma plataforma de infraestrutura de primeira linha para seus clientes. Por ser desenvolvido com componentes líderes do setor, os clientes podem confiar no FlexPod Express como sua base de infraestrutura. De acordo com os princípios fundamentais do portfólio do FlexPod, a arquitetura do FlexPod Express foi completamente testada pelos arquitetos e engenheiros do data center Cisco e NetApp. Da redundância e disponibilidade a cada recurso individual, toda a arquitetura do FlexPod Express é validada para incutir confiança em nossos clientes e criar confiança no processo de design.
+
+O VMware vSphere 6,7 foi verificado nos componentes da infraestrutura do FlexPod Express. Essa validação incluiu 10GbE opções de conetividade uplink para o hipervisor.
+
+link:express-c-series-aff220-design_conclusion.html["Próximo: Conclusão."]

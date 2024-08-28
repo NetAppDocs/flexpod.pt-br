@@ -1,0 +1,64 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-deploy_deployment_procedures_overview.html 
+keywords: vmware, vcenter, server, appliance, download 
+summary: Este documento fornece detalhes para configurar um sistema FlexPod Express totalmente redundante e altamente disponível e provisionar vários hosts Cisco UCS. 
+---
+= Procedimentos de implantação
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Este documento fornece detalhes para configurar um sistema FlexPod Express totalmente redundante e altamente disponível. Para refletir essa redundância, os componentes que estão sendo configurados em cada etapa são referidos como componente A ou componente B. por exemplo, controlador A e controlador B identificam os dois controladores de storage NetApp que são provisionados neste documento. O switch A e o switch B identificam um par de switches Cisco Nexus.
+
+Além disso, este documento descreve etapas para provisionar vários hosts Cisco UCS, que são identificados sequencialmente como servidor A, servidor B e assim por diante.
+
+Para indicar que você deve incluir informações pertinentes ao seu ambiente em uma etapa, `\<<text>>` aparece como parte da estrutura de comando. Veja o exemplo a seguir para o `vlan create` comando:
+
+....
+Controller01>vlan create vif0 <<mgmt_vlan_id>>
+....
+Este documento permite configurar totalmente o ambiente do FlexPod Express. Nesse processo, várias etapas exigem que você insira convenções de nomenclatura específicas do cliente, endereços IP e esquemas de rede local virtual (VLAN). A tabela abaixo descreve as VLANs necessárias para implantação, conforme descrito neste guia. Esta tabela pode ser concluída com base nas variáveis específicas do site e usada para implementar as etapas de configuração do documento.
+
+
+NOTE: Se você usar VLANs separadas de gerenciamento dentro e fora da banda, será necessário criar uma rota de camada 3 entre elas. Para essa validação, uma VLAN de gerenciamento comum foi usada.
+
+|===
+| Nome AN | Finalidade da VLAN | ID utilizada na validação deste documento 
+
+
+| VLAN de gerenciamento | VLAN para interfaces de gerenciamento | 3437 
+
+
+| VLAN nativo | VLAN à qual os quadros não marcados são atribuídos | 2 
+
+
+| VLAN NFS | VLAN para tráfego NFS | 3438 
+
+
+| VLAN do VMware vMotion | VLAN designada para o movimento de máquinas virtuais de um host físico para outro | 3441 
+
+
+| VLAN de tráfego de máquina virtual | VLAN para tráfego de aplicativos de máquina virtual | 3442 
+
+
+| ISCSI-A-VLAN | VLAN para tráfego iSCSI na malha A | 3439 
+
+
+| ISCSI-B-VLAN | VLAN para tráfego iSCSI na malha B | 3440 
+|===
+Os números de VLAN são necessários durante toda a configuração do FlexPod Express. As VLANs são referidas como `\<<var_xxxx_vlan>>`, onde `xxxx` é a finalidade da VLAN (como iSCSI-A).
+
+A tabela abaixo lista as máquinas virtuais VMware criadas.
+
+|===
+| Descrição da máquina virtual | Nome do host 
+
+
+| VMware vCenter Server |  
+|===

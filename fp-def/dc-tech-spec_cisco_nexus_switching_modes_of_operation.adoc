@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: fp-def/dc-tech-spec_cisco_nexus_switching_modes_of_operation.html 
+keywords: cisco, nexus, switching, modes, operation, datacenter, techincal, specifications 
+summary: Uma variedade de produtos Cisco Nexus podem ser usados como o componente de comutação de uma determinada implantação do FlexPod. A maioria dessas opções aproveita o tradicional software Cisco Nexus os ou NX-os. A família de switches Cisco Nexus oferece vários recursos em suas linhas de produtos. Esses recursos são detalhados posteriormente neste documento. 
+---
+= Modos de comutação Cisco Nexus de operação
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Uma variedade de produtos Cisco Nexus podem ser usados como o componente de comutação de uma determinada implantação do FlexPod. A maioria dessas opções aproveita o tradicional software Cisco Nexus os ou NX-os. A família de switches Cisco Nexus oferece vários recursos em suas linhas de produtos. Esses recursos são detalhados posteriormente neste documento.
+
+A oferta da Cisco no espaço de rede definido por software é chamada de infraestrutura centrada em aplicativos (ACI). A linha de produtos Cisco Nexus que suporta o modo ACI, também chamado de modo de tecido, é a série Cisco Nexus 9300. Esses switches também podem ser implantados no modo NX-os ou autônomo.
+
+O Cisco ACI destina-se a implantações de data center que se concentram nos requisitos de uma aplicação específica. Os aplicativos são instanciados por meio de uma série de perfis e contratos que permitem a conetividade do host ou da máquina virtual (VM) até o armazenamento.
+
+O FlexPod é validado com ambos os modos de operação dos switches Cisco Nexus. Para obter mais informações sobre os modos ACI e NX-os, consulte as seguintes páginas do Cisco:
+
+* http://www.cisco.com/c/en/us/solutions/data-center-virtualization/application-centric-infrastructure/index.html["Infraestrutura centrada em aplicações da Cisco"^]
+* http://www.cisco.com/c/en/us/products/ios-nx-os-software/nx-os-software/index.html["Software Cisco NX-os"^]
+

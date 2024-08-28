@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: security/flexpod-fips-conclusion.html 
+keywords: conclusion 
+summary: 'Ao executar seu aplicativo de saúde em uma plataforma FlexPod, sua organização de saúde fica mais protegida por uma plataforma habilitada para FIPS 140-2. O FlexPod oferece proteção em várias camadas em todos os componentes: Computação, rede e storage. Os recursos de proteção de dados da FlexPod protegem dados em repouso ou em trânsito, além de manter os backups seguros e prontos quando necessário.' 
+---
+= Conclusão
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:flexpod-fips-additional-flexpod-security-consideration.html["Anterior: Considerações adicionais de segurança do FlexPod."]
+
+[role="lead"]
+Ao executar seu aplicativo de saúde em uma plataforma FlexPod, sua organização de saúde fica mais protegida por uma plataforma habilitada para FIPS 140-2. O FlexPod oferece proteção em várias camadas em todos os componentes: Computação, rede e storage. Os recursos de proteção de dados da FlexPod protegem dados em repouso ou em trânsito, além de manter os backups seguros e prontos quando necessário.
+
+Evite erros humanos aproveitando os designs pré-validados da FlexPod que são infraestruturas convergentes rigorosamente testadas pela parceria estratégica da Cisco e da NetApp. Um sistema FlexPod projetado e projetado para fornecer desempenho previsível e de baixa latência e alta disponibilidade com pouco impacto, mesmo quando o FIPS 140-2-2 está habilitado nas camadas de computação, rede e storage. Essa abordagem resulta em uma experiência de usuário superior e tempo de resposta ideal para os usuários do seu SISTEMA HIT.
+
+link:flexpod-fips-where-to-find-additional-information.html["Próximo: Agradecimentos, histórico de versões e onde encontrar informações adicionais."]

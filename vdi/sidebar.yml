@@ -1,0 +1,21 @@
+---
+section: vdi
+title: Infraestrutura de desktop virtual
+entries:
+- title: FlexPod Datacenter com Citrix Virtual Apps & desktops 1912 LTSR e VMware
+    vSphere 7 para até 6000 assentos
+  url: "/vdi/fpd-citrix-vir.html"
+- title: FlexPod Datacenter com NetApp ONTAP 9.6, VMware Horizon View 7,10 e VMware
+    vSphere 6,7 U2 com Cisco UCS Manager 4,0 para até 6700 assentos
+  url: "/vdi/fpd-vmw-horiz.html"
+- title: FlexPod para visualização de gráficos 3DD com VMware e NVIDIA (white paper)
+  url: "/vdi/fpd-wp-741586.html"
+- title: FlexPod Datacenter com Citrix XenDesktop/XenApp 7,15 e VMware vSphere 6,5
+    Update 1 para 6000 Seats
+  url: "/vdi/fpd-citrix-xend-vmw.html"
+- title: FlexPod Datacenter com VMware Horizon View 7,3 e VMware vSphere 6,5 Update
+    1 com Cisco UCS Manager 3,2 para 5000 Seats
+  url: "/vdi/fpd-vmw-horiz-vsphere.html"
+- title: FlexPod Datacenter com NetApp ONTAP 9.6, VMware Horizon View 7,10 e VMware
+    vSphere 6,7 U2 com Cisco UCS Manager 4,0 para até 6700 assentos
+  url: "/vdi/fpd-vmw-horiz-ontap.html"

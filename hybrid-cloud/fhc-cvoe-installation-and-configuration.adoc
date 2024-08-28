@@ -1,0 +1,166 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/fhc-cvoe-installation-and-configuration.html 
+keywords: cloud volumes ontap, flexpod, ontap bluexp, installation, configuration 
+summary: Esta seção descreve como instalar e configurar o Cloud Volumes ONTAP, o FlexPod, o storage ONTAP e o BlueXP . 
+---
+= Instalação e configuração
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+link:fhc-cvoe-solution-components.html["Anterior: Componentes da solução."]
+
+
+
+== Implantação de NetApp Cloud Volumes ONTAP
+
+Execute as seguintes etapas para configurar sua instância do Cloud Volumes ONTAP:
+
+. Preparar o ambiente do fornecedor de serviços de nuvem pública.
++
+Você precisa capturar os detalhes do ambiente do seu provedor de serviços de nuvem pública para a configuração da solução. Por exemplo, para a preparação de ambiente do Amazon Web Services (AWS), você precisa da chave de acesso da AWS, da chave secreta da AWS e de outros detalhes de rede, como região, VPC, sub-rede, etc.
+
+. Configure o gateway de endpoint da VPC.
++
+Um gateway de endpoint VPC é necessário para habilitar a conexão entre a VPC e o serviço AWS S3. Isso é usado para ativar o backup no CVO, um endpoint com o tipo Gateway.
+
+. Acesse o NetApp BlueXP .
++
+Para acessar o NetApp BlueXP  e outros serviços de nuvem, você precisa se inscrever https://cloudmanager.netapp.com/["NetApp BlueXP"^] no . Para configurar espaços de trabalho e usuários na conta do BlueXP , clique https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html["aqui"^]em . Você precisa de uma conta que tenha permissão para implantar o conetor no seu provedor de nuvem diretamente da BlueXP . Pode transferir a política BlueXP  a partir de https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions.html["aqui"^].
+
+. Implante o conetor.
++
+Antes de adicionar um ambiente de trabalho Cloud volume ONTAP, você deve implantar o Connector. O BlueXP  solicita se você tentar criar seu primeiro ambiente de trabalho do Cloud Volumes ONTAP sem o conetor no lugar. Para implantar o Connector no AWS a partir do BlueXP , consulte https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html["link"^]este .
+
+. Inicie o Cloud Volumes ONTAP na AWS.
++
+É possível iniciar o Cloud Volumes ONTAP em uma configuração de sistema único ou como par de HA na AWS. https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-deploying-otc-aws.html["Leia as instruções passo a passo"^].
+
++
+Para obter informações detalhadas sobre essas etapas, consulte o https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-getting-started-aws.html["Guia de início rápido para Cloud Volumes ONTAP na AWS"^].
+
++
+Nessa solução, implantamos um sistema Cloud Volumes ONTAP de nó único na AWS. A figura a seguir mostra o Dashboard do NetApp BlueXP  com instância CVO de nó único.
+
+
+
+image:fhc-cvoe-image4.jpeg["Esta captura de tela mostra a tela do NetApp BlueXP  Canvas com Meus ambientes de trabalho exibidos."]
+
+
+
+== Implantação do FlexPod no local
+
+Para entender os detalhes de design do FlexPod com UCS X-Series, VMware e NetApp ONTAP, consulte o https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_esxi7u2_design.html["Data center FlexPod com Cisco UCS X-Series"^] guia de design. Este documento fornece orientações de design para incorporar a plataforma UCS X-Series gerenciada pelo Cisco Intersight na infraestrutura de datacenter do FlexPod.
+
+Para implantar a instância do FlexPod no local, https://netapp-https:/www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xseries_vmware_7u2.htmlmy.sharepoint.com/personal/dorianh_netapp_com/Documents/Projects/Github%20Conversions/FlexPod/TR-4960/TR-4960%20FlexPod%20hybrid%20cloud%20with%20CVO%20for%20Epic%20latest-Feb14.docx["este guia de implantação"^] consulte .
+
+Este documento fornece orientações de implantação para incorporar a plataforma UCS X-Series gerenciada pelo Cisco Intersight em uma infraestrutura de datacenter do FlexPod. O documento abrange as configurações e as práticas recomendadas para uma implantação bem-sucedida.
+
+O FlexPod pode ser implantado no modo gerenciado UCS e no modo gerenciado de Intersight Cisco (IMM). Se você estiver implantando o FlexPod no modo gerenciado do UCS, consulte este https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2_design.html["guia de design"^] e https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_m6_esxi7u2.html["guia de implantação"^] este .
+
+A implantação do FlexPod pode ser automatizada com o uso do Ansible. Abaixo estão os links para os repositórios do GitHub para implantação do FlexPod de ponta a ponta:
+
+* É possível ver a configuração do FlexPod com o Cisco UCS no modo gerenciado UCS, no NetApp ONTAP e no VMware vSphere https://github.com/ucs-compute-solutions/FlexPod-UCSM-M6["aqui"^].
+* É possível ver a configuração do FlexPod com o Cisco UCS no IMM, NetApp ONTAP e VMware vSphere https://github.com/ucs-compute-solutions/FlexPod-IMM-4.2.2["aqui"^] .
+
+
+
+
+== Configuração de storage ONTAP no local
+
+Esta seção descreve algumas das etapas importantes de configuração do ONTAP que são específicas a esta solução.
+
+. Configurar um SVM com o serviço iSCSI em execução.
++
+....
+1. vserver create –vserver Healthcare_SVM –rootvolume Healthcare_SVM_root –aggregate aggr1_A400_G0312_01 –rootvolume-security-style unix
+2. vserver add-protocols -vserver Healthcare_SVM -protocols iscsi
+3. vserver iscsi create -vserver Healthcare_SVM
+
+   To verify:
+
+   A400-G0312::> vserver iscsi show -vserver Healthcare_SVM
+   Vserver: Healthcare_SVM
+   Target Name:
+   iqn.1992-08.com.netapp:sn.1fbf00f438c111ed866cd039ea91fb56:vs.3
+   Target Alias: Healthcare_SVM
+   Administrative Status: up
+....
++
+Se a licença iSCSI não tiver sido instalada durante a configuração do cluster, certifique-se de que instala a licença antes de criar o serviço iSCSI.
+
+. Crie um FlexVol volume.
++
+....
+1. volume create -vserver Healthcare_SVM -volume hc_iscsi_vol -aggregate aggr1_A400_G0312_01 -size 500GB -state online -policy default -space guarantee none
+....
+. Adicione interfaces para acesso iSCSI.
++
+....
+1. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01a -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node01-infra-iscsi-a–ip> -netmask <infra-iscsi-a-mask> -status-admin up
+2. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01b -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node01-infra-iscsi-b–ip> -netmask <infra-iscsi-b-mask> –status-admin up
+3. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02a -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node02-infra-iscsi-a–ip> -netmask <infra-iscsi-a-mask> –status-admin up
+4. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02b -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node02-infra-iscsi-b–ip> -netmask <infra-iscsi-b-mask> –status-admin up
+....
++
+Nesta solução, criamos quatro interfaces lógicas iSCSI (LIFs), duas em cada nó.
+
++
+Depois que a instância do FlexPod estiver ativa e em execução com o vCenter implantado e todos os hosts ESXi adicionados a ela, precisamos implantar uma VM Linux que funcione como um servidor que se coneta e acessa o armazenamento do NetApp ONTAP. Nesta solução, instalamos uma instância do CentOS 8 no vCenter.
+
+. Crie um LUN.
++
+....
+1. lun create -vserver Healthcare_SVM -path /vol/hc_iscsi_vol/iscsi_lun1 -size 200GB -ostype linux -space-reserve disabled
+....
++
+Para um banco de dados operacional EHR (ODB), um diário e cargas de trabalho de aplicações, a EHR recomenda apresentar o storage aos servidores como iSCSI LUNs. O NetApp também é compatível com o uso de FCP e NVMe/FC se você tiver versões do AIX e dos sistemas operacionais RHEL capazes, o que aumenta a performance. FCP e NVMe/FC podem coexistir na mesma malha.
+
+. Crie um grupo.
++
+....
+1. igroup create –vserver Healthcare_SVM –igroup ehr –protocol iscsi –ostype linux –initiator iqn.1994-05.com.redhat:8e91e9769336
+....
++
+Igroups são usados para permitir o acesso do servidor a LUNs. Para o host Linux, o servidor IQN pode ser encontrado no arquivo `/etc/iscsi/initiatorname.iscsi`.
+
+. Mapeie o LUN para o grupo.
++
+....
+1. lun mapping create –vserver Healthcare_SVM –path /vol/hc_iscsi_vol/iscsi_lun1 –igroup ehr –lun-id 0
+....
+
+
+
+
+== Adicione storage FlexPod no local ao BlueXP 
+
+Siga as etapas a seguir para adicionar seu storage FlexPod ao ambiente de trabalho usando o NetApp BlueXP .
+
+. No menu de navegação, selecione *Storage* > *Canvas*.
+. Na página Canvas, clique em *Adicionar ambiente de trabalho* e selecione *no local*.
+. Selecione *ONTAP on-premises*. Clique em *seguinte*.
++
+image:fhc-cvoe-image5.jpeg["Esta captura de tela mostra a página Adicionar grupo de trabalho do BlueXP  com ONTAP on-premises selecionado."]
+
+. Na página Detalhes do cluster do ONTAP, insira o endereço IP de gerenciamento do cluster e a senha da conta de usuário do administrador. Em seguida, clique em *Add*.
++
+image:fhc-cvoe-image6.png["Esta captura de tela mostra a página BlueXP  Discover ONTAP Cluster com as entradas de Detalhes do cluster do ONTAP."]
+
+. Na página Detalhes e credenciais, insira um nome e uma descrição para o ambiente de trabalho e clique em *Go*.
++
+BlueXP  descobre o cluster do ONTAP e o adiciona como um ambiente de trabalho no Canvas.
+
++
+image:fhc-cvoe-image7.jpeg["Esta captura de tela mostra a página do BlueXP  Canvas com os ambientes de trabalho recentemente adicionados à direita."]
+
+
+
+Para obter informações detalhadas, consulte a página https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Descubra clusters ONTAP no local"^].
+
+link:fhc-cvoe-san-configuration.html["Próximo: Configuração DE SAN."]

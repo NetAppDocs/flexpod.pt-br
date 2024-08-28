@@ -1,0 +1,69 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_set_volume_tiering_policy.html 
+keywords: volume, tiering, policy, ontap, cli, oncommand, system, manager, cloud, fabricpool 
+summary:  
+---
+= Definir a política de disposição em categorias de volume
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Por padrão, os volumes usam a política de disposição em categorias de volume Nenhuma. Após a criação do volume, a política de disposição em categorias de volume pode ser alterada com o OnCommand System Manager ou a CLI do ONTAP.
+
+Quando usado com o FlexPod, o FabricPool fornece três políticas de disposição em categorias de volumes, Automático, somente Snapshot e nenhum.
+
+* *Auto*
++
+** Todos os blocos inativos do volume são movidos para a camada de nuvem. Supondo que o agregado seja mais de 50% utilizado, leva aproximadamente 31 dias para que os blocos inativos fiquem frios. O período de arrefecimento automático é ajustável entre 2 dias e 63 dias utilizando a `tiering-minimum-cooling-days` definição.
+** Quando os blocos frios em um volume com uma política de disposição em camadas definida como Automático são lidos aleatoriamente, eles ficam ativos e gravados no nível de performance.
+** Quando os blocos inativos de um volume com uma política de disposição em camadas definida como Automático são lidos sequencialmente, eles permanecem inativos e na camada de nuvem. Eles não são gravados no nível de performance.
+
+
+* *Somente snapshot*
++
+** Os blocos de snapshot bloqueado no volume que não é compartilhado com o sistema de arquivos ativo são movidos para a camada de nuvem. Supondo que o agregado seja mais de 50% utilizado, leva aproximadamente 2 dias para que os blocos de snapshot inativos fiquem inativos. O período de resfriamento somente de snapshot pode ser ajustável de 2 a 63 dias usando a `tiering-minimum-cooling-days` configuração.
+** Quando os blocos inativos de um volume com uma política de disposição em categorias definida como somente Snapshot são lidos, eles são postos em funcionamento e gravados no nível de performance.
+
+
+* *Nenhum (padrão)*
++
+** Volumes configurados para usar nenhum como sua política de disposição em categorias não categorizam dados inativos na camada de nuvem.
+** Definir a política de disposição em categorias como Nenhuma impede a nova disposição em categorias.
+** Os dados de volume anteriormente movidos para a camada de nuvem permanecem na camada de nuvem até que fiquem ativos e são movidos automaticamente de volta para a camada de performance.
+
+
+
+
+
+
+== OnCommand System Manager
+
+Para alterar a política de disposição em camadas de um volume usando o OnCommand System Manager, siga estas etapas:
+
+. Inicie o OnCommand System Manager.
+. Selecione um volume.
+. Clique em mais ações e selecione alterar Diretiva de disposição em categorias.
+. Selecione a política de disposição em camadas a aplicar ao volume.
+. Clique em Guardar.
++
+image:cloud-fabricpool_image16.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+== CLI do ONTAP
+
+Para alterar a política de disposição em camadas de um volume usando a CLI do ONTAP, execute o seguinte comando:
+
+....
+volume modify -vserver <svm_name> -volume <volume_name>
+-tiering-policy <auto|snapshot-only|all|none>
+....
+link:cloud-fabricpool_set_volume_tiering_minimum_cooling_days.html["Próximo: Definir os dias mínimos de resfriamento em categorias de volume."]

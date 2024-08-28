@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: fp-def/dc-tech-spec_netapp_ontap.html 
+keywords: ontap, fas, aff, system, datacenter, techincal, specifications, flexpod, software 
+summary: O software NetApp ONTAP é instalado em todos os sistemas NetApp FAS ou AFF. O FlexPod é validado com o software ONTAP, fornecendo uma arquitetura de storage altamente dimensionável que habilita operações ininterruptas, upgrades sem interrupções e uma infraestrutura de dados ágil. 
+---
+= NetApp ONTAP
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+O software NetApp ONTAP é instalado em todos os sistemas NetApp FAS, AFF e AFF All SAN Array (ASA). O FlexPod é validado com o software ONTAP, fornecendo uma arquitetura de storage altamente dimensionável que habilita operações ininterruptas, upgrades sem interrupções e uma infraestrutura de dados ágil.
+
+Para obter mais informações sobre o ONTAP, consulte http://www.netapp.com/us/products/data-management-software/ontap.aspx["Software de gerenciamento de dados ONTAP"^] a página do produto.

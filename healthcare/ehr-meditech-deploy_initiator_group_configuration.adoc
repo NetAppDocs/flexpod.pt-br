@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: healthcare/ehr-meditech-deploy_initiator_group_configuration.html 
+keywords: initiator, group, configuration, fc, data, network, protocol, igroups 
+summary: 'Quando você usa FC como protocolo de rede de dados, crie dois grupos de iniciadores (grupos de iniciadores) em cada controlador de storage. O primeiro grupo contém as WWPNs das placas de interface de host FC nos servidores VMware ESXi que hospedam as VMs de host MEDITECH (igrop para MEDITECH).' 
+---
+= Configuração do grupo de iniciadores
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Quando você usa FC como protocolo de rede de dados, crie dois grupos de iniciadores (grupos de iniciadores) em cada controlador de storage. O primeiro grupo contém as WWPNs das placas de interface de host FC nos servidores VMware ESXi que hospedam as VMs de host MEDITECH (igrop para MEDITECH).
+
+Tem de definir o tipo de sistema operativo MEDITECH igroup de acordo com a configuração do ambiente. Por exemplo:
+
+* Use o tipo de sistema operacional igrop `Windows` para aplicativos instalados em hardware de servidor bare-metal em um ambiente Windows Server.
+* Use o tipo de sistema operacional igrop `VMware` para aplicativos virtualizados usando o hipervisor VMware vSphere.
+
+
+
+NOTE: O tipo de sistema operacional para um grupo pode ser diferente do tipo de sistema operacional para um LUN. Por exemplo, para hosts virtualizados MEDITECH, você deve definir o tipo de sistema operacional igrop como `VMware`. Para os LUNs usados pelos hosts virtualizados MEDITECH, você deve definir o tipo de sistema operacional como `Windows 2008 or later`. Use essa configuração porque o sistema operacional host MEDITECH é o Windows Server Enterprise Edition de 2008 R2 64 bits.
+
+Para determinar o valor correto para o tipo de sistema operacional, consulte as seções "LUN Igroup create" e "LUN create" no https://library.netapp.com/ecm/ecm_download_file/ECMP1366832["Comandos do Clustered Data ONTAP 8.2: Referência de página manual"^].
+
+link:ehr-meditech-deploy_lun_mappings.html["Próximo: Mapeamentos LUN."]

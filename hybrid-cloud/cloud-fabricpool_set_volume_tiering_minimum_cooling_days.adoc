@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: hybrid-cloud/cloud-fabricpool_set_volume_tiering_minimum_cooling_days.html 
+keywords: volume, tiering, minimum, cooling, days, set, auto, ontap, cli, snapshot 
+summary: A configuração disposição em camadas de dias mínimos de resfriamento determina quantos dias devem ser passados antes dos dados inativos em um volume usando a política Auto ou somente Snapshot ser considerada inativa e qualificada para disposição em categorias. 
+---
+= Definir os dias mínimos de resfriamento em disposição de volume em categorias
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A `tiering-minimum-cooling-days` configuração determina quantos dias devem passar antes que os dados inativos em um volume usando a política automática ou somente snapshot sejam considerados inativos e qualificados para disposição em categorias.
+
+
+
+== Auto
+
+A configuração padrão `tiering-minimum-cooling-days` para a política de disposição automática em categorias é de 31 dias.
+
+Como as leituras mantêm as temperaturas de bloco quentes, o aumento desse valor pode reduzir a quantidade de dados qualificados para serem dispostos em camadas e aumentar a quantidade de dados mantidos na categoria de performance.
+
+Se você quiser reduzir esse valor dos 31 dias padrão, lembre-se de que os dados não devem mais estar ativos antes de serem marcados como frios. Por exemplo, se uma carga de trabalho de vários dias for esperada para executar um número significativo de gravações no dia 7, a configuração do volume `tiering-minimum-cooling-days` não deve ser definida inferior a 8 dias.
+
+
+NOTE: O storage de objetos não é transacional, como storage de arquivos ou blocos. Fazer alterações em arquivos armazenados como objetos em volumes com dias de resfriamento mínimos excessivamente agressivos pode resultar na criação de novos objetos, na fragmentação dos objetos existentes e na adição de ineficiências de storage.
+
+
+
+== Apenas Snapshot
+
+A configuração padrão `tiering-minimum-cooling-days` da política de disposição em camadas somente Snapshot é de 2 dias. Um mínimo de 2 dias fornece tempo adicional para processos em segundo plano para fornecer a máxima eficiência de storage e impede que processos diários de proteção de dados precisem ler dados da categoria de nuvem.
+
+
+
+== CLI do ONTAP
+
+Para alterar a configuração de um volume `tiering-minimum-cooling-days` usando a CLI do ONTAP, execute o seguinte comando:
+
+....
+volume modify -vserver <svm_name> -volume <volume_name> -tiering-minimum-cooling-days <2-63>
+....
+É necessário o nível de privilégio avançado.
+
+
+NOTE: Alterar a política de disposição em camadas entre Automático e somente Snapshot (ou vice-versa) redefine o período de inatividade dos blocos no nível de performance. Por exemplo, um volume usando a política de disposição automática de volumes com dados no nível de desempenho que estejam inativos por 20 dias terá a inatividade dos dados do nível de desempenho redefinida para 0 dias se a política de disposição em camadas estiver definida como somente snapshot.

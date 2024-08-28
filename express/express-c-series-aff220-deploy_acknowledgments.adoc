@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: express/express-c-series-aff220-deploy_acknowledgments.html 
+keywords: acknowledgements, authors, support, contribution 
+summary: Os autores gostariam de reconhecer certos indivíduos por seu apoio e contribuição para este desenho. 
+---
+= Agradecimentos
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Os autores gostariam de reconhecer as seguintes pessoas pelo seu apoio e contribuição para este desenho:
+
+* Paul Onofrietti Onotracy
+* Arvind Ramakrishnan
+

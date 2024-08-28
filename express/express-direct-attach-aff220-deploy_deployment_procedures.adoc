@@ -1,0 +1,3336 @@
+---
+sidebar: sidebar 
+permalink: express/express-direct-attach-aff220-deploy_deployment_procedures.html 
+keywords: deployment, procedures, configure, flexpod, express, ip, based, storage, vmware, vsphere, setup, cisco, ucs, vcenter 
+summary: Este documento fornece detalhes para configurar um sistema FlexPod Express totalmente redundante e altamente disponível. 
+---
+= Procedimentos de implantação
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Este documento fornece detalhes para configurar um sistema FlexPod Express totalmente redundante e altamente disponível. Para refletir essa redundância, os componentes que estão sendo configurados em cada etapa são referidos como componente A ou componente B. por exemplo, controlador A e controlador B identificam os dois controladores de storage NetApp que são provisionados neste documento. O switch A e o switch B identificam um par de switches Cisco Nexus. A interconexão de malha A e a interconexão de malha B são as duas interconexões de malha Nexus integradas.
+
+Além disso, este documento descreve etapas para provisionar vários hosts Cisco UCS, que são identificados sequencialmente como servidor A, servidor B e assim por diante.
+
+Para indicar que você deve incluir informações pertinentes ao seu ambiente em uma etapa, `\<<text>>` aparece como parte da estrutura de comando. Veja o exemplo a seguir para o `vlan create` comando:
+
+....
+Controller01>vlan create vif0 <<mgmt_vlan_id>>
+....
+Este documento permite configurar totalmente o ambiente do FlexPod Express. Nesse processo, várias etapas exigem que você insira convenções de nomenclatura específicas do cliente, endereços IP e esquemas de rede local virtual (VLAN). A tabela abaixo descreve as VLANs necessárias para implantação, conforme descrito neste guia. Esta tabela pode ser concluída com base nas variáveis específicas do site e usada para implementar as etapas de configuração do documento.
+
+
+NOTE: Se você usar VLANs separadas de gerenciamento dentro e fora da banda, será necessário criar uma rota de camada 3 entre elas. Para essa validação, uma VLAN de gerenciamento comum foi usada.
+
+|===
+| Nome da VLAN | Finalidade do VLAN | ID usada na validação deste documento 
+
+
+| VLAN de gerenciamento | VLAN para interfaces de gerenciamento | 18 
+
+
+| VLAN nativo | VLAN à qual os quadros não marcados são atribuídos | 2 
+
+
+| VLAN NFS | VLAN para tráfego NFS | 104 
+
+
+| VLAN do VMware vMotion | VLAN designada para o movimento de máquinas virtuais (VMs) de um host físico para outro | 103 
+
+
+| VLAN de tráfego de VM | VLAN para tráfego de aplicação de VM | 102 
+
+
+| ISCSI-A-VLAN | VLAN para tráfego iSCSI na malha A | 124 
+
+
+| ISCSI-B-VLAN | VLAN para tráfego iSCSI na malha B | 125 
+|===
+Os números de VLAN são necessários durante toda a configuração do FlexPod Express. As VLANs são referidas como `\<<var_xxxx_vlan>>`, onde `xxxx` é a finalidade da VLAN (como iSCSI-A).
+
+A tabela a seguir lista as VMs VMware criadas.
+
+|===
+| Descrição VM | Nome do host 
+
+
+| VMware vCenter Server | Seahawks-vcsa.cie.NetApp.com 
+|===
+
+
+== Procedimento de implantação do Cisco Nexus 31108PCV
+
+Esta seção detalha a configuração do switch Cisco Nexus 31308PCV usada em um ambiente FlexPod Express.
+
+
+
+=== Configuração inicial do switch Cisco Nexus 31108PCV
+
+Este procedimento descreve como configurar os switches Cisco Nexus para uso em um ambiente FlexPod Express básico.
+
+
+NOTE: Este procedimento pressupõe que você está usando um Cisco Nexus 31108PCV executando o software NX-os versão 7,0(3)I6(1).
+
+. Após a inicialização inicial e a conexão à porta do console do switch, a configuração do Cisco NX-os é iniciada automaticamente. Esta configuração inicial aborda as configurações básicas, como o nome do switch, a configuração da interface mgmt0 e a configuração do Secure Shell (SSH).
+. A rede de gerenciamento FlexPod Express pode ser configurada de várias maneiras. As interfaces mgmt0 nos switches 31108PCV podem ser conetadas a uma rede de gerenciamento existente, ou as interfaces mgmt0 dos switches 31108PCV podem ser conetadas em uma configuração back-to-back. No entanto, este link não pode ser usado para acesso de gerenciamento externo, como tráfego SSH.
++
+Neste guia de implantação, os switches FlexPod Express Cisco Nexus 31108PCV são conetados a uma rede de gerenciamento existente.
+
+. Para configurar os switches Cisco Nexus 31108PCV, ligue o switch e siga as instruções na tela, conforme ilustrado aqui para a configuração inicial de ambos os switches, substituindo os valores apropriados para as informações específicas do switch.
++
+....
+This setup utility will guide you through the basic configuration of the system. Setup configures only enough connectivity for management of the system.
+....
++
+....
+*Note: setup is mainly used for configuring the system initially, when no configuration is present. So setup always assumes system defaults and not the current system configuration values.
+Press Enter at anytime to skip a dialog. Use ctrl-c at anytime to skip the remaining dialogs.
+Would you like to enter the basic configuration dialog (yes/no): y
+Do you want to enforce secure password standard (yes/no) [y]: y
+Create another login account (yes/no) [n]: n
+Configure read-only SNMP community string (yes/no) [n]: n
+Configure read-write SNMP community string (yes/no) [n]: n
+Enter the switch name : 31108PCV-A
+Continue with Out-of-band (mgmt0) management configuration? (yes/no) [y]: y
+Mgmt0 IPv4 address : <<var_switch_mgmt_ip>>
+Mgmt0 IPv4 netmask : <<var_switch_mgmt_netmask>>
+Configure the default gateway? (yes/no) [y]: y
+IPv4 address of the default gateway : <<var_switch_mgmt_gateway>>
+Configure advanced IP options? (yes/no) [n]: n
+Enable the telnet service? (yes/no) [n]: n
+Enable the ssh service? (yes/no) [y]: y
+Type of ssh key you would like to generate (dsa/rsa) [rsa]: rsa
+Number of rsa key bits <1024-2048> [1024]: <enter>
+Configure the ntp server? (yes/no) [n]: y
+NTP server IPv4 address : <<var_ntp_ip>>
+Configure default interface layer (L3/L2) [L2]: <enter>
+Configure default switchport interface state (shut/noshut) [noshut]: <enter>
+Configure CoPP system profile (strict/moderate/lenient/dense) [strict]: <enter>
+....
+. É apresentado um resumo da sua configuração e é-lhe perguntado se pretende editar a configuração. Se a configuração estiver correta, introduza `n`.
++
+....
+Would you like to edit the configuration? (yes/no) [n]: no
+....
+. Então, você será perguntado se deseja usar essa configuração e salvá-la. Em caso afirmativo, introduza `y`.
++
+....
+Use this configuration and save it? (yes/no) [y]: Enter
+....
+. Repita os passos 1 a 5 para o switch Cisco B.
+
+
+
+
+=== Ativar funcionalidades avançadas
+
+Certos recursos avançados devem ser ativados no Cisco NX-os para fornecer opções de configuração adicionais.
+
+. Para habilitar os recursos apropriados no switch A e no switch B do Cisco Nexus, entre no modo de configuração usando o comando `(config t)` e execute os seguintes comandos:
++
+....
+feature interface-vlan
+feature lacp
+feature vpc
+....
++
+
+NOTE: O hash padrão de balanceamento de carga do canal de porta usa os endereços IP de origem e destino para determinar o algoritmo de balanceamento de carga entre as interfaces no canal de porta. Você pode obter uma melhor distribuição entre os membros do canal de porta fornecendo mais entradas para o algoritmo hash além dos endereços IP de origem e destino. Pela mesma razão, o NetApp recomenda fortemente adicionar as portas TCP de origem e destino ao algoritmo de hash.
+
+. No modo de configuração `(config t)` , execute os seguintes comandos para definir a configuração de balanceamento de carga do canal de porta global no switch A e no switch B do Cisco Nexus:
++
+....
+port-channel load-balance src-dst ip-l4port
+....
+
+
+
+
+=== Execute a configuração global de spanning-tree
+
+A plataforma Cisco Nexus usa um novo recurso de proteção chamado bridge Assurance. O Bridge Assurance ajuda a proteger contra uma ligação unidirecional ou outra falha de software com um dispositivo que continua a encaminhar o tráfego de dados quando não está mais a executar o algoritmo spanning-tree. As portas podem ser colocadas em um dos vários estados, incluindo rede ou borda, dependendo da plataforma.
+
+A NetApp recomenda a configuração da garantia de ponte para que todas as portas sejam consideradas como portas de rede por padrão. Essa configuração força o administrador de rede a revisar a configuração de cada porta. Ele também revela os erros de configuração mais comuns, como portas de borda não identificadas ou um vizinho que não tenha o recurso de garantia de ponte ativado. Além disso, é mais seguro ter o bloco de árvore de expansão muitas portas em vez de muito poucas, o que permite que o estado de porta padrão aumente a estabilidade geral da rede.
+
+Preste muita atenção ao estado spanning-tree ao adicionar servidores, armazenamento e switches uplink, especialmente se eles não suportarem a garantia de bridge. Nesses casos, talvez seja necessário alterar o tipo de porta para tornar as portas ativas.
+
+A proteção da Unidade de dados do Protocolo de Ponte (BPDU) é ativada por padrão nas portas de borda como outra camada de proteção. Para evitar loops na rede, esse recurso desliga a porta se BPDUs de outro switch forem vistos nessa interface.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar as opções de spanning-tree padrão, incluindo o tipo de porta padrão e a proteção BPDU, no switch A do Cisco Nexus e no switch B:
+
+....
+spanning-tree port type network default
+spanning-tree port type edge bpduguard default
+....
+
+
+=== Definir VLANs
+
+Antes que portas individuais com VLANs diferentes sejam configuradas, as VLANs de camada 2 devem ser definidas no switch. Também é uma boa prática nomear as VLANs para facilitar a solução de problemas no futuro.
+
+No modo de configuração (`config t`), execute os seguintes comandos para definir e descrever as VLANs de camada 2 no switch A e no switch B do Cisco Nexus:
+
+....
+vlan <<nfs_vlan_id>>
+  name NFS-VLAN
+vlan <<iSCSI_A_vlan_id>>
+  name iSCSI-A-VLAN
+vlan <<iSCSI_B_vlan_id>>
+  name iSCSI-B-VLAN
+vlan <<vmotion_vlan_id>>
+  name vMotion-VLAN
+vlan <<vmtraffic_vlan_id>>
+  name VM-Traffic-VLAN
+vlan <<mgmt_vlan_id>>
+  name MGMT-VLAN
+vlan <<native_vlan_id>>
+  name NATIVE-VLAN
+exit
+....
+
+
+=== Configurar descrições de portas de acesso e gerenciamento
+
+Como acontece com a atribuição de nomes às VLANs de camada 2, as descrições de configuração para todas as interfaces podem ajudar no provisionamento e na solução de problemas.
+
+A partir do modo de configuração (`config t`) em cada um dos switches, insira as seguintes descrições de porta para a configuração grande do FlexPod Express:
+
+
+
+==== Switch Cisco Nexus A
+
+....
+int eth1/1
+  description AFF A220-A e0M
+int eth1/2
+  description Cisco UCS FI-A mgmt0
+int eth1/3
+  description Cisco UCS FI-A eth1/1
+int eth1/4
+  description Cisco UCS FI-B eth1/1
+int eth1/13
+  description vPC peer-link 31108PVC-B 1/13
+int eth1/14
+  description vPC peer-link 31108PVC-B 1/14
+....
+
+
+==== Interrutor B do Cisco Nexus
+
+....
+int eth1/1
+  description AFF A220-B e0M
+int eth1/2
+  description Cisco UCS FI-B mgmt0
+int eth1/3
+  description Cisco UCS FI-A eth1/2
+int eth1/4
+  description Cisco UCS FI-B eth1/2
+int eth1/13
+  description vPC peer-link 31108PVC-B 1/13
+int eth1/14
+  description vPC peer-link 31108PVC-B 1/14
+....
+
+
+=== Configurar interfaces de gerenciamento de storage e servidor
+
+As interfaces de gerenciamento para o servidor e o storage normalmente usam apenas uma única VLAN. Portanto, configure as portas da interface de gerenciamento como portas de acesso. Defina a VLAN de gerenciamento para cada switch e altere o tipo de porta spanning-tree para Edge.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar as configurações de porta para as interfaces de gerenciamento dos servidores e do storage:
+
+
+
+==== Switch Cisco Nexus A
+
+....
+int eth1/1-2
+  switchport mode access
+  switchport access vlan <<mgmt_vlan>>
+  spanning-tree port type edge
+  speed 1000
+exit
+....
+
+
+==== Interrutor B do Cisco Nexus
+
+....
+int eth1/1-2
+  switchport mode access
+  switchport access vlan <<mgmt_vlan>>
+  spanning-tree port type edge
+  speed 1000
+exit
+....
+
+
+=== Adicionar interface de distribuição NTP
+
+
+
+==== Switch Cisco Nexus A
+
+No modo de configuração global, execute os seguintes comandos.
+
+....
+interface Vlan<ib-mgmt-vlan-id>
+ip address <switch-a-ntp-ip>/<ib-mgmt-vlan-netmask-length>
+no shutdown
+exitntp peer <switch-b-ntp-ip> use-vrf default
+....
+
+
+==== Interrutor B do Cisco Nexus
+
+No modo de configuração global, execute os seguintes comandos.
+
+....
+interface Vlan<ib-mgmt-vlan-id>
+ip address <switch- b-ntp-ip>/<ib-mgmt-vlan-netmask-length>
+no shutdown
+exitntp peer <switch-a-ntp-ip> use-vrf default
+....
+
+
+=== Execute a configuração global do canal de porta virtual
+
+Um canal de porta virtual (VPC) permite que os links fisicamente conetados a dois switches Cisco Nexus diferentes apareçam como um canal de porta única para um terceiro dispositivo. O terceiro dispositivo pode ser um switch, servidor ou qualquer outro dispositivo de rede. Uma VPC pode fornecer multipathing de camada 2, o que permite criar redundância aumentando a largura de banda, habilitando vários caminhos paralelos entre nós e o tráfego de balanceamento de carga onde existem caminhos alternativos.
+
+Uma VPC oferece os seguintes benefícios:
+
+* Ativar um único dispositivo para usar um canal de porta em dois dispositivos upstream
+* Eliminação de portas bloqueadas de protocolo spanning-tree
+* Fornecendo uma topologia sem loop
+* Usando toda a largura de banda de uplink disponível
+* Fornecendo convergência rápida se o link ou um dispositivo falhar
+* Fornecer resiliência no nível de link
+* Ajudando a fornecer alta disponibilidade
+
+
+O recurso VPC requer alguma configuração inicial entre os dois switches Cisco Nexus para funcionar corretamente. Se você usar a configuração back-to-back mgmt0, use os endereços definidos nas interfaces e verifique se eles podem se comunicar usando o comando ping `\<<switch_A/B_mgmt0_ip_addr>>vrf` Management.
+
+No modo de configuração (`config t`), execute os seguintes comandos para configurar a configuração global da VPC para ambos os switches:
+
+
+
+==== Switch Cisco Nexus A
+
+....
+vpc domain 1
+ role priority 10
+peer-keepalive destination <<switch_B_mgmt0_ip_addr>> source <<switch_A_mgmt0_ip_addr>> vrf management
+  peer-gateway
+  auto-recovery
+  ip arp synchronize
+  int eth1/13-14
+  channel-group 10 mode active
+int Po10description vPC peer-link
+switchport
+switchport mode trunkswitchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<nfs_vlan_id>>,<<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>, <<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>> spanning-tree port type network
+vpc peer-link
+no shut
+exit
+int Po13
+description vPC ucs-FI-A
+switchport mode trunk
+switchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>> spanning-tree port type network
+mtu 9216
+vpc 13
+no shut
+exit
+int eth1/3
+  channel-group 13 mode active
+int Po14
+description vPC ucs-FI-B
+switchport mode trunk
+switchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>> spanning-tree port type network
+mtu 9216
+vpc 14
+no shut
+exit
+int eth1/4
+  channel-group 14 mode active
+copy run start
+....
+
+
+==== Interrutor B do Cisco Nexus
+
+....
+vpc domain 1
+peer-switch
+role priority 20
+peer-keepalive destination <<switch_A_mgmt0_ip_addr>> source <<switch_B_mgmt0_ip_addr>> vrf management
+  peer-gateway
+  auto-recovery
+  ip arp synchronize
+  int eth1/13-14
+  channel-group 10 mode active
+int Po10
+description vPC peer-link
+switchport
+switchport mode trunk
+switchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<nfs_vlan_id>>,<<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>>, <<iSCSI_A_vlan_id>>, <<iSCSI_B_vlan_id>> spanning-tree port type network
+vpc peer-link
+no shut
+exit
+int Po13
+description vPC ucs-FI-A
+switchport mode trunk
+switchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>> spanning-tree port type network
+mtu 9216
+vpc 13
+no shut
+exit
+int eth1/3
+  channel-group 13 mode active
+int Po14
+description vPC ucs-FI-B
+switchport mode trunk
+switchport trunk native vlan <<native_vlan_id>>
+switchport trunk allowed vlan <<vmotion_vlan_id>>, <<vmtraffic_vlan_id>>, <<mgmt_vlan>> spanning-tree port type network
+mtu 9216
+vpc 14
+no shut
+exit
+int eth1/4
+  channel-group 14 mode active
+copy run start
+....
+
+NOTE: Na validação desta solução, foi utilizada uma unidade máxima de transmissão (MTU) de 9000. No entanto, com base nos requisitos do aplicativo, você pode configurar um valor apropriado de MTU. É importante definir o mesmo valor MTU na solução FlexPod. Configurações incorretas de MTU entre componentes resultam em pacotes sendo descartados.
+
+
+
+=== Uplink em infra-estrutura de rede existente
+
+Dependendo da infraestrutura de rede disponível, vários métodos e recursos podem ser usados para uplink o ambiente FlexPod. Se um ambiente Cisco Nexus existente estiver presente, a NetApp recomenda o uso de VPCs para uplink os switches Cisco Nexus 31108PVC incluídos no ambiente FlexPod na infraestrutura. Os uplinks podem ser 10GbE uplinks para uma solução de infraestrutura 10GbE ou 1GbE para uma solução de infraestrutura 1GbE, se necessário. Os procedimentos descritos anteriormente podem ser usados para criar uma VPC uplink no ambiente existente. Certifique-se de executar o copy run start para salvar a configuração em cada switch depois que a configuração for concluída.
+
+
+
+== Procedimento de implantação de storage do NetApp (parte 1)
+
+Esta seção descreve o procedimento de implantação de storage do NetApp AFF.
+
+
+
+=== Instalação do controlador de armazenamento NetApp série AFF2xx
+
+
+
+==== NetApp Hardware Universe
+
+O https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^] aplicativo (HWU) fornece componentes de hardware e software suportados para qualquer versão específica do ONTAP. Ele fornece informações de configuração para todos os dispositivos de storage NetApp atualmente compatíveis com o software ONTAP. Ele também fornece uma tabela de compatibilidades de componentes.
+
+Confirme se os componentes de hardware e software que você gostaria de usar são suportados com a versão do ONTAP que você pretende instalar:
+
+. Acesse o http://hwu.netapp.com/Home/Index["HWU"^] aplicativo para exibir os guias de configuração do sistema. Selecione a guia comparar sistemas de armazenamento para exibir a compatibilidade entre diferentes versões do software ONTAP e os dispositivos de armazenamento NetApp com as especificações desejadas.
+. Como alternativa, para comparar componentes por dispositivo de armazenamento, clique em comparar sistemas de armazenamento.
+
+
+|===
+| Pré-requisitos da Série Controller AFF2XX 
+
+
+| Para Planejar a localização física dos sistemas de armazenamento, consulte as seções a seguir: Requisitos elétricos cabos de alimentação suportados portas e cabos integrados 
+|===
+
+
+==== Controladores de storage
+
+Siga os procedimentos de instalação física dos controladores no https://library-clnt.dmz.netapp.com/documentation/docweb/index.html?productID=62331&language=en-US["Documentação do AFF A220"^].
+
+
+
+=== NetApp ONTAP 9,5
+
+
+
+==== Folha de cálculo de configuração
+
+Antes de executar o script de configuração, conclua a Planilha de configuração no manual do produto. A folha de cálculo de configuração está disponível na http://docs.netapp.com/ontap-9/topic/com.netapp.doc.dot-cm-ssg/home.html["Guia de configuração do software ONTAP 9.5"^] (disponível na http://docs.netapp.com/ontap-9/index.jsp["Centro de Documentação do ONTAP 9"^] ). A tabela abaixo ilustra as informações de instalação e configuração do ONTAP 9.5.
+
+
+NOTE: Este sistema é configurado em uma configuração de cluster sem switch de dois nós.
+
+|===
+| Detalhe do cluster | Valor Detalhe do cluster 
+
+
+| Nó de cluster Um endereço IP | "Cliente <var_nodeA_mgmt_ip>> 
+
+
+| Cluster node Uma máscara de rede | "Cliente <var_nodeA_mgmt_mask>> 
+
+
+| Nó de cluster A gateway | "Cliente <var_nodeA_mgmt_gateway>> 
+
+
+| Nome do nó do cluster | "Cliente <var_nodeA>> 
+
+
+| Endereço IP do nó B do cluster | "Cliente <var_nodeB_mgmt_ip>> 
+
+
+| Nó de cluster B netmask | "Cliente <var_nodeB_mgmt_mask>> 
+
+
+| Gateway do nó B do cluster | "Cliente <var_nodeB_mgmt_gateway>> 
+
+
+| Nome B do nó do cluster | "Cliente <var_nodeB>> 
+
+
+| URL do ONTAP 9.5 | "cliente <var_url_boot_software>> 
+
+
+| Nome do cluster | "cliente <var_clustername>> 
+
+
+| Endereço IP de gerenciamento de cluster | "cliente <var_clustermgmt_ip>> 
+
+
+| Gateway do cluster B. | "cliente <var_clustermgmt_gateway>> 
+
+
+| Cluster B netmask | "cliente <var_clustermgmt_mask>> 
+
+
+| Nome de domínio | "cliente <var_domain_name>> 
+
+
+| IP do servidor DNS (pode introduzir mais de um) | "cliente <var_dns_server_ip>> 
+
+
+| SERVIDOR NTP UM IP | o switch-a-ntp-ip >> 
+
+
+| IP DO SERVIDOR NTP B. | o switch-b-ntp-ip >> 
+|===
+
+
+==== Configure o nó A
+
+Para configurar o nó A, execute as seguintes etapas:
+
+. Conete-se à porta do console do sistema de armazenamento. Você deve ver um prompt Loader-A. No entanto, se o sistema de armazenamento estiver em um loop de reinicialização, pressione Ctrl- C para sair do loop autoboot quando você vir esta mensagem:
++
+....
+Starting AUTOBOOT press Ctrl-C to abort...
+....
+. Permita que o sistema inicialize.
++
+....
+autoboot
+....
+. Pressione Ctrl- C para entrar no menu Boot (Inicialização).
++
+Se ONTAP 9. 5 não é a versão do software que está sendo inicializada, continue com as etapas a seguir para instalar o novo software. Se ONTAP 9. 5 é a versão que está sendo inicializada, selecione a opção 8 e y para reinicializar o nó. Em seguida, continue com o passo 14.
+
+. Para instalar um novo software, selecione a opção `7`.
+. Introduza `y` para efetuar uma atualização.
+.  `e0M`Selecione para a porta de rede que pretende utilizar para a transferência.
+. Introduza `y` para reiniciar agora.
+. Introduza o endereço IP, a máscara de rede e o gateway predefinido para e0M nos respetivos locais.
++
+....
+<<var_nodeA_mgmt_ip>> <<var_nodeA_mgmt_mask>> <<var_nodeA_mgmt_gateway>>
+....
+. Introduza a URL onde o software pode ser encontrado.
++
+
+NOTE: Este servidor Web deve ser pingável.
+
+. Pressione Enter para o nome de usuário, indicando nenhum nome de usuário.
+. Introduza `y` para definir o software recém-instalado como o padrão a ser usado para reinicializações subsequentes.
+. Digite `y` para reinicializar o nó.
++
+Ao instalar um novo software, o sistema pode executar atualizações de firmware para o BIOS e placas adaptadoras, causando reinicializações e possíveis paradas no prompt do Loader-A. Se estas acões ocorrerem, o sistema poderá desviar-se deste procedimento.
+
+. Pressione Ctrl- C para entrar no menu Boot (Inicialização).
+. Selecione a opção `4` para Configuração limpa e Inicializar todos os discos.
+. Digite `y` zero discos, redefina a configuração e instale um novo sistema de arquivos.
+. Introduza `y` para apagar todos os dados nos discos.
++
+A inicialização e a criação do agregado raiz podem levar 90 minutos ou mais para ser concluída, dependendo do número e do tipo de discos anexados. Quando a inicialização estiver concluída, o sistema de armazenamento reinicializa. Note que os SSDs demoram consideravelmente menos tempo para inicializar. Você pode continuar com a configuração do nó B enquanto os discos do nó A estão zerando.
+
+. Enquanto o nó A estiver inicializando, comece a configurar o nó B.
+
+
+
+
+==== Configure o nó B
+
+Para configurar o nó B, execute as seguintes etapas:
+
+. Conete-se à porta do console do sistema de armazenamento. Você deve ver um prompt Loader-A. No entanto, se o sistema de armazenamento estiver em um loop de reinicialização, pressione Ctrl-C para sair do loop autoboot quando você vir esta mensagem:
++
+....
+Starting AUTOBOOT press Ctrl-C to abort...
+....
+. Pressione Ctrl-C para entrar no menu Boot (Inicialização).
++
+....
+autoboot
+....
+. Pressione Ctrl-C quando solicitado.
++
+Se ONTAP 9. 5 não é a versão do software que está sendo inicializada, continue com as etapas a seguir para instalar o novo software. Se o ONTAP 9.4 for a versão que está sendo inicializada, selecione a opção 8 e y para reinicializar o nó. Em seguida, continue com o passo 14.
+
+. Para instalar um novo software, selecione a opção 7.
+. Introduza `y` para efetuar uma atualização.
+.  `e0M`Selecione para a porta de rede que pretende utilizar para a transferência.
+. Introduza `y` para reiniciar agora.
+. Introduza o endereço IP, a máscara de rede e o gateway predefinido para e0M nos respetivos locais.
++
+....
+<<var_nodeB_mgmt_ip>> <<var_nodeB_mgmt_ip>><<var_nodeB_mgmt_gateway>>
+....
+. Introduza a URL onde o software pode ser encontrado.
++
+
+NOTE: Este servidor Web deve ser pingável.
+
++
+....
+<<var_url_boot_software>>
+....
+. Pressione Enter para o nome de usuário, indicando nenhum nome de usuário
+. Introduza `y` para definir o software recém-instalado como o padrão a ser usado para reinicializações subsequentes.
+. Digite `y` para reinicializar o nó.
++
+Ao instalar um novo software, o sistema pode executar atualizações de firmware para o BIOS e placas adaptadoras, causando reinicializações e possíveis paradas no prompt do Loader-A. Se estas acões ocorrerem, o sistema poderá desviar-se deste procedimento.
+
+. Pressione Ctrl-C para entrar no menu Boot (Inicialização).
+. Selecione a opção 4 para Configuração limpa e Inicializar todos os discos.
+. Digite `y` zero discos, redefina a configuração e instale um novo sistema de arquivos.
+. Introduza `y` para apagar todos os dados nos discos.
++
+A inicialização e a criação do agregado raiz podem levar 90 minutos ou mais para ser concluída, dependendo do número e do tipo de discos anexados. Quando a inicialização estiver concluída, o sistema de armazenamento reinicializa. Note que os SSDs demoram consideravelmente menos tempo para inicializar.
+
+
+
+
+
+=== Continuação do nó Uma configuração e configuração de cluster
+
+A partir de um programa de porta de console conetado à porta de console do controlador de storage A (nó A), execute o script de configuração do nó. Este script aparece quando o ONTAP 9.5 é inicializado no nó pela primeira vez.
+
+O procedimento de configuração do nó e do cluster mudou ligeiramente no ONTAP 9.5. O assistente de configuração do cluster agora é usado para configurar o primeiro nó em um cluster e o System Manager é usado para configurar o cluster.
+
+. Siga as instruções para configurar o nó A..
++
+....
+Welcome to the cluster setup wizard.
+You can enter the following commands at any time:
+  "help" or "?" - if you want to have a question clarified,
+  "back" - if you want to change previously answered questions, and
+  "exit" or "quit" - if you want to quit the cluster setup wizard.
+     Any changes you made before quitting will be saved.
+You can return to cluster setup at any time by typing "cluster setup".
+To accept a default or omit a question, do not enter a value.
+This system will send event messages and periodic reports to NetApp Technical Support. To disable this feature, enter
+autosupport modify -support disable
+within 24 hours.
+Enabling AutoSupport can significantly speed problem determination and resolution should a problem occur on your system.
+For further information on AutoSupport, see: http://support.netapp.com/autosupport/
+Type yes to confirm and continue {yes}: yes
+Enter the node management interface port [e0M]:
+Enter the node management interface IP address: <<var_nodeA_mgmt_ip>>
+Enter the node management interface netmask: <<var_nodeA_mgmt_mask>>
+Enter the node management interface default gateway: <<var_nodeA_mgmt_gateway>>
+A node management interface on port e0M with IP address <<var_nodeA_mgmt_ip>> has been created.
+Use your web browser to complete cluster setup by accessing
+https://<<var_nodeA_mgmt_ip>>
+Otherwise, press Enter to complete cluster setup using the command line interface:
+....
+. Navegue até o endereço IP da interface de gerenciamento do nó.
++
+
+NOTE: A configuração do cluster também pode ser realizada usando a CLI. Este documento descreve a configuração do cluster usando a configuração guiada pelo Gerenciador de sistema do NetApp.
+
+. Clique em Configuração Guiada para configurar o cluster.
+. Introduza `\<<var_clustername>>` o nome do cluster e `\<<var_nodeA>>` e `\<<var_nodeB>>` para cada um dos nós que está a configurar. Introduza a palavra-passe que pretende utilizar para o sistema de armazenamento. Selecione cluster sem switch para o tipo de cluster. Introduza a licença base do cluster.
+. Você também pode inserir licenças de recursos para Cluster, NFS e iSCSI.
+. Você verá uma mensagem de status informando que o cluster está sendo criado. Esta mensagem de estado passa por vários Estados. Este processo demora vários minutos.
+. Configure a rede.
++
+.. Desmarque a opção IP Address Range (intervalo de endereços IP).
+.. Introduza `\<<var_clustermgmt_ip>>` no campo Endereço IP de gestão de clusters, `\<<var_clustermgmt_mask>>` no campo Máscara de rede e `\<<var_clustermgmt_gateway>>` no campo Gateway. Utilize o seletor ... no campo porta para selecionar e0M do nó A.
+.. O IP de gerenciamento do Nó para o nó A já está preenchido. Introduza `\<<var_nodeA_mgmt_ip>>` para o nó B.
+.. Introduza `\<<var_domain_name>>` no campo DNS Domain Name (Nome de domínio DNS). Introduza `\<<var_dns_server_ip>>` no campo Endereço IP do servidor DNS.
++
+Você pode inserir vários endereços IP do servidor DNS.
+
+.. Introduza `\<<switch-a-ntp-ip>>` no campo servidor NTP principal.
++
+Você também pode inserir um servidor NTP alternativo como `\<<switch- b-ntp-ip>>`.
+
+
+
+. Configure as informações de suporte.
++
+.. Se o seu ambiente exigir um proxy para acessar o AutoSupport, insira o URL no URL do proxy.
+.. Insira o host de e-mail SMTP e o endereço de e-mail para notificações de eventos.
++
+Você deve, no mínimo, configurar o método de notificação de evento antes de prosseguir. Você pode selecionar qualquer um dos métodos.
+
+
+
+. Quando for indicado que a configuração do cluster foi concluída, clique em Gerenciar seu cluster para configurar o armazenamento.
+
+
+
+
+=== Continuação da configuração do cluster de armazenamento
+
+Após a configuração dos nós de storage e do cluster base, você pode continuar com a configuração do cluster de storage.
+
+
+
+==== Zero todos os discos sobressalentes
+
+Para zerar todos os discos sobressalentes no cluster, execute o seguinte comando:
+
+....
+disk zerospares
+....
+
+
+==== Defina a personalidade de UTA2 portas a bordo
+
+. Verifique o modo atual e o tipo atual das portas executando o `ucadmin show` comando.
++
+....
+AFFA220-Clus::> ucadmin show
+                       Current  Current    Pending  Pending    Admin
+Node          Adapter  Mode     Type       Mode     Type       Status
+------------  -------  -------  ---------  -------  ---------  -----------
+AFFA220-Clus-01
+              0c       cna      target     -        -          offline
+AFFA220-Clus-01
+              0d       cna      target     -        -          offline
+AFFA220-Clus-01
+              0e       cna      target     -        -          offline
+AFFA220-Clus-01
+              0f       cna      target     -        -          offline
+AFFA220-Clus-02
+              0c       cna      target     -        -          offline
+AFFA220-Clus-02
+              0d       cna      target     -        -          offline
+AFFA220-Clus-02
+              0e       cna      target     -        -          offline
+AFFA220-Clus-02
+              0f       cna      target     -        -          offline
+8 entries were displayed.
+....
+. Verifique se o modo atual das portas que estão em uso é `cna` e se o tipo atual está definido como `target`. Caso contrário, altere a personalidade da porta executando o seguinte comando:
++
+....
+ucadmin modify -node <home node of the port> -adapter <port name> -mode cna -type target
+....
++
+As portas devem estar offline para executar o comando anterior. Para colocar uma porta off-line, execute o seguinte comando:
+
++
+....
+network fcp adapter modify -node <home node of the port> -adapter <port name> -state down
+....
++
+
+NOTE: Se você alterou a personalidade da porta, será necessário reinicializar cada nó para que a alteração tenha efeito.
+
+
+
+
+
+==== Ativar o protocolo de deteção de Cisco
+
+Para ativar o Protocolo de detecção de Cisco (CDP) nos controladores de armazenamento NetApp, execute o seguinte comando:
+
+....
+node run -node * options cdpd.enable on
+....
+
+
+==== Ative o Link-layer Discovery Protocol em todas as portas Ethernet
+
+Ative a troca de informações de vizinhos do protocolo de descoberta de camada de link (LLDP) entre os switches de armazenamento e rede executando o seguinte comando. Este comando permite o LLDP em todas as portas de todos os nós no cluster.
+
+....
+node run * options lldp.enable on
+....
+
+
+==== Renomeie interfaces lógicas de gerenciamento
+
+Para renomear as interfaces lógicas de gerenciamento (LIFs), execute as seguintes etapas:
+
+. Mostrar os nomes de LIF de gerenciamento atuais.
++
+....
+network interface show –vserver <<clustername>>
+....
+. Renomeie o LIF de gerenciamento de cluster.
++
+....
+network interface rename –vserver <<clustername>> –lif cluster_setup_cluster_mgmt_lif_1 –newname cluster_mgmt
+....
+. Renomeie o nó B Management LIF.
++
+....
+network interface rename -vserver <<clustername>> -lif cluster_setup_node_mgmt_lif_AFF A220_A_1 - newname AFF A220-01_mgmt1
+....
+
+
+
+
+==== Defina a reversão automática no gerenciamento de cluster
+
+Defina `auto-revert` o parâmetro na interface de gerenciamento de cluster.
+
+....
+network interface modify –vserver <<clustername>> -lif cluster_mgmt –auto-revert true
+....
+
+
+==== Configure a interface de rede do processador de serviço
+
+Para atribuir um endereço IPv4 estático ao processador de serviço em cada nó, execute os seguintes comandos:
+
+....
+system service-processor network modify –node <<var_nodeA>> -address-family IPv4 –enable true – dhcp none –ip-address <<var_nodeA_sp_ip>> -netmask <<var_nodeA_sp_mask>> -gateway <<var_nodeA_sp_gateway>>
+system service-processor network modify –node <<var_nodeB>> -address-family IPv4 –enable true – dhcp none –ip-address <<var_nodeB_sp_ip>> -netmask <<var_nodeB_sp_mask>> -gateway <<var_nodeB_sp_gateway>>
+....
+
+NOTE: Os endereços IP do processador de serviço devem estar na mesma sub-rede que os endereços IP de gerenciamento de nós.
+
+
+
+==== Ativar failover de storage no ONTAP
+
+Para confirmar se o failover de armazenamento está ativado, execute os seguintes comandos em um par de failover:
+
+. Verifique o status do failover de storage.
++
+....
+storage failover show
+....
++
+Ambos `\<<var_nodeA>>` e `\<<var_nodeB>>` devem ser capazes de realizar uma aquisição. Vá para a etapa 3 se os nós puderem executar um takeover.
+
+. Habilite o failover em um dos dois nós.
++
+....
+storage failover modify -node <<var_nodeA>> -enabled true
+....
+. Verifique o status de HA do cluster de dois nós.
++
+
+NOTE: Esta etapa não se aplica a clusters com mais de dois nós.
+
++
+....
+cluster ha show
+....
+. Vá para a etapa 6 se a alta disponibilidade estiver configurada. Se a alta disponibilidade estiver configurada, você verá a seguinte mensagem ao emitir o comando:
++
+....
+High Availability Configured: true
+....
+. Ative o modo HA apenas para o cluster de dois nós.
++
+Não execute este comando para clusters com mais de dois nós porque causa problemas com failover.
+
++
+....
+cluster ha modify -configured true
+Do you want to continue? {y|n}: y
+....
+. Verifique se a assistência ao hardware está corretamente configurada e, se necessário, modifique o endereço IP do parceiro.
++
+....
+storage failover hwassist show
+....
++
+A mensagem `Keep Alive Status : Error: did not receive hwassist keep alive alerts from partner` indica que a assistência ao hardware não está configurada. Execute os seguintes comandos para configurar a assistência de hardware.
+
++
+....
+storage failover modify –hwassist-partner-ip <<var_nodeB_mgmt_ip>> -node <<var_nodeA>>
+storage failover modify –hwassist-partner-ip <<var_nodeA_mgmt_ip>> -node <<var_nodeB>>
+....
+
+
+
+
+==== Crie um domínio de transmissão MTU de quadro jumbo no ONTAP
+
+Para criar um domínio de transmissão de dados com uma MTU de 9000, execute os seguintes comandos:
+
+....
+broadcast-domain create -broadcast-domain Infra_NFS -mtu 9000
+broadcast-domain create -broadcast-domain Infra_iSCSI-A -mtu 9000
+broadcast-domain create -broadcast-domain Infra_iSCSI-B -mtu 9000
+....
+
+
+==== Remover portas de dados do domínio de broadcast padrão
+
+As portas de dados 10GbE são usadas para tráfego iSCSI/NFS e essas portas devem ser removidas do domínio padrão. As portas e0e e e0f não são usadas e também devem ser removidas do domínio padrão.
+
+Para remover as portas do domínio de broadcast, execute o seguinte comando:
+
+....
+broadcast-domain remove-ports -broadcast-domain Default -ports <<var_nodeA>>:e0c, <<var_nodeA>>:e0d, <<var_nodeA>>:e0e, <<var_nodeA>>:e0f, <<var_nodeB>>:e0c, <<var_nodeB>>:e0d, <<var_nodeA>>:e0e, <<var_nodeA>>:e0f
+....
+
+
+==== Desative o controle de fluxo nas portas UTA2
+
+É uma prática recomendada do NetApp desativar o controle de fluxo em todas as UTA2 portas conetadas a dispositivos externos. Para desativar o controle de fluxo, execute os seguintes comandos:
+
+....
+net port modify -node <<var_nodeA>> -port e0c -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeA>> -port e0d -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeA>> -port e0e -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeA>> -port e0f -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeB>> -port e0c -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeB>> -port e0d -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeB>> -port e0e -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+net port modify -node <<var_nodeB>> -port e0f -flowcontrol-admin none
+Warning: Changing the network port settings will cause a several second interruption in carrier. Do you want to continue? {y|n}: y
+....
+
+NOTE: A conexão direta do Cisco UCS Mini ao ONTAP não suporta LACP.
+
+
+
+==== Configurar quadros jumbo no NetApp ONTAP
+
+Para configurar uma porta de rede ONTAP para usar quadros jumbo (que geralmente têm uma MTU de 9.000 bytes), execute os seguintes comandos a partir do shell do cluster:
+
+....
+AFF A220::> network port modify -node node_A -port e0e -mtu 9000
+Warning: This command will cause a several second interruption of service on this network port.
+Do you want to continue? {y|n}: y
+AFF A220::> network port modify -node node_B -port e0e -mtu 9000
+Warning: This command will cause a several second interruption of service on this network port.
+Do you want to continue? {y|n}: y
+AFF A220::> network port modify -node node_A -port e0f -mtu 9000
+Warning: This command will cause a several second interruption of service on this network port.
+Do you want to continue? {y|n}: y
+AFF A220::> network port modify -node node_B -port e0f -mtu 9000
+Warning: This command will cause a several second interruption of service on this network port.
+Do you want to continue? {y|n}: y
+....
+
+
+==== Crie VLANs no ONTAP
+
+Para criar VLANs no ONTAP, execute as seguintes etapas:
+
+. Crie portas VLAN NFS e adicione-as ao domínio de transmissão de dados.
++
+....
+network port vlan create –node <<var_nodeA>> -vlan-name e0e-<<var_nfs_vlan_id>>
+network port vlan create –node <<var_nodeA>> -vlan-name e0f-<<var_nfs_vlan_id>>
+network port vlan create –node <<var_nodeB>> -vlan-name e0e-<<var_nfs_vlan_id>>
+network port vlan create –node <<var_nodeB>> -vlan-name e0f-<<var_nfs_vlan_id>>
+broadcast-domain add-ports -broadcast-domain Infra_NFS -ports <<var_nodeA>>: e0e- <<var_nfs_vlan_id>>, <<var_nodeB>>: e0e-<<var_nfs_vlan_id>> , <<var_nodeA>>:e0f- <<var_nfs_vlan_id>>, <<var_nodeB>>:e0f-<<var_nfs_vlan_id>>
+....
+. Crie portas iSCSI VLAN e adicione-as ao domínio de transmissão de dados.
++
+....
+network port vlan create –node <<var_nodeA>> -vlan-name e0e-<<var_iscsi_vlan_A_id>>
+network port vlan create –node <<var_nodeA>> -vlan-name e0f-<<var_iscsi_vlan_B_id>>
+network port vlan create –node <<var_nodeB>> -vlan-name e0e-<<var_iscsi_vlan_A_id>>
+network port vlan create –node <<var_nodeB>> -vlan-name e0f-<<var_iscsi_vlan_B_id>>
+broadcast-domain add-ports -broadcast-domain Infra_iSCSI-A -ports <<var_nodeA>>: e0e- <<var_iscsi_vlan_A_id>>,<<var_nodeB>>: e0e-<<var_iscsi_vlan_A_id>>
+broadcast-domain add-ports -broadcast-domain Infra_iSCSI-B -ports <<var_nodeA>>: e0f- <<var_iscsi_vlan_B_id>>,<<var_nodeB>>: e0f-<<var_iscsi_vlan_B_id>>
+....
+. Crie portas MGMT-VLAN.
++
+....
+network port vlan create –node <<var_nodeA>> -vlan-name e0m-<<mgmt_vlan_id>>
+network port vlan create –node <<var_nodeB>> -vlan-name e0m-<<mgmt_vlan_id>>
+....
+
+
+
+
+==== Criar agregados no ONTAP
+
+Um agregado contendo o volume raiz é criado durante o processo de configuração do ONTAP. Para criar agregados adicionais, determine o nome do agregado, o nó no qual criá-lo e o número de discos que ele contém.
+
+Para criar agregados, execute os seguintes comandos:
+
+....
+aggr create -aggregate aggr1_nodeA -node <<var_nodeA>> -diskcount <<var_num_disks>>
+aggr create -aggregate aggr1_nodeB -node <<var_nodeB>> -diskcount <<var_num_disks>>
+....
+Guarde pelo menos um disco (selecione o disco maior) na configuração como um sobressalente. Uma prática recomendada é ter pelo menos um sobressalente para cada tipo e tamanho de disco.
+
+Comece com cinco discos; você pode adicionar discos a um agregado quando for necessário armazenamento adicional.
+
+O agregado não pode ser criado até que a restauração do disco seja concluída. Execute o `aggr show` comando para exibir o status de criação agregada. Não prossiga até `aggr1_nodeA` que esteja online.
+
+
+
+==== Configure o fuso horário no ONTAP
+
+Para configurar a sincronização de hora e definir o fuso horário no cluster, execute o seguinte comando:
+
+....
+timezone <<var_timezone>>
+....
+
+NOTE: Por exemplo, no leste dos Estados Unidos, o fuso horário é `America/New_York`. Depois de começar a digitar o nome do fuso horário, pressione a tecla Tab para ver as opções disponíveis.
+
+
+
+==== Configurar SNMP no ONTAP
+
+Para configurar o SNMP, execute as seguintes etapas:
+
+. Configurar informações básicas do SNMP, como a localização e o contacto. Quando polled, esta informação é visível como `sysLocation` as variáveis e `sysContact` no SNMP.
++
+....
+snmp contact <<var_snmp_contact>>
+snmp location “<<var_snmp_location>>”
+snmp init 1
+options snmp.enable on
+....
+. Configurar traps SNMP para enviar para hosts remotos.
++
+....
+snmp traphost add <<var_snmp_server_fqdn>>
+....
+
+
+
+
+==== Configure o SNMPv1 no ONTAP
+
+Para configurar o SNMPv1, defina a senha secreta compartilhada de texto simples chamada comunidade.
+
+....
+snmp community add ro <<var_snmp_community>>
+....
+
+NOTE: Use o `snmp community delete all` comando com cuidado. Se strings de comunidade forem usadas para outros produtos de monitoramento, esse comando as removerá.
+
+
+
+==== Configure o SNMPv3 no ONTAP
+
+SNMPv3 requer que você defina e configure um usuário para autenticação. Para configurar o SNMPv3, execute as seguintes etapas:
+
+. Execute o `security snmpusers` comando para visualizar a ID do motor.
+. Crie um usuário `snmpv3user` chamado .
++
+....
+security login create -username snmpv3user -authmethod usm -application snmp
+....
+. Introduza a ID do motor da entidade autorizada e `md5` selecione como o protocolo de autenticação.
+. Insira uma senha de comprimento mínimo de oito carateres para o protocolo de autenticação quando solicitado.
+.  `des`Selecione como o protocolo de privacidade.
+. Insira uma senha de comprimento mínimo de oito carateres para o protocolo de privacidade quando solicitado.
+
+
+
+
+==== Configure o HTTPS do AutoSupport no ONTAP
+
+A ferramenta NetApp AutoSupport envia informações resumidas de suporte para o NetApp por meio de HTTPS. Para configurar o AutoSupport, execute o seguinte comando:
+
+....
+system node autosupport modify -node * -state enable –mail-hosts <<var_mailhost>> -transport https -support enable -noteto <<var_storage_admin_email>>
+....
+
+
+==== Crie uma máquina virtual de armazenamento
+
+Para criar uma máquina virtual de storage de infraestrutura (SVM), siga estas etapas:
+
+. Executar o `vserver create` comando.
++
+....
+vserver create –vserver Infra-SVM –rootvolume rootvol –aggregate aggr1_nodeA –rootvolume- security-style unix
+....
+. Adicione o agregado de dados à lista de agregados de infraestrutura SVM para o VSC do NetApp.
++
+....
+vserver modify -vserver Infra-SVM -aggr-list aggr1_nodeA,aggr1_nodeB
+....
+. Remova os protocolos de storage não utilizados da SVM, deixando NFS e iSCSI.
++
+....
+vserver remove-protocols –vserver Infra-SVM -protocols cifs,ndmp,fcp
+....
+. Habilite e execute o protocolo NFS no SVM de infraestrutura.
++
+....
+nfs create -vserver Infra-SVM -udp disabled
+....
+. Ative o `SVM vstorage` parâmetro para o plug-in NetApp NFS VAAI. Em seguida, verifique se o NFS foi configurado.
++
+....
+vserver nfs modify –vserver Infra-SVM –vstorage enabled
+vserver nfs show
+....
++
+
+NOTE: Os comandos são pré-enfrentados `vserver` na linha de comando porque SVMs eram anteriormente chamados de servidores
+
+
+
+
+
+==== Configure o NFSv3 no ONTAP
+
+A tabela abaixo lista as informações necessárias para concluir esta configuração.
+
+|===
+| Detalhe | Valor do detalhe 
+
+
+| ESXi Hospeda Um endereço IP NFS | "Cliente <var_esxi_hostA_nfs_ip>> 
+
+
+| Endereço IP NFS do host ESXi B. | "Cliente <var_esxi_hostB_nfs_ip>> 
+|===
+Para configurar o NFS na SVM, execute os seguintes comandos:
+
+. Crie uma regra para cada host ESXi na política de exportação padrão.
+. Para cada host ESXi sendo criado, atribua uma regra. Cada host tem seu próprio índice de regras. Seu primeiro host ESXi tem o índice de regra 1, seu segundo host ESXi tem o índice de regra 2, e assim por diante.
++
+....
+vserver export-policy rule create –vserver Infra-SVM -policyname default –ruleindex 1 –protocol nfs -clientmatch <<var_esxi_hostA_nfs_ip>> -rorule sys –rwrule sys -superuser sys –allow-suid falsevserver export-policy rule create –vserver Infra-SVM -policyname default –ruleindex 2 –protocol nfs -clientmatch <<var_esxi_hostB_nfs_ip>> -rorule sys –rwrule sys -superuser sys –allow-suid false
+vserver export-policy rule show
+....
+. Atribua a política de exportação ao volume raiz da infraestrutura SVM.
++
+....
+volume modify –vserver Infra-SVM –volume rootvol –policy default
+....
++
+
+NOTE: O VSC do NetApp manipula automaticamente as políticas de exportação se você optar por instalá-las após a configuração do vSphere. Se você não instalá-lo, você deve criar regras de política de exportação quando servidores adicionais da série B do Cisco UCS forem adicionados.
+
+
+
+
+
+==== Criar serviço iSCSI no ONTAP
+
+Para criar o serviço iSCSI, execute o seguinte passo:
+
+. Crie o serviço iSCSI no SVM. Esse comando também inicia o serviço iSCSI e define o IQN (iSCSI Qualified Name) para o SVM. Verifique se o iSCSI foi configurado.
++
+....
+iscsi create -vserver Infra-SVM
+iscsi show
+....
+
+
+
+
+==== Criar espelho de compartilhamento de carga do volume raiz da SVM no ONTAP
+
+Para criar um espelhamento de compartilhamento de carga do volume raiz do SVM no ONTAP, siga estas etapas:
+
+. Crie um volume para ser o espelhamento de compartilhamento de carga do volume raiz da infraestrutura SVM em cada nó.
++
+....
+volume create –vserver Infra_Vserver –volume rootvol_m01 –aggregate aggr1_nodeA –size 1GB –type DPvolume create –vserver Infra_Vserver –volume rootvol_m02 –aggregate aggr1_nodeB –size 1GB –type DP
+....
+. Crie uma agenda de trabalhos para atualizar as relações de espelho de volume raiz a cada 15 minutos.
++
+....
+job schedule interval create -name 15min -minutes 15
+....
+. Crie as relações de espelhamento.
++
+....
+snapmirror create -source-path Infra-SVM:rootvol -destination-path Infra-SVM:rootvol_m01 -type LS -schedule 15min
+snapmirror create -source-path Infra-SVM:rootvol -destination-path Infra-SVM:rootvol_m02 -type LS -schedule 15min
+....
+. Inicialize a relação de espelhamento e verifique se ela foi criada.
++
+....
+snapmirror initialize-ls-set -source-path Infra-SVM:rootvol snapmirror show
+....
+
+
+
+
+==== Configurar o acesso HTTPS no ONTAP
+
+Para configurar o acesso seguro ao controlador de armazenamento, execute as seguintes etapas:
+
+. Aumente o nível de privilégio para acessar os comandos do certificado.
++
+....
+set -privilege diag
+Do you want to continue? {y|n}: y
+....
+. Geralmente, um certificado auto-assinado já está em vigor. Verifique o certificado executando o seguinte comando:
++
+....
+security certificate show
+....
+. Para cada SVM mostrado, o nome comum do certificado deve corresponder ao nome de domínio totalmente qualificado (FQDN) do SVM. Os quatro certificados predefinidos devem ser suprimidos e substituídos por certificados auto-assinados ou certificados de uma autoridade de certificação.
++
+Excluir certificados expirados antes de criar certificados é uma prática recomendada. Execute o `security certificate delete` comando para excluir certificados expirados. No comando a seguir, use conclusão de TABULAÇÃO para selecionar e excluir cada certificado padrão.
+
++
+....
+security certificate delete [TAB] ...
+Example: security certificate delete -vserver Infra-SVM -common-name Infra-SVM -ca Infra-SVM - type server -serial 552429A6
+....
+. Para gerar e instalar certificados autoassinados, execute os seguintes comandos como comandos únicos. Gerar um certificado de servidor para a infraestrutura SVM e o cluster SVM. Novamente, use TAB Completion para ajudar a completar esses comandos.
++
+....
+security certificate create [TAB] ...
+Example: security certificate create -common-name infra-svm.netapp.com -type server -size 2048 - country US -state "North Carolina" -locality "RTP" -organization "NetApp" -unit "FlexPod" -email- addr "abc@netapp.com" -expire-days 365 -protocol SSL -hash-function SHA256 -vserver Infra-SVM
+....
+. Para obter os valores para os parâmetros necessários na etapa seguinte, execute o `security certificate show` comando.
+. Ative cada certificado que acabou de ser criado usando os `–server-enabled true` parâmetros e. `–client- enabled false` Novamente, use A conclusão DA GUIA.
++
+....
+security ssl modify [TAB] ...
+Example: security ssl modify -vserver Infra-SVM -server-enabled true -client-enabled false -ca infra-svm.netapp.com -serial 55243646 -common-name infra-svm.netapp.com
+....
+. Configure e ative o acesso SSL e HTTPS e desative o acesso HTTP.
++
+....
+system services web modify -external true -sslv3-enabled true
+Warning: Modifying the cluster configuration will cause pending web service requests to be interrupted as the web servers are restarted.
+Do you want to continue {y|n}: y
+System services firewall policy delete -policy mgmt -service http -vserver <<var_clustername>>
+....
++
+
+NOTE: É normal que alguns desses comandos retornem uma mensagem de erro informando que a entrada não existe.
+
+. Reverta para o nível de privilégios de administrador e crie a configuração para permitir que o SVM esteja disponível na Web.
++
+....
+set –privilege admin
+vserver services web modify –name spi|ontapi|compat –vserver * -enabled true
+....
+
+
+
+
+==== Crie um NetApp FlexVol volume no ONTAP
+
+Para criar um volume NetApp FlexVol, insira o nome do volume, o tamanho e o agregado no qual ele existe. Crie dois volumes do VMware datastore e um volume de inicialização do servidor.
+
+....
+volume create -vserver Infra-SVM -volume infra_datastore_1 -aggregate aggr1_nodeA -size 500GB - state online -policy default -junction-path /infra_datastore_1 -space-guarantee none -percent- snapshot-space 0
+volume create -vserver Infra-SVM -volume infra_datastore_2 -aggregate aggr1_nodeB -size 500GB - state online -policy default -junction-path /infra_datastore_2 -space-guarantee none -percent- snapshot-space 0
+....
+....
+volume create -vserver Infra-SVM -volume infra_swap -aggregate aggr1_nodeA -size 100GB -state online -policy default -juntion-path /infra_swap -space-guarantee none -percent-snapshot-space 0 -snapshot-policy none
+volume create -vserver Infra-SVM -volume esxi_boot -aggregate aggr1_nodeA -size 100GB -state online -policy default -space-guarantee none -percent-snapshot-space 0
+....
+
+
+==== Ativar a deduplicação no ONTAP
+
+Para habilitar a deduplicação em volumes apropriados uma vez por dia, execute os seguintes comandos:
+
+....
+volume efficiency modify –vserver Infra-SVM –volume esxi_boot –schedule sun-sat@0
+volume efficiency modify –vserver Infra-SVM –volume infra_datastore_1 –schedule sun-sat@0
+volume efficiency modify –vserver Infra-SVM –volume infra_datastore_2 –schedule sun-sat@0
+....
+
+
+==== Criar LUNs no ONTAP
+
+Para criar dois números de unidade lógica de inicialização (LUNs), execute os seguintes comandos:
+
+....
+lun create -vserver Infra-SVM -volume esxi_boot -lun VM-Host-Infra-A -size 15GB -ostype vmware - space-reserve disabled
+lun create -vserver Infra-SVM -volume esxi_boot -lun VM-Host-Infra-B -size 15GB -ostype vmware - space-reserve disabled
+....
+
+NOTE: Ao adicionar um servidor Cisco UCS C-Series extra, um LUN de inicialização extra deve ser criado.
+
+
+
+==== Criar iSCSI LIFs no ONTAP
+
+A tabela abaixo lista as informações necessárias para concluir esta configuração.
+
+|===
+| Detalhe | Valor do detalhe 
+
+
+| Nó de storage A iSCSI LIF01A | "Cliente <var_nodeA_iscsi_lif01a_ip>> 
+
+
+| Nó de armazenamento Uma máscara de rede iSCSI LIF01A | "Cliente <var_nodeA_iscsi_lif01a_mask>> 
+
+
+| Nó de storage A iSCSI LIF01B | "Cliente <var_nodeA_iscsi_lif01b_ip>> 
+
+
+| Nó de armazenamento Uma máscara de rede iSCSI LIF01B | "Cliente <var_nodeA_iscsi_lif01b_mask>> 
+
+
+| Nó de storage B iSCSI LIF01A | "Cliente <var_nodeB_iscsi_lif01a_ip>> 
+
+
+| Máscara de rede do nó de armazenamento B iSCSI LIF01A | "Cliente <var_nodeB_iscsi_lif01a_mask>> 
+
+
+| Nó de storage B iSCSI LIF01B | "Cliente <var_nodeB_iscsi_lif01b_ip>> 
+
+
+| Máscara de rede do nó de armazenamento B iSCSI LIF01B | "Cliente <var_nodeB_iscsi_lif01b_mask>> 
+|===
+. Crie quatro LIFs iSCSI, dois em cada nó.
++
+....
+network interface create -vserver Infra-SVM -lif iscsi_lif01a -role data -data-protocol iscsi - home-node <<var_nodeA>> -home-port e0e-<<var_iscsi_vlan_A_id>> -address <<var_nodeA_iscsi_lif01a_ip>> -netmask <<var_nodeA_iscsi_lif01a_mask>> –status-admin up – failover-policy disabled –firewall-policy data –auto-revert false
+network interface create -vserver Infra-SVM -lif iscsi_lif01b -role data -data-protocol iscsi - home-node <<var_nodeA>> -home-port e0f-<<var_iscsi_vlan_B_id>> -address <<var_nodeA_iscsi_lif01b_ip>> -netmask <<var_nodeA_iscsi_lif01b_mask>> –status-admin up – failover-policy disabled –firewall-policy data –auto-revert false
+network interface create -vserver Infra-SVM -lif iscsi_lif02a -role data -data-protocol iscsi - home-node <<var_nodeB>> -home-port e0e-<<var_iscsi_vlan_A_id>> -address <<var_nodeB_iscsi_lif01a_ip>> -netmask <<var_nodeB_iscsi_lif01a_mask>> –status-admin up – failover-policy disabled –firewall-policy data –auto-revert false
+network interface create -vserver Infra-SVM -lif iscsi_lif02b -role data -data-protocol iscsi - home-node <<var_nodeB>> -home-port e0f-<<var_iscsi_vlan_B_id>> -address <<var_nodeB_iscsi_lif01b_ip>> -netmask <<var_nodeB_iscsi_lif01b_mask>> –status-admin up – failover-policy disabled –firewall-policy data –auto-revert false
+network interface show
+....
+
+
+
+
+==== Criar LIFs NFS no ONTAP
+
+A tabela a seguir lista as informações necessárias para concluir essa configuração.
+
+|===
+| Detalhe | Valor do detalhe 
+
+
+| Nó de storage A NFS LIF 01 a IP | "Cliente <var_nodeA_nfs_lif_01_a_ip>> 
+
+
+| Nó de storage A NFS LIF 01 uma máscara de rede | "Cliente <var_nodeA_nfs_lif_01_a_mask>> 
+
+
+| Nó de storage A NFS LIF 01 b IP | "Cliente <var_nodeA_nfs_lif_01_b_ip>> 
+
+
+| Nó de storage Uma máscara de rede NFS LIF 01 b | "Cliente <var_nodeA_nfs_lif_01_b_mask>> 
+
+
+| Nó de storage B NFS LIF 02 a IP | "Cliente <var_nodeB_nfs_lif_02_a_ip>> 
+
+
+| Nó de storage B NFS LIF 02 a máscara de rede | "Cliente <var_nodeB_nfs_lif_02_a_mask>> 
+
+
+| Nó de storage B NFS LIF 02 b IP | "Cliente <var_nodeB_nfs_lif_02_b_ip>> 
+
+
+| Nó de storage B máscara de rede NFS LIF 02 b | "Cliente <var_nodeB_nfs_lif_02_b_mask>> 
+|===
+. Criar um NFS LIF.
++
+....
+network interface create -vserver Infra-SVM -lif nfs_lif01_a -role data -data-protocol nfs -home- node <<var_nodeA>> -home-port e0e-<<var_nfs_vlan_id>> –address <<var_nodeA_nfs_lif_01_a_ip>> - netmask << var_nodeA_nfs_lif_01_a_mask>> -status-admin up –failover-policy broadcast-domain-wide – firewall-policy data –auto-revert true
+network interface create -vserver Infra-SVM -lif nfs_lif01_b -role data -data-protocol nfs -home- node <<var_nodeA>> -home-port e0f-<<var_nfs_vlan_id>> –address <<var_nodeA_nfs_lif_01_b_ip>> - netmask << var_nodeA_nfs_lif_01_b_mask>> -status-admin up –failover-policy broadcast-domain-wide – firewall-policy data –auto-revert true
+network interface create -vserver Infra-SVM -lif nfs_lif02_a -role data -data-protocol nfs -home- node <<var_nodeB>> -home-port e0e-<<var_nfs_vlan_id>> –address <<var_nodeB_nfs_lif_02_a_ip>> - netmask << var_nodeB_nfs_lif_02_a_mask>> -status-admin up –failover-policy broadcast-domain-wide – firewall-policy data –auto-revert true
+network interface create -vserver Infra-SVM -lif nfs_lif02_b -role data -data-protocol nfs -home- node <<var_nodeB>> -home-port e0f-<<var_nfs_vlan_id>> –address <<var_nodeB_nfs_lif_02_b_ip>> - netmask << var_nodeB_nfs_lif_02_b_mask>> -status-admin up –failover-policy broadcast-domain-wide – firewall-policy data –auto-revert true
+network interface show
+....
+
+
+
+
+==== Adicionar administrador de infraestrutura SVM
+
+A tabela a seguir lista as informações necessárias para concluir essa configuração.
+
+|===
+| Detalhe | Valor do detalhe 
+
+
+| IP Vsmgmt | "cliente <var_svm_mgmt_ip>> 
+
+
+| Máscara de rede Vsmgmt | "cliente <var_svm_mgmt_mask>> 
+
+
+| Gateway padrão Vsmgmt | "cliente <var_svm_mgmt_gateway>> 
+|===
+Para adicionar o administrador da infraestrutura SVM e o LIF de administração da SVM à rede de gerenciamento, siga estas etapas:
+
+. Execute o seguinte comando:
++
+....
+network interface create –vserver Infra-SVM –lif vsmgmt –role data –data-protocol none –home-node <<var_nodeB>> -home-port e0M –address <<var_svm_mgmt_ip>> -netmask <<var_svm_mgmt_mask>> - status-admin up –failover-policy broadcast-domain-wide –firewall-policy mgmt –auto-revert true
+....
++
+
+NOTE: O IP de gerenciamento do SVM deve estar na mesma sub-rede que o IP de gerenciamento do cluster de storage.
+
+. Crie uma rota padrão para permitir que a interface de gerenciamento SVM alcance o mundo externo.
++
+....
+network route create –vserver Infra-SVM -destination 0.0.0.0/0 –gateway <<var_svm_mgmt_gateway>> network route show
+....
+. Defina uma senha para o usuário SVM `vsadmin` e desbloqueie o usuário.
++
+....
+security login password –username vsadmin –vserver Infra-SVM
+Enter a new password: <<var_password>>
+Enter it again: <<var_password>>
+security login unlock –username vsadmin –vserver
+....
+
+
+
+
+== Configuração do servidor Cisco UCS
+
+
+
+=== Base FlexPod Cisco UCS
+
+Execute a configuração inicial da interconexão de malha do Cisco UCS 6324 para ambientes FlexPod.
+
+Esta seção fornece procedimentos detalhados para configurar o Cisco UCS para uso em um ambiente FlexPod ROBO usando o Cisco UCS Manager.
+
+
+
+=== Interconexão de malha Cisco UCS Fabric 6324 A.
+
+O Cisco UCS usa servidores e redes de camada de acesso. Esse sistema de servidor de alta performance e próxima geração fornece um data center com alto nível de agilidade e escalabilidade de carga de trabalho.
+
+O Cisco UCS Manager 4,0(1b) é compatível com a interconexão de malha 6324 que integra a interconexão de malha ao chassi do Cisco UCS e fornece uma solução integrada para um ambiente de implantação menor. O Cisco UCS Mini simplifica o gerenciamento do sistema e economiza custos para implantações de baixa escala.
+
+Os componentes de hardware e software são compatíveis com a malha unificada da Cisco, que executa vários tipos de tráfego de data center em um único adaptador de rede convergente.
+
+
+
+=== Configuração inicial do sistema
+
+Na primeira vez que você acessa uma interconexão de malha em um domínio do Cisco UCS, um assistente de configuração solicita as seguintes informações necessárias para configurar o sistema:
+
+* Método de instalação (GUI ou CLI)
+* Modo de configuração (restauração a partir de backup completo do sistema ou configuração inicial)
+* Tipo de configuração do sistema (configuração autônoma ou de cluster)
+* Nome do sistema
+* Palavra-passe de administrador
+* Endereço da porta de gerenciamento IPv4 e máscara de sub-rede, ou endereço IPv6 e prefixo
+* Endereço IPv4 ou IPv6 do gateway padrão
+* Endereço DNS Server IPv4 ou IPv6
+* Nome de domínio padrão
+
+
+A tabela a seguir lista as informações necessárias para concluir a configuração inicial do Cisco UCS no Fabric Interconnect A
+
+|===
+| Detalhe | Detalhe/valor 
+
+
+| Nome do sistema  | "cliente <var_ucs_clustername>> 
+
+
+| Palavra-passe de administrador | "cliente <var_password>> 
+
+
+| Endereço IP de gerenciamento: Interconexão de malha A | "cliente <var_ucsa_mgmt_ip>> 
+
+
+| Máscara de rede de gestão: Interligação de tecido A | "cliente <var_ucsa_mgmt_mask>> 
+
+
+| Gateway padrão: Interconexão de malha A | "cliente <var_ucsa_mgmt_gateway>> 
+
+
+| Endereço IP do cluster | "cliente <var_ucs_cluster_ip>> 
+
+
+| Endereço IP do servidor DNS | "cliente <var_nameserver_ip>> 
+
+
+| Nome de domínio | "cliente <var_domain_name>> 
+|===
+Para configurar o Cisco UCS para uso em um ambiente FlexPod, siga estas etapas:
+
+. Conete-se à porta do console no primeiro Cisco UCS 6324 Fabric Interconnect A..
++
+....
+Enter the configuration method. (console/gui) ? console
+
+  Enter the setup mode; setup newly or restore from backup. (setup/restore) ? setup
+
+  You have chosen to setup a new Fabric interconnect. Continue? (y/n): y
+
+  Enforce strong password? (y/n) [y]: Enter
+
+  Enter the password for "admin":<<var_password>>
+  Confirm the password for "admin":<<var_password>>
+
+  Is this Fabric interconnect part of a cluster(select 'no' for standalone)? (yes/no) [n]: yes
+
+  Enter the switch fabric (A/B) []: A
+
+  Enter the system name: <<var_ucs_clustername>>
+
+  Physical Switch Mgmt0 IP address : <<var_ucsa_mgmt_ip>>
+
+  Physical Switch Mgmt0 IPv4 netmask : <<var_ucsa_mgmt_mask>>
+
+  IPv4 address of the default gateway : <<var_ucsa_mgmt_gateway>>
+
+  Cluster IPv4 address : <<var_ucs_cluster_ip>>
+
+  Configure the DNS Server IP address? (yes/no) [n]: y
+
+       DNS IP address : <<var_nameserver_ip>>
+
+  Configure the default domain name? (yes/no) [n]: y
+Default domain name: <<var_domain_name>>
+
+  Join centralized management environment (UCS Central)? (yes/no) [n]: no
+
+ NOTE: Cluster IP will be configured only after both Fabric Interconnects are initialized. UCSM will be functional only after peer FI is configured in clustering mode.
+
+  Apply and save the configuration (select 'no' if you want to re-enter)? (yes/no): yes
+  Applying configuration. Please wait.
+
+  Configuration file - Ok
+....
+. Reveja as definições apresentadas na consola. Se estiverem corretas, responda `yes` para aplicar e guardar a configuração.
+. Aguarde até que o prompt de login verifique se a configuração foi salva.
+
+
+A tabela a seguir lista as informações necessárias para concluir a configuração inicial do Cisco UCS na interconexão B.
+
+|===
+| Detalhe | Detalhe/valor 
+
+
+| Nome do sistema  | "cliente <var_ucs_clustername>> 
+
+
+| Palavra-passe de administrador | "cliente <var_password>> 
+
+
+| Endereço IP de gestão FI B | "cliente <var_ucsb_mgmt_ip>> 
+
+
+| Gerenciamento Netmask-FI B | "cliente <var_ucsb_mgmt_mask>> 
+
+
+| Gateway-Fi B predefinido | "cliente <var_ucsb_mgmt_gateway>> 
+
+
+| Endereço IP do cluster | "cliente <var_ucs_cluster_ip>> 
+
+
+| Endereço IP do servidor DNS | "cliente <var_nameserver_ip>> 
+
+
+| Nome de domínio | "cliente <var_domain_name>> 
+|===
+. Conete-se à porta do console no segundo Cisco UCS 6324 Fabric Interconnect B.
++
+....
+ Enter the configuration method. (console/gui) ? console
+
+  Installer has detected the presence of a peer Fabric interconnect. This Fabric interconnect will be added to the cluster. Continue (y/n) ? y
+
+  Enter the admin password of the peer Fabric interconnect:<<var_password>>
+    Connecting to peer Fabric interconnect... done
+    Retrieving config from peer Fabric interconnect... done
+    Peer Fabric interconnect Mgmt0 IPv4 Address: <<var_ucsb_mgmt_ip>>
+    Peer Fabric interconnect Mgmt0 IPv4 Netmask: <<var_ucsb_mgmt_mask>>
+    Cluster IPv4 address: <<var_ucs_cluster_address>>
+
+    Peer FI is IPv4 Cluster enabled. Please Provide Local Fabric Interconnect Mgmt0 IPv4 Address
+
+  Physical Switch Mgmt0 IP address : <<var_ucsb_mgmt_ip>>
+
+
+  Apply and save the configuration (select 'no' if you want to re-enter)? (yes/no): yes
+  Applying configuration. Please wait.
+
+  Configuration file - Ok
+....
+. Aguarde até que o prompt de login confirme se a configuração foi salva.
+
+
+
+
+=== Faça login no Cisco UCS Manager
+
+Para fazer login no ambiente do Cisco Unified Computing System (UCS), siga estas etapas:
+
+. Abra um navegador da Web e navegue até o endereço do cluster do Cisco UCS Fabric Interconnect.
++
+Talvez seja necessário esperar pelo menos 5 minutos depois de configurar a segunda interconexão de malha para que o Cisco UCS Manager apareça.
+
+. Clique no link Launch UCS Manager para iniciar o Cisco UCS Manager.
+. Aceite os certificados de segurança necessários.
+. Quando solicitado, digite admin como o nome de usuário e insira a senha do administrador.
+. Clique em Iniciar sessão para iniciar sessão no Gestor Cisco UCS.
+
+
+
+
+=== Software Cisco UCS Manager versão 4,0(1b)
+
+Este documento assume o uso do software Cisco UCS Manager versão 4,0(1b). Para atualizar o software do Cisco UCS Manager e o software de interconexão de malha Cisco UCS 6324, consulte  https://www.cisco.com/c/en/us/support/servers-unified-computing/ucs-manager/products-installation-and-configuration-guides-list.html["Guias de instalação e atualização do Cisco UCS Manager."^]
+
+
+
+=== Configurar o Início de chamada do Cisco UCS
+
+A Cisco recomenda altamente que você configure o Início de chamada no Gerenciador de UCS do Cisco. Configurar o Call Home acelera a resolução de casos de suporte. Para configurar o Call Home, execute as seguintes etapas:
+
+. No Gerenciador do Cisco UCS, clique em Admin à esquerda.
+. Selecione tudo > Gestão de Comunicação > chamar Casa.
+. Altere o Estado para ligado.
+. Preencha todos os campos de acordo com suas preferências de gerenciamento e clique em Salvar alterações e OK para concluir a configuração Início de chamada.
+
+
+
+
+=== Adicionar bloco de endereços IP para acesso ao teclado, vídeo e Mouse
+
+Para criar um bloco de endereços IP para acesso ao teclado do servidor de banda, vídeo, Mouse (KVM) no ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Expanda pools > raiz > pools IP.
+. Clique com o botão direito do Mouse IP Pool ext-mgmt e selecione criar bloco de endereços IPv4.
+. Introduza o endereço IP inicial do bloco, o número de endereços IP necessários e a máscara de sub-rede e as informações do gateway.
++
+image:express-direct-attach-aff220-deploy_image7.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK para criar o bloco.
+. Clique em OK na mensagem de confirmação.
+
+
+
+
+=== Sincronizar Cisco UCS para NTP
+
+Para sincronizar o ambiente do Cisco UCS com os servidores NTP nos switches Nexus, execute as seguintes etapas:
+
+. No Gerenciador do Cisco UCS, clique em Admin à esquerda.
+. Expandir tudo > Gerenciamento de Fuso horário.
+. Selecione Fuso horário.
+. No painel Propriedades, selecione o fuso horário apropriado no menu Fuso horário.
+. Clique em Salvar alterações e clique em OK.
+. Clique em Adicionar servidor NTP.
+. Introduza `<switch-a-ntp-ip> or <Nexus-A-mgmt-IP>` e clique em OK. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image8.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Adicionar servidor NTP.
+. Introduza `<switch-b-ntp-ip>` `or <Nexus-B-mgmt-IP>` e clique em OK. Clique em OK na confirmação.
++
+image:express-direct-attach-aff220-deploy_image9.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Editar política de deteção de chassis
+
+A definição da política de descoberta simplifica a adição do chassi do Cisco UCS B-Series e de extensores de malha adicionais para conectividade adicional do Cisco UCS C-Series. Para modificar a política de deteção de chassis, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em Equipamento à esquerda e selecione Equipamento na segunda lista.
+. No painel direito, selecione a guia políticas.
+. Em políticas globais, defina a Política de descoberta de Chassi/FEX para corresponder ao número mínimo de portas de uplink que são cabeadas entre o chassi ou extensores de malha (FEXes) e as interconexões de malha.
+. Defina a preferência de agrupamento de ligações para Canal de portas. Se o ambiente que está sendo configurado contiver uma grande quantidade de tráfego multicast, defina a configuração Multicast hardware Hash como ativado.
+. Clique em Salvar alterações.
+. Clique em OK.
+
+
+
+
+=== Ative as portas de servidor, uplink e armazenamento
+
+Para ativar as portas de servidor e uplink, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, no painel de navegação, selecione a guia Equipamento.
+. Expandir equipamento > interconexões de malha > Interconexão de malha A > módulo fixo.
+. Expanda as portas Ethernet.
+. Selecione as portas 1 e 2 conetadas aos switches Cisco Nexus 31108, clique com o botão direito do Mouse e selecione Configurar como porta de uplink.
+. Clique em Sim para confirmar as portas uplink e clique em OK.
+. Selecione as portas 3 e 4 conetadas aos controladores de armazenamento NetApp, clique com o botão direito do Mouse e selecione Configurar como porta do dispositivo.
+. Clique em Sim para confirmar as portas do dispositivo.
+. Na janela Configurar como porta do dispositivo, clique em OK. 
+. Clique em OK para confirmar.
+. No painel esquerdo, selecione módulo fixo sob interconexão de malha A. 
+. Na guia portas Ethernet, confirme se as portas foram configuradas corretamente na coluna função if. Se algum servidor da série C de porta tiver sido configurado na porta de escalabilidade, clique nele para verificar a conetividade da porta lá.
++
+image:express-direct-attach-aff220-deploy_image10.png["Erro: Imagem gráfica em falta"]
+
+. Expandir equipamento > interconexões de malha > Interconexão de malha B > módulo fixo.
+. Expanda as portas Ethernet.
+. Selecione as portas Ethernet 1 e 2 conetadas aos switches Cisco Nexus 31108, clique com o botão direito do Mouse e selecione Configurar como porta de uplink.
+. Clique em Sim para confirmar as portas uplink e clique em OK.
+. Selecione as portas 3 e 4 conetadas aos controladores de armazenamento NetApp, clique com o botão direito do Mouse e selecione Configurar como porta do dispositivo.
+. Clique em Sim para confirmar as portas do dispositivo.
+. Na janela Configurar como porta do dispositivo, clique em OK.
+. Clique em OK para confirmar.
+. No painel esquerdo, selecione módulo fixo sob interconexão de malha B. 
+. Na guia portas Ethernet, confirme se as portas foram configuradas corretamente na coluna função if. Se algum servidor da série C de porta tiver sido configurado na porta de escalabilidade, clique nele para verificar a conetividade da porta lá.
++
+image:express-direct-attach-aff220-deploy_image11.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Crie canais de porta uplink para os switches Cisco Nexus 31108
+
+Para configurar os canais de porta necessários no ambiente do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, selecione a guia LAN no painel de navegação.
++
+
+NOTE: Nesse procedimento, dois canais de porta são criados: Um da malha A aos switches Cisco Nexus 31108 e outro da malha B para ambos os switches Cisco Nexus 31108. Se estiver a utilizar comutadores padrão, modifique este procedimento em conformidade. Se você estiver usando switches 1 Gigabit Ethernet (1GbE) e SFPs GLC-T nas interconexões de malha, as velocidades de interface das portas Ethernet 1/1 e 1/2 nas interconexões de malha devem ser definidas como 1Gbps.
+
+. Em LAN > LAN Cloud, expanda a estrutura de Uma árvore.
+. Clique com o botão direito do rato em Canais de portas.
+. Selecione criar canal de porta.
+. Introduza 13 como a ID exclusiva do canal da porta.
+. Digite VPC-13-Nexus como o nome do canal da porta.
+. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image12.png["Erro: Imagem gráfica em falta"]
+
+. Selecione as seguintes portas a serem adicionadas ao canal da porta:
++
+.. ID do slot 1 e porta 1
+.. ID do slot 1 e porta 2
+
+
+. Clique em >> para adicionar as portas ao canal da porta.
+. Clique em concluir para criar o canal da porta. Clique em OK.
+. Em Canais de porta, selecione o canal de porta recém-criado.
++
+O canal da porta deve ter um status geral de Up.
+
+. No painel de navegação, em LAN > LAN Cloud, expanda a árvore Fabric B.
+. Clique com o botão direito do rato em Canais de portas.
+. Selecione criar canal de porta.
+. Introduza 14 como a ID exclusiva do canal da porta.
+. Digite VPC-14-Nexus como o nome do canal da porta. Clique em seguinte.
+. Selecione as seguintes portas a serem adicionadas ao canal da porta:
++
+.. ID do slot 1 e porta 1
+.. ID do slot 1 e porta 2
+
+
+. Clique em >> para adicionar as portas ao canal da porta.
+. Clique em concluir para criar o canal da porta. Clique em OK.
+. Em Canais de porta, selecione o canal de porta recém-criado.
+. O canal da porta deve ter um status geral de Up.
+
+
+
+
+=== Criar uma organização (opcional)
+
+As organizações estão acostumadas a organizar recursos e restringir o acesso a vários grupos dentro da organização DE TI, permitindo, assim, a multilocação dos recursos de computação.
+
+
+NOTE: Embora este documento não assuma o uso de organizações, este procedimento fornece instruções para a criação de uma.
+
+Para configurar uma organização no ambiente do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, no menu novo na barra de ferramentas na parte superior da janela, selecione criar Organização.
+. Introduza um nome para a organização.
+. Opcional: Insira uma descrição para a organização. Clique em OK.
+. Clique em OK na mensagem de confirmação.
+
+
+
+
+=== Configurar portas de dispositivos de armazenamento e VLANs de armazenamento
+
+Para configurar as portas do dispositivo de armazenamento e as VLANs de armazenamento, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, selecione a guia LAN.
+. Expanda a nuvem dos dispositivos.
+. Clique com o botão direito do Mouse em VLANs na nuvem de dispositivos.
+. Selecione criar VLANs.
+. Insira NFS-VLAN como o nome da VLAN NFS de infraestrutura.
+. Deixe Comum/Global selecionado.
+. Insira `\<<var_nfs_vlan_id>>` para a ID da VLAN.
+. Deixe o tipo de partilha definido como nenhum.
++
+image:express-direct-attach-aff220-deploy_image13.jpeg["Erro: Imagem gráfica em falta"]
+
+. Clique em OK e, em seguida, clique em OK novamente para criar a VLAN.
+. Clique com o botão direito do Mouse em VLANs na nuvem de dispositivos.
+. Selecione criar VLANs.
+. Insira  iSCSI-A-VLAN como o nome da VLAN de estrutura iSCSI A.
+. Deixe Comum/Global selecionado.
+. Insira `\<<var_iscsi-a_vlan_id>>` para a ID da VLAN.
+. Clique em OK e, em seguida, clique em OK novamente para criar a VLAN.
+. Clique com o botão direito do Mouse em VLANs na nuvem de dispositivos.
+. Selecione criar VLANs.
+. Insira iSCSI-B-VLAN como o nome da VLAN de estrutura iSCSI Fabric B.
+. Deixe Comum/Global selecionado.
+. Insira `\<<var_iscsi-b_vlan_id>>` para a ID da VLAN.
+. Clique em OK e, em seguida, clique em OK novamente para criar a VLAN.
+. Clique com o botão direito do Mouse em VLANs na nuvem de dispositivos.
+. Selecione criar VLANs.
+. Insira Native-VLAN como o nome da VLAN nativa.
+. Deixe Comum/Global selecionado.
+. Insira `\<<var_native_vlan_id>>` para a ID da VLAN.
+. Clique em OK e, em seguida, clique em OK novamente para criar a VLAN.
++
+image:express-direct-attach-aff220-deploy_image14.png["Erro: Imagem gráfica em falta"]
+
+. No painel de navegação, em LAN > políticas, expanda dispositivos e clique com o botão direito do rato em políticas de controlo de rede.
+. Selecione criar política de controlo de rede.
+. Nomeie a política `Enable_CDP_LLPD` e selecione Enabled (habilitado) ao lado de CDP.
+. Ative os recursos de transmissão e receção para LLDP.
++
+image:express-direct-attach-aff220-deploy_image15.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK e, em seguida, clique em OK novamente para criar a política.
+. No painel de navegação, em LAN > Appliances Cloud, expanda a estrutura A árvore.
+. Expanda as interfaces.
+. Selecione Device Interface 1/3.
+. No campo User Label (Etiqueta do usuário), coloque informações indicando a porta do controlador de armazenamento, como `<storage_controller_01_name>:e0e` o . Clique em Salvar alterações e OK.
+. Selecione a política de controle de rede Enable_CDP e selecione Salvar alterações e OK.
+. Em VLANs, selecione iSCSI-A-VLAN, NFS VLAN e Native VLAN. Defina a Native-VLAN como Native VLAN (VLAN nativa). Limpe a seleção de VLAN padrão.
+. Clique em Salvar alterações e OK.
++
+image:express-direct-attach-aff220-deploy_image16.png["Erro: Imagem gráfica em falta"]
+
+. Selecione a Interface do dispositivo 1/4 sob a estrutura A..
+. No campo User Label (Etiqueta do usuário), coloque informações indicando a porta do controlador de armazenamento, como `<storage_controller_02_name>:e0e` o . Clique em Salvar alterações e OK.
+. Selecione a política de controle de rede Enable_CDP e selecione Salvar alterações e OK.
+. Em VLANs, selecione iSCSI-A-VLAN, NFS VLAN e Native VLAN.
+. Defina a Native-VLAN como Native VLAN (VLAN nativa). 
+. Limpe a seleção de VLAN padrão.
+. Clique em Salvar alterações e OK.
+. No painel de navegação, em LAN > Appliances Cloud, expanda a árvore da malha B.
+. Expanda as interfaces.
+. Selecione Device Interface 1/3.
+. No campo User Label (Etiqueta do usuário), coloque informações indicando a porta do controlador de armazenamento, como `<storage_controller_01_name>:e0f` o . Clique em Salvar alterações e OK.
+. Selecione a política de controle de rede Enable_CDP e selecione Salvar alterações e OK.
+. Em VLANs, selecione iSCSI-B-VLAN, NFS VLAN e Native VLAN. Defina a Native-VLAN como Native VLAN (VLAN nativa). Desmarque a VLAN padrão.
++
+image:express-direct-attach-aff220-deploy_image17.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Salvar alterações e OK.
+. Selecione Interface do dispositivo 1/4 sob a tela B.
+. No campo User Label (Etiqueta do usuário), coloque informações indicando a porta do controlador de armazenamento, como `<storage_controller_02_name>:e0f` o . Clique em Salvar alterações e OK.
+. Selecione a política de controle de rede Enable_CDP e selecione Salvar alterações e OK.
+. Em VLANs, selecione iSCSI-B-VLAN, NFS VLAN e Native VLAN. Defina a Native-VLAN como Native VLAN (VLAN nativa). Desmarque a VLAN padrão.
+. Clique em Salvar alterações e OK.
+
+
+
+
+=== Defina quadros jumbo em tecido Cisco UCS
+
+Para configurar quadros jumbo e habilitar a qualidade do serviço na malha do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, no painel de navegação, clique na guia LAN.
+. Selecione LAN > LAN Cloud > QoS System Class.
+. No painel direito, clique na guia Geral.
+. Na linha melhor esforço, digite 9216 na caixa sob a coluna MTU.
++
+image:express-direct-attach-aff220-deploy_image18.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Salvar alterações.
+. Clique em OK.
+
+
+
+
+=== Confirme o chassi do Cisco UCS
+
+Para confirmar todos os chassis do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, selecione a guia Equipamento e expanda a guia Equipamento à direita.
+. Expandir equipamento > chassis.
+. Nas ações para o chassis 1, selecione confirmar chassis.
+. Clique em OK e, em seguida, clique em OK para concluir o reconhecimento do chassi.
+. Clique em Fechar para fechar a janela Propriedades.
+
+
+
+
+=== Carregue imagens de firmware do Cisco UCS 4,0(1b)
+
+Para atualizar o software do Cisco UCS Manager e o software de interconexão de malha do Cisco UCS para a versão 4,0(1b), https://www.cisco.com/en/US/products/ps10281/prod_installation_guides_list.html["Guias de instalação e atualização do Cisco UCS Manager"^] consulte a .
+
+
+
+=== Criar pacote de firmware do host
+
+As políticas de gerenciamento de firmware permitem que o administrador selecione os pacotes correspondentes para uma determinada configuração de servidor. Essas políticas geralmente incluem pacotes para adaptador, BIOS, controladora de placa, adaptadores FC, ROM de opção do adaptador de barramento do host (HBA) e propriedades do controlador de armazenamento.
+
+Para criar uma política de gerenciamento de firmware para uma determinada configuração de servidor no ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione políticas > raiz.
+. Expanda Pacotes de firmware do host.
+. Selecione Default (predefinição).
+. No painel ações, selecione Modificar versões do pacote.
+. Selecione a versão 4,0(1b) para ambos os pacotes Blade.
++
+image:express-direct-attach-aff220-deploy_image19.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK e depois em OK novamente para modificar o pacote de firmware do host.
+
+
+
+
+=== Criar pools de endereços MAC
+
+Para configurar os pools de endereços MAC necessários para o ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione pools > raiz.
++
+Neste procedimento, dois pools de endereços MAC são criados, um para cada malha de comutação.
+
+. Clique com o botão direito do Mouse em pools MAC na organização raiz.
+. Selecione criar pool MAC para criar o pool de endereços MAC.
+. Digite MAC-Pool-A como o nome do pool MAC.
+. Opcional: Insira uma descrição para o pool MAC.
+. Selecione sequencial como a opção para Ordem atribuição. Clique em seguinte.
+. Clique em Adicionar.
+. Especifique um endereço MAC inicial.
++
+
+NOTE: Para a solução FlexPod, a recomendação é colocar o 0A no próximo ao último octeto do endereço MAC inicial para identificar todos os endereços MAC como endereços de malha A. Em nosso exemplo, nós levamos adiante o exemplo de incorporar também a informação do número de domínio Cisco UCS, dando-nos 00:25:B5:32:0A:00 como nosso primeiro endereço MAC.
+
+. Especifique um tamanho para o pool de endereços MAC que seja suficiente para suportar os recursos de servidor ou blade disponíveis. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image20.png["Erro: Imagem gráfica em falta"]
+
+. Clique em concluir.
+. Na mensagem de confirmação, clique em OK.
+. Clique com o botão direito do Mouse em pools MAC na organização raiz.
+. Selecione criar pool MAC para criar o pool de endereços MAC.
+. Digite MAC-Pool-B como o nome do pool MAC.
+. Opcional: Insira uma descrição para o pool MAC.
+. Selecione sequencial como a opção para Ordem atribuição. Clique em seguinte.
+. Clique em Adicionar.
+. Especifique um endereço MAC inicial.
++
+
+NOTE: Para a solução FlexPod, recomenda-se colocar 0B no próximo ao último octeto do endereço MAC inicial para identificar todos os endereços MAC neste pool como endereços de malha B. Mais uma vez, temos levado adiante em nosso exemplo de incorporar também a informação do número de domínio Cisco UCS dando-nos 00:25:B5:32:0B:00 como nosso primeiro endereço MAC.
+
+. Especifique um tamanho para o pool de endereços MAC que seja suficiente para suportar os recursos de servidor ou blade disponíveis. Clique em OK.
+. Clique em concluir.
+. Na mensagem de confirmação, clique em OK.
+
+
+
+
+=== Crie um pool iSCSI IQN
+
+Para configurar os pools IQN necessários para o ambiente do Cisco UCS, execute as seguintes etapas:
+
+. No Cisco UCS Manager, clique em SAN à esquerda.
+. Selecione pools > raiz.
+. Clique com o botão direito do rato em IQN Pools.
+. Selecione criar pool IQN Suffix para criar o pool IQN.
+. Digite IQN-Pool para o nome do pool IQN.
+. Opcional: Insira uma descrição para o pool IQN.
+.  `iqn.1992-08.com.cisco`Introduza como prefixo.
+. Selecione sequencial para Ordem atribuição. Clique em seguinte.
+. Clique em Adicionar.
+.  `ucs-host`Introduza como sufixo.
++
+
+NOTE: Se vários domínios Cisco UCS estiverem sendo usados, um sufixo IQN mais específico pode precisar ser usado.
+
+. Introduza 1 no campo de.
+. Especifique o tamanho do bloco IQN suficiente para suportar os recursos do servidor disponíveis. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image21.png["Erro: Imagem gráfica em falta"]
+
+. Clique em concluir.
+
+
+
+
+=== Criar conjuntos de endereços IP do iniciador iSCSI
+
+Para configurar a inicialização iSCSI de pools IP necessários para o ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione pools > raiz.
+. Clique com o botão direito do rato em IP Pools.
+. Selecione criar pool IP.
+. Insira iSCSI-IP-Pool-A como o nome do pool IP.
+. Opcional: Insira uma descrição para o pool IP.
+. Selecione sequencial para a ordem de atribuição. Clique em seguinte.
+. Clique em Adicionar para adicionar um bloco de endereço IP.
+. No campo de, introduza o início do intervalo a atribuir como endereços IP iSCSI.
+. Defina o tamanho para endereços suficientes para acomodar os servidores. Clique em OK.
+. Clique em seguinte.
+. Clique em concluir.
+. Clique com o botão direito do rato em IP Pools.
+. Selecione criar pool IP.
+. Insira iSCSI-IP-Pool-B como o nome do pool IP.
+. Opcional: Insira uma descrição para o pool IP.
+. Selecione sequencial para a ordem de atribuição. Clique em seguinte.
+. Clique em Adicionar para adicionar um bloco de endereço IP.
+. No campo de, introduza o início do intervalo a atribuir como endereços IP iSCSI.
+. Defina o tamanho para endereços suficientes para acomodar os servidores. Clique em OK.
+. Clique em seguinte.
+. Clique em concluir.
+
+
+
+
+=== Criar conjunto de sufixos UUID
+
+Para configurar o conjunto de sufixo UUID (identificador universal único) necessário para o ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione pools > raiz.
+. Clique com o botão direito do rato em conjuntos de sufixos UUID.
+. Selecione criar conjunto sufixo UUID.
+. Digite UUID-Pool como o nome do conjunto de sufixos UUID.
+. Opcional: Insira uma descrição para o conjunto de sufixos UUID.
+. Mantenha o prefixo na opção derivada.
+. Selecione sequencial para a Ordem atribuição.
+. Clique em seguinte.
+. Clique em Adicionar para adicionar um bloco de UUIDs.
+. Mantenha o campo de na predefinição.
+. Especifique um tamanho para o bloco UUID que seja suficiente para suportar os recursos de servidor ou blade disponíveis. Clique em OK.
+. Clique em concluir.
+. Clique em OK.
+
+
+
+
+=== Criar pool de servidores
+
+Para configurar o pool de servidores necessário para o ambiente do Cisco UCS, execute as seguintes etapas:
+
+
+NOTE: Considere a criação de pools de servidores exclusivos para obter a granularidade necessária no seu ambiente.
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione pools > raiz.
+. Clique com o botão direito do rato em pools de servidores.
+. Selecione criar pool de servidores.
+. Digite "infra-Pool" como o nome do pool de servidores.
+. Opcional: Insira uma descrição para o pool de servidores. Clique em seguinte.
+. Selecione dois (ou mais) servidores a serem usados para o cluster de gerenciamento VMware e clique em >> para adicioná-los ao pool de serviços "infra-Pool".
+. Clique em concluir.
+. Clique em OK.
+
+
+
+
+=== Criar política de controle de rede para o Protocolo de descoberta de Cisco e o Protocolo de descoberta de camada de enlace
+
+Para criar uma Política de Controle de rede para o Protocolo de descoberta de Cisco (CDP) e Protocolo de descoberta de camada de enlace (LLDP), execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em políticas de controlo de rede.
+. Selecione criar política de controlo de rede.
+. Introduza o nome da política Enable-CDP-LLDP.
+. Para CDP, selecione a opção Enabled (activado).
+. Para LLDP, role para baixo e selecione habilitado para transmissão e recebimento.
+. Clique em OK para criar a política de controle de rede. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image22.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar política de controle de energia
+
+Para criar uma política de controle de energia para o ambiente do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique na guia servidores à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em políticas de controlo de energia.
+. Selecione criar política de controlo de energia.
+. Introduza no-Power-Cap como o nome da política de controlo de energia.
+. Altere a definição de limitação de energia para sem tampa.
+. Clique em OK para criar a política de controle de energia. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image23.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar política de qualificação de pool de servidores (Opcional)
+
+Para criar uma política de qualificação de pool de servidor opcional para o ambiente do Cisco UCS, execute as seguintes etapas:
+
+
+NOTE: Este exemplo cria uma política para servidores Cisco UCS B-Series com os processadores Intel E2660 v4 Xeon Broadwell.
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione políticas > raiz.
+. Selecione Qualificações de políticas de pool de servidores.
+. Selecione criar Qualificação de políticas de pool de servidores ou Adicionar.
+. Nomeie a política Intel.
+. Selecione criar CPU/cores Qualificações.
+. Selecione Xeon para o processador/arquitetura.
+.  `<UCS-CPU- PID>`Introduza como ID do processo (PID).
+. Clique em OK para criar a qualificação CPU/núcleo.
+. Clique em OK para criar a política e, em seguida, clique em OK para confirmar.
++
+image:express-direct-attach-aff220-deploy_image24.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar política de BIOS de servidor
+
+Para criar uma política de BIOS de servidor para o ambiente Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em políticas do BIOS.
+. Selecione criar política do BIOS.
+. Insira VM-Host como o nome da política do BIOS.
+. Altere a configuração Quiet Boot (Inicialização silenciosa) para Disabled (desativada).
+. Altere Nome de dispositivo consistente para ativado.
++
+image:express-direct-attach-aff220-deploy_image25.png["Erro: Imagem gráfica em falta"]
+
+. Selecione a guia processador e defina os seguintes parâmetros:
++
+** Estado C do processador: Desativado
+** Processador C1E: Desativado
+** Relatório do processador C3: Desativado
+** Relatório do processador C7: Desativado
++
+image:express-direct-attach-aff220-deploy_image26.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Role para baixo até as opções restantes do processador e defina os seguintes parâmetros:
++
+** Desempenho energético: Desempenho
+** Anulação do piso de frequência: Ativada
+** DRAM Clock throttling: Desempenho
++
+image:express-direct-attach-aff220-deploy_image27.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Clique em memória RAS e defina os seguintes parâmetros:
++
+** Modo DDR LV: Modo de desempenho
++
+image:express-direct-attach-aff220-deploy_image28.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Clique em concluir para criar a política do BIOS.
+. Clique em OK.
+
+
+
+
+=== Atualize a política de manutenção predefinida
+
+Para atualizar a Política de Manutenção padrão, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione políticas > raiz.
+. Selecione políticas de manutenção > predefinição.
+. Altere a Política de reinicialização para User Ack.
+. Selecione na próxima inicialização para delegar janelas de manutenção aos administradores do servidor.
++
+image:express-direct-attach-aff220-deploy_image29.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Salvar alterações.
+. Clique em OK para aceitar a alteração.
+
+
+
+
+=== Crie modelos vNIC
+
+Para criar vários modelos de placa de interface de rede virtual (vNIC) para o ambiente Cisco UCS, execute os procedimentos descritos nesta seção.
+
+
+NOTE: Um total de quatro modelos vNIC são criados.  
+
+
+
+==== Crie vNICs de infraestrutura
+
+Para criar uma infraestrutura vNIC, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em modelos vNIC.
+. Selecione criar modelo vNIC.
+. Digite `Site-XX-vNIC_A` como o nome do modelo vNIC.
+. Selecione Atualizar modelo como o tipo de modelo.
+. Para ID de tecido, selecione tecido
+. Certifique-se de que a opção Ativar failover não está selecionada.
+. Selecione modelo primário para tipo de redundância.
+. Deixe o modelo de redundância de pares definido como `<not set>`.
+. Em Target (alvo), certifique-se de que apenas a opção Adapter (adaptador) está selecionada.
+. Defina `Native-VLAN` como VLAN nativa.
+. Selecione Nome vNIC para a origem CDN.
+. Para MTU, introduza 9000.
+. Em VLANs permitidas, selecione `Native-VLAN, Site-XX-IB-MGMT, Site-XX-NFS, Site-XX-VM-Traffic` e Site-XX-vMotion. Use a tecla Ctrl para fazer essa seleção múltipla.
+. Clique em Selecionar. Essas VLANs agora devem aparecer em VLANs selecionadas.
+. Na lista pool MAC, `MAC_Pool_A`selecione .
+. Na lista Diretiva de Controle de rede, selecione Pool-A.
+. Na lista Network Control Policy (Política de controlo de rede), selecione Enable-CDP-LLDP (Ativar-CDP-LLDP).
+. Clique em OK para criar o modelo vNIC.
+. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image30.png["Erro: Imagem gráfica em falta"]
+
+
+
+Para criar o modelo de redundância secundária infra-B, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em modelos vNIC.
+. Selecione criar modelo vNIC.
+. Digite 'Site-XX-vNIC_B' como o nome do modelo vNIC.
+. Selecione Atualizar modelo como o tipo de modelo.
+. Para ID de tecido, selecione tecido B..
+. Selecione a opção Ativar failover.
++
+
+NOTE: Selecionar failover é uma etapa crítica para melhorar o tempo de failover de link, manipulando-o no nível de hardware e para proteger contra qualquer potencial de falha de NIC não ser detetada pelo switch virtual.
+
+. Selecione modelo primário para tipo de redundância.
+. Deixe o modelo de redundância de pares definido como `vNIC_Template_A`.
+. Em Target (alvo), certifique-se de que apenas a opção Adapter (adaptador) está selecionada.
+. Defina `Native-VLAN` como VLAN nativa.
+. Selecione Nome vNIC para a origem CDN.
+. Para MTU, introduza `9000`.
+. Em VLANs permitidas, selecione `Native-VLAN, Site-XX-IB-MGMT, Site-XX-NFS, Site-XX-VM-Traffic` e Site-XX-vMotion. Use a tecla Ctrl para fazer essa seleção múltipla.
+. Clique em Selecionar. Essas VLANs agora devem aparecer em VLANs selecionadas.
+. Na lista pool MAC, `MAC_Pool_B`selecione .
+. Na lista Diretiva de Controle de rede, selecione Pool-B.
+. Na lista Network Control Policy (Política de controlo de rede), selecione Enable-CDP-LLDP (Ativar-CDP-LLDP). 
+. Clique em OK para criar o modelo vNIC.
+. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image31.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+==== Criar iSCSI vNICs
+
+Para criar iSCSI vNICs, execute as seguintes etapas:
+
+. Selecione LAN à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em modelos vNIC.
+. Selecione criar modelo vNIC. 
+. Digite `Site- 01-iSCSI_A` como o nome do modelo vNIC.
+. Selecione tecido A. não selecione a opção Ativar failover. 
+. Deixe o tipo de redundância definido como sem redundância.
+. Em Target (alvo), certifique-se de que apenas a opção Adapter (adaptador) está selecionada.
+. Selecione Atualizar modelo para tipo modelo.
+. Em VLANs, selecione somente Site- 01-iSCSI_A_VLAN.
+. Selecione Site- 01-iSCSI_A_VLAN como VLAN nativa.
+. Deixe o nome vNIC definido para a origem CDN. 
+. Em MTU, introduza 9000. 
+. Na lista pool MAC, selecione MAC-Pool-A.
+. Na lista Network Control Policy (Política de controlo de rede), selecione Enable-CDP-LLDP (Ativar-CDP-LLDP).
+. Clique em OK para concluir a criação do modelo vNIC.
+. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image32.png["Erro: Imagem gráfica em falta"]
+
+. Selecione LAN à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em modelos vNIC.
+. Selecione criar modelo vNIC.
+. Digite `Site- 01-iSCSI_B` como o nome do modelo vNIC.
+. Selecione tecido B. não selecione a opção Ativar failover.
+. Deixe o tipo de redundância definido como sem redundância.
+. Em Target (alvo), certifique-se de que apenas a opção Adapter (adaptador) está selecionada.
+. Selecione Atualizar modelo para tipo modelo.
+. Em VLANs, selecione somente `Site- 01-iSCSI_B_VLAN`.
+.  `Site- 01-iSCSI_B_VLAN`Selecione como VLAN nativa.
+. Deixe o nome vNIC definido para a origem CDN.
+. Em MTU, introduza 9000.
+. Na lista pool MAC, `MAC-Pool-B`selecione . 
+. Na lista Network Control Policy (Política de controlo de rede), `Enable-CDP-LLDP` selecione .
+. Clique em OK para concluir a criação do modelo vNIC.
+. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image33.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar política de conetividade LAN para inicialização iSCSI
+
+Este procedimento aplica-se a um ambiente Cisco UCS no qual duas LIFs iSCSI estão no nó de cluster 1 (`iscsi_lif01a` e `iscsi_lif01b`) e duas LIFs iSCSI estão no nó de cluster 2 (`iscsi_lif02a` e `iscsi_lif02b`). Além disso, supõe-se que os LIFs A são conetados à malha A (Cisco UCS 6324 A) e que os LIFs B são conetados à malha B (Cisco UCS 6324 B).
+
+Para configurar a Política de conetividade de LAN de infra-estrutura necessária, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em LAN à esquerda.
+. Selecione LAN > políticas > raiz.
+. Clique com o botão direito do rato em políticas de conetividade LAN.
+. Selecione criar política de conetividade LAN.
+. Introduza `Site-XX-Fabric-A` como o nome da política.
+. Clique na opção superior Adicionar para adicionar um vNIC.
+. Na caixa de diálogo criar vNIC, digite `Site-01-vNIC-A` como o nome do vNIC.
+. Selecione a opção usar modelo vNIC.
+. Na lista modelo vNIC , `vNIC_Template_A` selecione .
+. Na lista suspensa Política de adaptador, selecione VMware.
+. Clique em OK para adicionar este vNIC à política.
++
+image:express-direct-attach-aff220-deploy_image34.png["Erro: Imagem gráfica em falta"]
+
+. Clique na opção superior Adicionar para adicionar um vNIC.
+. Na caixa de diálogo criar vNIC, digite `Site-01-vNIC-B` como o nome do vNIC.
+. Selecione a opção usar modelo vNIC.
+. Na lista modelo vNIC , `vNIC_Template_B` selecione .
+. Na lista suspensa Política de adaptador, selecione VMware.
+. Clique em OK para adicionar este vNIC à política.
+. Clique na opção superior Adicionar para adicionar um vNIC.
+. Na caixa de diálogo criar vNIC, digite `Site-01- iSCSI-A` como o nome do vNIC.
+. Selecione a opção usar modelo vNIC.
+. Na lista modelo vNIC , `Site-01-iSCSI-A` selecione .
+. Na lista suspensa Política de adaptador, selecione VMware.
+. Clique em OK para adicionar este vNIC à política.
+. Clique na opção superior Adicionar para adicionar um vNIC.
+. Na caixa de diálogo criar vNIC, digite `Site-01-iSCSI-B` como o nome do vNIC.
+. Selecione a opção usar modelo vNIC.
+. Na lista modelo vNIC , `Site-01-iSCSI-B` selecione .
+. Na lista suspensa Política de adaptador, selecione VMware.
+. Clique em OK para adicionar este vNIC à política.
+. Expanda a opção Add iSCSI vNICs (Adicionar iSCSI vNICs).
+. Clique na opção Adicionar inferior no espaço Adicionar iSCSI vNICs para adicionar o iSCSI vNIC.
+. Na caixa de diálogo criar iSCSI vNIC, digite `Site-01-iSCSI-A` como o nome do vNIC.
+. Selecione a opção Overlay vNIC como `Site-01-iSCSI-A`.
+. Deixe a opção iSCSI Adapter Policy (Política do adaptador iSCSI) para não definir.
+. Selecione a VLAN como `Site-01-iSCSI-Site-A` (nativa).
+. Selecione nenhum (usado por padrão) como atribuição de endereço MAC.
+. Clique em OK para adicionar o iSCSI vNIC à política.
++
+image:express-direct-attach-aff220-deploy_image35.png["Erro: Imagem gráfica em falta"]
+
+. Clique na opção Adicionar inferior no espaço Adicionar iSCSI vNICs para adicionar o iSCSI vNIC.
+. Na caixa de diálogo criar iSCSI vNIC, digite `Site-01-iSCSI-B` como o nome do vNIC.
+. Selecione a opção Overlay vNIC como Site-01-iSCSI-B.
+. Deixe a opção iSCSI Adapter Policy (Política do adaptador iSCSI) para não definir.
+. Selecione a VLAN como `Site-01-iSCSI-Site-B` (nativa).
+. Selecione nenhum (usado por padrão) como atribuição de endereço MAC.
+. Clique em OK para adicionar o iSCSI vNIC à política.
+. Clique em Salvar alterações.
++
+image:express-direct-attach-aff220-deploy_image36.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+==== Criar política vMedia para o arranque de instalação do VMware ESXi 6.7U1
+
+Nas etapas de configuração do NetApp Data ONTAP é necessário um servidor web HTTP, que é usado para hospedar o NetApp Data ONTAP e o software VMware. A política vMedia criada aqui mapeia o VMware ESXi 6. 7U1 ISO para o servidor Cisco UCS para inicializar a instalação ESXi. Para criar esta política, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, selecione servidores à esquerda.
+. Selecione políticas > raiz.
+. Selecione políticas vMedia.
+. Clique em Adicionar para criar nova política vMedia.
+. Nomeie a política ESXi-6.7U1-HTTP.
+. Digite Mounts ISO for ESXi 6.7U1 no campo Description (Descrição).
+. Selecione Yes (Sim) para tentar novamente em caso de falha de montagem.
+. Clique em Adicionar.
+. Nomeie a montagem ESXi-6.7U1-HTTP.
+. Selecione o tipo de dispositivo CDD.
+. Selecione o protocolo HTTP.
+. Introduza o endereço IP do servidor Web.
++
+
+NOTE: Os IPs do servidor DNS não foram inseridos no IP KVM anteriormente, portanto, é necessário inserir o IP do servidor Web em vez do nome do host.
+
+.  `VMware-VMvisor-Installer-6.7.0.update01-10302608.x86_64.iso`Introduza como o nome do ficheiro remoto.
++
+Este ISO do VMware ESXi 6.7U1 pode ser baixado do https://my.vmware.com/group/vmware/details?downloadGroup=ESXI650A&productId=614["Downloads da VMware"^].
+
+. Introduza o caminho do servidor Web para o ficheiro ISO no campo caminho remoto.
+. Clique em OK para criar o suporte vMedia.
+. Clique em OK e depois em OK novamente para concluir a criação da política vMedia.
++
+Para todos os novos servidores adicionados ao ambiente do Cisco UCS, o modelo de perfil de serviço vMedia pode ser usado para instalar o host ESXi. Na primeira inicialização, o host inicializa no instalador ESXi, já que o disco montado na SAN está vazio. Após a instalação do ESXi, o vMedia não é referenciado enquanto o disco de inicialização estiver acessível.
+
++
+image:express-direct-attach-aff220-deploy_image37.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar política de arranque iSCSI
+
+O procedimento nesta seção se aplica a um ambiente Cisco UCS no qual duas interfaces lógicas iSCSI (LIFs) estão nos nós de cluster 1 (`iscsi_lif01a` e `iscsi_lif01b`) e duas LIFs iSCSI estão nos nós de cluster 2 (`iscsi_lif02a` e `iscsi_lif02b`). Além disso, presume-se que as LIFs A sejam conetadas à malha A (interconexão A da malha UCS Cisco) e que as LIFs B sejam conetadas à malha B (interconexão B da malha UCS Cisco).
+
+
+NOTE: Uma política de inicialização é configurada neste procedimento. A política configura o destino principal para ser `iscsi_lif01a`.
+
+Para criar uma política de inicialização para o ambiente do Cisco UCS, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione políticas > raiz.
+. Clique com o botão direito do rato em políticas de arranque.
+. Selecione criar política de inicialização.
+. Introduza `Site-01-Fabric-A` como o nome da política de arranque.
+. Opcional: Insira uma descrição para a política de inicialização.
+. Mantenha a opção Reboot on Boot Order Change (Reiniciar na alteração da ordem de inicialização) limpa.
+. O modo de arranque é legado.
+. Expanda o menu pendente dispositivos locais e selecione Adicionar CD/DVD remoto.
+. Expanda o menu pendente iSCSI vNICs e selecione Adicionar arranque iSCSI.
+. Na caixa de diálogo Add iSCSI Boot (Adicionar inicialização iSCSI), `Site-01-iSCSI-A` digite . Clique em OK.
+. Selecione Adicionar inicialização iSCSI.
+. Na caixa de diálogo Add iSCSI Boot (Adicionar inicialização iSCSI), `Site-01-iSCSI-B` digite . Clique em OK.
+. Clique em OK para criar a política.
++
+image:express-direct-attach-aff220-deploy_image38.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+=== Criar modelo de perfil de serviço
+
+Neste procedimento, um modelo de perfil de serviço para hosts do Infrastructure ESXi é criado para a inicialização da malha A.
+
+Para criar o modelo de perfil de serviço, execute as seguintes etapas:
+
+. No Gerenciador Cisco UCS, clique em servidores à esquerda.
+. Selecione modelos de perfil de serviço > raiz.
+. Clique com o botão direito do rato em raiz.
+. Selecione criar modelo de perfil de serviço para abrir o assistente criar modelo de perfil de serviço.
+. Introduza `VM-Host-Infra-iSCSI-A` como o nome do modelo de perfil de serviço. Este modelo de perfil de serviço é configurado para inicializar a partir do nó de storage 1 na malha A..
+. Selecione a opção Atualizar modelo.
+. Em UUID, `UUID_Pool` selecione como o pool UUID. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image39.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+==== Configurar o provisionamento de storage
+
+Para configurar o provisionamento de armazenamento, execute as seguintes etapas:
+
+. Se você tiver servidores sem discos físicos, clique em Diretiva de configuração de disco local e selecione a Diretiva de armazenamento local de inicialização SAN. Caso contrário, selecione a Política de armazenamento local padrão.
+. Clique em seguinte.
+
+
+
+
+==== Configurar opções de rede
+
+Para configurar as opções de rede, execute as seguintes etapas:
+
+. Mantenha a configuração padrão para Dynamic vNIC Connection Policy.
+. Selecione a opção usar política de conetividade para configurar a conetividade LAN.
+. Selecione iSCSI-Boot (Inicialização iSCSI) no menu pendente LAN Connectivity Policy (Política de conetividade LAN).
+.  `IQN_Pool`Selecione em Designação de Nome do Iniciador. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image40.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+==== Configurar a conectividade do SAN
+
+Para configurar a conetividade SAN, execute as seguintes etapas:
+
+. Para os vHBAs, selecione não para a opção como você gostaria de configurar a conetividade SAN?.
+. Clique em seguinte.
+
+
+
+
+==== Configure o zoneamento
+
+Para configurar o zoneamento, basta clicar em Avançar.
+
+
+
+==== Configurar o posicionamento do vNIC/HBA
+
+Para configurar o posicionamento do vNIC/HBA, execute as seguintes etapas:
+
+. Na lista suspensa Selecionar posicionamento, deixe a política de posicionamento como deixe o sistema executar o posicionamento.
+. Clique em seguinte.
+
+
+
+
+==== Configurar a política vMedia
+
+Para configurar a política vMedia, execute as seguintes etapas:
+
+. Não selecione uma política vMedia.
+. Clique em seguinte.
+
+
+
+
+==== Configurar a ordem de inicialização do servidor
+
+Para configurar a ordem de inicialização do servidor, execute as seguintes etapas:
+
+.  `Boot-Fabric-A`Selecione para Política de Inicialização.
++
+image:express-direct-attach-aff220-deploy_image41.png["Erro: Imagem gráfica em falta"]
+
+. Na Ordem Boor, `Site-01- iSCSI-A`selecione .
+. Clique em Definir parâmetros de arranque iSCSI.
+. Na caixa de diálogo Definir parâmetros de inicialização iSCSI, deixe a opção Perfil de autenticação não definida, a menos que você tenha criado independentemente um apropriado para o seu ambiente.
+. Deixe a caixa de diálogo Designação de Nome do Iniciador não definida para usar o Nome do Iniciador de Perfil de Serviço único definido nas etapas anteriores.
+. Defina `iSCSI_IP_Pool_A` como a política de endereço IP do iniciador.
+. Selecione a opção iSCSI Static Target Interface.
+. Clique em Adicionar.
+. Introduza o nome de destino iSCSI. Para obter o nome de destino iSCSI de infra-SVM, faça login na interface de gerenciamento de cluster de storage e execute o `iscsi show` comando.
++
+image:express-direct-attach-aff220-deploy_image42.png["Erro: Imagem gráfica em falta"]
+
+. Introduza o endereço IP de `iscsi_lif_02a` para o campo Endereço IPv4.
++
+image:express-direct-attach-aff220-deploy_image43.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK para adicionar o destino estático iSCSI.
+. Clique em Adicionar.
+. Introduza o nome de destino iSCSI.
+. Introduza o endereço IP de `iscsi_lif_01a` para o campo Endereço IPv4.
++
+image:express-direct-attach-aff220-deploy_image44.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK para adicionar o destino estático iSCSI.
++
+image:express-direct-attach-aff220-deploy_image45.png["Erro: Imagem gráfica em falta"]
+
++
+
+NOTE: Os IPs de destino foram colocados com o nó de armazenamento 02 IP primeiro e o nó de armazenamento 01 IP segundo. Isso está supondo que o LUN de inicialização esteja no nó 01. O host inicializa usando o caminho para o nó 01 se a ordem neste procedimento for usada.
+
+. Na ordem de inicialização, selecione iSCSI-B-vNIC.
+. Clique em Definir parâmetros de arranque iSCSI.
+. Na caixa de diálogo Definir parâmetros de inicialização iSCSI, deixe a opção Perfil de autenticação como não definida, a menos que você tenha criado independentemente um apropriado ao seu ambiente.
+. Deixe a caixa de diálogo Designação de Nome do Iniciador não definida para usar o Nome do Iniciador de Perfil de Serviço único definido nas etapas anteriores.
+. Defina `iSCSI_IP_Pool_B` como a política de endereço IP do iniciador.
+. Selecione a opção iSCSI Static Target Interface (Interface de destino estático iSCSI).
+. Clique em Adicionar.
+. Introduza o nome de destino iSCSI. Para obter o nome de destino iSCSI de infra-SVM, faça login na interface de gerenciamento de cluster de storage e execute o `iscsi show` comando.
++
+image:express-direct-attach-aff220-deploy_image42.png["Erro: Imagem gráfica em falta"]
+
+. Introduza o endereço IP de `iscsi_lif_02b` para o campo Endereço IPv4.
++
+image:express-direct-attach-aff220-deploy_image46.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK para adicionar o destino estático iSCSI.
+. Clique em Adicionar.
+. Introduza o nome de destino iSCSI.
+. Introduza o endereço IP de `iscsi_lif_01b` para o campo Endereço IPv4.
++
+image:express-direct-attach-aff220-deploy_image47.png["Erro: Imagem gráfica em falta"]
+
+. Clique em OK para adicionar o destino estático iSCSI.
++
+image:express-direct-attach-aff220-deploy_image48.png["Erro: Imagem gráfica em falta"]
+
+. Clique em seguinte.
+
+
+
+
+==== Configurar a política de manutenção
+
+Para configurar a política de manutenção, execute as seguintes etapas:
+
+. Altere a política de manutenção para predefinição.
++
+image:express-direct-attach-aff220-deploy_image49.png["Erro: Imagem gráfica em falta"]
+
+. Clique em seguinte.
+
+
+
+
+==== Configure a atribuição do servidor
+
+Para configurar a atribuição do servidor, execute as seguintes etapas:
+
+. Na lista atribuição de pool, selecione infra-pool.
+. Selecione para baixo como o estado de energia a ser aplicado quando o perfil estiver associado ao servidor.
+. Expanda Gerenciamento de firmware na parte inferior da página e selecione a política padrão.
++
+image:express-direct-attach-aff220-deploy_image50.png["Erro: Imagem gráfica em falta"]
+
+. Clique em seguinte.
+
+
+
+
+==== Configurar políticas operacionais
+
+Para configurar as políticas operacionais, execute as seguintes etapas:
+
+. Na lista suspensa Política do BIOS, selecione VM-Host.
+. Expanda Configuração da política de controle de energia e selecione sem tampa de energia na lista suspensa Política de controle de energia.
++
+image:express-direct-attach-aff220-deploy_image51.png["Erro: Imagem gráfica em falta"]
+
+. Clique em concluir para criar o modelo de perfil de serviço.
+. Clique em OK na mensagem de confirmação.
+
+
+
+
+=== Criar modelo de perfil de serviço habilitado para vMedia
+
+Para criar um modelo de perfil de serviço com o vMedia ativado, execute as seguintes etapas:
+
+. Conete-se ao UCS Manager e clique em servidores à esquerda.
+. Selecione modelos de perfil de serviço > raiz > modelo de serviço VM-Host-infra-iSCSI-A.
+. Clique com o botão direito do Mouse VM-Host-infra-iSCSI-A e selecione criar um clone.
+. Nomeie o `VM-Host-Infra-iSCSI-A-vM` clone .
+. Selecione a nova VM-Host-infra-iSCSI-A-VM criada e selecione a guia vMedia Policy à direita.
+. Clique em Modificar política vMedia.
+. Selecione o ESXi-6. 7U1-HTTP vMedia Policy e clique em OK.
+. Clique em OK para confirmar.
+
+
+
+
+=== Crie perfis de serviço
+
+Para criar perfis de serviço a partir do modelo de perfil de serviço, execute as seguintes etapas:
+
+. Conete-se ao Cisco UCS Manager e clique em servidores à esquerda.
+. Expanda servidores > modelos de perfil de serviço > raiz > modelo de serviço <name>.
+. Em ações, clique em criar perfil de serviço a partir do modelo e compita os seguintes passos:
++
+..  `Site- 01-Infra-0`Introduza como prefixo de nomenclatura.
+..  `2`Insira como o número de instâncias a serem criadas.
+.. Selecione root como a org.
+.. Clique em OK para criar os perfis de serviço.
++
+image:express-direct-attach-aff220-deploy_image52.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Clique em OK na mensagem de confirmação.
+. Verifique se os perfis de serviço `Site-01-Infra-01` e `Site-01-Infra-02` foram criados.
++
+
+NOTE: Os perfis de serviço são automaticamente associados aos servidores em seus pools de servidores atribuídos.
+
+
+
+
+
+== Configuração de armazenamento parte 2: Inicialização de LUNs e grupos de iniciadores
+
+
+
+=== Configuração de armazenamento de inicialização do ONTAP
+
+
+
+==== Crie grupos de iniciadores
+
+Para criar grupos de iniciadores (grupos de iniciadores), execute as seguintes etapas:
+
+. Execute os seguintes comandos a partir da conexão SSH do nó de gerenciamento de cluster:
++
+....
+igroup create –vserver Infra-SVM –igroup VM-Host-Infra-01 –protocol iscsi –ostype vmware –initiator <vm-host-infra-01-iqn>
+igroup create –vserver Infra-SVM –igroup VM-Host-Infra-02 –protocol iscsi –ostype vmware –initiator <vm-host-infra-02-iqn>
+igroup create –vserver Infra-SVM –igroup MGMT-Hosts –protocol iscsi –ostype vmware –initiator <vm-host-infra-01-iqn>, <vm-host-infra-02-iqn>
+....
++
+
+NOTE: Use os valores listados na Tabela 1 e na Tabela 2 para obter informações sobre IQN.
+
+. Para ver os três grupos criados, execute o `igroup show` comando.
+
+
+
+
+==== Mapeie LUNs de inicialização para grupos
+
+Para mapear LUNs de inicialização para grupos, execute o seguinte passo:
+
+. Na conexão SSH de gerenciamento de cluster de armazenamento, execute os seguintes comandos: 
++
+....
+lun map –vserver Infra-SVM –volume esxi_boot –lun VM-Host-Infra- A –igroup VM-Host-Infra-01 –lun-id 0lun map –vserver Infra-SVM –volume esxi_boot –lun VM-Host-Infra- B –igroup VM-Host-Infra-02 –lun-id 0
+....
+
+
+
+
+== Procedimento de implantação do VMware vSphere 6.7U1
+
+Esta seção fornece procedimentos detalhados para a instalação do VMware ESXi 6.7U1 em uma configuração do FlexPod Express. Após a conclusão dos procedimentos, dois hosts ESXi inicializados são provisionados.
+
+Existem vários métodos para instalar o ESXi em um ambiente VMware. Esses procedimentos se concentram em como usar o console KVM integrado e os recursos de Mídia virtual no Gerenciador do Cisco UCS para mapear Mídia de instalação remota para servidores individuais e se conetar aos LUNs de inicialização.
+
+
+
+=== Faça o download da imagem personalizada do Cisco para ESXi 6.7U1
+
+Se a imagem personalizada do VMware ESXi não tiver sido baixada, execute as seguintes etapas para concluir o download:
+
+. Clique no link a seguir: https://my.vmware.com/group/vmware/details?downloadGroup=OEM-ESXI67U1-Cisco&productId.742[VMware vSphere Hypervisor (ESXi) 6.7U1.]
+. Você precisa de uma ID de usuário e senha para https://www.vmware.com/["vmware.com"^] baixar este software.
+. Transfira o .`iso` ficheiro.
+
+
+
+
+==== Gerente do Cisco UCS
+
+O Cisco UCS IP KVM permite que o administrador inicie a instalação do sistema operacional por meio de Mídia remota. É necessário fazer login no ambiente do Cisco UCS para executar o KVM IP.
+
+Para fazer login no ambiente do Cisco UCS, siga estas etapas:
+
+. Abra um navegador da Web e insira o endereço IP do endereço do cluster do Cisco UCS. Esta etapa inicia o aplicativo Cisco UCS Manager.
+. Clique no link Launch UCS Manager em HTML para iniciar o HTML 5 UCS Manager GUI.
+. Se solicitado a aceitar certificados de segurança, aceite conforme necessário.
+. Quando solicitado, digite `admin` como o nome de usuário e insira a senha administrativa.
+. Para fazer login no Gerenciador do Cisco UCS, clique em Login.
+. No menu principal, clique em servidores à esquerda.
+. Selecione servidores > Perfis de serviço > raiz > `VM-Host-Infra-01`.
+. Clique com o botão direito do rato `VM-Host-Infra-01` e selecione KVM Console.
+. Siga as instruções para iniciar o console KVM baseado em Java.
+. Selecione servidores > Perfis de serviço > raiz > `VM-Host-Infra-02`.
+. Clique com o botão direito do rato `VM-Host-Infra-02`em . e selecione Consola KVM.
+. Siga as instruções para iniciar o console KVM baseado em Java.
+
+
+
+
+==== Configurar a instalação do VMware ESXi
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host- infra-02
+
+Para preparar o servidor para a instalação do sistema operacional, execute as seguintes etapas em cada host ESXi:
+
+. Na janela KVM, clique em Mídia virtual.
+. Clique em Ativar dispositivos virtuais.
+. Se solicitado a aceitar uma sessão KVM não criptografada, aceite conforme necessário.
+. Clique em Mídia virtual e selecione CD/DVD de mapa.
+. Navegue até o arquivo de imagem ISO do instalador ESXi e clique em abrir.
+. Clique em dispositivo de mapa. 
+. Clique na guia KVM para monitorar a inicialização do servidor.
+
+
+*Instale o ESXi*
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para instalar o VMware ESXi no LUN inicializável iSCSI dos hosts, execute as seguintes etapas em cada host:
+
+. Inicialize o servidor selecionando Boot Server e clicando em OK. Em seguida, clique em OK novamente.
+. Ao reiniciar, a máquina deteta a presença do suporte de instalação ESXi. Selecione o instalador ESXi no menu de inicialização exibido.
+. Depois que o instalador terminar de carregar, pressione Enter para continuar com a instalação.
+. Leia e aceite o contrato de licença do utilizador final (EULA). Pressione F11 para aceitar e continuar.
+. Selecione o LUN que foi configurado anteriormente como o disco de instalação do ESXi e pressione Enter para continuar com a instalação.
+. Selecione o layout do teclado apropriado e pressione Enter.
+. Introduza e confirme a palavra-passe de raiz e prima Enter.
+. O instalador emite um aviso de que o disco selecionado será reparticionado. Pressione F11 para continuar com a instalação.
+. Após a conclusão da instalação, selecione a guia Mídia virtual e desmarque a marca P ao lado da Mídia de instalação ESXi. Clique em Sim.
++
+
+NOTE: A imagem de instalação do ESXi deve ser desmapeada para garantir que o servidor reinicialize no ESXi e não no instalador.
+
+. Após a conclusão da instalação, pressione Enter para reinicializar o servidor.
+. No Gerenciador Cisco UCS, vincule o perfil de serviço atual ao modelo de perfil de serviço não vMedia para evitar a montagem da iso de instalação ESXi em HTTP.
+
+
+
+
+==== Configure a rede de gerenciamento para hosts ESXi
+
+A adição de uma rede de gerenciamento para cada host VMware é necessária para gerenciar o host. Para adicionar uma rede de gerenciamento aos hosts VMware, execute as seguintes etapas em cada host ESXi:
+
+ESXi Host VM-Host-infra-01 e VM-Host-infra-02
+
+Para configurar cada host ESXi com acesso à rede de gerenciamento, execute as seguintes etapas:
+
+. Depois que o servidor terminar de reiniciar, pressione F2 para personalizar o sistema.
+. Inicie sessão como `root`, introduza a palavra-passe correspondente e prima Enter para iniciar sessão.
+. Selecione Opções de solução de problemas e pressione Enter.
+. Selecione Ativar Shell ESXi e pressione Enter.
+. Selecione Ativar SSH e pressione Enter.
+. Pressione Esc para sair do menu Opções de solução de problemas.
+. Selecione a opção Configurar rede de gerenciamento e pressione Enter.
+. Selecione adaptadores de rede e pressione Enter.
+. Verifique se os números no campo Etiqueta de hardware correspondem aos números no campo Nome do dispositivo.
+. Prima Enter.
++
+image:express-direct-attach-aff220-deploy_image53.png["Erro: Imagem gráfica em falta"]
+
+. Selecione a opção VLAN (Opcional) e pressione Enter.
+. Introduza `<ib-mgmt-vlan-id>` e prima Enter.
+. Selecione IPv4 Configuration (Configuração) e prima Enter.
+. Selecione a opção Definir Endereço estático IPv4 e Configuração de rede usando a barra de espaço.
+. Insira o endereço IP para gerenciar o primeiro host ESXi.
+. Insira a máscara de sub-rede do primeiro host ESXi.
+. Insira o gateway padrão para o primeiro host ESXi.
+. Pressione Enter para aceitar as alterações na configuração IP.
+. Selecione a opção Configuração DNS e pressione Enter.
++
+
+NOTE: Como o endereço IP é atribuído manualmente, as informações de DNS também devem ser inseridas manualmente.
+
+. Introduza o endereço IP do servidor DNS primário.
+. Opcional: Insira o endereço IP do servidor DNS secundário.
+. Digite o FQDN para o primeiro host ESXi.
+. Pressione Enter para aceitar as alterações na configuração DNS.
+. Prima ESC para sair do menu Configurar rede de gestão.
+. Selecione Test Management Network (testar rede de gestão) para verificar se a rede de gestão está corretamente configurada e prima Enter.
+. Pressione Enter para executar o teste, pressione Enter novamente assim que o teste for concluído, revise o ambiente se houver uma falha.
+. Selecione Configurar rede de gestão novamente e prima Enter.
+. Selecione a opção Configuração IPv6 e pressione Enter.
+. Usando a barra de espaço, selecione Desativar IPv6 (reiniciar necessário) e pressione Enter.
+. Prima ESC para sair do submenu Configurar rede de gestão.
+. Pressione Y para confirmar as alterações e reinicializar o host ESXi.
+
+
+
+
+==== Redefinir o endereço MAC da porta vmk0 do VMware ESXi host VMkernel (opcional)
+
+ESXi Host VM-Host-infra-01 e VM-Host-infra-02
+
+Por padrão, o endereço MAC da porta VMkernel de gerenciamento vmk0 é o mesmo que o endereço MAC da porta Ethernet na qual ela é colocada. Se o LUN de inicialização do host ESXi for remapeado para um servidor diferente com endereços MAC diferentes, ocorrerá um conflito de endereço MAC porque o vmk0 retém o endereço MAC atribuído, a menos que a configuração do sistema ESXi seja redefinida. Para redefinir o endereço MAC de vmk0 para um endereço MAC aleatório atribuído pela VMware, execute as seguintes etapas:
+
+. Na tela principal do menu do console ESXi, pressione Ctrl-Alt-F1 para acessar a interface da linha de comando do console VMware. No UCSM KVM, Ctrl-Alt-F1 aparece na lista de macros estáticas.
+. Faça login como root.
+. Digite `esxcfg-vmknic –l` para obter uma listagem detalhada da interface vmk0. O vmk0 deve fazer parte do grupo de portas da rede de Gerenciamento. Anote o endereço IP e a máscara de rede do vmk0.
+. Para remover vmk0, digite o seguinte comando:
++
+....
+esxcfg-vmknic –d “Management Network”
+....
+. Para adicionar vmk0 novamente com um endereço MAC aleatório, digite o seguinte comando:
++
+....
+esxcfg-vmknic –a –i <vmk0-ip> -n <vmk0-netmask> “Management Network””.
+....
+. Verifique se vmk0 foi adicionado novamente com um endereço MAC aleatório
++
+....
+esxcfg-vmknic –l
+....
+. Digite `exit` para sair da interface de linha de comando.
+. Pressione Ctrl-Alt-F2 para retornar à interface do menu do console ESXi.
+
+
+
+
+==== Faça login em hosts do VMware ESXi com o cliente de host VMware
+
+ESXi Host VM-Host-infra-01
+
+Para fazer login no host ESXi VM-Host-infra-01 usando o VMware Host Client, execute as seguintes etapas:
+
+. Abra um navegador da Web na estação de trabalho de gerenciamento e navegue até o `VM-Host-Infra-01` endereço IP de gerenciamento.
+. Clique em abrir o VMware Host Client.
+. Introduza `root` o nome de utilizador.
+. Introduza a palavra-passe raiz.
+. Clique em Login para conetar.
+. Repita esse processo para fazer login `VM-Host-Infra-02` em uma guia ou janela separada do navegador.
+
+
+
+
+==== Instalar drivers VMware para a placa de interface virtual (VIC) do Cisco
+
+Faça o download e extraia o pacote off-line para o seguinte driver VMware VIC para a estação de trabalho de gerenciamento:
+
+* Driver nenic versão 1.0.25.0
+
+
+
+
+==== O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para instalar os drivers do VMware VIC no host ESXi VM-Host-infra-01 e VM-Host-infra-02, execute as seguintes etapas:
+
+. Em cada cliente anfitrião, selecione armazenamento.
+. Clique com o botão direito do rato em datastore1 e selecione Procurar.
+. No navegador do datastore, clique em carregar.
+. Navegue até o local guardado para os controladores VIC transferidos e selecione VMW-ESX-6,7.0-nenic-1,0.25,0-offline_bundle-11271332.zip.
+. No navegador do datastore, clique em carregar.
+. Clique em abrir para carregar o ficheiro para datastore1.
+. Certifique-se de que o arquivo foi carregado para ambos os hosts ESXi.
+. Coloque cada host no modo Manutenção se ainda não estiver.
+. Conete-se a cada host ESXi através do ssh a partir de uma conexão shell ou terminal de massa.
+. Faça login como root com a senha root.
+. Execute os seguintes comandos em cada host:
++
+....
+esxcli software vib update -d /vmfs/volumes/datastore1/VMW-ESX-6.7.0-nenic-1.0.25.0-offline_bundle-11271332.zip
+reboot
+....
+. Faça login no Host Client em cada host assim que a reinicialização estiver concluída e saia do Maintenance Mode.
+
+
+
+
+==== Configure portas VMkernel e switch virtual
+
+ESXi Host VM-Host-infra-01 e VM-Host-infra-02
+
+Para configurar as portas VMkernel e os switches virtuais nos hosts ESXi, execute as seguintes etapas:
+
+. No Host Client, selecione rede à esquerda.
+. No painel central, selecione a guia switches virtuais .
+. Selecione vSwitch0.
+. Selecione Editar definições.
+. Altere a MTU para 9000.
+. Expanda agrupamento NIC.
+. Na seção Ordem de failover, selecione vmnic1 e clique em Marcar ativo.
+. Verifique se vmnic1 agora tem um status de Ativo.
+. Clique em Guardar.
+. Selecione rede à esquerda.
+. No painel central, selecione a guia switches virtuais .
+. Selecione iScsiBootvSwitch.
+. Selecione Editar definições.
+. Altere a MTU para 9000
+. Clique em Guardar.
+. Selecione a guia NICs do VMkernel.
+. Selecione vmk1 iScsiBootPG.
+. Selecione Editar definições.
+. Altere a MTU para 9000.
+. Expanda as configurações IPv4 e altere o endereço IP para um endereço fora do UCS iSCSI-IP-Pool-A.
++
+
+NOTE: Para evitar conflitos de endereço IP se os endereços do pool IP iSCSI do Cisco UCS forem reatribuídos, é recomendável usar endereços IP diferentes na mesma sub-rede para as portas VMkernel iSCSI.
+
+. Clique em Guardar.
+. Selecione o separador Virtual switches (interrutores virtuais).
+. Selecione a opção Adicionar virtual padrão.
+. Forneça um nome de `iScsciBootvSwitch-B` para o nome do vSwitch.
+. Defina a MTU como 9000.
+. Selecione vmnic3 no menu suspenso Uplink 1.
+. Clique em Adicionar.
+. No painel central, selecione a guia NICs do VMkernel.
+. Selecione Adicionar NIC VMkernel
+. Especifique um novo nome de grupo de portas do iScsiBootPG-B.
+. Selecione iScsciBootvSwitch-B para Virtual switch.
+. Defina a MTU como 9000. Não insira um ID de VLAN.
+. Selecione estático para as definições IPv4D e expanda a opção para fornecer o Endereço e a Máscara de sub-rede na Configuração.
++
+
+NOTE: Para evitar conflitos de endereço IP, se os endereços do pool IP iSCSI do Cisco UCS forem reatribuídos, é recomendável usar endereços IP diferentes na mesma sub-rede para as portas VMkernel iSCSI.
+
+. Clique em criar.
+. À esquerda, selecione rede e, em seguida, selecione a guia grupos de portas.
+. No painel central, clique com o botão direito do rato em rede VM e selecione Remover.
+. Clique em Remover para concluir a remoção do grupo de portas.
+. No painel central, selecione Adicionar grupo de portas.
+. Atribua um nome ao grupo de portas Management Network e introduza `<ib-mgmt-vlan-id>` no campo VLAN ID (ID da VLAN) e certifique-se de que o Virtual switch vSwitch0 está selecionado.
+. Clique em Adicionar para finalizar as edições da rede IB-MGMT.
+. Na parte superior, selecione a guia NICs do VMkernel.
+. Clique em Adicionar NIC VMkernel.
+. Para novo grupo de portas, digite VMotion.
+. Para o interrutor virtual, selecione vSwitch0 selecionado.
+. Insira `<vmotion-vlan-id>` para a ID da VLAN.
+. Altere a MTU para 9000.
+. Selecione Static IPv4 settings e expanda IPv4 settings.
+. Insira o endereço IP e a máscara de rede do host ESXi vMotion.
+. Selecione a pilha TCP/IP do vMotion.
+. Selecione vMotion em Serviços.
+. Clique em criar.
+. Clique em Adicionar NIC VMkernel.
+. Para novo grupo de portas, insira NFS_share.
+. Para o interrutor virtual, selecione vSwitch0 selecionado.
+. Insira `<infra-nfs-vlan-id>` para a ID da VLAN
+. Altere a MTU para 9000.
+. Selecione Static IPv4 settings e expanda IPv4 settings.
+. Insira o endereço IP e a máscara de rede NFS da infraestrutura do host ESXi.
+. Não selecione nenhum dos Serviços.
+. Clique em criar.
+. Selecione a guia Virtual switches e, em seguida, selecione vSwitch0. As propriedades para NICs do VMkernel vSwitch0 devem ser semelhantes ao exemplo a seguir:
++
+image:express-direct-attach-aff220-deploy_image54.png["Erro: Imagem gráfica em falta"]
+
+. Selecione a guia NICs do VMkernel para confirmar os adaptadores virtuais configurados. Os adaptadores listados devem ser semelhantes ao seguinte exemplo:
++
+image:express-direct-attach-aff220-deploy_image55.png["Erro: Imagem gráfica em falta"]
+
+
+
+
+
+==== Configurar multipathing iSCSI
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para configurar o multipathing iSCSI no host ESXi VM-Host-infra-01 e VM-Host-infra-02, execute as seguintes etapas:
+
+. Em cada cliente anfitrião, selecione armazenamento à esquerda.
+. No painel central, clique em adaptadores.
+. Selecione o adaptador de software iSCSI e clique em Configurar iSCSI.
++
+image:express-direct-attach-aff220-deploy_image56.png["Erro: Imagem gráfica em falta"]
+
+. Em alvos dinâmicos, clique em Adicionar alvo dinâmico.
+. Introduza o endereço IP de `iSCSI_lif01a`.
+. Repita a introdução destes endereços IP: `iscsi_lif01b` `iscsi_lif02a` , , E `iscsi_lif02b`.
+. Clique em Save Configuration (Guardar configuração).
++
+image:express-direct-attach-aff220-deploy_image57.png["Erro: Imagem gráfica em falta"]
+
++
+Para obter todos os `iscsi_lif` endereços IP, faça login na interface de gerenciamento de cluster de storage do NetApp e execute o `network interface show` comando.
+
++
+
+NOTE: O host reenvia automaticamente o adaptador de armazenamento e os destinos são adicionados aos destinos estáticos.
+
+
+
+
+
+==== Monte os armazenamentos de dados necessários
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para montar os datastores necessários, execute as seguintes etapas em cada host ESXi:
+
+. No Host Client, selecione armazenamento à esquerda.
+. No painel central, selecione datastores.
+. No painel central, selecione novo datastore para adicionar um novo datastore.
+. Na caixa de diálogo novo datastore, selecione montar datastore NFS e clique em Avançar.
++
+image:express-direct-attach-aff220-deploy_image58.png["Erro: Imagem gráfica em falta"]
+
+. Na página fornecer detalhes da montagem NFS, execute estas etapas:
++
+.. Insira `infra_datastore_1` o nome do datastore.
+.. Introduza o endereço IP do `nfs_lif01_a` LIF para o servidor NFS.
+.. Insira `/infra_datastore_1` para o compartilhamento NFS.
+.. Deixe a versão NFS definida em NFS 3.
+.. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image59.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Clique em concluir. O datastore agora deve aparecer na lista de datastore.
+. No painel central, selecione novo datastore para adicionar um novo datastore.
+. Na caixa de diálogo novo datastore, selecione montar datastore NFS e clique em Avançar.
+. Na página fornecer detalhes da montagem NFS, execute estas etapas:
++
+.. Insira `infra_datastore_2` o nome do datastore.
+.. Introduza o endereço IP do `nfs_lif02_a` LIF para o servidor NFS.
+.. Insira `/infra_datastore_2` para o compartilhamento NFS.
+.. Deixe a versão NFS definida em NFS 3.
+.. Clique em seguinte.
+
+
+. Clique em concluir. O datastore agora deve aparecer na lista de datastore.
++
+image:express-direct-attach-aff220-deploy_image60.jpeg["Erro: Imagem gráfica em falta"]
+
+. Monte ambos os datastores em ambos os hosts ESXi.
+
+
+
+
+==== Configure o NTP em hosts ESXi
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para configurar o NTP nos hosts ESXi, execute as seguintes etapas em cada host:
+
+. No Host Client, selecione Manage (gerir) à esquerda.
+. No painel central, selecione a guia hora e data .
+. Clique em Edit Settings (Editar definições).
+. Certifique-se de que a opção utilizar protocolo de tempo de rede (Ativar cliente NTP) está selecionada.
+. Use o menu suspenso para selecionar Iniciar e Parar com Host.
+. Insira os dois endereços NTP switch Nexus na caixa servidores NTP separados por uma vírgula.
++
+image:express-direct-attach-aff220-deploy_image61.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Save (Guardar) para guardar as alterações de configuração.
+. Selecione ações > Serviço NTP > Iniciar.
+. Verifique se o serviço NTP está em execução e o relógio está agora definido para aproximadamente a hora correta
++
+
+NOTE: O tempo do servidor NTP pode variar ligeiramente em relação ao tempo do host.
+
+
+
+
+
+==== Configurar a troca de host ESXi
+
+O ESXi hospeda VM-Host-infra-01 e VM-Host-infra-02
+
+Para configurar a troca de host nos hosts ESXi, siga estas etapas em cada host:
+
+. Clique em Gerenciar no painel de navegação esquerdo. Selecione sistema no painel direito e clique em trocar.
++
+image:express-direct-attach-aff220-deploy_image62.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Edit Settings (Editar definições). Selecione `infra_swap` a partir das opções do datastore.
++
+image:express-direct-attach-aff220-deploy_image63.png["Erro: Imagem gráfica em falta"]
+
+. Clique em Guardar.
+
+
+
+
+==== Instale o plug-in NFS NetApp 1.1.2 para VMware VAAI
+
+Para instalar o plug-in NFS NetApp 1. 1,2 para VMware VAAI, execute as etapas a seguir.
+
+. Faça o download do plug-in NFS do NetApp para VMware VAAI:
++
+.. Vá para https://mysupport.netapp.com/NOW/download/software/nfs_plugin_vaai_esxi6/1.1.2/["Página de download do software NetApp"^] .
+.. Role para baixo e clique em NetApp NFS Plug-in para VMware VAAI.
+.. Selecione a plataforma ESXi.
+.. Transfira o pacote offline (.zip) ou o pacote online (.vib) do plug-in mais recente.
+
+
+. O plug-in NetApp NFS para VMware VAAI está pendente de qualificação IMT com o ONTAP 9.5 e os detalhes de interoperabilidade serão publicados no NetApp IMT em breve.
+. Instale o plug-in no host ESXi usando a CLI do ESX.
+. Reinicie o host ESXI.
+
+
+
+
+== Instale o VMware vCenter Server 6,7
+
+Esta seção fornece procedimentos detalhados para instalar o VMware vCenter Server 6,7 em uma configuração do FlexPod Express.
+
+
+NOTE: O FlexPod Express usa o VMware vCenter Server Appliance (VCSA).
+
+
+
+=== Instale o VMware vCenter Server Appliance
+
+Para instalar o VCSA, execute as seguintes etapas:
+
+. Faça o download do VCSA. Acesse o link de download clicando no ícone obter vCenter Server ao gerenciar o host ESXi.
++
+image:express-direct-attach-aff220-deploy_image64.png["Erro: Imagem gráfica em falta"]
+
+. Faça download do VCSA a partir do site da VMware.
++
+
+NOTE: Embora o Microsoft Windows vCenter Server instalável seja suportado, a VMware recomenda o VCSA para novas implantações.
+
+. Monte a imagem ISO.
+. Navegue para o `vcsa-ui-installer` diretório > `win32`. Clique duas vezes `installer.exe` em .
+. Clique em Instalar.
+. Clique em Avançar na página Introdução.
+. Aceite o EULA.
+. Selecione controlador de serviços de plataforma incorporada como o tipo de implantação.
++
+image:express-direct-attach-aff220-deploy_image65.png["Erro: Imagem gráfica em falta"]
+
++
+Se necessário, a implantação do controlador de serviços de plataforma externa também é suportada como parte da solução FlexPod Express.
+
+. Na página destino de implantação do dispositivo, insira o endereço IP de um host ESXi que você implantou, o nome de usuário raiz e a senha raiz. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image66.png["Erro: Imagem gráfica em falta"]
+
+. Defina a VM do appliance inserindo o VCSA como o nome da VM e a senha raiz que você gostaria de usar para o VCSA. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image67.png["Erro: Imagem gráfica em falta"]
+
+. Selecione o tamanho de implantação que melhor se adapta ao seu ambiente. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image68.png["Erro: Imagem gráfica em falta"]
+
+. Selecione o `infra_datastore_1` datastore. Clique em seguinte.
++
+image:express-direct-attach-aff220-deploy_image69.png["Erro: Imagem gráfica em falta"]
+
+. Introduza as seguintes informações na página Configurar definições de rede e clique em seguinte.
++
+.. Selecione MGMT-Network como sua rede.
+.. Introduza o FQDN ou IP a utilizar para o VCSA.
+.. Introduza o endereço IP a utilizar.
+.. Introduza a máscara de sub-rede a utilizar.
+.. Introduza o gateway predefinido.
+.. Introduza o servidor DNS.
++
+image:express-direct-attach-aff220-deploy_image70.png["Erro: Imagem gráfica em falta"]
+
+
+
+. Na página Pronto para concluir a fase 1, verifique se as configurações inseridas estão corretas. Clique em concluir.
++
+O VCSA é instalado agora. Este processo demora vários minutos.
+
+. Após a conclusão da fase 1, aparece uma mensagem informando que ela foi concluída. Clique em continuar para iniciar a configuração da fase 2.
++
+image:express-direct-attach-aff220-deploy_image71.png["Erro: Imagem gráfica em falta"]
+
+. Na página Introdução do Estágio 2, clique em Avançar.
+. Introduza `\<<var_ntp_id>>` para o endereço do servidor NTP. Pode introduzir vários endereços IP NTP.
++
+Se você planeja usar a alta disponibilidade do vCenter Server, verifique se o acesso SSH está habilitado.
+
+. Configure o nome de domínio SSO, a senha e o nome do site. Clique em seguinte.
++
+Registe estes valores para a sua referência, especialmente se se desviar do `vsphere.local` nome de domínio.
+
+. Junte-se ao Programa de experiência do Cliente da VMware, se desejado. Clique em seguinte.
+. Veja o resumo das suas definições. Clique em concluir ou use o botão voltar para editar as configurações.
+. Uma mensagem é exibida informando que você não é capaz de pausar ou parar a instalação de concluir depois que ela foi iniciada. Clique em OK para continuar.
++
+A configuração do aparelho continua. Isso leva vários minutos.
+
++
+É apresentada uma mensagem a indicar que a configuração foi bem-sucedida.
+
++
+
+NOTE: Os links que o instalador fornece para acessar o vCenter Server são clicáveis.
+
+
+
+
+
+==== Configurar o cluster do VMware vCenter Server 6,7 e vSphere
+
+Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as seguintes etapas:
+
+. Navegue até \https://\<<FQDN ou IP do vCenter>>/vsphere-client/.
+. Clique em Launch vSphere Client.
+. Inicie sessão com o nome de utilizador administrator e a palavra-passe SSO que introduziu durante o processo de configuração do VCSA.
+. Clique com o botão direito no nome do vCenter e selecione novo data center.
+. Introduza um nome para o centro de dados e clique em OK.
+
+
+*Criar cluster do vSphere.*
+
+Para criar um cluster vSphere, execute as seguintes etapas:
+
+. Clique com o botão direito do rato no data center recém-criado e selecione novo cluster.
+. Introduza um nome para o cluster.
+. Selecione e ative as opções DRS e vSphere HA.
+. Clique em OK.
++
+image:express-direct-attach-aff220-deploy_image72.png["Erro: Imagem gráfica em falta"]
+
+
+
+*Adicione hosts ESXi ao Cluster*
+
+Para adicionar hosts ESXi ao cluster, execute as seguintes etapas:
+
+. Selecione Adicionar anfitrião no menu ações do cluster.
++
+image:express-direct-attach-aff220-deploy_image73.png["Erro: Imagem gráfica em falta"]
+
+. Para adicionar um host ESXi ao cluster, execute as seguintes etapas:
++
+.. Insira o IP ou FQDN do host. Clique em seguinte.
+.. Introduza o nome de utilizador e a palavra-passe raiz. Clique em seguinte.
+.. Clique em Sim para substituir o certificado do host por um certificado assinado pelo servidor de certificados VMware.
+.. Clique em Next (seguinte) na página Host Summary (Resumo do anfitrião).
+.. Clique no ícone verde para adicionar uma licença ao host vSphere.
++
+
+NOTE: Este passo pode ser concluído mais tarde, se desejado.
+
+.. Clique em seguinte para deixar o modo de bloqueio desativado.
+.. Clique em Avançar na página de localização da VM.
+.. Reveja a página Pronto para concluir. Use o botão voltar para fazer quaisquer alterações ou selecione concluir.
+
+
+. Repita as etapas 1 e 2 para o host B. do Cisco UCS
++
+Esse processo deve ser concluído para quaisquer hosts adicionais adicionados à configuração do FlexPod Express.
+
+
+
+
+
+==== Configure o coredump em hosts ESXi
+
+Configuração do coletor de descarga ESXi para hosts inicializados por iSCSI
+
+Os hosts ESXi inicializados com iSCSI usando o iniciador de software VMware iSCSI precisam ser configurados para fazer despejos principais no coletor de despejo ESXi que faz parte do vCenter. O Coletor de descarga não está habilitado por padrão no vCenter Appliance. Esse procedimento deve ser executado no final da seção implantação do vCenter. Para configurar o coletor de descarga ESXi, siga estas etapas:
+
+. Faça login no vSphere Web Client como mailto:administrator e selecione Home.
+. No painel central, clique em Configuração do sistema.
+. No painel esquerdo, selecione Serviços.
+. Em Serviços, clique em VMware vSphere ESXi Dump Collector.
+. No painel central, clique no ícone verde Iniciar para iniciar o serviço.
+. No menu ações, clique em Editar tipo de inicialização.
+. Selecione Automático.
+. Clique em OK.
+. Conete-se a cada host ESXi usando ssh como root.
+. Execute os seguintes comandos:
++
+....
+esxcli system coredump network set –v vmk0 –j <vcenter-ip>
+esxcli system coredump network set –e true
+esxcli system coredump network check
+....
++
+A mensagem `Verified the configured netdump server is running` aparece depois de executar o comando final.
+
++
+
+NOTE: Esse processo deve ser concluído para quaisquer hosts adicionais adicionados ao FlexPod Express.
+
+

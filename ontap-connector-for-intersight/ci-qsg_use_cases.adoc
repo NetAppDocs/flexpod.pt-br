@@ -1,0 +1,158 @@
+---
+sidebar: sidebar 
+permalink: ontap-connector-for-intersight/ci-qsg_use_cases.html 
+keywords: netapp, ontap, cisco, intersight, storage, use cases, monitor, monitoring, orchestration, reference workflows, custom workflows, storage inventory, widgets 
+summary: Estes são alguns exemplos de casos de uso para monitoramento e orquestração de storage NetApp do Cisco Intersight. 
+---
+= Casos de uso
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Estes são alguns exemplos de casos de uso para monitoramento e orquestração de storage NetApp do Cisco Intersight.
+
+
+
+== Caso de uso 1: Monitorando o inventário de armazenamento e widgets do NetApp
+
+Quando o ambiente de armazenamento do NetApp está disponível no Cisco Intersight, você pode monitorar os objetos de armazenamento do NetApp em detalhes a partir do inventário de armazenamento e obter uma visão geral dos widgets de armazenamento.
+
+. Implante o Intersight Assist OVA (tarefa OnPrem no vCenter Environment).
+. Adicione dispositivos NetApp AIQ UM no Intersight Assist.
+. Vá para *armazenamento* e navegue pelo inventário de armazenamento do NetApp.
+. Adicione *Widgets* para armazenamento NetApp ao seu *Painel de monitorização*.
+
+
+
+
+== Caso de uso 2: Orquestração de storage do NetApp usando workflows de referência
+
+Quando os ambientes de armazenamento e vCenter do NetApp estiverem disponíveis no Cisco Intersight, você poderá usar fluxos de trabalho de referência completos disponíveis no GitHub por meio do https://github.com/ucs-compute-solutions/FlexPod-Intersight-Workflow["Repositório do fluxo de trabalho do FlexPod Intersight"^].
+
+Os fluxos de trabalho de referência incluem tarefas de armazenamento e virtualização. O arquivo README para o repositório fornece os pré-requisitos necessários para a execução de fluxos de trabalho, links para recursos úteis (incluindo documentação sobre como importar um fluxo de trabalho) e links de documentação para cada fluxo de trabalho de referência.
+
+Cada fluxo de trabalho tem uma pasta no repositório contendo dois arquivos:
+
+* O arquivo JSON para baixar e importar para o Intersight,
+* Um arquivo de documentação que fornece uma visualização das tarefas no fluxo de trabalho, entradas de fluxo de trabalho e um exemplo de execução do fluxo de trabalho.
+
+
+Execute o seguinte procedimento para importar e usar um fluxo de trabalho de referência:
+
+. Implante o Intersight Assist OVA (tarefa OnPrem no vCenter Environment).
+. Adicione dispositivos NetApp AIQ UM no Intersight Assist.
+. Adicione o destino do vCenter ao Intersight por meio do Intersight Assist.
+. Faça o download do arquivo JSON para um fluxo de trabalho de referência do repositório do FlexPod-Intersight-Workflow.
+. Importe o fluxo de trabalho para o Intersight e execute o fluxo de trabalho.
+
+
+Aqui está uma lista de fluxos de trabalho disponíveis no repositório do GitHub FlexPod-Intersight-Workflow:
+
+* Adicione iniciadores ao Grupo de iniciadores do NetApp
+* Nova Política de exportação para volume NetApp
+* Novo armazenamento de dados nas usando o NetApp Smart volume
+* Nova interface de dados NetApp FC
+* Novo Grupo de Iniciadores do NetApp
+* Nova interface de dados iSCSI NetApp
+* Nova interface de dados NetApp nas
+* Nova máquina virtual de storage NetApp
+* Novo armazenamento de dados VMFS usando o NetApp Smart LUN
+* Remova os iniciadores do Grupo de iniciadores do NetApp
+* Remova o armazenamento de dados nas usando o volume inteligente NetApp
+* Remova a Política de exportação do NetApp
+* Remova o Grupo Iniciador do NetApp
+* Remova o armazenamento de dados VMFS usando o NetApp Smart LUN
+* Atualize o armazenamento de dados nas usando o NetApp volume Inteligente
+* Atualize o armazenamento de dados VMFS usando o NetApp Smart LUN
+
+
+
+
+== Caso de uso 3: Fluxos de trabalho personalizados usando formulário livre de designer
+
+Quando os ambientes NetApp Storage e vCenter estiverem disponíveis no Cisco Intersight, você poderá criar fluxos de trabalho personalizados usando as tarefas de virtualização e storage da NetApp.
+
+. Implantar o Intersight Assist OVA (tarefa OnPrem no vCenter Environment)
+. Adicione dispositivos NetApp AIQ UM no Intersight Assist.
+. Adicione o vCenter Target ao Intersight por meio do Intersight Assist.
+. Navegue até a guia *Orchestration* no Intersight.
+. Selecione *criar fluxo de trabalho*.
+. Adicione tarefas de armazenamento e virtualização aos seus fluxos de trabalho.
++
+Aqui estão as tarefas de storage do NetApp disponíveis no Cisco Intersight:
+
++
+** Adicione ACL ao compartilhamento CIFS do NetApp
+** Adicionar correspondência de cliente à regra de política de exportação do NetApp
+** Adicionar política de exportação ao volume NetApp
+** Adicione iniciadores ao Grupo de iniciadores do NetApp
+** Adicionar regra à Política de exportação do NetApp
+** Adicionar Agendamento à Política de instantâneos do NetApp
+** Confirme o status da licença do NetApp
+** Confirmar o status do protocolo FCP da máquina virtual de storage NetApp
+** Editar agregados NetApp para máquina virtual de storage
+** Editar a política de SnapMirror assíncrona do NetApp
+** Editar permissão de compartilhamento de NetApp CIFS
+** Editar regra de política de exportação do NetApp
+** Editar política de instantâneos do NetApp
+** Editar Programa de políticas de instantâneos do NetApp
+** Editar estilo de segurança de volume do NetApp
+** Editar política de instantâneo de volume do NetApp
+** Ative os serviços CIFS do NetApp
+** Expanda NetApp LUN
+** Nova política de SnapMirror assíncrona da NetApp
+** Novo servidor CIFS NetApp
+** Novo compartilhamento NetApp CIFS
+** Encontre o mapa LUN do Grupo iniciador NetApp
+** Encontrar LUN NetApp por ID
+** Encontrar volume NetApp por ID
+** Nova Política de exportação do NetApp
+** Nova interface de dados NetApp FC
+** Novo Grupo de Iniciadores do NetApp
+** Nova interface de dados iSCSI NetApp
+** Novos espelhos de compartilhamento de carga do NetApp para volume raiz da SVM
+** Novo LUN NetApp
+** Novo mapa LUN NetApp
+** Nova interface de dados NetApp nas
+** Novo NetApp nas Smart volume
+** Novo LUN inteligente NetApp
+** Nova relação NetApp SnapMirror para volume
+** Nova Política de snapshot do NetApp
+** Nova máquina virtual de storage NetApp
+** Novo volume NetApp
+** Novo Snapshot de volume do NetApp
+** Registre o DNS para a Máquina Virtual de armazenamento NetApp
+** Remova a ACL do compartilhamento CIFS do NetApp
+** Remover correspondência Cliente da regra de Política de exportação do NetApp
+** Remover a política de exportação do volume NetApp
+** Remova o Iniciador do Grupo Iniciador do NetApp
+** Remova o servidor CIFS do NetApp
+** Remova o compartilhamento CIFS do NetApp
+** Remova a Política de exportação do NetApp
+** Remova a interface de dados NetApp FC
+** Remova o Grupo Iniciador do NetApp
+** Remova a interface IP do NetApp
+** Remova os espelhos de compartilhamento de carga do NetApp para o volume raiz da SVM
+** Remova o LUN NetApp
+** Remover mapa LUN NetApp
+** Remova o NetApp nas Smart volume
+** Remova o NetApp Smart LUN
+** Remover relação NetApp SnapMirror para volume
+** Remova a Política de NetApp SnapMirror
+** Remover a Política de instantâneos do NetApp
+** Remova a máquina virtual de storage do NetApp
+** Remover volume NetApp
+** Remover instantâneo do volume do NetApp
+** Remover regra da Política de exportação do NetApp
+** Remover Programa da Política de instantâneos do NetApp
+** Renomear captura Instantânea de volume do NetApp
+** Atualize os espelhos de compartilhamento de carga do NetApp para volume raiz da SVM
+** Atualizar a capacidade de volume do NetApp
+
+
+

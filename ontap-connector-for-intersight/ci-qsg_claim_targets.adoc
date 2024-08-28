@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: ontap-connector-for-intersight/ci-qsg_claim_targets.html 
+keywords: cisco, intersight, netapp, ontap, connector, claim, targets, active iq unified manager, AIQ UM 
+summary: Após a instalação do Cisco Intersight Assist, você pode solicitar seus dispositivos de armazenamento e virtualização NetApp. 
+---
+= Alvos do pedido de reembolso
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Após a instalação do Cisco Intersight Assist, você pode solicitar seus dispositivos de armazenamento e virtualização NetApp. Retorne à página *Intersight Targets* e adicione seus destinos do vCenter e do NetApp Active IQ Unified Manager.
+
+
+NOTE: Certifique-se de que o gateway da API NetApp Active IQ Unified Manager (AIQ UM) está ativado.
+
+No Gerenciador Unificado do NetApp IQ, navegue até *Configurações > Geral > Configurações de recursos*.
+
+image:ci-qsg_image7.png["Captura de tela do NetApp AIQ UM API Gateway habilitado"]
+
+O exemplo a seguir mostra o alvo NetApp AIQ UM que está sendo reivindicado ao Cisco Intersight.
+
+
+NOTE: Quando você reivindica o destino NetApp AIQ UM, todos os clusters gerenciados pelo Active IQ Unified Manager são adicionados automaticamente ao Intersight.
+
+image:ci-qsg_image8.png["Captura de tela do alvo NetApp AIQ UM sendo reivindicado do Cisco Intersight"]
