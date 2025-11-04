@@ -23,6 +23,12 @@ Uma arquitetura FlexPod tem os seguintes requisitos adicionais de interoperabili
 ** Suporte SupportEdge Advisor ou SupportEdge Premium para equipamentos NetApp
 
 
+* Atributos de vendas relevantes no pedido de venda para dar suporte:
++
+** Direitos do FlexPod
+** Direitos de suporte da solução FlexPod
+
+
 
 
 Para obter mais informações, consulte o NetApp http://mysupport.netapp.com/matrix["IMT"^] .

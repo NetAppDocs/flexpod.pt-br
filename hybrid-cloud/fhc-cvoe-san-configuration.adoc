@@ -221,7 +221,7 @@ Para obter informações detalhadas sobre essas tarefas, consulte a página link
 
 == Geração de dados
 
- `Dgen.pl` É um gerador de dados de script perl para o simulador de e/S da EHR (GenerateIO). Os dados dentro dos LUNs são gerados com o script EHR `Dgen.pl`. O script foi projetado para criar dados semelhantes ao que seria encontrado dentro de um banco de dados EHR.
+ `Dgen.pl`É um gerador de dados em script Perl para o simulador de E/S do EHR (GenerateIO).  Os dados dentro dos LUNs são gerados com o EHR (Registro Eletrônico de Saúde). `Dgen.pl` roteiro.  O script foi projetado para criar dados semelhantes aos dados em um banco de dados EHR (Registros Eletrônicos de Saúde).
 
 ....
 [root@hc-cloud-secure-1 ~]# cd GenerateIO-1.17.3/
@@ -246,64 +246,29 @@ O NetApp SnapMirror replica dados em alta velocidade em LAN ou WAN, para que voc
 
 Siga as etapas a seguir para configurar a replicação do SnapMirror entre o sistema ONTAP local e o CVO.
 
-. No menu de navegação, selecione *Storage* > *Canvas*.
-. No Canvas, selecione o ambiente de trabalho que contém o volume de origem, arraste-o para o ambiente de trabalho para o qual deseja replicar o volume e selecione *replicação*.
-+
-image:fhc-cvoe-image8.jpeg["Esta captura de tela mostra a tela do BlueXP  Canvas com replicação selecionada em uma lista suspensa para a instância do ONTAP on-premise."]
-
+. No menu de navegação, selecione *Armazenamento* > *Sistemas*.
+. Em Sistemas, selecione o sistema que contém o volume de origem, arraste-o para o sistema para o qual deseja replicar o volume e, em seguida, selecione *Replicação*.
 +
 As etapas restantes explicam como criar uma relação síncrona entre o Cloud Volumes ONTAP e os clusters do ONTAP no local.
 
 . * Configuração de peering de origem e destino.* Se esta página for exibida, selecione todas as LIFs entre clusters para o relacionamento de pares de cluster.
-+
-image:fhc-cvoe-image9.png["Esta captura de tela mostra a tela Configuração de peering de origem BlueXP ."]
-
 . *Seleção de volume de origem.* Selecione o volume que pretende replicar.
-+
-image:fhc-cvoe-image10.jpeg["Esta captura de tela mostra a tela seleção de volume de origem do BlueXP  com um volume de catorze itens exibidos."]
-
 . *Tipo de disco de destino e disposição em camadas.* Se o destino for um sistema Cloud Volumes ONTAP, selecione o tipo de disco de destino e escolha se deseja habilitar a disposição em camadas de dados.
-+
-image:fhc-cvoe-image11.jpeg["Esta captura de tela mostra a tela Destination Disk Type (tipo de disco de destino do BlueXP ) com o SSD de uso geral selecionado."]
-
 . *Nome do volume de destino:* Especifique o nome do volume de destino e escolha o agregado de destino. Se o destino for um cluster do ONTAP, você também deverá especificar a VM de armazenamento de destino.
-+
-image:fhc-cvoe-image12.jpeg["Esta captura de ecrã mostra o ecrã Destination volume name (Nome do volume de destino do BlueXP ) com as informações relevantes introduzidas."]
-
 . * Taxa máxima de transferência.* Especifique a taxa máxima (em megabytes por segundo) na qual os dados podem ser transferidos.
-+
-image:fhc-cvoe-image13.jpeg["Esta captura de tela mostra a tela taxa máxima de transferência do BlueXP  com 100 MB/s inseridos."]
-
 . *Política de replicação.* Escolha uma política padrão ou clique em *políticas adicionais* e selecione uma das políticas avançadas. Para obter ajuda, https://docs.netapp.com/us-en/cloud-manager-replication/concept-replication-policies.html["saiba mais sobre políticas de replicação"^].
-+
-image:fhc-cvoe-image14.jpeg["Esta captura de tela mostra a página Política de replicação do BlueXP  com as políticas padrão de espelho ou espelho e Backup exibidas."]
-
 . *Programação.* Escolha uma cópia única ou uma programação recorrente. Várias programações padrão estão disponíveis. Se você quiser uma programação diferente, você deve criar uma nova programação no `destination cluster` usando o System Manager.
-+
-image:fhc-cvoe-image15.jpeg["Esta captura de tela mostra a tela de programação da Configuração de replicação do BlueXP  com várias opções de temporização exibidas."]
-
 . *Revisão.* Reveja as suas seleções e clique em *Go*.
-+
-image:fhc-cvoe-image16.jpeg["Esta captura de tela mostra a tela Revisão e aprovação da configuração de replicação do BlueXP ."]
-
 
 
 Para obter informações detalhadas sobre essas etapas de configuração, https://docs.netapp.com/us-en/cloud-manager-replication/task-replicating-data.html["aqui"^]consulte .
 
-O BlueXP  inicia o processo de replicação de dados. Agora, você pode ver o serviço *replicação* estabelecido entre o sistema ONTAP local e o Cloud Volumes ONTAP.
-
-image:fhc-cvoe-image17.jpeg["Esta captura de tela mostra a tela do BlueXP  Canvas com o serviço replicação descrito como uma linha entre a instância do CVO e a instância do ONTAP local."]
+O Console inicia o processo de replicação de dados.  Nesta etapa, você pode ver o serviço de *Replicação* que foi estabelecido entre o seu sistema ONTAP local e o Cloud Volumes ONTAP.
 
 No cluster Cloud Volumes ONTAP, você pode ver o volume recém-criado.
 
-image:fhc-cvoe-image18.png["Esta captura de tela mostra a guia volumes do BlueXP  com o novo volume exibido."]
-
 Você também pode verificar se a relação do SnapMirror está estabelecida entre o volume no local e o volume de nuvem.
 
-image:fhc-cvoe-image19.jpeg["Esta captura de tela mostra a guia replicações do BlueXP  com informações sobre a relação de replicação recém-criada."]
-
 Mais informações sobre a tarefa de replicação podem ser encontradas na guia *replicação*.
-
-image:fhc-cvoe-image20.png["Esta captura de tela mostra informações estendidas na guia replicações."]
 
 link:fhc-cvoe-solution-validation.html["Próximo: Validação da solução."]

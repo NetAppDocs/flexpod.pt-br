@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: hybrid-cloud/fhc-cvoe-installation-and-configuration.html 
-keywords: cloud volumes ontap, flexpod, ontap bluexp, installation, configuration 
-summary: Esta seção descreve como instalar e configurar o Cloud Volumes ONTAP, o FlexPod, o storage ONTAP e o BlueXP . 
+keywords: cloud volumes ontap, flexpod, ontap netapp console, installation, configuration 
+summary: Esta seção descreve como instalar e configurar o Cloud Volumes ONTAP, o FlexPod, o armazenamento ONTAP e o NetApp Console. 
 ---
 = Instalação e configuração
 :hardbreaks:
@@ -29,13 +29,13 @@ Você precisa capturar os detalhes do ambiente do seu provedor de serviços de n
 +
 Um gateway de endpoint VPC é necessário para habilitar a conexão entre a VPC e o serviço AWS S3. Isso é usado para ativar o backup no CVO, um endpoint com o tipo Gateway.
 
-. Acesse o NetApp BlueXP .
+. Acesse o NetApp Console.
 +
-Para acessar o NetApp BlueXP  e outros serviços de nuvem, você precisa se inscrever https://cloudmanager.netapp.com/["NetApp BlueXP"^] no . Para configurar espaços de trabalho e usuários na conta do BlueXP , clique https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-setting-up-netapp-accounts.html["aqui"^]em . Você precisa de uma conta que tenha permissão para implantar o conetor no seu provedor de nuvem diretamente da BlueXP . Pode transferir a política BlueXP  a partir de https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions.html["aqui"^].
+Para acessar o Console e outros serviços em nuvem, você precisa se cadastrar em https://cloudmanager.netapp.com/["NetApp Console"^] .  Para configurar espaços de trabalho e usuários na conta do Console, consulte https://docs.netapp.com/us-en/console-setup-admin/index.html["Configuração e administração do NetApp Console"^] .  Você precisa de uma conta que tenha permissão para implantar o agente do Console no seu provedor de nuvem diretamente do Console.  Para obter as permissões necessárias, consulte https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions.html["Resumo de permissões para o NetApp Console"^] .
 
-. Implante o conetor.
+. Implantar agente do console.
 +
-Antes de adicionar um ambiente de trabalho Cloud volume ONTAP, você deve implantar o Connector. O BlueXP  solicita se você tentar criar seu primeiro ambiente de trabalho do Cloud Volumes ONTAP sem o conetor no lugar. Para implantar o Connector no AWS a partir do BlueXP , consulte https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html["link"^]este .
+Antes de adicionar um sistema Cloud Volume ONTAP , você deve implantar um agente de console.  O Console avisa se você tentar criar seu primeiro sistema Cloud Volumes ONTAP sem um agente do Console instalado.  Para implantar um agente do Console na AWS a partir do Console, consulte o https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html["Opções de instalação do agente de console na AWS"^] .
 
 . Inicie o Cloud Volumes ONTAP na AWS.
 +
@@ -45,11 +45,9 @@ Antes de adicionar um ambiente de trabalho Cloud volume ONTAP, você deve implan
 Para obter informações detalhadas sobre essas etapas, consulte o https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-getting-started-aws.html["Guia de início rápido para Cloud Volumes ONTAP na AWS"^].
 
 +
-Nessa solução, implantamos um sistema Cloud Volumes ONTAP de nó único na AWS. A figura a seguir mostra o Dashboard do NetApp BlueXP  com instância CVO de nó único.
+Nessa solução, implantamos um sistema Cloud Volumes ONTAP de nó único na AWS.
 
 
-
-image:fhc-cvoe-image4.jpeg["Esta captura de tela mostra a tela do NetApp BlueXP  Canvas com Meus ambientes de trabalho exibidos."]
 
 
 
@@ -78,7 +76,7 @@ Esta seção descreve algumas das etapas importantes de configuração do ONTAP 
 . Configurar um SVM com o serviço iSCSI em execução.
 +
 ....
-1. vserver create –vserver Healthcare_SVM –rootvolume Healthcare_SVM_root –aggregate aggr1_A400_G0312_01 –rootvolume-security-style unix
+1. vserver create -vserver Healthcare_SVM -rootvolume Healthcare_SVM_root -aggregate aggr1_A400_G0312_01 -rootvolume-security-style unix
 2. vserver add-protocols -vserver Healthcare_SVM -protocols iscsi
 3. vserver iscsi create -vserver Healthcare_SVM
 
@@ -102,10 +100,10 @@ Se a licença iSCSI não tiver sido instalada durante a configuração do cluste
 . Adicione interfaces para acesso iSCSI.
 +
 ....
-1. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01a -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node01-infra-iscsi-a–ip> -netmask <infra-iscsi-a-mask> -status-admin up
-2. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01b -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node01-infra-iscsi-b–ip> -netmask <infra-iscsi-b-mask> –status-admin up
-3. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02a -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node02-infra-iscsi-a–ip> -netmask <infra-iscsi-a-mask> –status-admin up
-4. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02b -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node02-infra-iscsi-b–ip> -netmask <infra-iscsi-b-mask> –status-admin up
+1. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01a -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node01-infra-iscsi-a-ip> -netmask <infra-iscsi-a-mask> -status-admin up
+2. network interface create -vserver Healthcare_SVM -lif iscsi-lif-01b -service-policy default-data-iscsi -home-node <st-node01> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node01-infra-iscsi-b-ip> -netmask <infra-iscsi-b-mask> -status-admin up
+3. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02a -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-a-vlan-id> -address <st-node02-infra-iscsi-a-ip> -netmask <infra-iscsi-a-mask> -status-admin up
+4. network interface create -vserver Healthcare_SVM -lif iscsi-lif-02b -service-policy default-data-iscsi -home-node <st-node02> -home-port a0a-<infra-iscsi-b-vlan-id> -address <st-node02-infra-iscsi-b-ip> -netmask <infra-iscsi-b-mask> -status-admin up
 ....
 +
 Nesta solução, criamos quatro interfaces lógicas iSCSI (LIFs), duas em cada nó.
@@ -124,7 +122,7 @@ Para um banco de dados operacional EHR (ODB), um diário e cargas de trabalho de
 . Crie um grupo.
 +
 ....
-1. igroup create –vserver Healthcare_SVM –igroup ehr –protocol iscsi –ostype linux –initiator iqn.1994-05.com.redhat:8e91e9769336
+1. igroup create -vserver Healthcare_SVM -igroup ehr -protocol iscsi -ostype linux -initiator iqn.1994-05.com.redhat:8e91e9769336
 ....
 +
 Igroups são usados para permitir o acesso do servidor a LUNs. Para o host Linux, o servidor IQN pode ser encontrado no arquivo `/etc/iscsi/initiatorname.iscsi`.
@@ -132,32 +130,23 @@ Igroups são usados para permitir o acesso do servidor a LUNs. Para o host Linux
 . Mapeie o LUN para o grupo.
 +
 ....
-1. lun mapping create –vserver Healthcare_SVM –path /vol/hc_iscsi_vol/iscsi_lun1 –igroup ehr –lun-id 0
+1. lun mapping create -vserver Healthcare_SVM -path /vol/hc_iscsi_vol/iscsi_lun1 -igroup ehr -lun-id 0
 ....
 
 
 
 
-== Adicione storage FlexPod no local ao BlueXP 
+== Adicione armazenamento FlexPod local ao NetApp Console
 
-Siga as etapas a seguir para adicionar seu storage FlexPod ao ambiente de trabalho usando o NetApp BlueXP .
+Siga os passos abaixo para adicionar seu armazenamento FlexPod ao sistema usando o Console.
 
-. No menu de navegação, selecione *Storage* > *Canvas*.
-. Na página Canvas, clique em *Adicionar ambiente de trabalho* e selecione *no local*.
+. No menu de navegação, selecione *Armazenamento* > *Sistemas*.
+. Na página Sistemas, clique em *Adicionar sistema* e selecione *Local*.
 . Selecione *ONTAP on-premises*. Clique em *seguinte*.
-+
-image:fhc-cvoe-image5.jpeg["Esta captura de tela mostra a página Adicionar grupo de trabalho do BlueXP  com ONTAP on-premises selecionado."]
-
 . Na página Detalhes do cluster do ONTAP, insira o endereço IP de gerenciamento do cluster e a senha da conta de usuário do administrador. Em seguida, clique em *Add*.
-+
-image:fhc-cvoe-image6.png["Esta captura de tela mostra a página BlueXP  Discover ONTAP Cluster com as entradas de Detalhes do cluster do ONTAP."]
-
 . Na página Detalhes e credenciais, insira um nome e uma descrição para o ambiente de trabalho e clique em *Go*.
 +
-BlueXP  descobre o cluster do ONTAP e o adiciona como um ambiente de trabalho no Canvas.
-
-+
-image:fhc-cvoe-image7.jpeg["Esta captura de tela mostra a página do BlueXP  Canvas com os ambientes de trabalho recentemente adicionados à direita."]
+O Console descobre o cluster ONTAP e o adiciona como um sistema na página Sistemas.
 
 
 
