@@ -41,11 +41,6 @@ O FabricPool é compatível com as seguintes plataformas:
 ** FAS2650, FAS2620
 
 
-
-
-
-NOTE: Somente agregados SSD em plataformas FAS podem usar o FabricPool.
-
 * Categorias de nuvem
 +
 ** Alibaba Cloud Object Storage Service (padrão, acesso não frequente)
