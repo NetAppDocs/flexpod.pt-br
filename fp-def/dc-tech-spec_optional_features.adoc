@@ -56,7 +56,7 @@ Um FC-NVMe completo estende de forma otimizada a infraestrutura de SAN existente
 
 Um transporte SAN FC de 32G GB existente pode ser usado para transportar simultaneamente workloads NVMe e SCSI.
 
-A figura a seguir ilustra o data center FlexPod para FC com Cisco MDS.
+A figura a seguir ilustra o FlexPod Datacenter para FC com Cisco MDS.
 
 Mais detalhes sobre as configurações do FlexPod e os benefícios de desempenho, consulte https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-b-series-blade-servers/whitepaper-c11-741907.html["Apresentação do white paper NVMe completo para FlexPod."^]
 
