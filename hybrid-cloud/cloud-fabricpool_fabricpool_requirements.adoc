@@ -14,7 +14,7 @@ summary: O FabricPool requer o ONTAP 9.2 ou posterior e o uso de agregados SSD e
 
 
 [role="lead"]
-O FabricPool requer o ONTAP 9.2 ou posterior e o uso de agregados SSD em qualquer uma das plataformas listadas nesta seção. Requisitos adicionais do FabricPool dependem da categoria de nuvem anexada. Para plataformas AFF de nível básico que têm uma capacidade fixa e relativamente pequena, como o NetApp AFF C190, o FabricPool pode ser altamente eficaz na migração de dados inativos para a camada de nuvem.
+FabricPool requer ONTAP 9.2 ou posterior. Requisitos adicionais do FabricPool dependem da versão do ONTAP em uso e da camada de nuvem conectada. Em versões anteriores ao ONTAP 9.8, FabricPool é suportado apenas em camadas locais SSD. O suporte para agregados HDD foi adicionado no ONTAP 9.8. Para plataformas AFF de nível básico que possuem capacidade fixa e relativamente pequena, como o NetApp AFF C190, FabricPool pode ser altamente eficaz para mover dados inativos para a camada de nuvem.
 
 
 
@@ -23,32 +23,40 @@ O FabricPool requer o ONTAP 9.2 ou posterior e o uso de agregados SSD em qualque
 O FabricPool é compatível com as seguintes plataformas:
 
 * NetApp AFF
+* NetApp FAS FabricPool é compatível com todas as plataformas capazes de executar ONTAP 9.2, exceto as seguintes:
 +
-** A800
-** A700S, A700
-** A320, A300
-** A220, A200
-** C190
-** AFF8080, AFF8060 E AFF8040
+** FAS8020
+** FAS2554, FAS2552, FAS2520
 
 
-* NetApp FAS
-+
-** FAS9000
-** FAS8200
-** FAS8080, FAS8060 E FAS8040
-** FAS2750, FAS2720
-** FAS2650, FAS2620
 
 
+
+NOTE: Consulte o  https://hwu.netapp.com/DetailViews/Home.aspx[][NetApp Hardware Universe^] para obter as informações mais recentes sobre plataformas compatíveis com FabricPool.
+
+* NetApp ONTAP Select [NOTA] NetApp recomenda o uso de camadas locais FabricPool compostas exclusivamente por SSDs.
 * Categorias de nuvem
 +
 ** Alibaba Cloud Object Storage Service (padrão, acesso não frequente)
-** Amazon S3 (padrão, IA padrão, IA de uma zona, disposição inteligente em categorias)
+** Amazon S3 (Standard, Standard-IA, One Zone-IA, Intelligent-Tiering, Glacier Instant Retrieval)
 ** Serviços de nuvem comerciais da Amazon (C2S)
-** Google Cloud Storage (multiregional, regional, Nearline, Coldline)
+** Google Cloud Storage (Multi-Regional, Regional, Nearline, Coldline, Archive)
 ** IBM Cloud Object Storage (padrão, Vault, Cold Vault, Flex)
 ** Microsoft Azure Blob Storage (ativo e inativo)
+** NetApp StorageGRID 10.3 e versões posteriores
++
+
+NOTE: Glacier Flexible Retrieval e Glacier Deep Archive não são suportados.
+
+
+
+* Hierarquização de dados
++
+** Amazon FSx for NetApp ONTAP
+** Azure NetApp Files
+** NetApp Cloud Volumes para Google Cloud
+** NetApp Cloud Volumes ONTAP para AWS
+** NetApp Cloud Volumes ONTAP para Azure
 
 
 
