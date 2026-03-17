@@ -13,9 +13,9 @@ summary: A NetApp oferece uma solução única de gerenciamento de dados para ap
 :imagesdir: ./../media/
 
 
-Em parceria com: image:cisco logo.png["logótipo da Cisco"]
-
 Kamini Singh, NetApp
+
+Em parceria com: image:cisco logo.png["logótipo da Cisco"]
 
 [role="lead"]
 A chave para fazer uma transformação digital é simplesmente fazer mais com os dados. Os hospitais geram e exigem grandes quantidades de dados para executar sua organização e atender seus pacientes com eficiência. As informações são coletadas e processadas ao tratar pacientes e gerenciar horários e recursos médicos da equipe.
