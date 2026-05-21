@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fp-def/fp-express-tech-spec_storage_software.html 
-keywords: storage, software, flexpod, express, ontap, e, series, santricity 
+keywords: storage, software, flexpod, express, ontap, aff, asa, fas 
 summary: Os sistemas operacionais de storage listados nesta seção são compatíveis com a plataforma FlexPod Express. 
 ---
 = Software de storage
@@ -14,20 +14,12 @@ summary: Os sistemas operacionais de storage listados nesta seção são compat�
 
 
 [role="lead"]
-O FlexPod Express é compatível com sistemas de storage que executam sistemas operacionais NetApp ONTAP ou SANtricity.
+FlexPod Express oferece suporte a sistemas de armazenamento que executam o sistema operacional NetApp ONTAP.
 
 
 
 == NetApp ONTAP
 
-O software NetApp ONTAP é o sistema operacional executado em sistemas de storage AFF e FAS. O ONTAP fornece uma arquitetura de storage altamente dimensionável que permite operações ininterruptas, upgrades sem interrupções e uma infraestrutura de dados ágil.
+O NetApp ONTAP é o sistema operacional que roda nos sistemas de armazenamento AFF, ASA e FAS. ONTAP oferece uma arquitetura de storage dimensionável altamente escalável que permite operações sem interrupções, atualizações sem interrupções e uma infraestrutura de dados ágil.
 
 Para obter mais informações sobre o ONTAP, consulte http://www.netapp.com/us/products/platform-os/ontap/index.aspx["Página do produto ONTAP"^].
-
-
-
-== Software e-Series SANtricity
-
-O software e-Series SANtricity é o sistema operacional executado em sistemas de storage e-Series. O SANtricity oferece um sistema altamente flexível que atende a diferentes necessidades de aplicativos e oferece alta disponibilidade integrada e uma ampla variedade de recursos de proteção de dados.
-
-Para obter mais informações, consulte http://www.netapp.com/us/products/platform-os/santricity/index.aspx["Página do produto SANtricity"^] .
