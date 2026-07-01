@@ -18,7 +18,7 @@ Para saber mais sobre as informações descritas neste documento, consulte os se
 
 Documentação do produto NetApp
 
-http://docs[]. http://docs.netapp.com/["NetApp"^].com
+https://docs.netapp.com["https://docs.netapp.com"^]
 
 FlexPod Express com guia
 

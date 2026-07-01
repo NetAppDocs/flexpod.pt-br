@@ -31,7 +31,7 @@ Certifique-se de que conhece o https://www.cisco.com/c/en/us/td/docs/unified_com
 *Passos*
 
 . Crie uma conta do Cisco Intersight.  https://intersight.com/["https://intersight.com/"^]Visite para criar sua conta Intersight. Você deve ter um ID Cisco válido para criar uma conta do Cisco Intersight.
-. Faça o download do Intersight Virtual Appliance em https://software.cisco.com/download/home/286319499/type/286323047/release/1.0.9-148["software.Cisco.com"^]. Para obter mais informações, vá para https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/b_Cisco_Intersight_Appliance_Getting_Started_Guide/b_Cisco_Intersight_Appliance_Install_and_Upgrade_Guide_chapter_00.html["Guia de instalação e atualização do Intersight Appliance"^] .
+. Faça o download do Cisco Intersight Virtual Appliance em https://software.cisco.com/download/home/286319499/type/286323047/release/1.1.7-0.a["software.Cisco.com"^]. Para obter mais informações, acesse o https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/b_Cisco_Intersight_Appliance_Getting_Started_Guide/b_Cisco_Intersight_Appliance_Install_and_Upgrade_Guide_chapter_00.html["Guia de instalação e atualização do Intersight Appliance"^].
 . Implante os ÓVULOS. DNS e NTP são necessários para implantar o OVA.
 +
 .. Configure DNS com Registros A/PTR e CNAME Alias antes de implantar o OVA. Veja o exemplo abaixo.
@@ -57,7 +57,7 @@ image::ci-qsg_image4.png[Captura de tela da tela Deploy OVF Template]
 
 . Após a ativação do dispositivo de assistência Intersight.
 +
-.. Navegue para para para https://FQDN-of-your-appliance[] concluir a configuração pós-instalação do seu aparelho.
+.. Navegue até  `https://<FQDN-of-your-appliance>` para concluir a configuração pós-instalação do seu appliance.
 +
 O processo de instalação é iniciado automaticamente. A instalação pode demorar até uma hora, dependendo da largura de banda até Intersight.comMbps. Também pode levar vários segundos para que o site seguro esteja operacional após a ativação da VM.
 

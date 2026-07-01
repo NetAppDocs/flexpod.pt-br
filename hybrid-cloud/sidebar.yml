@@ -96,15 +96,13 @@ entries:
       url: "/hybrid-cloud/cloud-fabricpool_set_volume_tiering_minimum_cooling_days.html"
   - title: Considerações de desempenho
     url: "/hybrid-cloud/cloud-fabricpool_performance_considerations.html"
-  - title: Custo de propriedade
-    url: "/hybrid-cloud/cloud-fabricpool_cost_of_ownership.html"
   - title: Conclusão
     url: "/hybrid-cloud/cloud-fabricpool_conclusion.html"
   - title: Onde encontrar informações adicionais
     url: "/hybrid-cloud/cloud-fabricpool_where_to_find_additional_information.html"
 - title: FlexPod Datacenter com IBM Cloud Private com o Cisco UCS Manager, NetApp
     ONTAP 9.3 AFF e VMware vSphere 6.5U1 - Design
-  url: "/hybrid-cloud/fpd-ibn-cloud-design.html"
+  url: "/hybrid-cloud/fpd-ibm-cloud-design.html"
 - title: Data center FlexPod para nuvem híbrida com o Cisco CloudCenter e o storage
     privado NetApp - projete
   url: "/hybrid-cloud/fpd-hc-storage-design.html"

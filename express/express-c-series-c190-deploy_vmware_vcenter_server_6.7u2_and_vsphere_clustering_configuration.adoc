@@ -16,7 +16,7 @@ summary: Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execu
 [role="lead"]
 Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as seguintes etapas:
 
-. Navegue até `\https://\<<FQDN or IP of vCenter>>/vsphere-client/`.
+. Navegue até  `https://<<FQDN or IP of vCenter>>/vsphere-client/`.
 . Clique em Launch vSphere Client.
 . Faça login com o nome de usuário mailto:administrator e a senha SSO que você inseriu durante o processo de configuração do VCSA.
 . Clique com o botão direito no nome do vCenter e selecione novo data center.
@@ -77,7 +77,7 @@ NOTE: Esse processo deve ser concluído para quaisquer hosts adicionais adiciona
 
 Para configurar o coredump nos hosts ESXi, execute as seguintes etapas:
 
-. Inicie sessão em https:// https://172.21.181.105:5480/ui/services["VCenter"^] IP:5480/, introduza root para o nome de utilizador e introduza a palavra-passe de raiz.
+. Faça login em  `https://<vCenter IP>:5480`, digite root como nome de usuário e digite a senha root.
 . Clique em serviços e selecione o coletor de despejo VMware vSphere ESXI.
 . Inicie o serviço coletor de despejo VMware vSphere ESXI.
 +

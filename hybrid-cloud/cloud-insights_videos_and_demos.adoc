@@ -14,8 +14,8 @@ summary: Você pode ver uma demonstração em vídeo do uso do NetApp Cloud Insi
 
 
 [role="lead"]
-Você pode ver uma demonstração em vídeo do uso do NetApp Cloud Insights para avaliar os recursos em um ambiente https://netapp.hubs.vidyard.com/watch/1ycNWx4hzFsaV1dQHFyxY2?["aqui"^]local .
+Você pode assistir a uma demonstração em vídeo de como usar NetApp Cloud Insights para avaliar os recursos em um ambiente local https://www.netapp.com/video/fxujqwwhoqg/complete-observability-with-cloud-insights/["aqui"^].
 
-Você pode ver uma demonstração em vídeo do uso do NetApp Cloud Insights para monitorar a infraestrutura e definir limites de alerta para a infraestrutura https://netapp.hubs.vidyard.com/watch/DgUxcxES3Ujdqe1JhhkfAW["aqui"^].
+Você pode assistir a uma demonstração em vídeo de como usar NetApp Cloud Insights para monitorar a infraestrutura e definir limites de alerta para infraestrutura https://www.youtube.com/watch?v=TdMpXR_-U0M["aqui"^].
 
-Você pode ver uma demonstração em vídeo do uso do NetApp Cloud Insights para avaliar aplicativos individuais no ambiente https://netapp.hubs.vidyard.com/watch/vcC4RGoD54DPp8Th9hyhu3["aqui"^].
+Você pode assistir a uma demonstração em vídeo de como usar NetApp Cloud Insights para avaliar aplicativos individuais no ambiente https://www.youtube.com/watch?v=AVQ-a-du664["aqui"^].

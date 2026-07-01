@@ -450,7 +450,7 @@ Confirme se os componentes de hardware e software que você gostaria de usar sã
 
 ==== Controladores de storage
 
-Siga os procedimentos de instalação física dos controladores no https://library-clnt.dmz.netapp.com/documentation/docweb/index.html?productID=62331&language=en-US["Documentação do AFF A220"^].
+Siga os procedimentos de instalação física para os controladores no  https://docs.netapp.com/us-en/ontap-systems/a220/install-setup.html["Documentação do AFF A220"^].
 
 
 
@@ -2392,7 +2392,7 @@ NOTE: Os IPs do servidor DNS não foram inseridos no IP KVM anteriormente, porta
 
 .  `VMware-VMvisor-Installer-6.7.0.update01-10302608.x86_64.iso`Introduza como o nome do ficheiro remoto.
 +
-Este ISO do VMware ESXi 6.7U1 pode ser baixado do https://my.vmware.com/group/vmware/details?downloadGroup=ESXI650A&productId=614["Downloads da VMware"^].
+Esta ISO do VMware ESXi 6.7U1 pode ser baixada de https://support.broadcom.com/group/ecx/downloads["Portal de suporte Broadcom"^].
 
 . Introduza o caminho do servidor Web para o ficheiro ISO no campo caminho remoto.
 . Clique em OK para criar o suporte vMedia.
@@ -2726,9 +2726,9 @@ Existem vários métodos para instalar o ESXi em um ambiente VMware. Esses proce
 
 Se a imagem personalizada do VMware ESXi não tiver sido baixada, execute as seguintes etapas para concluir o download:
 
-. Clique no link a seguir: https://my.vmware.com/group/vmware/details?downloadGroup=OEM-ESXI67U1-Cisco&productId.742[VMware vSphere Hypervisor (ESXi) 6.7U1.]
-. Você precisa de uma ID de usuário e senha para https://www.vmware.com/["vmware.com"^] baixar este software.
-. Transfira o .`iso` ficheiro.
+. Faça login no site de download do portal de suporte da Broadcom: https://support.broadcom.com/group/ecx/downloads["https://support.broadcom.com/group/ecx/downloads"^].
+. Você precisará de um ID de usuário e senha da Broadcom. Procure por VMware vSphere Hypervisor (ESXi) ISOs personalizadas.
+. Baixe a imagem personalizada da Cisco para o CD de instalação do ESXi 6.7U1.
 
 
 

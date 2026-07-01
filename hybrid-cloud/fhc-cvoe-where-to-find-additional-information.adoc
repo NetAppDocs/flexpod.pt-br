@@ -56,7 +56,7 @@ https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_xse
 
 * Ferramenta de Matriz de interoperabilidade do NetApp
 +
-http://support.netapp.com/matrix/["http://support.netapp.com/matrix/"^]
+http://mysupport.netapp.com/matrix["http://mysupport.netapp.com/matrix"^]
 
 * Ferramenta de interoperabilidade de hardware e software Cisco UCS
 +

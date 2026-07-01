@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: fp-def/fp-express-tech-spec__previous_architectures_and_equipment.html 
+permalink: fp-def/fp-express-tech-spec_previous_architectures_and_equipment.html 
 keywords: architecture, equipment, previous, hardware, verified, small, medium, large, configuration 
 summary: Esta seção lista as arquiteturas e hardware anteriores do FlexPod Express usados dentro delas. 
 ---

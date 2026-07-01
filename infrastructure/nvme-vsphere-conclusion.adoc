@@ -30,7 +30,7 @@ Para saber mais sobre as informações descritas neste documento, consulte os se
 
 * Sistema de computação unificada da Cisco (UCS)
 +
-http://www.cisco.com/en/US/products/ps10265/index.html["http://www.cisco.com/en/US/products/ps10265/index.html"^]
+https://www.cisco.com/site/us/en/products/computing/servers-unified-computing-systems/index.html["https://www.cisco.com/site/us/en/products/computing/servers-unified-computing-systems/index.html"^]
 
 * Cisco UCS 6400 Series Fabric interconecta a ficha de dados
 +
@@ -42,7 +42,7 @@ http://www.cisco.com/en/US/products/ps10279/index.html["http://www.cisco.com/en/
 
 * Servidores blade Cisco UCS B-Series
 +
-http://www.cisco.com/en/US/partner/products/ps10280/index.html["http://www.cisco.com/en/US/partner/products/ps10280/index.html"^]
+https://www.cisco.com/site/us/en/products/computing/servers-unified-computing-systems/ucs-b-series-blade-servers/index.html["https://www.cisco.com/site/us/en/products/computing/servers-unified-computing-systems/ucs-b-series-blade-servers/index.html"^]
 
 * Servidores em rack Cisco UCS C-Series
 +
@@ -78,11 +78,11 @@ http://www.netapp.com/us/products/storage-systems/all-flash-array/aff-a-series.a
 
 * VMware vSphere
 +
-https://www.vmware.com/products/vsphere["https://www.vmware.com/products/vsphere"^]
+https://www.vmware.com/products/cloud-infrastructure/vsphere["https://www.vmware.com/products/cloud-infrastructure/vsphere"^]
 
 * VMware vCenter Server
 +
-http://www.vmware.com/products/vcenter-server/overview.html["http://www.vmware.com/products/vcenter-server/overview.html"^]
+https://www.vmware.com/products/cloud-infrastructure/vcenter/future-overview["https://www.vmware.com/products/cloud-infrastructure/vcenter/future-overview"^]
 
 * Práticas recomendadas para SAN moderna
 +
@@ -100,15 +100,15 @@ https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-
 
 * Ferramenta de Matriz de interoperabilidade do NetApp
 +
-http://support.netapp.com/matrix/["http://support.netapp.com/matrix/"^]
+http://mysupport.netapp.com/matrix["http://mysupport.netapp.com/matrix"^]
 
 * Matriz de compatibilidade de hardware Cisco UCS
 +
 https://ucshcltool.cloudapps.cisco.com/public/["https://ucshcltool.cloudapps.cisco.com/public/"^]
 
-* Guia de compatibilidade da VMware
+* Guia de compatibilidade VMware by Broadcom
 +
-http://www.vmware.com/resources/compatibility["http://www.vmware.com/resources/compatibility"^]
+https://compatibilityguide.broadcom.com/["https://compatibilityguide.broadcom.com/"^]
 
 
 

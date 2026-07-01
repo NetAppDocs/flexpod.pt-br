@@ -38,7 +38,7 @@ Estes são os componentes mínimos de hardware e software necessários para impl
 | Hipervisor de virtualização | VSphere 7,0 e posterior 
 |===
 
-NOTE:  https://intersight.com/help/saas/supported_systems["Sistemas compatíveis com Cisco Intersight"^]Consulte para obter os requisitos mínimos dos componentes de computação do Cisco UCS e da versão do UCSM.
+NOTE: Consulte  https://intersight.com/help/saas/supported_systems/overview["Sistemas compatíveis com Cisco Intersight"^]os requisitos mínimos dos componentes de computação do Cisco UCS e a versão do UCSM.
 
 
 
@@ -53,4 +53,4 @@ O modelo de licenciamento dos Serviços de infraestrutura do Cisco Intersight fo
 * *Vantagem dos Serviços de infraestrutura Intersight da Cisco* - a camada de licença Advantage oferece gerenciamento avançado de servidores com visibilidade estendida, integração de ecossistemas, automação de Cisco e hardware e software de terceiros, além de fornecer soluções de vários domínios.
 
 
-Para obter mais informações sobre os recursos cobertos por vários níveis de licenciamento, https://intersight.com/help/saas/getting_started/licensing_requirements/lic_infra#licensing_model["Licença dos Serviços de infraestrutura"^] acesse .
+Para obter mais informações sobre os recursos abrangidos pelos vários níveis de licenciamento, acesse  https://intersight.com/help/saas/getting_started/licensing_requirements/lic_infra["Licença dos Serviços de infraestrutura"^].
