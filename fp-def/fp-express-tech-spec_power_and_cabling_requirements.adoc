@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fp-def/fp-express-tech-spec_power_and_cabling_requirements.html 
-keywords: power, cabling, requirements, flexpod, express, cisco, ucs, minimum, cabling 
-summary: Esta seção descreve os requisitos mínimos de energia e cabeamento para um design do FlexPod Express. 
+keywords: power, cabling, requirements, flexpod, express, cisco, ucs, cabling 
+summary: Esta seção descreve os requisitos de energia e as diretrizes de cabeamento das gavetas de discos para um projeto FlexPod Express. 
 ---
-= Requisitos de alimentação e cabeamento
+= Diretrizes de energia e cabeamento
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,168 +14,50 @@ summary: Esta seção descreve os requisitos mínimos de energia e cabeamento pa
 
 
 [role="lead"]
-Esta seção descreve os requisitos mínimos de energia e cabeamento para um design do FlexPod Express.
+Esta seção descreve os requisitos de energia e as diretrizes de cabeamento para um projeto FlexPod Express.
 
 
 
 == Requisitos de energia
 
-Os requisitos de energia são baseados nas especificações dos EUA e assumem o uso de energia CA. Outros países podem ter diferentes requisitos de energia. As opções de alimentação de corrente contínua (DC) também estão disponíveis para a maioria dos componentes. Para obter dados adicionais sobre a potência máxima necessária, bem como outras informações detalhadas sobre a energia, consulte as especificações técnicas detalhadas para cada componente de hardware.
+Os requisitos de energia para FlexPod Express variam de acordo com o local onde a configuração do FlexPod Express está instalada.
+
+Para obter mais dados sobre a potência máxima necessária e outras informações detalhadas sobre o consumo de energia, consulte a link:https://docs.netapp.com/us-en/flexpod/fp-def/fp-express-tech-spec_technical_specifications_and_references.html["especificações técnicas"^] para cada componente de hardware.
 
 Para obter dados de energia detalhados do Cisco UCS, consulte http://www.cisco.com/assets/cdc_content_elements/flash/dataCenter/cisco_ucs_power_calculator/["Calculadora de energia Cisco UCS"^].
 
-A tabela a seguir lista as portas de alimentação necessárias por dispositivo.
+Para obter dados de energia do controlador de armazenamento NetApp, consulte a  http://hwu.netapp.com/Controller/Index?platformTypeId=6780858["NetApp Hardware Universe"^]. Em *Plataformas*, selecione a plataforma de storage que você deseja usar (por exemplo, AFF A20), selecione a versão do ONTAP e clique em *Mostrar Resultados*. Os dados do cabo de alimentação estão listados na seção *Cabos de Alimentação Compatíveis* e, para detalhes sobre tamanho, peso, potência etc., consulte a seção *Tamanho, Peso, Acústica, Alimentação*.
+
+
+
+== Diretrizes de cabeamento
+
+Esta seção fornece diretrizes gerais de cabeamento para um projeto FlexPod Express.
+
+* Garanta conectividade redundante para as conexões de computação e storage.
+* A velocidade das conexões precisa ser compatível com os componentes conectados.
+* Consulte a seção link:https://docs.netapp.com/us-en/flexpod/fp-def/fp-express-tech-spec_flexpod_express_topologies.html["FlexPod topologias Express"^] para obter diretrizes adicionais de cabeamento para topologias específicas.
+
+
+A tabela a seguir fornece diretrizes de cabeamento para NetApp disk shelves que podem ser usadas em um FlexPod Express design.
 
 |===
-| Switches Cisco Nexus | São necessários cabos de alimentação 
 
 
-| Cisco Nexus 3048 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 3000 
+| Compartimento de disco | Diretrizes de cabeamento 
 
 
-| Cisco Nexus 3524 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 3000 
-
-
-| Cisco Nexus 9396 | Cabos de alimentação de 2x C13 V/C14 V para cada switch da série Cisco Nexus 9000 
-|===
-|===
-| Chassi do Cisco UCS | São necessários cabos de alimentação 
-
-
-| Cisco UCS 5108 | 2 CAB-US515P-C19-US/CAB-US520-C19-US para cada chassi Cisco UCS 
-|===
-|===
-| Servidores Cisco UCS B-Series | São necessários cabos de alimentação 
-
-
-| Cisco UCS B200 M4 | N/A; o servidor blade é alimentado pelo chassi 
-
-
-| Cisco UCS B420 M4 | N/A; o servidor blade é alimentado pelo chassi 
-
-
-| Cisco UCS B200 M5 | N/A; o servidor blade é alimentado pelo chassi 
-
-
-| Cisco UCS B480 M5 | N/A; o servidor blade é alimentado pelo chassi 
-|===
-|===
-| Servidores Cisco UCS C-Series | Portas de alimentação necessárias 
-
-
-| Cisco UCS C220 M4 .3+| 2 cabos de alimentação C13/C14 para cada servidor Cisco UCS 
-
-
-| Cisco UCS C240 M4 
-
-
-| Cisco UCS C460 M4 Cisco UCS C220 M5 Cisco UCS C240 M5 Cisco UCS C480 M5 
-|===
-|===
-| Controladores NetApp FAS | Portas de alimentação necessárias (por par de HA) 
-
-
-| FAS2554 | 2 x C13/C14 
-
-
-| FAS2552 | 2 x C13/C14 
-
-
-| FAS2520 | 2 x C13/C14 
-
-
-| FAS8020 | 2 x C13/C14 
-|===
-|===
-| Controladores e-Series | Portas de alimentação necessárias (por par de HA) 
-
-
-| E2824 | 2 x C14/C20 
-|===
-|===
-| Compartimentos de disco NetApp FAS | Portas de alimentação necessárias 
-
-
-| DS212C | 2 x C13/C14 
-
-
-| DS224C | 2 x C13/C14 
-
-
-| DS460C | 2 x C19/C20 ou 2 x C14/C19 
-
-
-| DS2246 | 2 x C13/C14 
-
-
-| DS4246 | 4 x C13/C14 
-|===
-|===
-| Compartimentos de disco e-Series | Portas de alimentação necessárias 
-
-
-| DE460C | 2 x C19/C20 ou 2 x C14/C19 
-
-
-| DE224C | 2 x C14/C20 
-
-
-| DE212C | 2 x C14/C20 
-|===
-
-
-== Requisitos mínimos de cabos
-
-Esta seção descreve os requisitos mínimos de cabo para um design FlexPod Express. A maioria das implementações do FlexPod requer cabos adicionais, mas o número varia de acordo com o tamanho e o escopo da implantação.
-
-A tabela a seguir lista o número mínimo de cabos necessários para cada dispositivo.
-
-|===
-| Switches Cisco Nexus 3000 Series | Cabos necessários 
-
-
-| Cisco Nexus 31108 .5+| Pelo menos dois cabos de fibra 10GbE ou Twinax por switch 
-
-
-| Cisco Nexus 3172PQ 
-
-
-| Cisco Nexus 3048 
-
-
-| Cisco Nexus 3524 
-
-
-| Cisco Nexus 9396 
-
-
-| DS212C |  
-
-
-| DS2246 .4+| O número de cabos SAS depende da configuração específica das gavetas de disco 
-
-
-| DS460C 
+| DS212C .3+| link:https://docs.netapp.com/us-en/ontap-systems/sas3/install-cabling-rules.html#configuration-rules["Regras de cabeamento SAS"^] 
 
 
 | DS224C 
 
 
-| DS4246 
+| DS460C 
 
 
-| E2800  a| 
-* Pelo menos um cabo Gigabit Ethernet (1GbE) para gerenciamento por controlador
-* Pelo menos dois cabos 10GbE por controladora (para iSCSI) ou dois cabos FC que atendem aos requisitos de velocidade
+| NS224 .2+| link:https://docs.netapp.com/us-en/ontap-systems/drive-shelves/index.html["Requisitos e melhores práticas para shelf NS224"^] 
 
 
-
-
-| DE460C | 2 cabos mini-SAS HD por prateleira de disco 
-
-
-| DE224C | 2 cabos mini-SAS HD por prateleira de disco 
-
-
-| DE212C | 2 cabos mini-SAS HD por prateleira de disco 
+| NS224 com NSM100B 
 |===

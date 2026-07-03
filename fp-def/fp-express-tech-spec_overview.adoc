@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: fp-def/fp-express-tech-spec_overview.html 
-keywords: flexpod, express, technical, specifications, architecture, cisco, ucs 
-summary: 'FlexPod Express é uma arquitetura pré-projetada, baseada nas melhores práticas, construída sobre o Cisco Unified Computing System (Cisco UCS) e a família de switches Cisco Nexus, e a camada de storage é construída usando o NetApp FAS ou o NetApp storage E-Series.' 
+keywords: flexpod, express, technical, specifications, architecture, cisco, ucs, netapp, aff, asa, fas 
+summary: 'FlexPod Express é uma arquitetura pré-projetada, baseada em melhores práticas, construída sobre o Cisco Unified Computing System (Cisco UCS) e a família de switches Cisco Nexus, e a camada de storage é construída utilizando os sistemas de armazenamento NetApp AFF, ASA ou FAS.' 
 ---
-= TR-4293: FlexPod Express Especificações Técnicas
+= Especificações técnicas do FlexPod Express
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -13,9 +13,7 @@ summary: 'FlexPod Express é uma arquitetura pré-projetada, baseada nas melhore
 :imagesdir: ./../media/
 
 
-Karthick Radhakrishnan, Arvind Ramakrishnan, Lindsey Street, Savita Kumari, NetApp
-
 [role="lead"]
-FlexPod Express é uma arquitetura pré-projetada e baseada nas melhores práticas, construída sobre o Cisco Unified Computing System (Cisco UCS) e a família de switches Cisco Nexus, e a camada de storage é construída usando o NetApp FAS ou o storage NetApp E-Series. FlexPod Express é uma plataforma adequada para executar diversos hipervisores de virtualização e sistemas operacionais (SO) bare metal, além de cargas de trabalho corporativas.
+FlexPod Express é uma arquitetura pré-projetada e baseada em melhores práticas, construída sobre o Cisco Unified Computing System (Cisco UCS) e a família de switches Cisco Nexus, e a camada de storage é construída utilizando os sistemas de armazenamento de nível básico NetApp AFF, ASA ou FAS. FlexPod Express é uma plataforma adequada para executar diversos hipervisores de virtualização, sistemas operacionais bare metal (SO) e cargas de trabalho corporativas em ambientes de pequeno a médio porte, implantações em escritórios remotos e filiais (ROBO) e locais de borda.
 
-FlexPod Express oferece não apenas uma configuração de linha de base, mas também a flexibilidade de ser dimensionado e otimizado para acomodar muitos casos de uso e requisitos diferentes. Este documento categoriza as configurações do FlexPod Express com base no sistema de storage utilizado, FlexPod Express com NetApp FAS e FlexPod Express com E-Series.
+FlexPod Express oferece não apenas uma configuração de linha de base, mas também a flexibilidade de ser dimensionado e otimizado para acomodar muitos casos de uso e requisitos diferentes.

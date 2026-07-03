@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec_software_recommendation.html 
+keywords: software, requirements, flexpod, express, aff, fas, asa, cisco, nx-os, ontap 
+summary: Esta seção descreve os requisitos de software recomendados para as diferentes versões do FlexPod Express. 
+---
+= Recomendações de versão de software
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta seção descreve as recomendações de versão de software para FlexPod Express.
+
+* Versão do ONTAP: recomenda-se a versão mais recente do ONTAP para todas as configurações do FlexPod Express. Consulte link:https://docs.netapp.com/us-en/ontap/release-notes/index.html["Notas de lançamento do ONTAP"^] para obter a versão mais recente do ONTAP.
+* Versão do Cisco NX-OS: para a recomendação geral da versão do Cisco NX-OS para os switches da série Cisco 9000, consulte link:https://www.cisco.com/c/en/us/td/docs/switches/datacenter/nexus9000/sw/recommended_release/b_Minimum_and_Recommended_Cisco_NX-OS_Releases_for_Cisco_Nexus_9000_Series_Switches.html["Versões recomendadas do Cisco NX-OS para switches Cisco Nexus 9000 Series"^]
+* Versão do firmware do Cisco UCS:
++
+** Consulte este link para obter as versões mais recentes de link:https://www.cisco.com/c/en/us/support/servers-unified-computing/intersight/products-release-notes-list.html["Infraestrutura em Modo Gerenciado Cisco Intersight e firmware de servidor, firmware de chassi e firmware de nó PCIe"^]
+** Consulte este link para obter as versões mais recentes de link:https://intersight.com/help/saas/supported_systems/Intersight_Standalone_Mode["Modo autônomo do Cisco Intersight e firmware CIMC"^]
+
+
+
+
+
+NOTE: Todos os componentes de software devem estar listados e suportados no  http://support.netapp.com/matrix/["NetApp IMT"^], todos os componentes de hardware NetApp e as versões do ONTAP devem estar listados e suportados no  https://hwu.netapp.com/Home/Index["NetApp Hardware Universe"^] e todos os componentes de hardware Cisco devem estar listados e suportados no  https://ucshcltool.cloudapps.cisco.com/public/["HCL do Cisco"^].

@@ -14,6 +14,6 @@ summary: O design do FlexPod permite uma infraestrutura flexível que abrange mu
 
 
 [role="lead"]
-O design do FlexPod permite uma infraestrutura flexível que abrange muitos componentes e versões de software diferentes.
+O projeto FlexPod suporta uma arquitetura de infraestrutura flexível que abrange uma variedade de componentes de hardware e versões de software.
 
-Use os conjuntos de regras como guia para criar ou montar uma configuração válida do FlexPod. Os números e regras listados neste documento são os requisitos mínimos para o FlexPod; eles podem ser expandidos nas famílias de produtos incluídas, conforme necessário para diferentes ambientes e casos de uso.
+Utilize os conjuntos de regras como guia para construir ou montar uma configuração válida de FlexPod. Os números e regras listados neste documento representam os requisitos mínimos para FlexPod e podem ser expandidos utilizando produtos compatíveis dentro das famílias de produtos incluídas, conforme necessário para diferentes ambientes e casos de uso.

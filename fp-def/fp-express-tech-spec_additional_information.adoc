@@ -16,24 +16,40 @@ summary: Para saber mais sobre as informações descritas neste documento, consu
 [role="lead"]
 Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e sites:
 
-* Centro de Documentação do sistema AFF e FAS
+* Documentação do produto NetApp
 +
-https://docs.netapp.com/platstor/index.jsp["https://docs.netapp.com/platstor/index.jsp"^]
+https://docs.netapp.com/["https://docs.netapp.com/"^]
 
-* Página de recursos da documentação do AFF
+* Documentação do produto ONTAP
 +
-https://www.netapp.com/us/documentation/all-flash-fas.aspx["https://www.netapp.com/us/documentation/all-flash-fas.aspx"^]
+https://docs.netapp.com/us-en/ontap-family/index.html["https://docs.netapp.com/us-en/ontap-family/index.html"^]
 
-* Página de recursos de documentação dos sistemas de armazenamento FAS
+* Documentação dos sistemas de hardware ONTAP
 +
-https://www.netapp.com/us/documentation/fas-storage-systems.aspx["https://www.netapp.com/us/documentation/fas-storage-systems.aspx"^]
+https://docs.netapp.com/us-en/ontap-systems-family/index.html["https://docs.netapp.com/us-en/ontap-systems-family/index.html"^]
 
-* FlexPod
+* Página inicial do FlexPod
 +
-https://flexpod.com/["https://flexpod.com/"^]
+https://www.netapp.com/flexpod/["https://www.netapp.com/flexpod/"^]
 
-* Documentação do NetApp
+* Ferramenta de Matriz de interoperabilidade NetApp (IMT)
 +
-https://docs.netapp.com["https://docs.netapp.com"^]
+https://mysupport.netapp.com/matrix/["https://mysupport.netapp.com/matrix"^]
+
+* NetApp Hardware Universe
++
+https://hwu.netapp.com/["https://hwu.netapp.com/"^]
+
+* HCL do Cisco
++
+https://ucshcltool.cloudapps.cisco.com/public/hcl["https://ucshcltool.cloudapps.cisco.com/public/hcl"^]
+
+* Suporte à NetApp
++
+https://mysupport.netapp.com/["https://mysupport.netapp.com/"^]
+
+* Comunicações de suporte da NetApp
++
+https://mysupport.netapp.com/info/communications/index.html["https://mysupport.netapp.com/info/communications/index.html"^]
 
 

@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: fp-def/fp-express-tech-spec_supported_versus_validated_flexpod_configurations.html 
-keywords: supported, cersus, validated, flexpod, express, configurations, imt 
+keywords: supported, versus, validated, flexpod, express, configurations, imt 
 summary: 'A arquitetura FlexPod é definida pelo conjunto de regras descritas neste documento. Os componentes de hardware e as configurações de software devem ser suportados pela Lista de Compatibilidade de hardware (HCL) da Cisco e pela NetApp IMT.' 
 ---
 = Configurações de FlexPod validadas em comparação com compatíveis
@@ -14,8 +14,8 @@ summary: 'A arquitetura FlexPod é definida pelo conjunto de regras descritas ne
 
 
 [role="lead"]
-A arquitetura FlexPod é definida pelo conjunto de regras descritas neste documento. Os componentes de hardware e as configurações de software devem ser suportados pela Lista de Compatibilidade de hardware (HCL) da Cisco e pela http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade NetApp (IMT)"^].
+A arquitetura FlexPod é definida pelo conjunto de regras descritas neste documento. Os componentes de hardware e as configurações de software devem ser suportados pelo  https://ucshcltool.cloudapps.cisco.com/public/hcl["Lista de compatibilidade de hardware Cisco (HCL)"^] e pelo  http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade NetApp (IMT)"^].
 
-Cada Cisco Validated Design (CVD) ou NetApp Verified Architecture (NVA) é uma possível configuração de FlexPod. O Cisco e o NetApp documentam essas combinações de configuração e as validam com testes completos. As implantações do FlexPod que se desviam dessas configurações são totalmente suportadas se seguirem as diretrizes deste documento e todos os componentes estiverem listados como compatíveis nas HCL e NetApp do Cisco http://mysupport.netapp.com/matrix["IMT"^] .
+Cada Cisco Validated Design (CVD) ou NetApp Verified Architecture (NVA) representa uma configuração validada do FlexPod. A Cisco e a NetApp documentam essas combinações de configuração e as validam por meio de extensos testes completamente de ponta a ponta. As implantações do FlexPod que se desviam dessas configurações são totalmente suportadas se seguirem as diretrizes deste documento e todos os componentes estiverem listados como compatíveis na Cisco HCL e NetApp IMT.
 
 Por exemplo, a adição de controladores de storage adicionais ou servidores Cisco UCS e a atualização de software para versões mais recentes é totalmente suportada se o software, o hardware e as configurações atenderem às diretrizes definidas neste documento.

@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec_automation.html 
+keywords: flexpod express, automation, IaC, GitHub repository, Ansible 
+summary: A implantação automatizada do FlexPod Express está disponível por meio de um repositório do GitHub que inclui playbooks do Ansible e recursos de infraestrutura como código relacionados. 
+---
+= FlexPod Express Implantação Automatizada
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+A implantação automatizada do FlexPod Express está disponível por meio dos repositórios FlexPod Express GitHub. Esses repositórios contêm playbooks do Ansible e arquivos relacionados para facilitar a implantação da infraestrutura FlexPod Express como código (IaC).
+
+Os repositórios do GitHub fornecem uma abordagem estruturada para a implantação de configurações do FlexPod Express, permitindo que você automatize a configuração e o gerenciamento da sua infraestrutura. Isso inclui playbooks para vários componentes do design do FlexPod Express, garantindo que você possa implantar e manter seus ambientes com eficiência, consistência e confiabilidade.
+
+Para implantação automatizada do FlexPod Express com servidores Cisco UCS série C, switches Cisco Nexus e ONTAP, consulte link:https://github.com/ucs-compute-solutions/FlexPod-Express-Intersight["este repositório do GitHub"^] e a respectiva link:https://www.netapp.com/media/91691-flex-pod-express-nva-ia-c.pdf["NVA"^]. Você também pode usar as funções do VMware no repositório para implantar um ambiente baseado em VMware.
+
+Para a implantação automatizada do FlexPod Express com servidores Cisco UCS X-Series Direct, switches Cisco Nexus e NetApp ONTAP, consulte link:https://github.com/ucs-compute-solutions/FlexPod-IMM-OpenShift["este repositório do GitHub"^]. Você pode usar os playbooks neste repositório para configurar a infraestrutura FlexPod Express e, em seguida, implantar o OpenShift sobre ela usando este link:https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_rh_openshift_bm_iac_deploy.html.["CVD"^].

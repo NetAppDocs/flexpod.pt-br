@@ -1,0 +1,72 @@
+---
+sidebar: sidebar 
+permalink: fp-def/fp-express-tech-spec_flexpod_express_topologies.html 
+keywords: topologies, iSCSI boot, Cisco UCS X-Series Direct, direct-attached ASA, FC boot, IP-based SAN, FC-based SAN 
+summary: Esta seção descreve as topologias de exemplo para FlexPod Express. 
+---
+= FlexPod Topologias Express
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+Esta seção descreve as topologias de exemplo para FlexPod Express.
+
+
+
+== UCS X-Series Direct com conexão direta FC e SAN IP
+
+A figura a seguir mostra uma topologia de ASA conectada diretamente e UCS X-Series Direct para SAN baseada em IP e baseada em FC.
+
+image:fp-express-tech-spec_image11.png["Topologia direta e de conexão direta ASA da UCS X-Series para SAN baseada em IP e FC"]
+
+Os requisitos de conectividade para esta topologia incluem:
+
+* Conectividade do cluster ASA: Para um cluster ASA de 2 nós, os controladores podem ser conectados diretamente entre si por meio de cabos, sem a necessidade de switches de cluster.
+* Conectividade Ethernet de storage: Os controladores de storage NetApp podem ser conectados diretamente aos Fabric Interconnects integrados. Os dois controladores de storage no ASA possuem conectividade com duas topologias SAN IP independentes fornecidas por FI A e FI B.
+* Conectividade de uplink da rede FI: Para conectividade SAN baseada em IP, os switches Nexus de uplink não estão envolvidos nos caminhos de dados da SAN. A E/S da SAN vai diretamente dos nós de computação do UCS para o storage ASA usando suas conexões com o FI A ou FI B. Como resultado, switches top-of-rack existentes que suportam VLAN e vPC podem ser utilizados para fornecer acesso à rede ao ambiente da solução SAN FlexPod.
+* Para conectividade SAN baseada em FC, as portas UCS FI (FC) precisam ser configuradas como portas breakout.
+* Cisco UCS deve ser configurado no modo de comutação FC quando usado em uma solução SAN baseada em FC.
+
+
+O Cisco UCS X-Series Direct também pode utilizar um storage conectado ao switch, semelhante ao X-Series padrão, mas usando as interconexões de fabric integradas em vez das interconexões de fabric externas.
+
+Para obter mais informações sobre esta configuração, consulte  https://www.netapp.com/pdf.html?item=/media/135828-flexpod-san-ucs-xdirect-asa-nva-deploy-guide.pdf["FlexPod Solução SAN com Cisco UCS X-Series Direct e NetApp ASA"^].
+
+[NOTE]
+====
+A topologia acima refere-se a uma solução de storage conectada diretamente usando NetApp ASA. No entanto, a mesma topologia pode ser usada para NetApp AFF e FAS também.
+
+Para uma configuração de storage NAS de conexão direta baseada em IP usando NetApp AFF ou FAS, os switches Nexus de uplink precisarão ser configurados corretamente para suportar determinados cenários de falha. Consulte o link abaixo para obter informações adicionais sobre a configuração.
+
+https://www.netapp.com/pdf.html?item=/media/22621-nva-1154-DESIGN.pdf[]
+
+https://www.netapp.com/pdf.html?item=/media/21938-nva-1154-DEPLOY.pdf[]
+
+====
+
+
+== Servidores UCS Série C com storage baseado em IP conectado por switch
+
+A figura a seguir mostra um Cisco UCS C-Series autônomo e NetApp AFF.
+
+image:fp-express-tech-spec_image12.png["Servidores autônomos Cisco UCS C-Series e NetApp AFF"]
+
+Os requisitos de conectividade para esta topologia incluem:
+
+* Conectividade do cluster AFF: para um cluster AFF de 2 nós, os controladores podem ser conectados diretamente entre si por meio de cabos, sem a necessidade de switches de cluster.
+* Conectividade Ethernet de armazenamento: NetApp storage controllers devem ser conectados diretamente aos switches Cisco Nexus.
+* Os canais de porta virtuais (vPCs) são necessários para conectar os switches Cisco Nexus aos controladores de storage NetApp.
+* A solução pode ser dimensionada para até 5 servidores autônomos da série UCS C, exigindo duas portas de switch em cada switch por servidor.
+
+
+O Cisco UCS Série C pode ser gerenciado via CIMC ou Cisco Intersight pelo gerenciamento autônomo.
+
+
+NOTE: A topologia de exemplo acima refere-se a uma solução de storage conectada diretamente usando NetApp AFF. No entanto, a mesma topologia pode ser usada para NetApp ASA e FAS também.
+
+Para obter mais informações sobre esta configuração, consulte  https://www.netapp.com/pdf.html?item=/media/88340-NVA-FlexpodExpress_C220_A250_NexusFinal.pdf["FlexPod express para VMware vSphere 8.0 com Cisco UCS C-Series Standalone e NetApp AFF"^].
