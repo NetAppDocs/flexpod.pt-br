@@ -18,6 +18,7 @@ FabricPool requer ONTAP 9.2 ou posterior. Requisitos adicionais do FabricPool de
 
 
 
+[[platforms]]
 == Plataformas
 
 O FabricPool é compatível com as seguintes plataformas:
@@ -67,6 +68,7 @@ NOTE: Glacier Flexible Retrieval e Glacier Deep Archive não são suportados.
 
 
 
+[[intercluster-lifs]]
 == LIFs entre clusters
 
 Os pares de alta disponibilidade de cluster (HA) que usam FabricPool exigem duas interfaces lógicas (LIFs) entre clusters para se comunicar com a camada de nuvem. A NetApp recomenda a criação de um LIF entre clusters em pares de HA adicionais para anexar camadas de nuvem a agregados também nesses nós.
@@ -80,6 +82,7 @@ NOTE: A desativação ou exclusão de um LIF entre clusters interrompe a comunic
 
 
 
+[[connectivity]]
 == Conetividade
 
 A latência de leitura do FabricPool é uma função da conectividade à camada de nuvem. LIFs entre clusters usando portas 10Gbps, ilustradas na figura a seguir, fornecem desempenho adequado. A NetApp recomenda validar a latência e a taxa de transferência do ambiente de rede específico para determinar o efeito que ele tem no desempenho do FabricPool.
@@ -91,6 +94,7 @@ image:cloud-fabricpool_image6.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[object-store-profiler]]
 === Profiler de armazenamento de objetos
 
 O profiler de armazenamento de objetos, um exemplo do qual é mostrado abaixo e está disponível por meio da CLI do ONTAP, testa a latência e o desempenho da taxa de transferência de armazenamentos de objetos antes que eles sejam anexados a um agregado FabricPool.
@@ -114,6 +118,7 @@ image:cloud-fabricpool_image7.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[volumes]]
 == Volumes
 
 O thin Provisioning de storage é uma prática padrão para o administrador da infraestrutura virtual do FlexPod. O console de storage virtual (VSC) do NetApp provisiona volumes de storage para armazenamentos de dados VMware sem qualquer garantia de espaço (thin Provisioning) e com configurações otimizadas de eficiência de storage de acordo com as práticas recomendadas da NetApp. Se o VSC for usado para criar datastores VMware, nenhuma ação adicional será necessária, pois nenhuma garantia de espaço deve ser atribuída ao volume do datastore.
@@ -128,6 +133,7 @@ A configuração `space-guarantee none` do parâmetro fornece provisionamento fi
 
 
 
+[[licensing]]
 == Licenciamento
 
 O FabricPool requer uma licença baseada em capacidade ao anexar fornecedores de storage de objetos de terceiros (como Amazon S3) como camadas de nuvem para sistemas flash híbridos AFF e FAS.

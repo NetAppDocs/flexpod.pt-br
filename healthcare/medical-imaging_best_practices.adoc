@@ -15,10 +15,12 @@ summary: Esta seção aborda as práticas recomendadas para o design do cluster 
 
 
 
+[[storage-best-practices]]
 == Práticas recomendadas de storage
 
 
 
+[[high-availability]]
 === Alta disponibilidade
 
 O design do cluster de storage do NetApp oferece alta disponibilidade em todos os níveis:
@@ -33,12 +35,14 @@ O design do cluster de storage do NetApp oferece alta disponibilidade em todos o
 
 
 
+[[secure-multitenancy]]
 === Alocação segura a vários clientes
 
 As máquinas virtuais de storage (SVMs) da NetApp fornecem uma construção de storage array virtual para separar o domínio de segurança, as políticas e a rede virtual. A NetApp recomenda que você crie SVMs separadas para cada organização de locatário que hospeda dados no cluster de storage.
 
 
 
+[[netapp-storage-best-practices]]
 === Práticas recomendadas de storage da NetApp
 
 Considere as práticas recomendadas de storage da NetApp a seguir:
@@ -51,6 +55,7 @@ Considere as práticas recomendadas de storage da NetApp a seguir:
 
 
 
+[[san-boot]]
 === Inicialização de SAN
 
 A NetApp recomenda que você implemente a inicialização SAN para servidores Cisco UCS na solução de datacenter FlexPod. Esta etapa permite que o sistema operacional seja protegido com segurança pelo sistema de armazenamento NetApp AFF, proporcionando melhor desempenho. O design descrito nesta solução usa inicialização SAN iSCSI.
@@ -63,6 +68,7 @@ Ao contrário das interfaces de rede nas, as interfaces de rede SAN não são co
 
 
 
+[[storage-efficiency-and-thin-provisioning]]
 === Eficiência de storage e thin Provisioning
 
 A NetApp liderou o setor na inovação em eficiência de storage, como a primeira deduplicação para workloads primários e com compactação de dados in-line, o que aprimora a compressão e armazena pequenos arquivos e e/S com eficiência. O ONTAP dá suporte à deduplicação in-line e em segundo plano, bem como à compactação in-line e em segundo plano.
@@ -73,6 +79,7 @@ Para obter o máximo de economia de deduplicação, considere agendar deduplica�
 
 
 
+[[quality-of-service]]
 === Qualidade do serviço
 
 Os sistemas que executam o software ONTAP podem usar o recurso de QoS de storage ONTAP para limitar a taxa de transferência em megabits por segundo (Mbps) e limitar o IOPS para diferentes objetos de storage, como arquivos, LUNs, volumes ou SVMs inteiras. O QoS adaptável é usado para definir um piso de IOPS (mínimo de QoS) e um teto (máximo de QoS), que se ajustam dinamicamente com base na capacidade do datastore e no espaço usado.
@@ -87,6 +94,7 @@ Você pode definir o limite máximo de taxa de transferência de QoS em um objet
 
 
 
+[[storage-layout]]
 === Layout de storage
 
 Esta seção fornece práticas recomendadas para layout de LUNs, volumes e agregados no storage.
@@ -143,6 +151,7 @@ A orientação de layout de agregado de storage para sistemas AFF A300 (com dois
 
 
 
+[[backup-best-practices]]
 == Práticas recomendadas de backup
 
 O NetApp SnapCenter é usado para backups de VM e banco de dados. A NetApp recomenda as seguintes práticas recomendadas de backup:
@@ -158,10 +167,12 @@ O NetApp SnapCenter é usado para backups de VM e banco de dados. A NetApp recom
 
 
 
+[[infrastructure-best-practices]]
 == Práticas recomendadas de infraestrutura
 
 
 
+[[networking-best-practices]]
 === Melhores práticas de rede
 
 A NetApp recomenda as seguintes práticas recomendadas de rede:
@@ -175,6 +186,7 @@ Você pode encontrar práticas recomendadas de rede adicionais nos guias de desi
 
 
 
+[[compute-best-practices]]
 == Práticas recomendadas de computação
 
 A NetApp recomenda a seguinte prática recomendada de computação:
@@ -184,6 +196,7 @@ A NetApp recomenda a seguinte prática recomendada de computação:
 
 
 
+[[virtualization-best-practices]]
 == Práticas recomendadas de virtualização
 
 A NetApp recomenda as seguintes práticas recomendadas de virtualização:
@@ -195,6 +208,7 @@ A NetApp recomenda as seguintes práticas recomendadas de virtualização:
 
 
 
+[[medical-imaging-system-best-practices]]
 == Melhores práticas do sistema de imagem médica
 
 Consulte as práticas recomendadas a seguir e alguns requisitos de um sistema de imagem médica típico:

@@ -17,6 +17,7 @@ link:sm-bcs-introduction.html["Anterior: Introdução."]
 
 
 
+[[solution-overview]]
 == Visão geral da solução
 
 Em um alto nível, uma solução FlexPod SM-BC consiste em dois sistemas FlexPod, localizados em dois locais separados por alguma distância, conetados e emparelhados juntos para fornecer uma solução de data center altamente disponível, altamente flexível e altamente confiável que pode fornecer continuidade dos negócios apesar de uma falha no local.
@@ -39,6 +40,7 @@ Embora a solução tenha sido validada com a implantação de dois sistemas Flex
 
 
 
+[[solution-requirements]]
 == Requisitos da solução
 
 A solução FlexPod SM-BC foi projetada para atender aos seguintes requisitos principais:
@@ -51,10 +53,12 @@ A solução FlexPod SM-BC foi projetada para atender aos seguintes requisitos pr
 
 
 
+[[solution-components]]
 == Componentes da solução
 
 
 
+[[cisco-compute-components]]
 === Componentes de computação do Cisco
 
 O Cisco UCS é uma infraestrutura de computação integrada que fornece recursos de computação unificados, malha unificada e gerenciamento unificado. Ele permite que as empresas automatizem e acelerem a implantação de aplicativos, incluindo workloads de virtualização e bare-metal. O Cisco UCS dá suporte a uma ampla variedade de casos de uso de implantação, incluindo locais remotos e filiais, data centers e casos de uso de nuvem híbrida. Dependendo dos requisitos específicos da solução, a implementação de computação do FlexPod Cisco pode utilizar vários componentes em diferentes escalas. As subseções a seguir fornecem informações adicionais sobre alguns dos componentes do UCS.
@@ -115,6 +119,7 @@ Para obter detalhes sobre as famílias de produtos Cisco UCS, especificações t
 
 
 
+[[cisco-switching-components]]
 === Componentes de comutação Cisco
 
 
@@ -149,6 +154,7 @@ Consulte https://www.cisco.com/c/en/us/products/storage-networking/index.html["S
 
 
 
+[[netapp-components]]
 === Componentes do NetApp
 
 Controladores NetApp AFF ou ASA redundantes que executam o software ONTAP 9,8 ou versões posteriores são necessários para criar uma solução FlexPod SM-BC. A versão mais recente do ONTAP, atualmente 9.10.1, é recomendada para a implantação do SM-BC para aproveitar as inovações contínuas do ONTAP, o desempenho e as melhorias de qualidade e a maior contagem máxima de objetos para o suporte ao SM-BC.
@@ -174,6 +180,7 @@ Consulte https://www.netapp.com/data-storage/disk-shelves-storage-media/["Compar
 
 
 
+[[solution-topologies]]
 == Topologias de soluções
 
 As soluções da FlexPod são flexíveis em topologia e podem ser ampliadas ou ampliadas para atender a diferentes requisitos de solução. Uma solução que requer proteção da continuidade dos negócios e apenas recursos mínimos de computação e storage pode usar uma topologia de solução simples, conforme ilustrado na figura a seguir. Essa topologia simples usa os servidores em rack UCS C-Series e as controladoras AFF/ASA com SSDs na controladora sem compartimentos de disco adicionais.

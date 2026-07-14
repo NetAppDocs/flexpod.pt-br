@@ -23,6 +23,7 @@ Esta solução aplica-se aos seguintes casos de uso:
 
 
 
+[[target-audience]]
 == Público-alvo
 
 O público-alvo da solução inclui os seguintes grupos:

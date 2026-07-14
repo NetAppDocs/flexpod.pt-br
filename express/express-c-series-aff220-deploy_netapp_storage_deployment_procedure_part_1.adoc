@@ -18,10 +18,12 @@ Esta seção descreve o procedimento de implantação de storage do NetApp AFF.
 
 
 
+[[netapp-storage-controller-aff2xx-series-installation]]
 == Instalação do controlador de armazenamento NetApp série AFF2xx
 
 
 
+[[netapp-hardware-universe]]
 === NetApp Hardware Universe
 
 O aplicativo NetApp Hardware Universe (HWU) fornece componentes de hardware e software suportados para qualquer versão específica do ONTAP. Ele fornece informações de configuração para todos os dispositivos de storage NetApp atualmente compatíveis com o software ONTAP. Ele também fornece uma tabela de compatibilidades de componentes.
@@ -40,16 +42,19 @@ Confirme se os componentes de hardware e software que você gostaria de usar sã
 |===
 
 
+[[storage-controllers]]
 === Controladores de storage
 
 Siga os procedimentos de instalação física dos controladores no https://mysupport.netapp.com/documentation/docweb/index.html?productID=62557&language=en-US["Documentação do AFF A220"^].
 
 
 
+[[netapp-ontap-9-4]]
 == NetApp ONTAP 9,4
 
 
 
+[[configuration-worksheet]]
 === Folha de cálculo de configuração
 
 Antes de executar o script de configuração, conclua a Planilha de configuração no manual do produto. A folha de cálculo de configuração está disponível no https://library.netapp.com/ecm/ecm_download_file/ECMLP2492611["Guia de configuração do software ONTAP 9.4"^].
@@ -112,6 +117,7 @@ A tabela a seguir mostra as informações de instalação e configuração do ON
 |===
 
 
+[[configure-node-a]]
 === Configure o nó A
 
 Para configurar o nó A, execute as seguintes etapas:
@@ -166,6 +172,7 @@ A inicialização e a criação do agregado raiz podem levar 90 minutos ou mais 
 
 
 
+[[configure-node-b]]
 === Configurar nó B
 
 Para configurar o nó B, execute as seguintes etapas:
@@ -219,6 +226,7 @@ A inicialização e a criação do agregado raiz podem levar 90 minutos ou mais 
 
 
 
+[[continuation-of-node-a-configuration-and-cluster-configuration]]
 == Continuação da configuração do nó A e configuração do cluster
 
 A partir de um programa de porta de console conetado à porta de console do controlador de storage A (nó A), execute o script de configuração do nó. Este script aparece quando o ONTAP 9.4 inicializa no nó pela primeira vez.
@@ -299,12 +307,14 @@ image:express-c-series-aff220-deploy_image7.png["Erro: Imagem gráfica em falta"
 
 
 
+[[continuation-of-storage-cluster-configuration]]
 == Continuação da configuração do cluster de armazenamento
 
 Após a configuração dos nós de storage e do cluster base, você pode continuar com a configuração do cluster de storage.
 
 
 
+[[zero-all-spare-disks]]
 === Zero todos os discos sobressalentes
 
 Para zerar todos os discos sobressalentes no cluster, execute o seguinte comando:
@@ -314,6 +324,7 @@ disk zerospares
 ....
 
 
+[[set-on-board-uta2-ports-personality]]
 === Defina a personalidade de UTA2 portas a bordo
 
 . Verifique o modo atual e o tipo atual das portas executando o `ucadmin show` comando.
@@ -353,6 +364,7 @@ NOTE: Se você alterou a personalidade da porta, será necessário reinicializar
 
 
 
+[[rename-management-logical-interfaces-lifs]]
 === Renomear interfaces lógicas de gerenciamento (LIFs)
 
 Para renomear os LIFs de gerenciamento, execute as seguintes etapas:
@@ -376,6 +388,7 @@ network interface rename -vserver <<clustername>> -lif cluster_setup_node_mgmt_l
 
 
 
+[[set-auto-revert-on-cluster-management]]
 === Defina a reversão automática no gerenciamento de cluster
 
 Defina `auto-revert` o parâmetro na interface de gerenciamento de cluster.
@@ -385,6 +398,7 @@ network interface modify –vserver <<clustername>> -lif cluster_mgmt –auto-re
 ....
 
 
+[[set-up-service-processor-network-interface]]
 === Configure a interface de rede do processador de serviço
 
 Para atribuir um endereço IPv4 estático ao processador de serviço em cada nó, execute os seguintes comandos:
@@ -398,6 +412,7 @@ NOTE: Os endereços IP do processador de serviço devem estar na mesma sub-rede 
 
 
 
+[[enable-storage-failover-in-ontap]]
 === Ativar failover de storage no ONTAP
 
 Para confirmar se o failover de armazenamento está ativado, execute os seguintes comandos em um par de failover:
@@ -458,6 +473,7 @@ storage failover modify –hwassist-partner-ip <<var_nodeA_mgmt_ip>> -node <<var
 
 
 
+[[create-jumbo-frame-mtu-broadcast-domain-in-ontap]]
 === Crie um domínio de transmissão MTU de quadro jumbo no ONTAP
 
 Para criar um domínio de transmissão de dados com uma MTU de 9000, execute os seguintes comandos:
@@ -469,6 +485,7 @@ broadcast-domain create -broadcast-domain Infra_iSCSI-B -mtu 9000
 ....
 
 
+[[remove-data-ports-from-default-broadcast-domain]]
 === Remover portas de dados do domínio de broadcast padrão
 
 As portas de dados 10GbE são usadas para tráfego iSCSI/NFS e essas portas devem ser removidas do domínio padrão. As portas e0e e e0f não são usadas e também devem ser removidas do domínio padrão.
@@ -480,6 +497,7 @@ broadcast-domain remove-ports -broadcast-domain Default -ports <<var_nodeA>>:e0c
 ....
 
 
+[[disable-flow-control-on-uta2-ports]]
 === Desative o controle de fluxo nas portas UTA2
 
 É uma prática recomendada do NetApp desativar o controle de fluxo em todas as UTA2 portas conetadas a dispositivos externos. Para desativar o controle de fluxo, execute o seguinte comando:
@@ -512,6 +530,7 @@ Do you want to continue? {y|n}: y
 ....
 
 
+[[configure-ifgrp-lacp-in-ontap]]
 === Configure o LACP IFGRP no ONTAP
 
 Esse tipo de grupo de interfaces requer duas ou mais interfaces Ethernet e um switch que suporte LACP. Certifique-se de que o interrutor está configurado corretamente.
@@ -528,6 +547,7 @@ network port ifgrp add-port -node <<var_nodeB>> -ifgrp a0a -port e0d
 ....
 
 
+[[configure-jumbo-frames-in-netapp-ontap]]
 === Configurar quadros jumbo no NetApp ONTAP
 
 Para configurar uma porta de rede ONTAP para usar quadros jumbo (que geralmente têm uma MTU de 9.000 bytes), execute os seguintes comandos a partir do shell do cluster:
@@ -544,6 +564,7 @@ Do you want to continue? {y|n}: y
 ....
 
 
+[[create-vlans-in-ontap]]
 === Crie VLANs no ONTAP
 
 Para criar VLANs no ONTAP, execute as seguintes etapas:
@@ -575,6 +596,7 @@ network port vlan create –node <<var_nodeB>> -vlan-name a0a-<<mgmt_vlan_id>>
 
 
 
+[[create-aggregates-in-ontap]]
 === Criar agregados no ONTAP
 
 Um agregado contendo o volume raiz é criado durante o processo de configuração do ONTAP. Para criar agregados adicionais, determine o nome do agregado, o nó no qual criá-lo e o número de discos que ele contém.
@@ -593,6 +615,7 @@ O agregado não pode ser criado até que a restauração do disco seja concluíd
 
 
 
+[[configure-time-zone-in-ontap]]
 === Configure o fuso horário no ONTAP
 
 Para configurar a sincronização de hora e definir o fuso horário no cluster, execute o seguinte comando:
@@ -605,6 +628,7 @@ NOTE: Por exemplo, no leste dos Estados Unidos, o fuso horário é `America/New 
 
 
 
+[[configure-snmp-in-ontap]]
 === Configurar SNMP no ONTAP
 
 Para configurar o SNMP, execute as seguintes etapas:
@@ -626,6 +650,7 @@ snmp traphost add <<var_snmp_server_fqdn>>
 
 
 
+[[configure-snmpv1-in-ontap]]
 === Configure o SNMPv1 no ONTAP
 
 Para configurar o SNMPv1, defina a senha secreta compartilhada de texto simples chamada comunidade.
@@ -638,6 +663,7 @@ NOTE: Use o `snmp community delete all` comando com cuidado. Se strings de comun
 
 
 
+[[configure-snmpv3-in-ontap]]
 === Configure o SNMPv3 no ONTAP
 
 SNMPv3 requer que você defina e configure um usuário para autenticação. Para configurar o SNMPv3, execute as seguintes etapas:
@@ -656,6 +682,7 @@ security login create -username snmpv3user -authmethod usm -application snmp
 
 
 
+[[configure-autosupport-https-in-ontap]]
 === Configure o HTTPS do AutoSupport no ONTAP
 
 A ferramenta NetApp AutoSupport envia informações resumidas de suporte para o NetApp por meio de HTTPS. Para configurar o AutoSupport, execute o seguinte comando:
@@ -665,6 +692,7 @@ system node autosupport modify -node * -state enable –mail-hosts <<var_mailhos
 ....
 
 
+[[create-a-storage-virtual-machine]]
 === Crie uma máquina virtual de armazenamento
 
 Para criar uma máquina virtual de storage de infraestrutura (SVM), siga estas etapas:
@@ -703,6 +731,7 @@ NOTE: Os comandos são prefaciados `vserver` na linha de comando porque as máqu
 
 
 
+[[configure-nfsv3-in-ontap]]
 === Configure o NFSv3 no ONTAP
 
 A tabela a seguir lista as informações necessárias para concluir essa configuração.
@@ -739,6 +768,7 @@ NOTE: O VSC do NetApp manipula automaticamente as políticas de exportação se 
 
 
 
+[[create-iscsi-service-in-ontap]]
 === Criar serviço iSCSI no ONTAP
 
 Para criar o serviço iSCSI, execute o seguinte passo:
@@ -753,6 +783,7 @@ iscsi show
 
 
 
+[[create-load-sharing-mirror-of-svm-root-volume-in-ontap]]
 === Criar espelho de compartilhamento de carga do volume raiz da SVM no ONTAP
 
 . Crie um volume para ser o espelho de compartilhamento de carga do volume raiz da infraestrutura SVM em cada nó.
@@ -782,6 +813,7 @@ snapmirror show
 
 
 
+[[configure-https-access-in-ontap]]
 === Configurar o acesso HTTPS no ONTAP
 
 Para configurar o acesso seguro ao controlador de armazenamento, execute as seguintes etapas:
@@ -842,6 +874,7 @@ vserver services web modify –name spi|ontapi|compat –vserver * -enabled true
 
 
 
+[[create-a-netapp-flexvol-volume-in-ontap]]
 === Crie um NetApp FlexVol volume no ONTAP
 
 Para criar um NetApp FlexVol volume, insira o nome do volume, o tamanho e o agregado no qual ele existe. Crie dois volumes do VMware datastore e um volume de inicialização do servidor.
@@ -853,6 +886,7 @@ volume create -vserver Infra-SVM -volume esxi_boot -aggregate aggr1_nodeA -size 
 ....
 
 
+[[enable-deduplication-in-ontap]]
 === Ativar a deduplicação no ONTAP
 
 Para habilitar a deduplicação em volumes apropriados, execute os seguintes comandos:
@@ -863,6 +897,7 @@ volume efficiency on –vserver Infra-SVM -volume esxi_boot
 ....
 
 
+[[create-luns-in-ontap]]
 === Criar LUNs no ONTAP
 
 Para criar dois LUNs de inicialização, execute os seguintes comandos:
@@ -876,6 +911,7 @@ NOTE: Ao adicionar um servidor Cisco UCS C-Series extra, um LUN de inicializaç�
 
 
 
+[[create-iscsi-lifs-in-ontap]]
 === Criar iSCSI LIFs no ONTAP
 
 A tabela a seguir lista as informações necessárias para concluir essa configuração.
@@ -920,6 +956,7 @@ network interface show
 
 
 
+[[create-nfs-lifs-in-ontap]]
 === Criar LIFs NFS no ONTAP
 
 A tabela a seguir lista as informações necessárias para concluir essa configuração.
@@ -950,6 +987,7 @@ network interface show
 
 
 
+[[add-infrastructure-svm-administrator]]
 === Adicionar administrador de infraestrutura SVM
 
 A tabela a seguir lista as informações necessárias para concluir essa configuração.

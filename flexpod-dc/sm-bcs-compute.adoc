@@ -20,6 +20,7 @@ A configuração de computação da solução FlexPod SM-BC segue as práticas r
 
 
 
+[[connectivity]]
 == Conetividade
 
 A conetividade entre os servidores blade UCS B200 e os IOMs é fornecida pela placa UCS VIC através das conexões do backplane do chassi UCS 5108. Os extensores de malha UCS 2204XP usados para a validação têm dezesseis portas 10G cada para se conetar aos oito servidores blade de meia largura, por exemplo, duas para cada servidor. Para aumentar a largura de banda da conetividade do servidor, um VIC adicional baseado no mezanino pode ser adicionado para conetar o servidor à alternativa UCS 2408 IOM, que fornece quatro conexões 10G para cada servidor.
@@ -104,6 +105,7 @@ NOTE: Largura de banda adicional pode ser obtida usando componentes que suportam
 
 
 
+[[service-profiles]]
 == Perfis de serviço
 
 Um chassi de servidor blade com interconexões de malha gerenciadas pelo UCS Manager (UCSM) ou Cisco Intersight pode abstrair os servidores usando perfis de serviço disponíveis no UCSM e perfis de servidor no Intersight. Essa validação usa UCSM e perfis de serviço para simplificar o gerenciamento do servidor. Com perfis de serviço, substituir ou atualizar um servidor pode ser feito simplesmente associando o perfil de serviço original com o novo hardware.
@@ -123,6 +125,7 @@ Os perfis de serviço criados suportam o seguinte para os hosts do VMware ESXi:
 
 
 
+[[san-boot]]
 == Inicialização de SAN
 
 Para a configuração de arranque SAN iSCSI, os parâmetros de arranque iSCSI são definidos para permitir o arranque iSCSI a partir de ambas as estruturas iSCSI. Para acomodar o cenário de failover SM-BC no qual um LUN de inicialização iSCSI SAN é servido a partir do cluster secundário quando o cluster primário não está disponível, a configuração de destino estático iSCSI deve incluir destinos do local A e do local B. além disso, para maximizar a disponibilidade de LUN de inicialização, configure as configurações de parâmetro de inicialização iSCSI para inicializar a partir de todos os controladores de armazenamento.

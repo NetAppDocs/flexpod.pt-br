@@ -20,6 +20,7 @@ Uma arquitetura FlexPod pode ser projetada com um servidor Cisco UCS compatível
 
 
 
+[[cisco-ucs-and-fabric-interconnect]]
 == Cisco UCS e interconexão de malha
 
 O Cisco UCS Manager é implantado e executado a partir das interconexões de malha (FIs) do Cisco.

@@ -21,6 +21,7 @@ Jyh-shing Chen, NetApp
 
 
 
+[[flexpod-solution]]
 == Solução FlexPod
 
 O FlexPod é uma arquitetura de data center de infraestrutura convergente prática recomendada que inclui os seguintes componentes do Cisco e do NetApp:
@@ -42,6 +43,7 @@ Cada uma das famílias de componentes do FlexPod mostradas (Cisco UCS, switches 
 
 
 
+[[disaster-recovery-and-business-continuity]]
 == Recuperação de desastres e continuidade dos negócios
 
 Existem vários métodos que as empresas podem adotar para garantir que possam recuperar rapidamente seus aplicativos e serviços de dados de desastres. Ter um plano de recuperação de desastres (DR) e continuidade dos negócios (BC), implementar uma solução que atenda aos objetivos de negócios e realizar testes regulares dos cenários de desastre permite que as empresas se recuperem de um desastre e continuem serviços comerciais críticos após uma situação de desastre.
@@ -54,6 +56,7 @@ Para empresas que dependem de serviços de dados para geração de receita, os s
 
 
 
+[[recovery-point-objective-and-recovery-time-objective]]
 == Objetivo do ponto de restauração e objetivo de tempo de recuperação
 
 O objetivo do ponto de restauração (RPO) mede a quantidade de dados que você pode perder em termos de tempo ou o ponto em que pode recuperar os dados. Com um plano de backup diário, uma empresa pode perder um dia de dados, porque as alterações feitas nos dados desde o último backup podem ser perdidas em um desastre. Para serviços de dados essenciais aos negócios e essenciais, é possível que você precise de um RPO zero e de um plano e infraestruturas associados para proteger os dados sem perda de dados.
@@ -62,6 +65,7 @@ O objetivo de tempo de recuperação (rto) mede quanto tempo você pode se dar a
 
 
 
+[[sm-bc]]
 == SM-BC
 
 A partir do ONTAP 9.8, você pode proteger workloads SAN para failover transparente de aplicações com o NetApp SM-BC. Você pode criar relacionamentos de grupo de consistência entre dois clusters AFF ou dois clusters ASA para replicação de dados a fim de alcançar RPO zero e rto quase zero.

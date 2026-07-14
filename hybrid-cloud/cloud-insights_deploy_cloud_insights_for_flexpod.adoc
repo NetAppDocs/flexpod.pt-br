@@ -25,6 +25,7 @@ Para implantar a solução, você deve concluir as seguintes tarefas:
 
 
 
+[[sign-up-for-the-netapp-cloud-insights-service]]
 == Inscreva-se no serviço NetApp Cloud Insights
 
 Para se inscrever no Serviço NetApp Cloud Insights, execute as seguintes etapas:
@@ -35,6 +36,7 @@ Para se inscrever no Serviço NetApp Cloud Insights, execute as seguintes etapas
 
 
 
+[[create-a-vmware-virtual-machine-to-configure-as-an-acquisition-unit]]
 == Crie uma máquina virtual VMware para configurar como uma unidade de aquisição
 
 Para criar uma VM VMware para configurar como uma unidade de aquisição, execute as seguintes etapas:
@@ -70,6 +72,7 @@ image:cloud-insights_image5.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[install-red-hat-enterprise-linux]]
 == Instale o Red Hat Enterprise Linux
 
 Para instalar o Red Hat Enterprise Linux, execute as seguintes etapas:
@@ -126,6 +129,7 @@ image:cloud-insights_image12.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[create-an-acquisition-unit-instance-in-the-cloud-insights-portal-and-install-the-software]]
 == Crie uma instância de unidade de aquisição no portal Cloud Insights e instale o software
 
 Para criar uma instância de unidade de aquisição no portal Cloud Insights e instalar o software, execute as seguintes etapas:
@@ -163,6 +167,7 @@ image:cloud-insights_image18.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[add-the-monitored-storage-system-from-the-flexpod-datacenter-to-cloud-insights]]
 == Adicione o sistema de storage monitorado do data center FlexPod ao Cloud Insights
 
 Para adicionar o sistema de storage ONTAP a partir de uma implantação do FlexPod, siga estas etapas:

@@ -17,12 +17,14 @@ image:express-c-series-aff220-design_image3.png["Erro: Imagem gráfica em falta"
 
 
 
+[[target-audience]]
 == Público-alvo
 
 Este documento destina-se àqueles que desejam aproveitar uma infraestrutura construída para fornecer eficiência DE TI e permitir a inovação DE TI. O público-alvo deste documento inclui, entre outros, engenheiros de vendas, consultores de campo, pessoal de serviços profissionais, gerentes DE TI, engenheiros DE parceiros e clientes.
 
 
 
+[[solution-technology]]
 == Tecnologia da solução
 
 Essa solução utiliza as tecnologias mais recentes da NetApp, Cisco e VMware. Essa solução conta com o novo sistema NetApp AFF A220, que executa o software ONTAP 9.4, os switches duplos Cisco Nexus 3172P e os servidores em rack Cisco UCS C220 M5 que executam o VMware vSphere 6,7. Essa solução validada usa a tecnologia 10-Gigabit Ethernet (10GbE). A figura a seguir apresenta uma visão geral. Também são fornecidas orientações sobre como escalar adicionando dois nós de hipervisor de cada vez, para que a arquitetura FlexPod Express se adapte às crescentes necessidades de negócios da organização.

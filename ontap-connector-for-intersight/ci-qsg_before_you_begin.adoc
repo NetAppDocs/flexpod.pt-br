@@ -18,12 +18,14 @@ Para monitorar e orquestrar o storage do NetApp do Cisco Intersight, você preci
 
 
 
+[[install-or-upgrade-netapp-active-iq-unified-manager]]
 == Instale ou atualize o NetApp Active IQ Unified Manager
 
 Instale ou atualize para o Active IQ Unified Manager (é necessária a versão mais recente, atualmente 9.14RC1) se não o tiver feito. Para obter instruções, vá para link:https://docs.netapp.com/us-en/active-iq-unified-manager/["Documentação do NetApp Active IQ Unified Manager"].
 
 
 
+[[install-cisco-intersight-assist-virtual-appliance]]
 == Instale o dispositivo virtual de assistência à inspeção Cisco
 
 Certifique-se de que conhece o https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/b_Cisco_Intersight_Appliance_Getting_Started_Guide/b_Cisco_Intersight_Appliance_Getting_Started_Guide_chapter_0111.html?referring_site=RE&pos=1&page=https://www.cisco.com/c/en/us/td/docs/unified_computing/Intersight/b_Cisco_Intersight_Appliance_Getting_Started_Guide.html["Requisitos de licenciamento, sistema e rede de dispositivos virtuais do Cisco Intersight"^].

@@ -18,6 +18,7 @@ Um design FlexPod tem requisitos mínimos de energia e cabeamento.
 
 
 
+[[power-requirements]]
 == Requisitos de energia
 
 Os requisitos de energia para o data center FlexPod diferem com base no local onde a configuração do data center FlexPod está instalada.
@@ -30,6 +31,7 @@ Para obter os dados de alimentação do controlador de armazenamento NetApp, con
 
 
 
+[[minimum-cable-requirements]]
 == Requisitos mínimos de cabos
 
 O número e o tipo de cabos e adaptadores necessários variam de acordo com a implantação do FlexPod Datacenter. O tipo de cabo, o tipo de transcetor e o número são determinados durante o processo de projeto com base em seus requisitos. A tabela abaixo lista o número mínimo de cabos necessários.

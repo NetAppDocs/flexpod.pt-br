@@ -18,6 +18,7 @@ Esta seção descreve os requisitos de energia e as diretrizes de cabeamento par
 
 
 
+[[power-requirements]]
 == Requisitos de energia
 
 Os requisitos de energia para FlexPod Express variam de acordo com o local onde a configuração do FlexPod Express está instalada.
@@ -30,6 +31,7 @@ Para obter dados de energia do controlador de armazenamento NetApp, consulte a  
 
 
 
+[[cabling-guidelines]]
 == Diretrizes de cabeamento
 
 Esta seção fornece diretrizes gerais de cabeamento para um projeto FlexPod Express.

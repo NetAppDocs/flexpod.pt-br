@@ -20,6 +20,7 @@ Podemos executar o plano Terraform usando um controlador. Você pode ignorar est
 
 
 
+[[prerequisites]]
 == Pré-requisitos
 
 A configuração da solução começa com uma estação de trabalho de gerenciamento que tem acesso à Internet e com uma instalação funcional do Terraform.
@@ -28,6 +29,7 @@ Um guia para instalar o Terraform pode ser encontrado https://learn.hashicorp.co
 
 
 
+[[clone-github-repo]]
 == Clone o repositório do GitHub
 
 O primeiro passo no processo é clonar o repositório do GitHub para uma nova pasta vazia na estação de trabalho de gerenciamento. Para clonar o repositório do GitHub, execute as seguintes etapas:

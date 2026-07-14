@@ -22,6 +22,7 @@ Como as soluções FlexPod são de natureza flexível em suas configurações, t
 
 
 
+[[validation-topology]]
 == Topologia de validação
 
 Para validação da solução FlexPod SM-BC, são usados componentes de tecnologia compatíveis da NetApp, Cisco e VMware. A solução conta com pares de HA do NetApp AFF A250 executando o ONTAP 9.10,1, switches duplos Cisco Nexus 9336C-FX2 no local A e switches duplos Cisco Nexus 3232C no local B, Cisco UCS 6454 FIs em ambos os locais e três servidores Cisco UCS B200 M5 em cada local que executa o VMware vSphere 7.0u2 e gerenciados pelo UCS Manager e pelo VMware vCenter Server. A figura a seguir mostra a topologia de validação da solução em nível de componente com dois sistemas FlexPod executados no local A e no local B conetados por links intersites estendidos da camada 2 e Mediador ONTAP em execução no local C.
@@ -30,6 +31,7 @@ image:sm-bcs-image16.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[hardware-and-software]]
 == Hardware e software
 
 A tabela a seguir lista o hardware e o software usados para a validação da solução. É importante observar que o Cisco, o NetApp e a VMware têm matrizes de interoperabilidade usadas para determinar o suporte para qualquer implementação específica do FlexPod:

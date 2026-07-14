@@ -24,6 +24,7 @@ Com o FlexPod, a Cisco e a NetApp criaram uma plataforma flexível e escalável 
 
 
 
+[[additional-information]]
 == Informações adicionais
 
 Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites:
@@ -96,6 +97,7 @@ https://www.cisco.com/c/en/us/products/collateral/servers-unified-computing/ucs-
 
 
 
+[[interoperability-matrixes]]
 == Matrizes de interoperabilidade
 
 * Ferramenta de Matriz de interoperabilidade do NetApp
@@ -114,6 +116,7 @@ https://compatibilityguide.broadcom.com/["https://compatibilityguide.broadcom.co
 
 
 
+[[acknowledgements]]
 == Agradecimentos
 
 Os autores gostariam de agradecer a John George de Cisco e Scott Lane e Bobby Oommen de NetApp pela assistência e orientação oferecida durante a execução deste projeto.

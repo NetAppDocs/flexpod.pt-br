@@ -18,6 +18,7 @@ Esta seção lista os novos recursos e funcionalidades disponíveis para o Cisco
 
 
 
+[[january-2024]]
 == Janeiro de 2024
 
 * Orquestração de armazenamento do NetApp usando fluxos de trabalho de referência agora disponíveis para download no GitHub através do https://github.com/ucs-compute-solutions/FlexPod-Intersight-Workflow["Repositório do fluxo de trabalho do FlexPod Intersight"^]. Para obter mais informações sobre os novos fluxos de trabalho de referência no GitHub, link:ci-qsg_use_cases.html["Caso de uso 2: Orquestração de storage do NetApp usando workflows de referência"^]consulte .
@@ -25,6 +26,7 @@ Esta seção lista os novos recursos e funcionalidades disponíveis para o Cisco
 
 
 
+[[november-2023]]
 == Novembro de 2023
 
 * Adicionada página namespaces NVMe sob a seção Inventário da interface do usuário.
@@ -32,6 +34,7 @@ Esta seção lista os novos recursos e funcionalidades disponíveis para o Cisco
 
 
 
+[[august-2023]]
 == Agosto de 2023
 
 
@@ -44,6 +47,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[july-2023]]
 == Julho de 2023
 
 
@@ -70,6 +74,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[june-2023]]
 == Junho de 2023
 
 
@@ -80,6 +85,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[april-2023]]
 == Abril de 2023
 
 * Adicionadas as guias políticas de proteção (SnapMirror) e políticas de captura instantânea na página políticas na seção Inventário da interface do usuário.
@@ -92,6 +98,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[january-2023]]
 == Janeiro de 2023
 
 
@@ -103,6 +110,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[august-2022]]
 == Agosto de 2022
 
 
@@ -120,6 +128,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[july-2022]]
 == Julho de 2022
 
 * Recursos visuais aprimorados para a taxa de redução de dados de cluster agora disponíveis sob o Widget de capacidade
@@ -139,6 +148,7 @@ NOTE: É necessária uma atualização para o NetApp Active IQ Unified Manager 9
 
 
 
+[[april-2022]]
 == Abril de 2022
 
 
@@ -157,6 +167,7 @@ NOTE: Para garantir a compatibilidade e a funcionalidade completa com versões f
 
 
 
+[[january-2022]]
 == Janeiro de 2022
 
 * Foram adicionados alarmes de Intersight baseados em eventos para NetApp Active IQ Unified Manager 9,10 ou superior.
@@ -177,6 +188,7 @@ NOTE: Para garantir a compatibilidade e a funcionalidade completa com versões f
 
 
 
+[[october-2021]]
 == Outubro de 2021
 
 * Lista atualizada de tarefas de storage do NetApp disponíveis no Cisco Intersight. Consulte link:ci-qsg_use_cases.html["Use Case 3 fluxos de trabalho personalizados usando formulário livre de designer"^] para obter uma lista completa das tarefas de armazenamento do NetApp.
@@ -195,6 +207,7 @@ NOTE: As métricas de performance acima estão disponíveis apenas para storage 
 
 
 
+[[known-issues]]
 == Problemas conhecidos
 
 * Se estiver a utilizar uma versão do AIQUM 9,11 ou anterior, ocorrerá uma discrepância entre os valores apresentados na página Lista de armazenamento e o gráfico de barras de capacidade na página Geral armazenamento. Para resolver este problema, atualize para AIQUM 9,12 ou superior para garantir a precisão dos valores de capacidade apresentados.

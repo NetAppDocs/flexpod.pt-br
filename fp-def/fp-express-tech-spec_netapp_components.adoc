@@ -18,6 +18,7 @@ Os controladores de storage do NetApp fornecem a base de storage na arquitetura 
 
 
 
+[[netapp-storage-controller-options]]
 == Opções do controlador de storage NetApp
 
 Controladores redundantes das séries AFF, ASA ou FAS são necessários na arquitetura FlexPod Express. Os controladores executam o software ONTAP. Ao encomendar os controladores de storage, a versão de software preferida pode ser pré-carregada nos controladores. Para ONTAP, o cluster pode ser implementado com um par de switches de interconexão de cluster ou em uma configuração de cluster sem switch.
@@ -33,13 +34,13 @@ As famílias de controladoras listadas na tabela abaixo são adequadas para uso 
 | NetApp Família de armazenamento básico para FlexPod Express | Modelo | Especificações técnicas 
 
 
-.2+| AFF Série A. | A20 .3+| https://www.netapp.com/pdf.html?item=/media/7828-ds-3582-aff-a-series-ai-era.pdf["Documentação AFF"] 
+.2+| AFF Série A. | A20 .2+| https://www.netapp.com/pdf.html?item=/media/7828-ds-3582-aff-a-series-ai-era.pdf["Documentação da série A do AFF"] 
 
 
 | A30 
 
 
-| AFF C-Series | C30 
+| AFF C-Series | C30 | https://www.netapp.com/pdf.html?item=/media/81583-ds-4240-aff-c-series.pdf["Documentação da Série C da AFF"] 
 
 
 .2+| ASA A-Series | A20 .3+| https://www.netapp.com/pdf.html?item=/media/85736-ds-4254-asa.pdf["Documentação ASA"] 
@@ -51,18 +52,20 @@ As famílias de controladoras listadas na tabela abaixo são adequadas para uso 
 | ASA C-Series | C30 
 
 
-.2+| FAS | FAS 2750 .2+| https://www.netapp.com/pdf.html?item=/media/7819-ds-4020.pdf["Documentação FAS"] 
+.3+| FAS | FAS 2750 .3+| https://www.netapp.com/pdf.html?item=/media/7819-ds-4020.pdf["Documentação FAS"] 
 
 
 | FAS 2820 
+
+
+| FAS 50 
 |===
 
 
+[[netapp-disk-shelves-and-disks]]
 == Discos e compartimentos de disco NetApp
 
-É necessário, no mínimo, um compartimento para discos NetApp para os controladores de armazenamento.
-
-O tipo de compartimento NetApp selecionado determina quais tipos de unidade estão disponíveis nesse compartimento.
+É necessário, no mínimo, um compartimento para discos NetApp para os controladores de armazenamento que não possuem um compartimento para discos incorporado. O tipo de compartimento NetApp selecionado determina quais tipos de unidades estão disponíveis nesse compartimento.
 
 
 NOTE: Para todos os compartimentos de disco e números de peça de disco, consulte o seu representante de vendas.
@@ -91,6 +94,7 @@ Para obter a lista de unidades compatíveis com seu disk shelf, acesse link:http
 |===
 
 
+[[netapp-software-licensing-options]]
 == Opções de licenciamento do software NetApp
 
 A tabela a seguir lista as opções de licenciamento de software da NetApp.
@@ -108,6 +112,7 @@ Consulte este link para obter mais informações sobre o licenciamento de softwa
 
 
 
+[[netapp-support-licensing-options]]
 == Opções de licenciamento do suporte da NetApp
 
 As licenças SupportEdge Premium são necessárias e os números de peça dessas licenças variam de acordo com as opções selecionadas no design do FlexPod Express.

@@ -15,10 +15,12 @@ summary: Para criar grupos, você precisa do iniciador iSCSI IQNs e deve conclui
 
 
 
+[[ontap-san-boot-storage-setup]]
 == Configuração de armazenamento de inicialização SAN ONTAP
 
 
 
+[[create-iscsi-igroups]]
 === Criar grupos iSCSI
 
 Para criar grupos, execute o seguinte passo:
@@ -39,6 +41,7 @@ NOTE: Esta etapa deve ser concluída ao adicionar servidores adicionais da séri
 
 
 
+[[map-boot-luns-to-igroups]]
 == Mapeie LUNs de inicialização para grupos
 
 Para mapear LUNs de inicialização para grupos, execute os seguintes comandos da conexão SSH de gerenciamento de cluster:

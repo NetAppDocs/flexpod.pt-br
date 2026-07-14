@@ -17,6 +17,7 @@ link:gcp-ncvo-configure-public-cloud-service-provider.html["Anterior: Configurar
 
 
 
+[[google-cloud]]
 == Google Cloud
 
 Primeiro, é necessário habilitar APIs e criar uma conta de serviço que forneça ao Cloud Manager permissões para implantar e gerenciar sistemas Cloud Volumes ONTAP que estejam no mesmo projeto que o conetor ou em projetos diferentes.
@@ -33,12 +34,14 @@ Dois conjuntos de permissões devem estar em vigor antes de implantar um conetor
 
 
 
+[[cloud-volumes-ontap-deployment-modes-and-architecture]]
 === Modos de implantação e arquitetura do Cloud Volumes ONTAP
 
 O Cloud Volumes ONTAP está disponível no Google Cloud como um sistema de nó único e como um par de nós de alta disponibilidade (HA). Com base nos requisitos, podemos escolher o modo de implantação do Cloud Volumes ONTAP. A atualização de um único sistema de nós para um par de HA não é compatível. Para alternar entre um sistema de nó único e um par de HA, você precisa implantar um novo sistema e replicar dados do sistema existente para o novo sistema.
 
 
 
+[[highly-available-cloud-volumes-ontap-in-google-cloud]]
 === Cloud Volumes ONTAP altamente disponível no Google Cloud
 
 O Google Cloud é compatível com a implantação de recursos em várias regiões geográficas e várias zonas dentro de uma região. A implantação de HA consiste em dois nós de ONTAP que usam poderosos tipos de máquina padrão n1 ou n2, disponíveis no Google Cloud. Os dados são replicados em sincronia entre os dois nós do Cloud Volumes ONTAP para fornecer disponibilidade em caso de falha. A implantação DE HA do Cloud Volumes ONTAP requer quatro VPCs e uma sub-rede privada em cada VPC. As sub-redes nos quatro VPCs devem ser provisionadas com intervalos CIDR não sobrepostos.
@@ -63,6 +66,7 @@ Para obter detalhes sobre a disposição de dados em camadas, https://docs.netap
 
 
 
+[[set-up-environment-prerequisites]]
 === Configurar pré-requisitos de ambiente
 
 A criação automatizada de clusters do Cloud Volumes ONTAP, a configuração do SnapMirror entre um volume local e um volume de nuvem, a criação de um volume de nuvem etc. são realizadas com a configuração do Terraform. Essas configurações do Terraform são hospedadas em uma conta do Terraform Cloud for Business. Com o Intersight Cloud Orchestrator, você pode orquestrar tarefas como criar uma área de trabalho em uma conta do Terraform Cloud for Business, adicionar todas as variáveis necessárias à área de trabalho, executar um plano Terraform etc.
@@ -71,6 +75,7 @@ Para essas tarefas de automação e orquestração, há alguns requisitos e dado
 
 
 
+[[github-repository]]
 === Repositório do GitHub
 
 Você precisa de uma conta do GitHub para hospedar seu código Terraform. O Intersight Orchestrator cria um novo espaço de trabalho na conta Terraform Cloud for Business. Esta área de trabalho é configurada com um fluxo de trabalho de controle de versão. Para isso, você precisa manter a configuração do Terraform em um repositório do GitHub e fornecê-la como uma entrada ao criar o workspace.
@@ -105,6 +110,7 @@ Adicione um cliente e o ID do token OAuth do cliente é usado como uma das entra
 
 
 
+[[refresh-token-for-netapp-cloud-manager-api-operations]]
 === Atualizar token para operações da API do NetApp Cloud Manager
 
 Além da interface do navegador da Web, o Cloud Manager tem uma API REST que fornece aos desenvolvedores de software acesso direto à funcionalidade do Cloud Manager por meio da interface SaaS. O serviço Cloud Manager consiste em vários componentes distintos que formam coletivamente uma plataforma de desenvolvimento extensível. O token de atualização permite gerar tokens de acesso que você adiciona ao cabeçalho de autorização para cada chamada de API.
@@ -121,6 +127,7 @@ Você precisa da ID do cliente do conetor do Cloud Manager para criar recursos n
 
 
 
+[[develop-cisco-intersight-cloud-orchestrator-workflow]]
 == Desenvolva o fluxo de trabalho do Cisco Intersight Cloud Orchestrator
 
 O Cisco Intersight Cloud Orchestrator está disponível no Cisco Intersight se:
@@ -131,6 +138,7 @@ O Cisco Intersight Cloud Orchestrator está disponível no Cisco Intersight se:
 
 
 
+[[workflow-designer]]
 === Designer de fluxo de trabalho
 
 O Designer de fluxo de trabalho ajuda você a criar novos fluxos de trabalho (bem como tarefas e tipos de dados) e editar fluxos de trabalho existentes para gerenciar destinos no Cisco Intersight.
@@ -171,6 +179,7 @@ A coluna ações permite executar as seguintes ações:
 
 
 
+[[workflow]]
 === Fluxo de trabalho
 
 Crie um fluxo de trabalho que consiste nos seguintes passos:
@@ -183,6 +192,7 @@ Crie um fluxo de trabalho que consiste nos seguintes passos:
 
 
 
+[[create-workflows-for-on-premises-flexpod-storage]]
 === Criar fluxos de trabalho para storage FlexPod no local
 
 Para configurar um fluxo de trabalho para o storage FlexPod no local, https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_cvo_ico_ntap.html["este link"^]consulte .

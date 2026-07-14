@@ -13,12 +13,14 @@ As tecnologias listadas nesta seção foram escolhidas durante a fase de projeto
 
 
 
+[[netapp-aff-c190-series-with-ontap-9-6]]
 == Série NetApp AFF C190 com ONTAP 9 .6
 
 Essa solução aproveita dois dos mais novos produtos NetApp: O sistema NetApp AFF C190 e o software ONTAP 9.6.
 
 
 
+[[aff-c190-system]]
 === Sistema AFF C190
 
 O grupo-alvo são os clientes que querem modernizar a INFRAESTRUTURA DE TI com tecnologia all-flash a um preço acessível. O sistema AFF C190 vem com o novo ONTAP 9.6 e licenciamento de pacotes flash, o que significa que as seguintes funções estão integradas:
@@ -59,6 +61,7 @@ Para obter informações completas sobre o sistema de hardware AFF C190, consult
 
 
 
+[[ontap-9-6-software]]
 === ONTAP 9 1.6 software
 
 Os sistemas NetApp AFF C190 usam o novo software de gerenciamento de dados ONTAP 9.6. O ONTAP 9.6 é o software empresarial de gerenciamento de dados líder do setor. Ele combina novos níveis de simplicidade e flexibilidade com funcionalidades avançadas de gerenciamento de dados, eficiências de storage e integração com a nuvem líder.
@@ -79,6 +82,7 @@ Outras melhorias de recursos no ONTAP 9.6 incluem:
 
 
 
+[[cisco-nexus-3000-series]]
 == Cisco Série Nexus 3000
 
 O Cisco Nexus 31108PC-V é um switch topo de rack (Tor) baseado em 10Gbps SFP com mais de 48 portas SFP e 6 QSFP28 portas. Cada porta SFP pode operar em 100Mbps GbE, 10Gbps GbE e cada porta QSFP28 GbE pode operar em modo nativo 100Gbps GbE ou 40Gbps GbE ou modo 4x 10Gbps GbE, oferecendo opções de migração flexíveis. Esse switch é um verdadeiro switch sem PHY otimizado para baixa latência e baixo consumo de energia.
@@ -97,6 +101,7 @@ Para obter mais informações sobre os switches Cisco Nexus 31108PC-V, https://w
 
 
 
+[[cisco-ucs-c-series]]
 == Cisco UCS C-Series
 
 O servidor de rack Cisco UCS C-Series foi escolhido para o FlexPod Express porque suas muitas opções de configuração permitem que ele seja adaptado para requisitos específicos em uma implantação do FlexPod Express.
@@ -119,6 +124,7 @@ Para obter mais informações sobre servidores C220 M5, https://www.cisco.com/c/
 
 
 
+[[cisco-ucs-vic-1457-connectivity-for-c220-m5-rack-servers]]
 === Conetividade Cisco UCS VIC 1457 para servidores de rack C220 M5
 
 O adaptador Cisco UCS VIC 1457 mostrado na figura a seguir é uma placa de rede local modular conetável de fator de forma pequeno (SFP28) de quatro portas na placa-mãe (mLOM) projetada para a geração M5 de servidores Cisco UCS C-Series. A placa suporta Ethernet 10/25Gbps ou FCoE. A placa pode apresentar interfaces compatíveis com padrões PCIe para o host, e estas podem ser configuradas dinamicamente como NICs ou HBAs.
@@ -129,6 +135,7 @@ Para obter informações completas sobre o adaptador Cisco UCS VIC 1457, https:/
 
 
 
+[[vmware-vsphere-6-7u2]]
 == VMware vSphere 6.7U2
 
 O VMware vSphere 6.7U2 é uma das opções de hypervisor para uso com o FlexPod Express. O VMware vSphere permite que as organizações reduzam sua capacidade de energia e refrigeração, ao mesmo tempo em que confirmam que a capacidade de computação comprada é usada ao máximo. Além disso, o VMware vSphere permite a proteção contra falhas de hardware (VMware High Availability, ou VMware HA) e o balanceamento de carga de recursos de computação em um cluster de hosts vSphere (VMware Distributed Resource Scheduler no modo de manutenção ou VMware DRS-MM).
@@ -158,6 +165,7 @@ NOTE: Embora essa solução tenha sido validada com o vSphere 6.7U2, ela oferece
 
 
 
+[[boot-architecture]]
 == Arquitetura de inicialização
 
 As opções suportadas para a arquitetura de arranque do FlexPod Express incluem:
@@ -171,6 +179,7 @@ O FlexPod Datacenter é inicializado a partir de iSCSI LUNs; portanto, a capacid
 
 
 
+[[esxi-host-virtual-network-interface-card-layout]]
 === Layout da placa de interface de rede virtual do host ESXi
 
 Cisco UCS VIC 1457 tem quatro portas físicas. Essa validação da solução inclui essas quatro portas físicas no uso do host ESXi. Se você tiver um número menor ou maior de NICs, poderá ter números VMNIC diferentes.

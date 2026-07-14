@@ -18,6 +18,7 @@ Esta seção discute os principais recursos do software de gerenciamento de dado
 
 
 
+[[storage-netapp-ontap]]
 == Armazenamento: NetApp ONTAP
 
 O software ONTAP fornece muitos recursos úteis para a proteção de dados, a maioria dos quais é gratuita para clientes que têm um sistema ONTAP. Você pode usar os recursos a seguir em todos os momentos para proteger dados contra ataques:
@@ -31,6 +32,7 @@ O software ONTAP fornece muitos recursos úteis para a proteção de dados, a ma
 
 
 
+[[network-cisco-nexus]]
 == Rede: Cisco
 
 O software Cisco NX os suporta o recurso NetFlow que permite a deteção aprimorada de anomalias e segurança da rede. O NetFlow captura os metadados de cada conversa na rede, as partes envolvidas na comunicação, o protocolo que está sendo usado e a duração da transação. Depois que as informações são agregadas e analisadas, elas podem fornecer informações sobre o comportamento normal.
@@ -41,6 +43,7 @@ O NetFlow usa fluxos para fornecer estatísticas para monitoramento de rede. Um 
 
 
 
+[[compute-cisco-ucs]]
 == Computação: Cisco UCS
 
 O Cisco UCS é o ponto de extremidade de computação em uma arquitetura FlexPod. Você pode usar vários produtos Cisco que podem ajudar a proteger essa camada da pilha no nível do sistema operacional.

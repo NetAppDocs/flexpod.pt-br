@@ -18,6 +18,7 @@ Depois que os destinos são reivindicados, os widgets de armazenamento do NetApp
 
 
 
+[[storage-inventory-overview]]
 == Visão geral do inventário de armazenamento
 
 A captura de tela a seguir exibe a tela *operar > armazenamento*.
@@ -33,6 +34,7 @@ image:ci-qsg_image10.png["a captura de tela mostra a visão geral do cluster de 
 
 
 
+[[storage-widgets]]
 == Widgets de armazenamento
 
 Para visualizar widgets de armazenamento, navegue até *Monitoramento > painéis > Exibir widgets de armazenamento do NetApp*.

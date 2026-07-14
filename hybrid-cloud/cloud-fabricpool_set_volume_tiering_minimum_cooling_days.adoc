@@ -18,6 +18,7 @@ A `tiering-minimum-cooling-days` configuração determina quantos dias devem pas
 
 
 
+[[auto]]
 == Auto
 
 A configuração padrão `tiering-minimum-cooling-days` para a política de disposição automática em categorias é de 31 dias.
@@ -31,12 +32,14 @@ NOTE: O storage de objetos não é transacional, como storage de arquivos ou blo
 
 
 
+[[snapshot-only]]
 == Apenas Snapshot
 
 A configuração padrão `tiering-minimum-cooling-days` da política de disposição em camadas somente Snapshot é de 2 dias. Um mínimo de 2 dias fornece tempo adicional para processos em segundo plano para fornecer a máxima eficiência de storage e impede que processos diários de proteção de dados precisem ler dados da categoria de nuvem.
 
 
 
+[[ontap-cli]]
 == CLI do ONTAP
 
 Para alterar a configuração de um volume `tiering-minimum-cooling-days` usando a CLI do ONTAP, execute o seguinte comando:

@@ -25,6 +25,7 @@ Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as seg
 
 
 
+[[create-vsphere-cluster]]
 == Crie o cluster vSphere
 
 Siga as etapas a seguir para criar um cluster vSphere:
@@ -40,6 +41,7 @@ image:express-c-series-aff220-deploy_image49.png["Erro: Imagem gráfica em falta
 
 
 
+[[add-esxi-hosts-to-cluster]]
 == Adicione hosts ESXi ao cluster
 
 . Clique com o botão direito do rato no cluster e selecione Adicionar anfitrião.
@@ -67,6 +69,7 @@ NOTE: Este passo pode ser concluído mais tarde, se desejado.
 
 
 
+[[configure-coredump-on-esxi-hosts]]
 == Configure o coredump em hosts ESXi
 
 . Usando SSH, conete-se ao host IP ESXi de gerenciamento, insira raiz para o nome de usuário e insira a senha raiz.

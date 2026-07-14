@@ -15,6 +15,7 @@ summary: As arquiteturas de referência do FlexPod são entregues como designs v
 
 
 
+[[flexpod-converged-infrastructure-portfolio]]
 == Portfólio de infraestrutura convergente do FlexPod
 
 As arquiteturas de referência do FlexPod são entregues como Cisco Validated designs (CVDs) ou como NetApp Verified Architectures (NVAs). Desvios que são baseados nos requisitos do cliente de um determinado CVD ou NVA são permitidos se as variações não resultarem na implantação de configurações não suportadas.
@@ -30,6 +31,7 @@ image:express-c-series-aff220-design_image2.png["Erro: Imagem gráfica em falta"
 
 
 
+[[netapp-verified-architecture-program]]
 == Programa NetApp Verified Architecture
 
 O programa NVA oferece aos clientes uma arquitetura verificada para soluções NetApp. Um NVA significa que a solução NetApp tem as seguintes qualidades:

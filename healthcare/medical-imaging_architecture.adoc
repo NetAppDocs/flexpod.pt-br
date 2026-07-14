@@ -22,12 +22,14 @@ image:medical-imaging_image3.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[storage-architecture]]
 == Arquitetura de storage
 
 Use as diretrizes de arquitetura de armazenamento nesta seção para configurar sua infraestrutura de armazenamento para um sistema de imagiologia médica empresarial.
 
 
 
+[[storage-tiers]]
 === Camadas de storage
 
 Um ambiente de imagem médica empresarial típico consiste em várias camadas de armazenamento diferentes. Cada camada tem requisitos específicos de protocolo de storage e desempenho. O armazenamento NetApp suporta várias tecnologias RAID; mais informações podem ser encontradas https://docs.netapp.com/ontap-9/index.jsp?topic=%2Fcom.netapp.doc.dot-cm-psmg%2FGUID-488B0EC4-3B03-4566-8321-5B8E568F34E4.html["aqui"^]. Veja como os sistemas de storage da NetApp AFF atendem às necessidades de diferentes camadas de storage para o sistema de geração de imagens:
@@ -67,6 +69,7 @@ A tabela abaixo lista cada nível que um sistema de imagiologia médica típico 
 |===
 
 
+[[storage-network-connectivity]]
 === Conetividade de rede de storage
 
 
@@ -108,6 +111,7 @@ A tabela abaixo lista cada nível que um sistema de imagiologia médica típico 
 
 
 
+[[backup-and-recovery]]
 === Backup e recuperação
 
 O data center FlexPod foi desenvolvido em um storage array gerenciado pelo software de gerenciamento de dados NetApp ONTAP. O software ONTAP evoluiu ao longo de 20 anos para fornecer muitos recursos de gerenciamento de dados para VMs, bancos de dados Oracle, compartilhamentos de arquivos SMB/CIFS e NFS. Ele também fornece tecnologia de proteção, como a tecnologia NetApp Snapshot, a tecnologia SnapMirror e a tecnologia de replicação de dados NetApp FlexClone. O software NetApp SnapCenter tem um servidor e um cliente de GUI para usar os recursos ONTAP Snapshot, SnapRestore e FlexClone para VM, compartilhamentos de arquivos SMB/CIFS, backup e recuperação de banco de dados NFS e Oracle.
@@ -139,6 +143,7 @@ NetApp MetroCluster configurações são usadas por milhares de empresas em todo
 
 
 
+[[networking]]
 == Rede
 
 Um par de switches Cisco Nexus fornece caminhos redundantes para o tráfego IP da computação para o armazenamento e para clientes externos do visualizador de imagens do sistema de imagem médica:
@@ -157,6 +162,7 @@ Um par de switches Cisco Nexus fornece caminhos redundantes para o tráfego IP d
 
 
 
+[[computecisco-unified-computing-system]]
 == Computação: Sistema de computação unificada da Cisco
 
 Duas telas Cisco UCS através de diferentes interconexões de malha fornecem dois domínios de falha. Cada malha é conectada a switches de rede IP e a diferentes switches de rede FC.
@@ -172,6 +178,7 @@ Perfis de serviço idênticos para cada blade Cisco UCS são criados de acordo c
 
 
 
+[[virtualization]]
 == Virtualização
 
 O cluster de host do VMware ESXi executa VMs de workload. O cluster compreende instâncias ESXi executadas em servidores blade Cisco UCS.
@@ -194,6 +201,7 @@ Cada host ESXi inclui os seguintes componentes de rede:
 
 
 
+[[medical-imaging-system-architecture]]
 == Arquitetura do sistema de imagem médica
 
 Nas organizações de saúde, os sistemas de imagem médica são aplicações críticas e bem integrados nos fluxos de trabalho clínicos que começam com o Registro do paciente e terminam com atividades relacionadas ao faturamento no ciclo de receita.

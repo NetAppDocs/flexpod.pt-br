@@ -17,6 +17,7 @@ link:fhc-cvoe-solution-overview.html["Anterior: Visão geral da solução."]
 
 
 
+[[flexpod]]
 == FlexPod
 
 O FlexPod é um conjunto definido de hardware e software que forma uma base integrada para soluções virtualizadas e não virtualizadas. O FlexPod inclui storage NetApp ONTAP, rede Cisco Nexus, rede de storage Cisco MDS e o sistema de computação unificada da Cisco (Cisco UCS).
@@ -32,6 +33,7 @@ O FlexPod é a plataforma ideal para as necessidades de workload do setor de sa�
 
 
 
+[[ehr]]
 == EHR
 
 O Electronic Health Records (EHRs) faz software para grupos médicos de médio e grande porte, hospitais e organizações de saúde integradas. Os clientes também incluem hospitais comunitários, instalações acadêmicas, organizações infantis, provedores de redes de segurança e sistemas multi-hospitalares. O software integrado à EHR abrange funções clínicas, de acesso e de receita e estende-se para a casa.
@@ -51,12 +53,14 @@ O FlexPod possui certificação EHR e suporta uma plataforma que inclui Cisco UC
 
 
 
+[[netapp-console]]
 == NetApp Console
 
 O NetApp Console é uma plataforma de gerenciamento SaaS de nível empresarial que permite que especialistas em TI e arquitetos de nuvem gerenciem centralmente sua infraestrutura híbrida multicloud usando as soluções de nuvem da NetApp .  Ele fornece um sistema centralizado para visualizar e gerenciar seu armazenamento local e em nuvem, com suporte a ambientes híbridos, múltiplos provedores de nuvem e diversas contas. Para mais informações, consulte link:https://docs.netapp.com/us-en/console-family/index.html["Documentação do NetApp Console"^].
 
 
 
+[[console-agent]]
 == Agente de console
 
 Uma instância do agente do Console permite que o Console gerencie recursos e processos em um ambiente de nuvem pública.  Um agente do Console é necessário para muitas das funcionalidades oferecidas pelo Console, e pode ser implementado na nuvem ou na rede local.
@@ -73,6 +77,7 @@ link:https://docs.netapp.com/us-en/console-setup-admin/concept-connectors.html["
 
 
 
+[[netapp-cloud-volumes-ontap]]
 == NetApp Cloud Volumes ONTAP
 
 O NetApp Cloud Volumes ONTAP é uma oferta de storage definido por software que executa o software de gerenciamento de dados ONTAP na nuvem para fornecer gerenciamento avançado de dados para workloads de arquivo e bloco. Com o Cloud Volumes ONTAP, você pode otimizar seus custos de storage de nuvem e aumentar a performance das aplicações, além de aprimorar a proteção, a segurança e a conformidade dos dados.
@@ -92,6 +97,7 @@ Para obter informações mais detalhadas, consultelink:https://docs.netapp.com/u
 
 
 
+[[netapp-active-iq-unified-manager]]
 == NetApp Active IQ Unified Manager
 
 O NetApp Active IQ Unified Manager permite o monitoramento dos clusters de storage do ONTAP a partir de uma interface única, reprojetada e intuitiva que fornece inteligência do conhecimento da comunidade e análises de AI. Ele fornece insights abrangentes operacionais, de performance e proativos sobre o ambiente de storage e as máquinas virtuais que nele são executadas. Quando ocorre um problema com a infraestrutura de storage, o Unified Manager pode notificá-lo sobre os detalhes do problema para ajudar a identificar a causa raiz. O painel da máquina virtual fornece uma visão das estatísticas de desempenho da VM para que você possa investigar todo o caminho de e/S do host vSphere até a rede e, finalmente, até o armazenamento.
@@ -102,6 +108,7 @@ Para mais informações, consulte link:https://docs.netapp.com/us-en/active-iq-u
 
 
 
+[[cisco-intersight]]
 == Cisco Intersight
 
 O Cisco Intersight é uma plataforma SaaS que oferece automação, observabilidade e otimização inteligentes para aplicações e infraestrutura tradicionais e nativas da nuvem. A plataforma ajuda a impulsionar a mudança com as equipes DE TI e fornece um modelo operacional projetado para a nuvem híbrida. O Cisco Intersight oferece os seguintes benefícios:
@@ -117,6 +124,7 @@ image:fhc-cvoe-image3.png["Esta captura de tela mostra a página servidores do P
 
 
 
+[[vmware-vsphere-7-0]]
 == VMware vSphere 7,0
 
 O VMware vSphere é uma plataforma de virtualização para gerenciar holisticamente grandes coleções de infraestrutura (incluindo CPUs, armazenamento e rede) como um ambiente operacional otimizado, versátil e dinâmico. Ao contrário dos sistemas operacionais tradicionais que gerenciam uma máquina individual, o VMware vSphere agrega a infraestrutura de um datacenter inteiro para criar uma única potência com recursos que podem ser alocados de forma rápida e dinâmica para qualquer aplicativo necessário.
@@ -125,6 +133,7 @@ Para obter mais informações sobre o VMware vSphere e seus componentes, consult
 
 
 
+[[vmware-vcenter-server]]
 == VMware vCenter Server
 
 O VMware vCenter Server fornece gerenciamento unificado de todos os hosts e VMs a partir de um único console e agrega o monitoramento de desempenho de clusters, hosts e VMs. O VMware vCenter Server oferece aos administradores uma visão profunda sobre o status e a configuração de clusters de computação, hosts, VMs, armazenamento, SO convidado e outros componentes críticos de uma infraestrutura virtual. O VMware vCenter gerencia o rico conjunto de recursos disponíveis em um ambiente VMware vSphere.
@@ -133,6 +142,7 @@ Para obter informações detalhadas, consultelink:https://www.vmware.com/product
 
 
 
+[[hardware-and-software-revisions]]
 == Revisões de hardware e software
 
 Esta solução de nuvem híbrida pode ser estendida a qualquer ambiente FlexPod que esteja executando versões compatíveis de software, firmware e hardware, conforme definido em link:http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade do NetApp"^], link:https://ucshcltool.cloudapps.cisco.com/public/["Compatibilidade de hardware e software do UCS"^] e link:https://www.vmware.com/resources/compatibility/search.php["Guia de compatibilidade da VMware"^].

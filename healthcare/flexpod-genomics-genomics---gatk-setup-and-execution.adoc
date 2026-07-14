@@ -24,6 +24,7 @@ Sequenciamento é o processo de determinação da ordem exata das bases em uma c
 
 
 
+[[from-sample-to-variant-identification-annotation-and-prediction]]
 == Da amostra à identificação, anotação e previsão da variante
 
 Em um nível elevado, a genômica pode ser classificada nas seguintes etapas. Esta não é uma lista exaustiva:
@@ -66,6 +67,7 @@ A genômica ocorre https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4494865/["besta 
 
 
 
+[[genome-analysis-toolkit-gatk]]
 == Genoma Analysis Toolkit (GATK)
 
 O GATK foi desenvolvido como uma plataforma de ciência de dados na https://www.broadinstitute.org/about-us["Instituto amplo"^]. O GATK é um conjunto de ferramentas de código aberto que permitem a análise do genoma, especificamente descoberta de variantes, identificação, anotação e genotipagem. Um dos benefícios do GATK é que o conjunto de ferramentas e comandos ou podem ser encadeados para formar um fluxo de trabalho completo. Os principais desafios que o instituto amplo enfrenta são os seguintes:
@@ -84,6 +86,7 @@ De acordo com o GATK e o instituto amplo, o sequenciamento do genoma deve ser Tr
 
 
 
+[[flexpod-setup]]
 == Configuração FlexPod
 
 A validação da carga de trabalho genômica inclui uma configuração do zero de uma plataforma de infraestrutura FlexPod. A plataforma FlexPod é altamente disponível e pode ser dimensionada de forma independente. Por exemplo, a rede, o storage e a computação podem ser dimensionados de forma independente. Usamos o seguinte guia de design validado pela Cisco como o documento de arquitetura de referência para configurar o ambiente FlexPod: https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/fp_vmware_vsphere_7_0_ontap_9_7.html["Data center FlexPod com VMware vSphere 7,0 e NetApp ONTAP 9 .7"^]. Veja os seguintes destaques de configuração da plataforma FlexPod:
@@ -131,6 +134,7 @@ image:flexpod-genomics-image17.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[gatk-setup-and-execution]]
 == Configuração e execução do GATK
 
 Instale os seguintes pré-requisitos na VM Linux do RedHat Enterprise 8,3:
@@ -149,6 +153,7 @@ Nós baixamos os arquivos BAM e os arquivos correspondentes de índice, dicioná
 
 
 
+[[cromwell-engine]]
 === Motor Cromwell
 
 Cromwell é um mecanismo de código aberto voltado para fluxos de trabalho científicos que permite o gerenciamento de fluxos de trabalho. O mecanismo Cromwell pode ser executado em dois https://cromwell.readthedocs.io/en/stable/Modes/["modos"^] modos , servidor ou em um modo de execução de fluxo de trabalho único. O comportamento do motor Cromwell pode ser controlado com o https://github.com/broadinstitute/cromwell/blob/develop/cromwell.example.backends/cromwell.examples.conf["Ficheiro de configuração do motor Cromwell"^].
@@ -187,6 +192,7 @@ O GATK pode ser executado usando vários métodos; este documento explora três 
 
 
 
+[[execution-of-gatk-using-the-jar-file]]
 === Execução do GATK usando o arquivo jar
 
 Vamos olhar para uma única execução de pipeline de chamada variante usando o chamador da variante haplotype.
@@ -214,6 +220,7 @@ Uma vez executado, os detalhes de saída podem ser encontrados na seção link:f
 
 
 
+[[execution-of-gatk-using-gatk-script]]
 === Execução do GATK usando script ./gatk
 
 O kit de ferramentas GATK pode ser executado usando o `./gatk` script. Vamos examinar o seguinte comando:
@@ -238,6 +245,7 @@ Uma vez executado, os detalhes de saída podem ser encontrados na seção
 
 
 
+[[execution-of-gatk-using-cromwell-engine]]
 === Execução do GATK usando o motor Cromwell
 
 Usamos o motor Cromwell para gerenciar a execução do GATK. Vamos examinar a linha de comando e seus parâmetros.

@@ -42,6 +42,7 @@ Quando usado com o FlexPod, o FabricPool fornece três políticas de disposiçã
 
 
 
+[[oncommand-system-manager]]
 == OnCommand System Manager
 
 Para alterar a política de disposição em camadas de um volume usando o OnCommand System Manager, siga estas etapas:
@@ -58,6 +59,7 @@ image:cloud-fabricpool_image16.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[ontap-cli]]
 == CLI do ONTAP
 
 Para alterar a política de disposição em camadas de um volume usando a CLI do ONTAP, execute o seguinte comando:

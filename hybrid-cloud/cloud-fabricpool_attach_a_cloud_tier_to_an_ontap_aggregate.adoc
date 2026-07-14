@@ -23,6 +23,7 @@ NOTE: Conectar uma camada de nuvem a um agregado é uma ação permanente. Um n�
 
 
 
+[[oncommand-system-manager]]
 == OnCommand System Manager
 
 Para anexar um nível de nuvem a um agregado usando o OnCommand System Manager, siga estas etapas:
@@ -45,6 +46,7 @@ image:cloud-fabricpool_image15.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[ontap-cli]]
 == CLI do ONTAP
 
 Para anexar um nível de nuvem a um agregado usando a CLI do ONTAP, execute os seguintes comandos:

@@ -20,6 +20,7 @@ Esta seção fornece um resumo de alto nível do FC-NVMe no teste de validação
 
 
 
+[[test-environment]]
 == Ambiente de teste
 
 Os switches da série Nexus 9000 da Cisco suportam dois modos de operação:
@@ -44,6 +45,7 @@ A implementação do FlexPod usada nesta validação é baseada https://www.cisc
 
 
 
+[[validated-hardware-and-software]]
 == Hardware e software validados
 
 A tabela a seguir lista as versões de hardware e software usadas durante o processo de validação da solução. Observe que o Cisco e o NetApp têm matrizes de interoperabilidade que devem ser referenciadas para determinar o suporte para qualquer implementação específica do FlexPod. Para obter mais informações, consulte os seguintes recursos:
@@ -98,6 +100,7 @@ A tabela a seguir lista as versões de hardware e software usadas durante o proc
 |===
 
 
+[[test-plan]]
 == Plano de teste
 
 Desenvolvemos um plano de teste de desempenho para validar o NVMe no FlexPod com um workload sintético. Essa carga de trabalho nos permitiu executar 8KB leituras e gravações aleatórias, bem como 64KB leituras e gravações. Usamos os hosts do VMware ESXi para executar nossos casos de teste em relação ao storage do AFF A800.

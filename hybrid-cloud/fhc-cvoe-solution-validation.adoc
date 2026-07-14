@@ -28,6 +28,7 @@ Notavelmente, os relativamente poucos casos de uso validados nesta solução nã
 
 
 
+[[application-development-and-testing-devtest]]
 == Desenvolvimento e teste de aplicativos (desenvolvimento/teste)
 
 Para acelerar o desenvolvimento de aplicações, você pode clonar rapidamente os dados replicados no local de recuperação de desastres e usá-los para aplicações de desenvolvimento/teste. O colocation dos ambientes de DR e desenvolvimento/teste pode melhorar significativamente a utilização de instalações de backup ou DR. Os clones de desenvolvimento/teste sob demanda fornecem quantas cópias de dados você precisa para chegar à produção com mais rapidez.
@@ -146,6 +147,7 @@ Isso valida que você pode usar o ambiente DR para desenvolvimento/teste de apli
 
 
 
+[[disaster-recovery]]
 == Recuperação de desastres
 
 A tecnologia SnapMirror também é usada como parte dos planos de DR. Se os dados essenciais forem replicados para um local físico diferente, um desastre grave não precisa causar períodos prolongados de indisponibilidade de dados para aplicações essenciais aos negócios. Os clientes podem acessar dados replicados na rede até a recuperação do local de produção de corrupção, exclusão acidental, desastre natural e assim por diante.
@@ -257,6 +259,7 @@ Esta seção ilustra a resolução bem-sucedida de um cenário de DR quando o lo
 
 
 
+[[verification-of-data-on-the-production-site]]
 == Verificação de dados no local de produção
 
 Depois que o local de produção for restaurado, você deve garantir que a configuração original seja restaurada e que os clientes possam acessar os dados do site de origem.

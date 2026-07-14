@@ -25,12 +25,14 @@ Este procedimento deve ser concluído para quaisquer nós adicionais adicionados
 
 
 
+[[log-in-to-cimc-interface-for-cisco-ucs-c-series-standalone-servers]]
 == Faça login na interface CIMC para servidores autônomos do Cisco UCS C-Series
 
 As etapas a seguir detalham o método para fazer login na interface CIMC para servidores autônomos do Cisco UCS C-Series. Você deve fazer login na interface CIMC para executar o KVM virtual, o que permite que o administrador inicie a instalação do sistema operacional por meio de Mídia remota.
 
 
 
+[[all-hosts]]
 === Todos os anfitriões
 
 . Navegue até um navegador da Web e insira o endereço IP da interface CIMC para a série C do Cisco UCS. Esta etapa inicia o aplicativo GUI CIMC.
@@ -52,12 +54,14 @@ NOTE: Primeiro, você pode precisar clicar em Ativar dispositivos virtuais. Sele
 
 
 
+[[install-vmware-esxi]]
 == Instale o VMware ESXi
 
 As etapas a seguir descrevem como instalar o VMware ESXi em cada host.
 
 
 
+[[download-esxi-6-7-cisco-custom-image]]
 === Baixe a imagem personalizada do Cisco ESXi 6.7
 
 . Navegue até a  https://support.broadcom.com/group/ecx/downloads["Portal de download do suporte Broadcom"^] seção de ISOs personalizadas.
@@ -67,6 +71,7 @@ As etapas a seguir descrevem como instalar o VMware ESXi em cada host.
 
 
 
+[[all-hosts]]
 === Todos os anfitriões
 
 . Quando o sistema é inicializado, a máquina deteta a presença da Mídia de instalação do VMware ESXi.
@@ -87,12 +92,14 @@ image:express-c-series-aff220-deploy_image22.png["Erro: Imagem gráfica em falta
 
 
 
+[[set-up-vmware-esxi-host-management-networking]]
 == Configurar a rede de gerenciamento de host VMware ESXi
 
 As etapas a seguir descrevem como adicionar a rede de gerenciamento para cada host VMware ESXi.
 
 
 
+[[all-hosts]]
 === Todos os anfitriões
 
 . Depois que o servidor terminar de reiniciar, digite a opção para personalizar o sistema pressionando F2.
@@ -130,6 +137,7 @@ image:express-c-series-aff220-deploy_image23.png["Erro: Imagem gráfica em falta
 
 
 
+[[configure-esxi-host]]
 == Configurar o host ESXi
 
 Você precisa das informações na tabela a seguir para configurar cada host ESXi.
@@ -187,6 +195,7 @@ Você precisa das informações na tabela a seguir para configurar cada host ESX
 |===
 
 
+[[log-in-to-esxi-host]]
 === Faça login no host ESXi
 
 . Abra o endereço IP de gerenciamento do host em um navegador da Web.
@@ -196,6 +205,7 @@ Você precisa das informações na tabela a seguir para configurar cada host ESX
 
 
 
+[[configure-iscsi-boot]]
 === Configurar o arranque iSCSI
 
 . Selecione rede à esquerda.
@@ -244,6 +254,7 @@ NOTE: Defina a MTU como 9000 ativada `iScsiBootPG- A.`
 
 
 
+[[configure-iscsi-multipathing]]
 === Configurar multipathing iSCSI
 
 Para configurar multipathing iSCSI nos hosts ESXi, execute as seguintes etapas:
@@ -273,6 +284,7 @@ NOTE: Você pode encontrar os endereços IP iSCSI LIF executando o comando "Netw
 
 
 
+[[configure-esxi-host]]
 === Configurar o host ESXi
 
 . No painel de navegação esquerdo, selecione rede.
@@ -287,6 +299,7 @@ image:express-c-series-aff220-deploy_image29.png["Erro: Imagem gráfica em falta
 
 
 
+[[configure-port-groups-and-vmkernel-nics]]
 === Configurar grupos de portas e NICs do VMkernel
 
 . No painel de navegação esquerdo, selecione rede.
@@ -381,6 +394,7 @@ image:express-c-series-aff220-deploy_image35.png["Erro: Imagem gráfica em falta
 
 
 
+[[configure-ntp]]
 === Configure o NTP
 
 Para configurar o NTP para um host ESXi, execute as seguintes etapas:
@@ -400,6 +414,7 @@ image:express-c-series-aff220-deploy_image37.png["Erro: Imagem gráfica em falta
 
 
 
+[[move-the-virtual-machine-swap-file-location]]
 === Mova o local do arquivo swap da máquina virtual
 
 Estas etapas fornecem detalhes para mover a localização do arquivo swap da máquina virtual.
@@ -417,6 +432,7 @@ image:express-c-series-aff220-deploy_image39.png["Erro: Imagem gráfica em falta
 
 
 
+[[install-the-netapp-nfs-plug-in-1-0-20-for-vmware-vaai]]
 === Instale o plug-in NFS NetApp 1.0.20 para VMware VAAI
 
 Para instalar o plug-in NFS NetApp 1.0.20 para VMware VAAI, siga estas etapas.

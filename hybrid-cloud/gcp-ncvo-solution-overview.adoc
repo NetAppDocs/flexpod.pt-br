@@ -17,6 +17,7 @@ Ruchika Lahoti, NetApp
 
 
 
+[[introduction]]
 == Introdução
 
 Proteger dados com recuperação de desastres (DR) é um objetivo essencial para a continuidade dos negócios. O DR permite que as organizações façam failover de suas operações de negócios em um local secundário e, posteriormente, recuperem e façam failback para o local primário de forma eficiente e confiável. Várias preocupações, como desastres naturais, falhas de rede, vulnerabilidades de software e erro humano, tornam o desenvolvimento de uma estratégia de DR uma prioridade DE TI principal.
@@ -42,12 +43,14 @@ Essa solução oferece várias vantagens, incluindo:
 
 
 
+[[audience]]
 == Público-alvo
 
 O público-alvo deste documento inclui, entre outros, engenheiros de vendas, consultores de campo, serviços profissionais, gerentes DE TI, engenheiros de parceiros, engenheiros de confiabilidade do site, arquitetos de nuvem, engenheiros de nuvem e clientes que desejam aproveitar uma infraestrutura criada para fornecer eficiência DE TI e permitir inovação DE TI.
 
 
 
+[[solution-topology]]
 == Topologia da solução
 
 Esta seção descreve a topologia lógica da solução. A figura a seguir representa a topologia da solução do ambiente FlexPod no local, do NetApp Cloud Volumes ONTAP executado no Google Cloud, do Cisco Intersight e do NetApp Cloud Manager.

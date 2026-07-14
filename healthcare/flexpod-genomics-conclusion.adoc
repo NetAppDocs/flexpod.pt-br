@@ -20,6 +20,7 @@ Muitas organizações de saúde em todo o mundo padronizaram o FlexPod como uma 
 
 
 
+[[where-to-find-additional-information]]
 == Onde encontrar informações adicionais
 
 Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e sites:
@@ -72,6 +73,7 @@ https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_ope
 
 
 
+[[version-history]]
 == Histórico de versões
 
 |===

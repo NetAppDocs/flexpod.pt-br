@@ -30,6 +30,7 @@ image:sm-bcs-image39.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[end-to-end-network-connectivity]]
 == Conetividade de rede de ponta a ponta
 
 A solução FlexPod SM-BC inclui infraestruturas FlexPod em cada local, conectividade de rede entre locais e o mediador ONTAP implantado em um terceiro local para atender aos objetivos de RPO e rto necessários. A figura a seguir mostra a conetividade de rede de ponta a ponta entre os servidores Cisco UCS B200M5 em cada local e o armazenamento NetApp com recursos SM-BC em um local e em vários locais.
@@ -42,6 +43,7 @@ A arquitetura de camada 2 estendida é usada para um Data Fabric otimizado em v�
 
 
 
+[[virtual-networking]]
 == Rede virtual
 
 Cada host no cluster é implantado usando redes virtuais idênticas, independentemente de sua localização. O design separa os diferentes tipos de tráfego usando os switches virtuais VMware (vSwitch) e os switches distribuídos virtuais VMware (vDS). O VMware vSwitch é usado principalmente para as redes de infraestrutura FlexPod e vDS para redes de aplicativos, mas não é necessário.
@@ -58,6 +60,7 @@ Dois vSwitches de inicialização iSCSI são usados neste projeto. A inicializa�
 
 
 
+[[vm-host-affinity-groups-and-rules]]
 == Grupos e regras de afinidade do VM-Host
 
 Para permitir que as máquinas virtuais sejam executadas em qualquer host ESXi em ambos os sites SM-BC, todos os hosts ESXi devem montar os datastores iSCSI de ambos os sites. Se os armazenamentos de dados de ambos os sites forem corretamente montados por todos os hosts ESXi, você poderá migrar uma máquina virtual entre todos os hosts com vMotion e a VM ainda mantém acesso a todos os discos virtuais criados a partir desses datastores.
@@ -78,6 +81,7 @@ image:sm-bcs-image44.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[vsphere-ha-heartbeat]]
 == Heartbeat do vSphere HA
 
 O VMware vSphere HA tem um mecanismo de heartbeat para validação do estado do host. O mecanismo de heartbeat primário é através da rede, e o mecanismo de heartbeat secundário é através do datastore. Se os heartbeats não forem recebidos, ele decide se ele é isolado da rede fazendo ping no gateway padrão ou nos endereços de isolamento configurados manualmente. Para o heartbeat do datastore, a VMware recomenda aumentar os datastores de heartbeat do mínimo de dois para quatro para um cluster estendido.

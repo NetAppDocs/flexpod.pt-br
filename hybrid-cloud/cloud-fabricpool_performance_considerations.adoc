@@ -15,6 +15,7 @@ summary: Ao considerar o dimensionamento, as seguintes coisas devem ser avaliada
 
 
 
+[[size-the-performance-tier]]
 == Dimensione o nível de performance
 
 Ao considerar o dimensionamento, tenha em mente que o nível de desempenho deve ser capaz das seguintes tarefas:
@@ -32,6 +33,7 @@ NOTE: As gravações da categoria de nuvem para a categoria de performance serã
 
 
 
+[[size-the-cloud-tier]]
 == Dimensione a camada de nuvem
 
 Ao considerar o dimensionamento, o armazenamento de objetos que atua como a camada de nuvem deve ser capaz das seguintes tarefas:

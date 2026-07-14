@@ -25,12 +25,14 @@ Com o Cloud Insights configurado e configurado para monitorar sua solução de d
 
 
 
+[[active-iq-integration]]
 == Integração com Active IQ
 
 O Cloud Insights é totalmente integrado à plataforma de monitoramento de storage da Active IQ. Um sistema ONTAP, implantado como parte de uma solução de data center FlexPod, é configurado automaticamente para enviar informações de volta para o NetApp por meio da função AutoSupport, que está integrada em cada sistema. Esses relatórios são gerados em uma base programada, ou dinamicamente sempre que uma falha é detetada no sistema. Os dados comunicados por meio do AutoSupport são agregados e exibidos em painéis de fácil acesso no menu Active IQ no Cloud Insights.
 
 
 
+[[access-active-iq-information-through-the-cloud-insights-dashboard]]
 === Acesse as informações do Active IQ por meio do painel do Cloud Insights
 
 Para acessar as informações do Active IQ por meio do painel do Cloud Insights, execute as seguintes etapas:
@@ -77,6 +79,7 @@ image:cloud-insights_image27.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[explore-real-time-dashboards]]
 === Explore painéis em tempo real
 
 O Cloud Insights pode exibir painéis em tempo real das informações que foram pesquisadas do sistema de storage da ONTAP implantado em uma solução de data center FlexPod. A Unidade de aquisição Cloud Insights recolhe dados em intervalos regulares e preenche o painel do sistema de armazenamento predefinido com as informações recolhidas.
@@ -99,6 +102,7 @@ image:cloud-insights_image30.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[create-custom-dashboards]]
 === Crie painéis personalizados
 
 Além de usar os painéis padrão que exibem informações em todo o sistema, você pode usar o Cloud Insights para criar painéis totalmente personalizados que permitem que você se concentre no uso de recursos para volumes de storage específicos na solução de data center FlexPod e, assim, os aplicativos implantados na infraestrutura convergente que dependem desses volumes para serem executados com eficiência. Isso pode ajudar você a criar uma melhor visualização de aplicações específicas e dos recursos que elas consomem no ambiente de data center.
@@ -150,12 +154,14 @@ image:cloud-insights_image35.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[advanced-troubleshooting]]
 === Solução de problemas avançada
 
 O Cloud Insights permite que métodos avançados de solução de problemas sejam aplicados a qualquer ambiente de storage em uma infraestrutura convergente do data center FlexPod. Usando componentes de cada um dos recursos mencionados acima: Integração com Active IQ, painéis padrão com estatísticas em tempo real e painéis personalizados, os problemas que podem surgir são detetados com antecedência e resolvidos rapidamente. Usando a lista de riscos no Active IQ, um cliente pode encontrar erros de configuração relatados que podem levar a problemas ou descobrir bugs que foram relatados e corrigidos versões de código que podem remediá-los. Observar os dashboards em tempo real na página inicial do Cloud Insights pode ajudar a descobrir padrões de desempenho do sistema que podem ser um indicador precoce de um problema em ascensão e ajudar a resolvê-lo rapidamente. Por fim, a capacidade de criar painéis personalizados permite que os clientes se concentrem nos ativos mais importantes de sua infraestrutura e monitorem os mesmos diretamente para garantir que eles possam atender aos objetivos de continuidade de negócios.
 
 
 
+[[storage-optimization]]
 === Otimização de storage
 
 Além da solução de problemas, é possível usar os dados coletados pela Cloud Insights para otimizar o sistema de storage ONTAP implantado em uma solução de infraestrutura convergente do FlexPod Datacenter. Se um volume mostrar uma alta latência, talvez porque várias VMs com demandas de alta performance estejam compartilhando o mesmo datastore, essas informações serão exibidas no painel do Cloud Insights. Com essas informações, um administrador de storage pode optar por migrar uma ou mais VMs para outros volumes, migrar volumes de storage entre camadas de agregados ou entre nós no sistema de storage ONTAP, o que resulta em um ambiente otimizado para performance. As informações obtidas com a integração do Active IQ com o Cloud Insights podem destacar problemas de configuração que levam a um desempenho inferior ao esperado e fornecer a ação corretiva recomendada que, se implementada, pode corrigir quaisquer problemas e garantir um sistema de armazenamento otimizado.

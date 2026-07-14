@@ -18,6 +18,7 @@ O NetApp oferece suporte a vários componentes opcionais para aprimorar ainda ma
 
 
 
+[[metrocluster]]
 == MetroCluster
 
 O FlexPod dá suporte às duas variantes do software NetApp MetroCluster para disponibilidade contínua em configurações de cluster de dois ou quatro nós. O MetroCluster fornece replicação síncrona para workloads essenciais. Ele requer uma configuração de site duplo que esteja conetada com a comutação Cisco. A distância máxima suportada entre os locais é de aproximadamente 300km km (186 milhas) para o MetroCluster FC e aumenta para aproximadamente 435 milhas (700km km) para o MetroCluster IP. As figuras a seguir ilustram um data center FlexPod com arquitetura NetApp MetroCluster e um data center FlexPod com arquitetura IP NetApp MetroCluster, respetivamente.
@@ -50,6 +51,7 @@ image:dc-tech-spec_image12.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[end-to-end-fc-nvme]]
 == FC-NVMe completo
 
 Um FC-NVMe completo estende de forma otimizada a infraestrutura de SAN existente do cliente para aplicações em tempo real, além de fornecer IOPS e taxa de transferência aprimorados com latência reduzida.
@@ -66,6 +68,7 @@ image:dc-tech-spec_image3.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[fc-san-boot-through-cisco-mds]]
 == Inicialização FC SAN por meio do Cisco MDS
 
 Para aumentar a escalabilidade usando uma rede SAN dedicada, o FlexPod oferece suporte ao FC por meio de switches MDS Cisco e switches Nexus com suporte a FC, como o Cisco Nexus 93108TC-FX. A opção de inicialização SAN FC por meio do Cisco MDS tem os seguintes requisitos de licenciamento e hardware:
@@ -85,6 +88,7 @@ image:dc-tech-spec_image5.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[fc-san-boot-with-cisco-nexus]]
 == Inicialização FC SAN com Cisco Nexus
 
 A opção clássica de inicialização FC SAN tem os seguintes requisitos de licenciamento e hardware:
@@ -107,6 +111,7 @@ image:dc-tech-spec_image6.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[fcoe-san-boot-option]]
 == Opção de inicialização FCoE SAN
 
 A opção de inicialização FCoE SAN tem os seguintes requisitos de licenciamento e hardware:
@@ -128,6 +133,7 @@ image:dc-tech-spec_image7.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[iscsi-boot-option]]
 == Opção de inicialização iSCSI
 
 A opção de inicialização iSCSI tem os seguintes requisitos de licenciamento e hardware:
@@ -143,6 +149,7 @@ image:dc-tech-spec_image8.png["Erro: Imagem gráfica em falta"]
 
 
 
+[[cisco-ucs-direct-connect-with-netapp-storage]]
 == Conexão direta do Cisco UCS com o storage NetApp
 
 Os controladores NetApp AFF e FAS podem ser diretamente conectados aos interconectores da malha do Cisco UCS sem qualquer switch SAN upstream.

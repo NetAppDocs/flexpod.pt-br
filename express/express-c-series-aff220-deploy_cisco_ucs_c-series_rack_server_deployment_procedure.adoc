@@ -18,6 +18,7 @@ A seção a seguir fornece um procedimento detalhado para a configuração de um
 
 
 
+[[perform-initial-cisco-ucs-c-series-standalone-server-setup-for-cisco-integrated-management-server]]
 == Execute a configuração inicial do servidor autônomo do Cisco UCS C-Series para o servidor de gerenciamento integrado do Cisco
 
 Conclua estas etapas para a configuração inicial da interface CIMC para servidores autônomos do Cisco UCS C-Series.
@@ -41,6 +42,7 @@ NOTE: A versão CIMC utilizada nesta validação é CIMC 3,1.3(g).
 
 
 
+[[all-servers]]
 === Todos os servidores
 
 . Conete o teclado Cisco, vídeo e dongle do Mouse (KVM) (fornecido com o servidor) à porta KVM na parte frontal do servidor. Ligue um monitor VGA e um teclado USB às portas de dongle KVM apropriadas.
@@ -103,6 +105,7 @@ image:express-c-series-aff220-deploy_image10.png["Erro: Imagem gráfica em falta
 
 
 
+[[configure-cisco-ucs-c-series-servers-iscsi-boot]]
 == Configurar a inicialização iSCSI dos servidores Cisco UCS C-Series
 
 Nesta configuração do FlexPod Express, o VIC1387 é usado para inicialização iSCSI.
@@ -156,6 +159,7 @@ NOTE: Fonte itálico indica variáveis que são exclusivas para cada host ESXi.
 |===
 
 
+[[boot-order-configuration]]
 === Configuração da ordem de inicialização
 
 Para definir a configuração da ordem de inicialização, execute as seguintes etapas:
@@ -205,6 +209,7 @@ image:express-c-series-aff220-deploy_image12.png["Erro: Imagem gráfica em falta
 
 
 
+[[disable-raid-controller-if-present]]
 === Desativar o controlador RAID (se presente)
 
 Siga as etapas a seguir se o servidor C-Series contiver um controlador RAID. Não é necessário um controlador RAID na inicialização a partir da configuração SAN. Opcionalmente, você também pode remover fisicamente o controlador RAID do servidor.
@@ -220,12 +225,14 @@ image:express-c-series-aff220-deploy_image13.png["Erro: Imagem gráfica em falta
 
 
 
+[[configure-cisco-vic1387-for-iscsi-boot]]
 == Configurar o Cisco VIC1387 para inicialização iSCSI
 
 Os seguintes passos de configuração são para o Cisco VIC 1387 para arranque iSCSI.
 
 
 
+[[create-iscsi-vnics]]
 === Criar iSCSI vNICs
 
 . Clique em Adicionar para criar um vNIC.
@@ -326,6 +333,7 @@ NOTE: Certifique-se de gravar os nomes IQN para cada vNIC. Você precisa deles p
 
 
 
+[[configure-vnics-for-esxi]]
 === Configure vNICs para ESXi
 
 . Na janela do navegador da interface CIMC, clique em Inventário e, em seguida, clique em adaptadores VIC Cisco no painel direito.
