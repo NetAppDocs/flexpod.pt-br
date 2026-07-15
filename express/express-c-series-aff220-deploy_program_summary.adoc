@@ -10,7 +10,7 @@ summary: As tendências do setor indicam uma grande transformação do data cent
 
 Saraiva, NetApp
 
-Em parceria com: image:cisco logo.png["Erro: Imagem gráfica em falta"]
+Em parceria com: image:cisco logo.png[""]
 
 [role="lead"]
 As tendências do setor indicam uma grande transformação do data center em direção à infraestrutura compartilhada e à computação em nuvem. Além disso, as organizações buscam uma solução simples e eficaz para escritórios remotos e filiais, aproveitando a tecnologia com a qual elas estão familiarizadas em seu data center.

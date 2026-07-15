@@ -26,7 +26,7 @@ No entanto, as configurações que permitem que as VMs sejam executadas em ambos
 
 A figura a seguir mostra uma visualização de virtualização de solução FlexPod SM-BC de alto nível, que inclui recursos VMware HA e vMSC para fornecer alta disponibilidade para serviços de computação e storage. A arquitetura da solução de data center ativo-ativo permite a mobilidade da carga de trabalho entre locais e fornece proteção de DR/BC.
 
-image:sm-bcs-image39.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image39.png[""]
 
 
 
@@ -35,7 +35,7 @@ image:sm-bcs-image39.png["Erro: Imagem gráfica em falta"]
 
 A solução FlexPod SM-BC inclui infraestruturas FlexPod em cada local, conectividade de rede entre locais e o mediador ONTAP implantado em um terceiro local para atender aos objetivos de RPO e rto necessários. A figura a seguir mostra a conetividade de rede de ponta a ponta entre os servidores Cisco UCS B200M5 em cada local e o armazenamento NetApp com recursos SM-BC em um local e em vários locais.
 
-image:sm-bcs-image40.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image40.png[""]
 
 A arquitetura de implantação do FlexPod é idêntica em cada local para validação dessa solução. No entanto, a solução dá suporte a implantações assimétricas e também pode ser adicionada a soluções FlexPod existentes se elas atenderem aos requisitos.
 
@@ -50,7 +50,7 @@ Cada host no cluster é implantado usando redes virtuais idênticas, independent
 
 Os switches virtuais (vSwitch, vDS) são implantados com dois uplinks por switch virtual; os uplinks no nível do hypervisor ESXi são referidos como vmnics e NICs virtuais (vNICs) no software Cisco UCS. Os vNICs são criados no adaptador Cisco UCS VIC em cada servidor usando perfis de serviço Cisco UCS. São definidos seis vNICs, dois para vSwitch0, dois para vDS0, dois para vSwitch1 e dois para uplinks iSCSI, como mostrado na figura a seguir.
 
-image:sm-bcs-image41.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image41.png[""]
 
 O vSwitch0 é definido durante a configuração do host VMware ESXi e contém a VLAN de gerenciamento da infraestrutura do FlexPod e as portas VMK (host ESXi) para gerenciamento. Um grupo de portas de máquinas virtuais de gerenciamento de infraestrutura também é colocado no vSwitch0 para qualquer máquina virtual de gerenciamento de infraestrutura crítica que seja necessária.
 
@@ -71,13 +71,13 @@ Usando um mecanismo de afinidade de VM/host, você pode usar grupos de VM/host p
 
 A captura de tela a seguir mostra que dois grupos de hosts e dois grupos de VM são criados para hosts e VMs do local A e do local B.
 
-image:sm-bcs-image42.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image42.png[""]
 
 Além disso, as duas figuras a seguir mostram as regras de VM/host criadas para as VMs do local A e do local B para serem executadas nos hosts em seus respetivos sites usando a política "deve ser executada em hosts no grupo".
 
-image:sm-bcs-image43.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image43.png[""]
 
-image:sm-bcs-image44.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image44.png[""]
 
 
 
@@ -88,11 +88,11 @@ O VMware vSphere HA tem um mecanismo de heartbeat para validação do estado do 
 
 Para a validação da solução, os dois endereços IP de gerenciamento de cluster ONTAP são usados como endereço de isolamento. Além disso, a opção avançada recomendada do vSphere HA `ds.heartbeatDsPerHost` com um valor de 4 foi adicionada, conforme mostrado na figura a seguir.
 
-image:sm-bcs-image45.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image45.png[""]
 
 Para o datastore heartbeat, especifique os quatro datastores compartilhados do cluster e complemente automaticamente, como mostrado na figura a seguir.
 
-image:sm-bcs-image46.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image46.png[""]
 
 Para obter práticas recomendadas e configurações adicionais para o cluster de armazenamento VMware HA Cluster e VMware vSphere Metro, consulte https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html["Criação e uso de clusters de HA do vSphere"^] https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro Storage Cluster (vMSC)"^] e o KB da VMware para https://kb.vmware.com/s/article/83370["NetApp ONTAP com NetApp SnapMirror Business Continuity (SM-BC) e VMware vSphere Metro Storage Cluster (vMSC)"^].
 

@@ -44,7 +44,7 @@ O NVE é uma solução de criptografia de dados em repouso baseada em software, 
 
 Veja como o processo funciona: Quando os dados são criptografados, eles são enviados para o módulo criptográfico que é validado pelo FIPS 140-2 nível 1. O módulo criptográfico criptografa os dados e os envia de volta para a camada RAID. Os dados criptografados são então enviados para o disco. Portanto, com a combinação de NVE e NAE, os dados já estão criptografados no caminho para o disco. As leituras seguem o caminho inverso. Em outras palavras, os dados deixam o disco criptografado, são enviados para RAID, são descriptografados pelo módulo criptográfico e, em seguida, são enviados para o resto da pilha, como mostrado na figura a seguir.
 
-image:flexpod-fips-image3.png["Erro: Imagem gráfica em falta"]
+image:flexpod-fips-image3.png[""]
 
 
 NOTE: O NVE usa um módulo criptográfico de software validado pela FIPS 140-2 nível 1.
@@ -108,7 +108,7 @@ O NSE usa SEDs para executar a criptografia de dados por meio de um mecanismo ac
 
 O NSE está configurado para usar unidades de autocriptografia FIPS 140-2 nível 2 para facilitar a conformidade e o retorno de peças sobressalentes, habilitando a proteção de dados em repouso por meio da criptografia de disco transparente AES de 256 bits. As unidades executam todas as operações de criptografia de dados internamente, como descrito na figura a seguir, incluindo a geração de chaves de criptografia. Para impedir o acesso não autorizado aos dados, o sistema de armazenamento deve se autenticar com a unidade usando uma chave de autenticação estabelecida na primeira vez que a unidade é usada.
 
-image:flexpod-fips-image4.png["Erro: Imagem gráfica em falta"]
+image:flexpod-fips-image4.png[""]
 
 
 NOTE: O NSE usa criptografia de hardware em cada unidade, que é validada para FIPS 140-2 nível 2.
@@ -122,7 +122,7 @@ Para obter mais informações sobre o NSE, consulte https://www.netapp.com/pdf.h
 
 O padrão FIPS 140-2 aplica-se ao módulo criptográfico conforme definido pelo limite, como mostrado na figura a seguir.
 
-image:flexpod-fips-image5.png["Erro: Imagem gráfica em falta"]
+image:flexpod-fips-image5.png[""]
 
 O gerenciador de chaves mantém o controle de todas as chaves de criptografia usadas pelo ONTAP. Os SEDs do NSE usam o gerenciador de chaves para definir as chaves de autenticação para SEDs do NSE. Ao usar o gerenciador de chaves, a solução NVE e NAE combinada é composta por um módulo criptográfico de software, chaves de criptografia e um gerenciador de chaves. Para cada volume, o NVE usa uma chave de criptografia de dados XTS-AES 256 exclusiva, que o gerenciador de chaves armazena. A chave usada para um volume de dados é exclusiva do volume de dados nesse cluster e é gerada quando o volume criptografado é criado. Da mesma forma, um volume NAE usa chaves de criptografia de dados XTS-AES 256 exclusivas por agregado, que o gerenciador de chaves também armazena. As chaves NAE são geradas quando o agregado criptografado é criado. O ONTAP não gera chaves, as reutiliza ou as exibe em texto sem formatação – elas são armazenadas e protegidas pelo gerenciador de chaves.
 

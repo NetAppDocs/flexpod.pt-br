@@ -27,7 +27,7 @@ Os switches FlexPod Nexus em cada local fornecem conectividade local entre a com
 
 O diagrama a seguir mostra a conetividade local do switch Nexus em cada local. Além do que é mostrado no diagrama, há também conexões de rede de console e gerenciamento para cada componente que não são mostrados. Os cabos multiconexões de 40G a 4 x 10G são usados para conetar os switches Nexus às FIs UCS e aos controladores de armazenamento ONTAP AFF A250. Como alternativa, os cabos multiconexões 100g a 4 x 25G podem ser usados para aumentar a velocidade de comunicação entre os switches Nexus e os controladores de armazenamento AFF A250. Para simplificar, os dois controladores AFF A250 são mostrados logicamente como lado a lado para ilustração de cabeamento. As duas conexões entre os dois controladores de armazenamento permitem que o armazenamento forme um cluster sem switch.
 
-image:sm-bcs-image20.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image20.png[""]
 
 A tabela a seguir mostra a conectividade entre switches Nexus e controladoras de storage AFF A250 em cada local.
 
@@ -60,7 +60,7 @@ A tabela a seguir mostra a conectividade entre switches Nexus e controladoras de
 |===
 A conectividade entre os switches FlexPod no local A e o local B é mostrada na figura a seguir, com os detalhes do cabeamento listados na tabela a seguir. As conexões entre os dois switches em cada local são para os links de ponto de VPC. Por outro lado, as conexões entre os switches entre os sites fornecem os links entre os sites. Os links estendem as VLANs entre locais para comunicação entre clusters, replicação de dados SM-BC, gerenciamento na banda e acesso a dados para os recursos do local remoto.
 
-image:sm-bcs-image21.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image21.png[""]
 
 |===
 | Dispositivo local | Porta local | Dispositivo remoto | Porta remota 

@@ -25,29 +25,29 @@ O FlexPod dá suporte às duas variantes do software NetApp MetroCluster para di
 
 A figura a seguir mostra o data center FlexPod com arquitetura NetApp MetroCluster.
 
-image:dc-tech-spec_image1.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image1.png[""]
 
 A figura a seguir mostra o datacenter FlexPod com arquitetura NetApp MetroCluster IP.
 
-image:dc-tech-spec_image2.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image2.png[""]
 
 A partir do ONTAP 9.8, o Mediador ONTAP pode ser implantado em um terceiro local para monitorar a solução IP MetroCluster e facilitar o switchover automatizado não planejado quando ocorre um desastre no local.
 
 Para uma implantação de solução IP FlexPod MetroCluster com conetividade local a local de camada 2 estendida, você pode obter economia de custos compartilhando ISL e usando switches FlexPod como switches IP MetroCluster compatíveis se a largura de banda da rede e os switches atenderem aos requisitos, conforme ilustrado na figura a seguir, que mostra a solução IP FlexPod MetroCluster com compartilhamento ISL e switches compatíveis.
 
-image:dc-tech-spec_image10.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image10.png[""]
 
 As duas figuras a seguir descrevem a malha de vários locais VXLAN e a malha de armazenamento IP MetroCluster para uma solução IP FlexPod MetroCluster com implantação de malha multi-local VXLAN.
 
 * Estrutura multi-local VXLAN para solução IP FlexPod MetroCluster
 
 
-image:dc-tech-spec_image11.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image11.png[""]
 
 * Malha de storage IP MetroCluster para solução FlexPod MetroCluster IP
 
 
-image:dc-tech-spec_image12.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image12.png[""]
 
 
 
@@ -64,7 +64,7 @@ Mais detalhes sobre as configurações do FlexPod e os benefícios de desempenho
 
 Para obter mais informações sobre a implementação do ONTAP, https://www.netapp.com/pdf.html?item=/media/10681-tr4684pdf.pdf["TR-4684: Implementando e configurando SANs modernas com NVMe"^] consulte .
 
-image:dc-tech-spec_image3.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image3.png[""]
 
 
 
@@ -82,9 +82,9 @@ Para obter mais orientações sobre um design baseado em MDS, consulte o CVD htt
 
 As figuras a seguir mostram um exemplo de FlexPod Datacenter para FC com conetividade MDS e FlexPod Datacenter para FC com Cisco Nexus 93180YC-FX, respetivamente.
 
-image:dc-tech-spec_image4.jpg["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image4.jpg[""]
 
-image:dc-tech-spec_image5.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image5.png[""]
 
 
 
@@ -107,7 +107,7 @@ NOTE: O uso da família de switches Cisco Nexus 7000 ou 9000 impede o uso de FC 
 
 A figura a seguir mostra uma configuração de conectividade FC.
 
-image:dc-tech-spec_image6.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image6.png[""]
 
 
 
@@ -129,7 +129,7 @@ NOTE: O uso dos switches Cisco Nexus 9000 Series impede o uso do FCoE, a menos q
 
 A figura a seguir mostra um cenário de inicialização FCoE.
 
-image:dc-tech-spec_image7.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image7.png[""]
 
 
 
@@ -145,7 +145,7 @@ A opção de inicialização iSCSI tem os seguintes requisitos de licenciamento 
 
 A figura a seguir mostra uma configuração somente Ethernet que é inicializada usando iSCSI.
 
-image:dc-tech-spec_image8.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image8.png[""]
 
 
 
@@ -171,7 +171,7 @@ Os requisitos de licenciamento e hardware são os seguintes:
 
 A figura a seguir mostra uma configuração de conexão direta FC.
 
-image:dc-tech-spec_image9.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image9.png[""]
 
 *Notas:*
 
@@ -182,7 +182,7 @@ image:dc-tech-spec_image9.png["Erro: Imagem gráfica em falta"]
 
 A figura a seguir mostra uma configuração de conexão direta iSCSI/Unified IP.
 
-image:dc-tech-spec_image10.png["Erro: Imagem gráfica em falta"]
+image:dc-tech-spec_image10.png[""]
 
 *Notas:*
 

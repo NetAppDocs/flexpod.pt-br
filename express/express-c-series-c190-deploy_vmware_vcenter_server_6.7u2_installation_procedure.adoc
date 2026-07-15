@@ -34,11 +34,11 @@ Para fazer o download do VMware vCenter Server Appliance (VCSA), siga estas etap
 . Clique em Instalar.
 . Clique em Avançar na página Introdução.
 +
-image:express-c-series-c190-deploy_image34.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image34.png[""]
 
 . Selecione controlador de serviços de plataforma incorporada como o tipo de implantação.
 +
-image:express-c-series-c190-deploy_image35.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image35.png[""]
 
 +
 
@@ -46,15 +46,15 @@ NOTE: Se necessário, a implantação do controlador de serviços de plataforma 
 
 . No destino de implantação do dispositivo, insira o endereço IP de um host ESXi que você implantou, o nome de usuário raiz e a senha raiz.
 +
-image:express-c-series-c190-deploy_image36.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image36.png[""]
 
 . Defina a VM do appliance inserindo o VCSA como o nome da VM e a senha raiz que você gostaria de usar para o VCSA.
 +
-image:express-c-series-c190-deploy_image37.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image37.png[""]
 
 . Selecione o tamanho de implantação que melhor se adapta ao seu ambiente. Clique em seguinte.
 +
-image:express-c-series-c190-deploy_image38.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image38.png[""]
 
 . Selecione o `infra_datastore` datastore. Clique em seguinte.
 . Introduza as seguintes informações na página Configurar definições de rede e clique em seguinte.
@@ -69,11 +69,11 @@ image:express-c-series-c190-deploy_image38.png["Erro: Imagem gráfica em falta"]
 
 . Na página Pronto para concluir a fase 1, verifique se as configurações inseridas estão corretas. Clique em concluir.
 +
-image:express-c-series-c190-deploy_image39.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image39.png[""]
 
 . Reveja as suas definições na fase 1 antes de iniciar a implementação do dispositivo.
 +
-image:express-c-series-c190-deploy_image40.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image40.png[""]
 
 +
 O VCSA é instalado agora. Este processo demora vários minutos.
@@ -81,13 +81,13 @@ O VCSA é instalado agora. Este processo demora vários minutos.
 . Após a conclusão da fase 1, aparece uma mensagem informando que ela foi concluída. Clique em continuar para iniciar a configuração da fase 2.
 . Na página Introdução do Estágio 2, clique em Avançar.
 +
-image:express-c-series-c190-deploy_image41.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image41.png[""]
 
 . Introduza `\<<var_ntp_id>>` para o endereço do servidor NTP. Pode introduzir vários endereços IP NTP.
 . Se você planeja usar o vCenter Server High Availability (HA), verifique se o acesso SSH está habilitado.
 . Configure o nome de domínio SSO, a senha e o nome do site. Clique em seguinte.
 +
-image:express-c-series-c190-deploy_image42.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image42.png[""]
 
 +
 
@@ -95,12 +95,12 @@ NOTE: Registe estes valores para a sua referência, especialmente se se desviar 
 
 . Junte-se ao Programa de experiência do Cliente da VMware, se desejado. Clique em seguinte.
 +
-image:express-c-series-c190-deploy_image43.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image43.png[""]
 
 . Veja o resumo das suas definições. Clique em concluir ou use o botão voltar para editar as configurações.
 . Uma mensagem é exibida informando que você não será capaz de pausar ou parar a instalação de ser concluída depois que ela for iniciada. Clique em OK para continuar.
 +
-image:express-c-series-c190-deploy_image44.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image44.png[""]
 
 +
 A configuração do aparelho continua. Isso leva vários minutos.

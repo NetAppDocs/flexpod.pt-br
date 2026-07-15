@@ -45,7 +45,7 @@ No campo Nome do contentor, insira o nome do bucket ou do contentor do armazenam
 . Clique em Salvar e anexar agregados.
 
 
-image:cloud-fabricpool_image13.png["Erro: Imagem gráfica em falta"]
+image:cloud-fabricpool_image13.png[""]
 
 
 

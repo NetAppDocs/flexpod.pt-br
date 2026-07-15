@@ -26,7 +26,7 @@ NOTE: O FlexPod Express usa o VMware vCenter Server Appliance (VCSA).
 
 . Faça o download do VCSA. Acesse o link de download clicando no ícone obter vCenter Server ao gerenciar o host ESXi.
 +
-image:express-c-series-aff220-deploy_image41.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image41.png[""]
 
 . Faça download do VCSA a partir do site da VMware.
 +
@@ -40,7 +40,7 @@ NOTE: Embora o Microsoft Windows vCenter Server instalável seja suportado, a VM
 . Aceite o contrato de licença do utilizador final.
 . Selecione controlador de serviços de plataforma incorporada como o tipo de implantação.
 +
-image:express-c-series-aff220-deploy_image42.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image42.png[""]
 
 +
 
@@ -48,19 +48,19 @@ NOTE: Se necessário, a implantação do controlador de serviços de plataforma 
 
 . No destino de implantação do dispositivo, insira o endereço IP de um host ESXi que você implantou e o nome de usuário raiz e a senha de raiz.
 +
-image:express-c-series-aff220-deploy_image43.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image43.png[""]
 
 . Defina a VM do appliance inserindo `VCSA` como o nome da VM e a senha raiz que você gostaria de usar para o VCSA.
 +
-image:express-c-series-aff220-deploy_image44.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image44.png[""]
 
 . Selecione o tamanho de implantação que melhor se adapta ao seu ambiente. Clique em seguinte.
 +
-image:express-c-series-aff220-deploy_image45.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image45.png[""]
 
 . Selecione o datastore infra_datastore_1. Clique em seguinte.
 +
-image:express-c-series-aff220-deploy_image46.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image46.png[""]
 
 . Introduza as seguintes informações na página Configurar definições de rede e clique em seguinte.
 +
@@ -74,7 +74,7 @@ image:express-c-series-aff220-deploy_image46.png["Erro: Imagem gráfica em falta
 
 . Na página Pronto para concluir a fase 1, verifique se as configurações inseridas estão corretas. Clique em concluir.
 +
-image:express-c-series-aff220-deploy_image47.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image47.png[""]
 
 +
 O VCSA é instalado agora. Este processo demora vários minutos.
@@ -82,7 +82,7 @@ O VCSA é instalado agora. Este processo demora vários minutos.
 . Após a conclusão da fase 1, aparece uma mensagem informando que ela foi concluída. Clique em continuar para iniciar a configuração da fase 2.
 . Na página Introdução do Estágio 2, clique em Avançar.
 +
-image:express-c-series-aff220-deploy_image48.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image48.png[""]
 
 . Introduza `\<<var_ntp_id>>` para o endereço do servidor NTP. Pode introduzir vários endereços IP NTP.
 +

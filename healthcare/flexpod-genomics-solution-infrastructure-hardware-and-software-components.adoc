@@ -18,11 +18,11 @@ link:flexpod-genomics-benefits-of-deploying-genomic-workloads-on-flexpod.html["A
 [role="lead"]
 A figura seguinte mostra o sistema FlexPod utilizado para a configuração e validação do GATK. Usamos https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/fp_vmware_vsphere_7_0_ontap_9_7.html["Data center FlexPod com VMware vSphere 7,0 e NetApp ONTAP 9 .7 Cisco Validated Design (CVD)"^] durante o processo de configuração.
 
-image:flexpod-genomics-image6.png["Erro: Imagem gráfica em falta"]
+image:flexpod-genomics-image6.png[""]
 
 O diagrama a seguir mostra os detalhes do cabeamento do FlexPod.
 
-image:flexpod-genomics-image7.png["Erro: Imagem gráfica em falta"]
+image:flexpod-genomics-image7.png[""]
 
 A tabela a seguir lista os componentes de hardware usados durante a ativação do teste GATK em um FlexPod. Aqui está o https://mysupport.netapp.com/matrix/["Ferramenta de Matriz de interoperabilidade do NetApp"^] (IMT) e https://ucshcltool.cloudapps.cisco.com/public/["Lista de compatibilidade de hardware Cisco (HCL)"^].
 

@@ -76,7 +76,7 @@ Como mencionado anteriormente, o principal caso de uso do FabricPool é facilita
 
 A política de disposição em camadas somente Snapshot, ilustrada na figura a seguir, move os dados de snapshot de volume frio e os backups do SnapCenter para vSphere de VMs que estão ocupando espaço, mas não estão compartilhando blocos com o sistema de arquivos ativo em um armazenamento de objetos na nuvem. A política de disposição em camadas somente Snapshot move blocos de dados inativos para a camada de nuvem. Se for necessária uma restauração, os blocos inativos na nuvem ficam ativos e são movidos de volta para a camada flash de performance no local.
 
-image:cloud-fabricpool_image4.png["Erro: Imagem gráfica em falta"]
+image:cloud-fabricpool_image4.png[""]
 
 
 
@@ -90,7 +90,7 @@ Ao usar a política de disposição automática em camadas, os blocos acessados 
 
 NOTE: O profiler de armazenamento de objetos deve ser usado para testar a latência e a taxa de transferência ao armazenamento de objetos antes de anexá-lo a um agregado FabricPool.
 
-image:cloud-fabricpool_image5.png["Erro: Imagem gráfica em falta"]
+image:cloud-fabricpool_image5.png[""]
 
 
 

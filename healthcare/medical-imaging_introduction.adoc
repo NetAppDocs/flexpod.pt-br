@@ -103,7 +103,7 @@ O suporte cooperativo do FlexPod é especialmente valioso se sua organização d
 
 
 
-image:medical-imaging_image2.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image2.png[""]
 
 
 

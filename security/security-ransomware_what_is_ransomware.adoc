@@ -15,7 +15,7 @@ summary: Ransomware é um tipo de malware que é baseado em criptovirologia, que
 
 Arvind Ramakrishnan, NetApp
 
-Em parceria com: image:cisco logo.png["Erro: Imagem gráfica em falta"]
+Em parceria com: image:cisco logo.png[""]
 
 [role="lead"]
 Para entender o ransomware, é necessário primeiro entender alguns pontos-chave sobre criptografia. Os métodos criptográficos permitem a criptografia de dados com uma chave secreta compartilhada (criptografia de chave simétrica) ou um par de chaves (criptografia de chave assimétrica). Uma dessas chaves é uma chave pública amplamente disponível e a outra é uma chave privada não revelada.

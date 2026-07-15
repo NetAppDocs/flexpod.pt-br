@@ -62,6 +62,6 @@ Este documento destina-se a líderes técnicos do setor de saúde e a engenheiro
 
 Um hospital típico tem um conjunto diversificado de SISTEMAS DE TI. A maioria desses sistemas é comprada de um fornecedor, enquanto muito poucos são construídos pelo sistema hospitalar em casa. Portanto, o sistema hospitalar deve gerenciar um ambiente de infraestrutura diversificado em seus data centers. Quando os hospitais unificam seus sistemas em uma plataforma de infraestrutura convergente, como a FlexPod, as organizações podem padronizar as operações de data center. Com o FlexPod, as organizações de saúde podem implementar sistemas clínicos e não clínicos na mesma plataforma, unificando as operações do data center.
 
-image:flexpod-genomics-image2.png["Erro: Imagem gráfica em falta"]
+image:flexpod-genomics-image2.png[""]
 
 link:flexpod-genomics-benefits-of-deploying-genomic-workloads-on-flexpod.html["Próximo: Benefícios da implantação de workloads genômicos no FlexPod."]

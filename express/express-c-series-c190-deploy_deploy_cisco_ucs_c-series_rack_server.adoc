@@ -50,7 +50,7 @@ NOTE: A versão CIMC utilizada nesta validação é o CIMC 4,0.(4).
 Ligue o servidor e pressione F8 quando solicitado a inserir a configuração do CIMC.
 
 +
-image:express-c-series-c190-deploy_image5.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image5.png[""]
 
 . No utilitário de configuração CIMC, defina as seguintes opções:
 +
@@ -82,7 +82,7 @@ Redundância de NIC
 Nenhum: `[X]`
 
 +
-image:express-c-series-c190-deploy_image6.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image6.png[""]
 
 
 
@@ -181,7 +181,7 @@ Para definir a configuração da ordem de inicialização, execute as seguintes 
 . Na janela do navegador da interface CIMC, clique na guia Compute (calcular) e selecione BIOS.
 . Clique em Configurar ordem de inicialização e, em seguida, clique em OK.
 +
-image:express-c-series-c190-deploy_image7.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image7.png[""]
 
 . Configure os seguintes dispositivos clicando no dispositivo em Adicionar dispositivo de inicialização e indo para a guia Avançado:
 +
@@ -235,7 +235,7 @@ Porta: 3
 . Clique em Adicionar dispositivo.
 . Clique em Salvar alterações e, em seguida, clique em Fechar.
 +
-image:express-c-series-c190-deploy_image8.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image8.png[""]
 
 . Reinicie o servidor para inicializar com sua nova ordem de inicialização.
 
@@ -252,7 +252,7 @@ Siga as etapas a seguir se o servidor C-Series contiver um controlador RAID. Nã
 . Role para baixo até slot PCIe:ROM de opção HBA.
 . Se o valor ainda não estiver desativado, defina-o como desativado.
 +
-image:express-c-series-c190-deploy_image9.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image9.png[""]
 
 
 
@@ -270,7 +270,7 @@ NOTE: A canalização de portas padrão entre as portas 0, 1, 2 e 3 deve ser des
 . Na guia Geral, desmarque o canal da porta.
 . Salve as alterações e reinicie o CIMC.
 +
-image:express-c-series-c190-deploy_image10.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image10.png[""]
 
 
 
@@ -301,13 +301,13 @@ Para criar iSCSI vNICs, execute as seguintes etapas:
 **  `\<<var_iscsi_vlan_b>>`Insira como VLAN.
 ** Defina a porta de uplink como 3.
 +
-image:express-c-series-c190-deploy_image11.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image11.png[""]
 
 
 
 . Selecione o vNIC eth1 à esquerda.
 +
-image:express-c-series-c190-deploy_image12.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image12.png[""]
 
 . Em Propriedades de inicialização iSCSI, insira os detalhes do iniciador:
 +
@@ -316,7 +316,7 @@ image:express-c-series-c190-deploy_image12.png["Erro: Imagem gráfica em falta"]
 ** Máscara de sub-rede: `\<<var_esxi_hostA_iscsiA_mask>>`
 ** Gateway: `\<<var_esxi_hostA_iscsiA_gateway>>`
 +
-image:express-c-series-c190-deploy_image13.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image13.png[""]
 
 
 
@@ -352,7 +352,7 @@ NOTE: Certifique-se de gravar os nomes IQN para cada vNIC. Você precisa deles p
 ** Máscara de sub-rede: `\<<var_esxi_hostb_iscsib_mask>>`
 ** Gateway: `\<<var_esxi_hostb_iscsib_gateway>>`
 +
-image:express-c-series-c190-deploy_image14.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image14.png[""]
 
 
 
@@ -395,11 +395,11 @@ Para configurar vNICs para ESXi, execute as seguintes etapas:
 . Defina a MTU como 9000. Clique em Salvar alterações.
 . Defina a VLAN como VLAN nativa 2.
 +
-image:express-c-series-c190-deploy_image15.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image15.png[""]
 
 . Repita as etapas 3 e 4 para eth1, verificando se a porta uplink está definida como 1 para eth1.
 +
-image:express-c-series-c190-deploy_image16.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image16.png[""]
 
 +
 

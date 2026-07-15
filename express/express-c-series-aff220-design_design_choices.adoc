@@ -34,11 +34,11 @@ Os sistemas NetApp AFF A220 usam o novo software ONTAP 9.4. O ONTAP 9.4 é o sof
 
 O ONTAP 9.4 tem vários recursos que são adequados para a solução FlexPod Express. O mais importante é o compromisso da NetApp com a eficiência de storage, que pode ser um dos recursos mais importantes para implantações de pequeno porte. Os recursos de eficiência de storage da NetApp, como deduplicação, compressão e thin Provisioning, estão disponíveis no ONTAP 9.4 com uma nova adição e compactação. Como o sistema NetApp WAFL grava sempre blocos 4KB, a compactação combina vários blocos em um bloco 4KB quando os blocos não estão usando o espaço alocado de 4KB. A figura a seguir ilustra esse processo.
 
-image:express-c-series-aff220-design_image5.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image5.png[""]
 
 Além disso, o particionamento de dados raiz pode ser aproveitado no sistema AFF A220. Esse particionamento permite que o agregado raiz e dois agregados de dados sejam distribuídos pelos discos no sistema. Portanto, ambas as controladoras em um cluster de AFF A220 de dois nós podem aproveitar o desempenho de todos os discos no agregado. Consulte a figura a seguir.
 
-image:express-c-series-aff220-design_image6.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image6.png[""]
 
 Esses são apenas alguns dos principais recursos que complementam a solução FlexPod Express. Para obter detalhes sobre os recursos adicionais e a funcionalidade do ONTAP 9.4, consulte https://www.netapp.com/pdf.html?item=/media/7413-ds-3231.pdf["Folha de dados do software de gerenciamento de dados ONTAP 9"^]. Além disso, consulte o NetApp http://docs.netapp.com/ontap-9/index.jsp["Centro de Documentação do ONTAP 9"^] , que foi atualizado para incluir o ONTAP 9.4.
 
@@ -57,7 +57,7 @@ As especificações de desempenho incluem:
 * Unidades de transmissão máxima configuráveis (MTUs) de até 9216 bytes (quadros jumbo)
 
 
-image:express-c-series-aff220-design_image7.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image7.png[""]
 
 Para obter mais informações sobre os switches Cisco Nexus 3172, consulte https://www.cisco.com/c/en/us/products/collateral/switches/nexus-3000-series-switches/data_sheet_c78-729483.html["Ficha de dados dos switches Cisco Nexus 3172PQ, 3172TQ, 3172TQ-32T, 3172PQ-XL e 3172TQ-XL"^].
 
@@ -78,7 +78,7 @@ Os servidores de rack Cisco UCS C-Series oferecem os seguintes benefícios:
 * Maior escolha do cliente com benefícios exclusivos em um pacote de rack familiar
 
 
-image:express-c-series-aff220-design_image8.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image8.png[""]
 
 O servidor de rack Cisco UCS C220 M5 (na figura anterior) está entre os servidores de aplicativos e infraestrutura empresarial de uso geral mais versáteis do setor. É um servidor em rack de dois soquetes de alta densidade que oferece desempenho e eficiência líderes do setor para uma ampla variedade de workloads, incluindo virtualização, colaboração e aplicações bare-metal. Os servidores em rack Cisco UCS C-Series podem ser implantados como servidores autônomos ou como parte do Cisco UCS para aproveitar as inovações de computação unificada baseadas em padrões da Cisco que ajudam a reduzir o TCO dos clientes e a aumentar a agilidade nos negócios.
 
@@ -97,7 +97,7 @@ O Cisco UCS VIC 1387 (na figura a seguir) oferece duas portas melhoradas QSFP 40
 
 
 
-image:express-c-series-aff220-design_image9.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image9.png[""]
 
 Para obter mais informações sobre o adaptador Cisco UCS VIC 1387, consulte a https://www.cisco.com/c/en/us/products/interfaces-modules/ucs-virtual-interface-card-1387/index.html["Placa de interface virtual Cisco UCS 1387"^] folha de dados.
 
@@ -107,7 +107,7 @@ O módulo Cisco QSA converte uma porta QSFP em uma porta SFP ou SFP. Com este ad
 
 
 
-image:express-c-series-aff220-design_image10.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image10.png[""]
 
 
 

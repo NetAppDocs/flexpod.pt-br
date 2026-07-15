@@ -34,15 +34,15 @@ Esta seção mostra o estado dos arquivos antes de um ataque à VM e o compartil
 
 A pasta documentos da VM tinha um conjunto de arquivos PDF que ainda não foram criptografados pelo malware WannaCry.
 
-image:security-ransomware_image3.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image3.png[""]
 
 A captura de tela a seguir mostra o compartilhamento CIFS que foi mapeado para a VM.
 
-image:security-ransomware_image4.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image4.png[""]
 
 A captura de tela a seguir mostra os arquivos no compartilhamento CIFS `fpolicy_share` que ainda não foram criptografados pelo malware WannaCry.
 
-image:security-ransomware_image5.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image5.png[""]
 
 
 
@@ -53,19 +53,19 @@ Os detalhes de eficiência de storage e o tamanho da cópia Snapshot antes de um
 
 Economias de storage de 19% foram obtidas com a deduplicação no volume que hospeda a VM.
 
-image:security-ransomware_image6.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image6.png[""]
 
 Economias de storage de 45% foram obtidas com a deduplicação no compartilhamento CIFS `fpolicy_share` .
 
-image:security-ransomware_image7.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image7.png[""]
 
 Foi observado um tamanho de cópia Snapshot de 456KB para o volume que hospeda a VM.
 
-image:security-ransomware_image8.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image8.png[""]
 
 Foi observado um tamanho de cópia Snapshot de 160KB para o compartilhamento CIFS `fpolicy_share` .
 
-image:security-ransomware_image9.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image9.png[""]
 
 
 
@@ -78,11 +78,11 @@ As etapas a seguir demonstram como o binário do malware WannaCry foi introduzid
 
 . O malware protegido foi extraído.
 +
-image:security-ransomware_image10.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image10.png[""]
 
 . O binário foi executado.
 +
-image:security-ransomware_image11.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image11.png[""]
 
 
 
@@ -95,11 +95,11 @@ O sistema de arquivos local e o compartilhamento CIFS mapeado foram criptografad
 
 O malware começa a criptografar arquivos com extensões WNCRY.
 
-image:security-ransomware_image12.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image12.png[""]
 
 O malware criptografa todos os arquivos na VM local e o compartilhamento mapeado.
 
-image:security-ransomware_image13.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image13.png[""]
 
 
 
@@ -109,15 +109,15 @@ A partir do momento em que o malware começou a criptografar os arquivos, ele de
 
 Detetamos um aumento dramático no tamanho do Snapshot para 820,98MB para o volume que hospeda o compartilhamento CIFS durante o ataque.
 
-image:security-ransomware_image14.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image14.png[""]
 
 Detetamos um aumento no tamanho da cópia Snapshot para 404,3MB para o volume que hospeda a VM.
 
-image:security-ransomware_image15.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image15.png[""]
 
 A eficiência de storage do volume que hospeda o compartilhamento CIFS diminuiu para 34%.
 
-image:security-ransomware_image16.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image16.png[""]
 
 
 
@@ -131,23 +131,23 @@ Para restaurar a VM, execute as seguintes etapas:
 
 . Use a cópia Snapshot criada com o SnapCenter para restaurar a VM.
 +
-image:security-ransomware_image17.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image17.png[""]
 
 . Selecione a cópia Snapshot consistente VMware desejada para restauração.
 +
-image:security-ransomware_image18.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image18.png[""]
 
 . Toda a VM é restaurada e reiniciada.
 +
-image:security-ransomware_image19.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image19.png[""]
 
 . Clique em concluir para iniciar o processo de restauração.
 +
-image:security-ransomware_image20.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image20.png[""]
 
 . A VM e seus arquivos são restaurados.
 +
-image:security-ransomware_image21.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image21.png[""]
 
 
 
@@ -157,15 +157,15 @@ Para restaurar o compartilhamento CIFS, execute as seguintes etapas:
 
 . Use a cópia Snapshot do volume obtido antes do ataque para restaurar o compartilhamento.
 +
-image:security-ransomware_image22.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image22.png[""]
 
 . Clique em OK para iniciar a operação de restauração.
 +
-image:security-ransomware_image23.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image23.png[""]
 
 . Visualize o compartilhamento CIFS após a restauração.
 +
-image:security-ransomware_image24.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image24.png[""]
 
 
 
@@ -192,8 +192,8 @@ Com essa política, arquivos com extensões WNCRY, Locky e ad4c não têm permis
 
 Visualize o status dos arquivos antes do ataque – eles não são criptografados e em um sistema limpo.
 
-image:security-ransomware_image25.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image25.png[""]
 
 Os arquivos na VM são criptografados. O malware WannaCry tenta criptografar os arquivos no compartilhamento CIFS, mas o FPolicy impede que ele afete os arquivos.
 
-image:security-ransomware_image26.png["Erro: Imagem gráfica em falta"]
+image:security-ransomware_image26.png[""]

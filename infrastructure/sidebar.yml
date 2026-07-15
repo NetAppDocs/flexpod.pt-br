@@ -4,7 +4,6 @@ title: Infraestrutura
 entries:
 - title: NVMe completo para FlexPod com Cisco CSM, VMware vSphere 7,0 e NetApp ONTAP
     9
-  type: solutions
   entries:
   - title: Introdução
     url: "/infrastructure/nvme-vsphere-introduction.html"

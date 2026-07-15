@@ -32,7 +32,7 @@ Como descrito na figura abaixo, o programa FlexPod inclui três soluções: Flex
 
 A figura a seguir mostra os componentes técnicos da solução.
 
-image:express-direct-attach-aff220-deploy_image2.png["Erro: Imagem gráfica em falta"]
+image:express-direct-attach-aff220-deploy_image2.png[""]
 
 
 
@@ -81,7 +81,7 @@ Essa solução utiliza as tecnologias mais recentes da NetApp, Cisco e VMware. E
 
 A figura a seguir ilustra o FlexPod Express com a arquitetura de conexão direta baseada em IP do VMware vSphere 6.7U1.
 
-image:express-direct-attach-aff220-deploy_image3.png["Erro: Imagem gráfica em falta"]
+image:express-direct-attach-aff220-deploy_image3.png[""]
 
 
 

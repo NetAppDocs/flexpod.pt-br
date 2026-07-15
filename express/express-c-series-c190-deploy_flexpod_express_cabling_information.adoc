@@ -18,7 +18,7 @@ Esta validação de referência é cabeada como mostrado nas figuras e tabelas a
 
 Esta figura mostra o cabeamento de validação de referência.
 
-image:express-c-series-c190-deploy_image3.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-c190-deploy_image3.png[""]
 
 A tabela a seguir lista as informações de cabeamento do switch Cisco Nexus 31108PC-V-A.
 

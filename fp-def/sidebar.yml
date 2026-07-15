@@ -3,7 +3,6 @@ section: fp-def
 title: Definição de FlexPod
 entries:
 - title: Especificações técnicas do FlexPod Express
-  type: solutions
   entries:
   - title: Visão geral
     url: "/fp-def/fp-express-tech-spec_overview.html"
@@ -42,7 +41,6 @@ entries:
   - title: Informações adicionais
     url: "/fp-def/fp-express-tech-spec_additional_information.html"
 - title: Especificações técnicas do data center FlexPod
-  type: solutions
   entries:
   - title: Visão geral
     url: "/fp-def/dc-tech-spec_solution_overview.html"

@@ -31,7 +31,7 @@ A seguinte lista de organizações de saúde foi direcionada pelos agentes malic
 
 A diversidade de aplicações que constituem uma organização de saúde é inegável e cada vez mais crescente em complexidade. Os escritórios de segurança da informação são desafiados a fornecer governança para a vasta gama de sistemas e ativos DE TI. A figura a seguir mostra as capacidades clínicas de um sistema hospitalar típico.
 
-image:flexpod-fips-image2.png["Erro: Imagem gráfica em falta"]
+image:flexpod-fips-image2.png[""]
 
 Os dados do paciente estão no centro desta imagem. A perda de dados do paciente e o estigma associado a condições médicas sensíveis são muito reais. Outras questões sensíveis incluem o risco de exclusão social, chantagem, perfil de perfil, vulnerabilidade a marketing direcionado, exploração e potencial responsabilidade financeira para com os pagadores sobre informações médicas além do Privileges do pagador.
 

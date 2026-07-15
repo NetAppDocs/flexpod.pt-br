@@ -271,7 +271,7 @@ A configuração do cluster também pode ser realizada usando a CLI. Este docume
 . Clique em Configuração Guiada para configurar o cluster.
 . Introduza `\<<var_clustername>>` o nome do cluster e `\<<var_nodeA>>` e `\<<var_nodeB>>` para cada um dos nós que está a configurar. Introduza a palavra-passe que pretende utilizar para o sistema de armazenamento. Selecione cluster sem switch para o tipo de cluster. Introduza a licença base do cluster.
 +
-image:express-c-series-aff220-deploy_image6.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image6.png[""]
 
 . Você também pode inserir licenças de recursos para Cluster, NFS e iSCSI.
 . Você verá uma mensagem de status informando que o cluster está sendo criado. Esta mensagem de estado passa por vários Estados. Este processo demora vários minutos.
@@ -298,7 +298,7 @@ Você também pode inserir um servidor NTP alternativo.
 Você deve, no mínimo, configurar o método de notificação de evento antes de prosseguir. Você pode selecionar qualquer um dos métodos.
 
 +
-image:express-c-series-aff220-deploy_image7.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-deploy_image7.png[""]
 
 
 

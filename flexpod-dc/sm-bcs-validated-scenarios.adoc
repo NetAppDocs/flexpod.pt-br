@@ -44,11 +44,11 @@ Depois que a relação de grupo de consistência SM-BC é configurada e os LUNs 
 
 A figura a seguir ilustra os caminhos que um host ESXi pode levar para acessar um LUN, por exemplo, LUN 0. Como o LUN é anexado ao site Um controlador 01, apenas os dois caminhos que acessam diretamente o LUN por meio desse controlador são ativos/otimizados e todos os seis caminhos restantes são ativos/não otimizados.
 
-image:sm-bcs-image47.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image47.png[""]
 
 A captura de tela a seguir das informações de caminho do dispositivo de armazenamento mostra como o host ESXi vê os dois tipos de caminhos de dispositivo. Os dois caminhos ativos/otimizados são mostrados como tendo `active (I/O)` o status do caminho, enquanto os seis caminhos ativos/não otimizados são mostrados apenas `active` como . Observe também que a coluna destino mostra os dois destinos iSCSI e os respetivos endereços IP iSCSI LIF para chegar aos destinos.
 
-image:sm-bcs-image48.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image48.png[""]
 
 Quando um dos controladores de storage está inativo para manutenção ou atualização, os dois caminhos que alcançam o controlador inativo não estão mais disponíveis e aparecem com o status do caminho `dead`.
 
@@ -67,11 +67,11 @@ Para aplicações executadas na infraestrutura virtual que não exigem a proteç
 
 A captura de tela a seguir mostra que os hosts estão configurados para montar armazenamentos de dados iSCSI de ambos os sites.
 
-image:sm-bcs-image49.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image49.png[""]
 
 Você tem a opção de migrar discos de máquina virtual entre armazenamentos de dados iSCSI disponíveis de ambos os sites, como mostrado na figura a seguir. Para considerações de desempenho, é ótimo ter máquinas virtuais que usam storage de seu cluster de storage local para reduzir as latências de e/S de disco. Isto é especialmente verdadeiro quando os dois locais estão localizados a algumas distâncias distante devido à latência física da distância de ida e volta de aproximadamente 1msm por 100kmm de distância.
 
-image:sm-bcs-image50.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image50.png[""]
 
 Testes de vMotion de máquinas virtuais para um host diferente no mesmo site, bem como em todos os sites foram realizados e foram bem-sucedidos. Depois de migrar manualmente uma máquina virtual entre sites, a regra de afinidade VM/Host ativa e migra a máquina virtual de volta para o grupo onde ela pertence sob a condição normal.
 
@@ -87,25 +87,25 @@ Para iniciar um failover manual dos serviços de dados de armazenamento do local
 . Navegue até a tela proteção > relacionamentos para confirmar se o estado da relação do grupo de consistência é `In Sync`. Se ele ainda estiver `Synchronizing` no estado, aguarde até que o estado se torne `In Sync` antes de executar um failover.
 . Expanda os pontos ao lado do nome da fonte e clique em failover.
 +
-image:sm-bcs-image51.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image51.png[""]
 
 . Confirme o failover para que a ação seja iniciada.
 +
-image:sm-bcs-image52.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image52.png[""]
 
 
 
 Pouco depois de iniciar o failover dos dois grupos de consistência `cg_esxi_a` e `cg_infra_datastore_a`, no local B System Manager GUI, o Site A I/o que atende esses dois grupos de consistência passou para o local B. como resultado, a I/o no local A reduziu significativamente, conforme mostrado no site A Painel De desempenho do System Manager.
 
-image:sm-bcs-image53.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image53.png[""]
 
 Por outro lado, o painel desempenho do painel do site B System Manager mostra um aumento significativo de IOPs, devido ao fornecimento de e/S adicionais transferidas do local A para cerca DE 130k IOPs e a uma taxa de transferência de aproximadamente 1GB GB/s, mantendo uma latência de e/S inferior a 1 milissegundos.
 
-image:sm-bcs-image54.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image54.png[""]
 
 Com a e/S migrada de forma transparente do local A para o local B, os controladores de armazenamento do local A podem agora ser suspensos para manutenção programada. Depois que o trabalho de manutenção ou teste for concluído e o local Um cluster de armazenamento for colocado de volta e operacional, verifique e aguarde que o estado de proteção do grupo de consistência mude para `In sync` antes de executar um failover para retornar a e/S do local B ao local A. tenha em atenção que quanto mais tempo um local for retirado para manutenção ou teste, mais tempo demora antes de os dados serem sincronizados e o grupo de consistência for devolvido ao `In sync` estado.
 
-image:sm-bcs-image55.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image55.png[""]
 
 
 
@@ -114,7 +114,7 @@ image:sm-bcs-image55.png["Erro: Imagem gráfica em falta"]
 
 Um failover de storage não planejado pode ocorrer quando um desastre real acontece ou durante uma simulação de desastre. Por exemplo, veja a figura a seguir em que o sistema de storage no local A experimenta uma falha de energia, um failover de storage não planejado é acionado e os serviços de dados para LUNs do local A, protegidos pelas relações SM-BC, continuam do local B.
 
-image:sm-bcs-image56.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image56.png[""]
 
 Para simular um desastre de armazenamento no local A, ambos os controladores de armazenamento no local A podem ser desligados desligando fisicamente o interrutor de alimentação para interromper o fornecimento de energia para os controladores, ou usando o comando de gerenciamento de energia do sistema dos processadores de serviços de armazenamento para desligar os controladores.
 
@@ -124,21 +124,21 @@ Do ponto de vista do aplicativo, os serviços de dados param brevemente enquanto
 
 Durante os testes de validação, a ferramenta Iometer nas VMs em ambos os locais gera e/S para seus datastores locais. Após o local Um cluster foi desligado, e/S parou brevemente e, em seguida, retomou posteriormente. Veja as duas figuras a seguir para os painéis do cluster de armazenamento no local A e no local B, respetivamente, antes do desastre, que mostram aproximadamente 80k IOPS e 600 MB/s de taxa de transferência em cada local.
 
-image:sm-bcs-image57.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image57.png[""]
 
-image:sm-bcs-image58.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image58.png[""]
 
 Depois de desligar os controladores de armazenamento no local A, podemos validar visualmente que a e/S do controlador de armazenamento local B aumentou drasticamente para fornecer serviços de dados adicionais em nome do local A (veja a figura a seguir). Além disso, a GUI das VMs do Iometer também mostrou que a e/S continuou apesar da interrupção do cluster de storage no local. Observe que, se houver datastores adicionais com suporte de LUNs não protegidos por relacionamentos SM-BC, esses datastores não estarão mais acessíveis quando o desastre do storage ocorrer. Portanto, é importante avaliar as necessidades de negócios dos vários dados de aplicativos e colocá-los adequadamente em datastores protegidos por relacionamentos SM-BC para fornecer continuidade de negócios.
 
-image:sm-bcs-image59.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image59.png[""]
 
 Enquanto o Site Um cluster está inativo, as relações dos grupos consistentes mostram `Out of sync` o status como mostrado na figura a seguir. Depois que a energia é ligada novamente para os controladores de armazenamento no local A, o cluster de armazenamento é inicializado e a sincronização de dados entre o local A e o local B acontece automaticamente.
 
-image:sm-bcs-image60.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image60.png[""]
 
 Antes de retornar os serviços de dados do site B de volta ao site A, você deve verificar o site A System Manager e garantir que as relações SM-BC sejam alcançadas e o status estejam de volta em sincronia. Depois de confirmar que os grupos de consistência estão sincronizados, uma operação de failover manual pode ser iniciada para retornar serviços de dados nos relacionamentos do grupo de consistência de volta ao local A.
 
-image:sm-bcs-image61.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image61.png[""]
 
 
 
@@ -155,7 +155,7 @@ Para preparar um local para a manutenção planejada do local, é necessária um
 
 Antes de executar a migração planejada, atualize a regra de afinidade VM/host para que as VMs que estão sendo executadas no site sejam migradas automaticamente para fora do site que está sendo submetido a manutenção. A captura de tela a seguir mostra um exemplo de modificação do site De Uma regra de afinidade de VM/host para que as VMs migrem do local A para o local B automaticamente. Em vez de especificar que as VMs agora precisam ser executadas no local B, você também pode optar por desativar a regra de afinidade temporariamente para que as VMs possam ser migradas manualmente.
 
-image:sm-bcs-image62.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image62.png[""]
 
 Depois que as máquinas virtuais e os serviços de armazenamento tiverem sido migrados, você poderá desligar servidores, controladores de armazenamento, compartimentos de discos e switches e executar as atividades de manutenção necessárias do local. Quando a manutenção do site for concluída e a instância do FlexPod for reativada, você poderá alterar a afinidade do grupo de hosts para que as VMs voltem ao site original. Depois disso, você deve alterar a regra de afinidade do site VM/Host "deve ser executada em hosts no grupo" para "deve ser executada em hosts no grupo" para que as máquinas virtuais possam ser executadas em hosts no outro local caso ocorra um desastre. Para os testes de validação, todas as máquinas virtuais foram migradas com sucesso para o outro site e os serviços de dados continuaram sem problemas após a execução de um failover para as relações SM-BC.
 
@@ -163,13 +163,13 @@ Para a simulação não planejada de desastre no local, os servidores e os contr
 
 A captura de tela a seguir mostra que a CLI do processador de serviços dos controladores Storge foi usada para desligar o site De Um cluster abruptamente para simular um desastre de armazenamento no local.
 
-image:sm-bcs-image63.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image63.png[""]
 
 Os dashboards de máquina virtual de armazenamento dos clusters de armazenamento, conforme capturados pela ferramenta de coleta de dados NetApp Harvest e exibidos no painel Grafana na ferramenta de monitoramento NAbox, são mostrados nas duas capturas de tela a seguir. Como pode ser visto no lado direito dos gráficos IOPS e throughputs, o cluster do local B pega o Cluster De Uma carga de trabalho de armazenamento imediatamente depois que o local Em Que Um cluster cai.
 
-image:sm-bcs-image64.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image64.png[""]
 
-image:sm-bcs-image65.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image65.png[""]
 
 
 
@@ -182,25 +182,25 @@ Como parte da validação de carga de trabalho crítica para os negócios da sol
 
 A ferramenta de teste de banco de dados HammerDB foi configurada para teste com a carga de trabalho Microsoft SQL Server TPROC-C. Para as configurações de compilação do esquema, as opções foram atualizadas para usar 100 armazéns com 10 usuários virtuais, como mostrado na captura de tela a seguir.
 
-image:sm-bcs-image66.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image66.png[""]
 
 Depois que as opções de compilação do esquema foram atualizadas, o processo de compilação do esquema foi iniciado. Alguns minutos depois, uma falha não planejada simulada do cluster de armazenamento local B foi introduzida desligando ambos os nós do cluster de armazenamento AFF A250 de dois nós ao mesmo tempo usando comandos CLI do processador do sistema.
 
 Após uma breve pausa das transações de banco de dados, o failover automatizado para a correção de desastres foi iniciado e as transações foram retomadas. A captura de tela a seguir mostra a captura de tela do HammerDB Transaction Counter naquela época. Como o banco de dados do Microsoft SQL Server normalmente reside no cluster de armazenamento do site B, a transação parou brevemente quando o armazenamento no local B foi desativado e, em seguida, retomado após o failover automatizado aconteceu.
 
-image:sm-bcs-image67.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image67.png[""]
 
 As métricas de cluster de armazenamento foram capturadas usando a ferramenta NAbox com a ferramenta de monitoramento de colheita NetApp instalada. Os resultados são exibidos nos painéis Grafana predefinidos para a máquina virtual de armazenamento e outros objetos de armazenamento. O dashboard fornece metrics para latência, taxa de transferência, IOPS e detalhes adicionais com estatísticas de leitura e gravação separadas para o local B e o local A.
 
 Esta captura de tela mostra o painel de desempenho do NAbox Grafana para o cluster de armazenamento local B.
 
-image:sm-bcs-image68.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image68.png[""]
 
 O IOPS do cluster de storage do local B era de cerca de 100K mil IOPS antes da introdução do desastre. Em seguida, as métricas de desempenho mostraram uma queda acentuada para zero no lado direito dos gráficos devido ao desastre. Como o cluster de armazenamento do local B estava inativo, nada poderia ser coletado do cluster do local B após a introdução do desastre.
 
 Por outro lado, o IOPS do local Um cluster de storage pegou os workloads adicionais do local B após o failover automatizado. A carga de trabalho adicional pode ser facilmente vista no lado direito dos gráficos de IOPS e throughput na captura de tela a seguir, que mostra o painel de desempenho do NAbox Grafana para o local De Um cluster de armazenamento.
 
-image:sm-bcs-image69.png["Erro: Imagem gráfica em falta"]
+image:sm-bcs-image69.png[""]
 
 O cenário de teste de desastre de storage acima confirmou que o workload do Microsoft SQL Server pode sobreviver a uma interrupção completa do cluster de storage no local B, onde o banco de dados reside. A aplicação usou de forma transparente os serviços de dados fornecidos pelo local Um cluster de storage após a deteção do desastre e o failover.
 

@@ -18,7 +18,7 @@ A arquitetura do FlexPod foi projetada para fornecer alta disponibilidade se um 
 
 A figura a seguir ilustra a topologia Ethernet de 16GB GB/40GB GB (40GbE) para a implantação da solução de sistema de imagem médica.
 
-image:medical-imaging_image3.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image3.png[""]
 
 
 
@@ -137,7 +137,7 @@ A tabela a seguir resume as principais diferenças entre o Oracle RMAN e o softw
 |===
 A figura a seguir apresenta a arquitetura SnapCenter.
 
-image:medical-imaging_image4.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image4.png[""]
 
 NetApp MetroCluster configurações são usadas por milhares de empresas em todo o mundo para alta disponibilidade (HA), zero perda de dados e operações não disruptivas, tanto dentro quanto fora do data center. MetroCluster é um recurso gratuito do ONTAP que espelha de forma síncrona dados e configurações entre dois clusters ONTAP em locais separados ou domínios de falha. MetroCluster fornece armazenamento continuamente disponível para aplicações ao gerenciar automaticamente dois objetivos: zero ponto de recuperação (RPO), espelhando de forma síncrona os dados gravados no cluster. Objetivo de tempo de recuperação (RTO) próximo de zero, espelhando a configuração e automatizando o acesso aos dados no segundo site. MetroCluster oferece simplicidade com espelhamento automático de dados e configurações entre os dois clusters independentes localizados nos dois sites. À medida que o armazenamento é provisionado em um cluster, ele é automaticamente espelhado para o segundo cluster no segundo site. NetApp SyncMirror tecnologia fornece uma cópia completa de todos os dados com RPO zero. Portanto, as cargas de trabalho de um site podem ser transferidas a qualquer momento para o site oposto e continuar fornecendo dados sem perda de dados. Mais informações podem ser encontradas  https://fieldportal.netapp.com/s/article/tr4705-netapp-metrocluster-solution-architecture-and-design-1693982882873["aqui"^].
 
@@ -210,7 +210,7 @@ O diagrama a seguir mostra os vários sistemas envolvidos em um hospital típico
 
 A figura abaixo mostra o sistema de imagem médica no contexto de um paciente, uma clínica comunitária e um grande hospital.
 
-image:medical-imaging_image5.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image5.png[""]
 
 . O paciente visita a clínica comunitária com sintomas. Durante a consulta, o médico da comunidade coloca uma ordem de imagem que é enviada para o hospital maior sob a forma de uma mensagem de ordem de HL7.
 . O sistema EHR do médico comunitário envia a mensagem de pedido/ORD HL7 para o hospital de grande porte.
@@ -250,11 +250,11 @@ Os sistemas de imagiologia médica estão a começar a utilizar https://www.neta
 
 A figura abaixo mostra os componentes lógicos da aplicação numa vista arquitetónica em camadas.
 
-image:medical-imaging_image6.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image6.png[""]
 
 A figura abaixo mostra os componentes físicos da aplicação.
 
-image:medical-imaging_image7.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image7.png[""]
 
 Os componentes da aplicação lógica exigem que a infraestrutura dê suporte a um conjunto diversificado de protocolos e sistemas de arquivos. O software NetApp ONTAP é compatível com um conjunto líder do setor de protocolos e sistemas de arquivos.
 

@@ -27,7 +27,7 @@ Conforme ilustrado na figura a seguir, o portfólio do FlexPod inclui três solu
 * *FlexPod Select.* Incorpora os melhores aspetos do data center FlexPod e adapta a infraestrutura a uma determinada aplicação.
 
 
-image:express-c-series-aff220-design_image2.png["Erro: Imagem gráfica em falta"]
+image:express-c-series-aff220-design_image2.png[""]
 
 
 

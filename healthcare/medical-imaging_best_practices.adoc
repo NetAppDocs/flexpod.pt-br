@@ -62,7 +62,7 @@ A NetApp recomenda que você implemente a inicialização SAN para servidores Ci
 
 Na inicialização de SAN iSCSI, cada servidor Cisco UCS recebe dois vNICs iSCSI (um para cada malha SAN), que fornecem conetividade redundante até o armazenamento. As portas de armazenamento neste exemplo, E2A e E2E, que são conetadas aos switches Cisco Nexus, são agrupadas para formar uma porta lógica chamada grupo de interfaces (ifgrp) (neste exemplo, a0a). As VLANs iSCSI são criadas no iggroup e as LIFs iSCSI são criadas em grupos de portas iSCSI (neste exemplo, a0a-<iSCSI-A-VLAN>). O LUN de inicialização iSCSI é exposto aos servidores através do iSCSI LIF usando igrupos. Essa abordagem permite que apenas o servidor autorizado tenha acesso ao LUN de inicialização. Para o layout de porta e LIF, consulte a figura abaixo.
 
-image:medical-imaging_image8.png["Erro: Imagem gráfica em falta"]
+image:medical-imaging_image8.png[""]
 
 Ao contrário das interfaces de rede nas, as interfaces de rede SAN não são configuradas para failover durante uma falha. Em vez disso, se uma interface de rede ficar indisponível, o host escolhe um novo caminho otimizado para uma interface de rede disponível. O ALUA, um padrão com suporte do NetApp, fornece informações sobre destinos SCSI, o que permite que um host identifique o melhor caminho para o storage.
 
