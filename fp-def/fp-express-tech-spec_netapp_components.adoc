@@ -24,7 +24,7 @@ Os controladores de storage do NetApp fornecem a base de storage na arquitetura 
 Controladores redundantes das séries AFF, ASA ou FAS são necessários na arquitetura FlexPod Express. Os controladores executam o software ONTAP. Ao encomendar os controladores de storage, a versão de software preferida pode ser pré-carregada nos controladores. Para ONTAP, o cluster pode ser implementado com um par de switches de interconexão de cluster ou em uma configuração de cluster sem switch.
 
 
-NOTE: Uma configuração de cluster sem switch é suportada apenas para uma configuração de dois nós. Switches de interconexão de cluster são necessários para configurações com mais de 4 nós e opcionais para uma configuração de dois nós.
+NOTE: Uma configuração de cluster sem switch é suportada apenas para uma configuração com dois nós. Os switches de interconexão de cluster são necessários para configurações com 4 ou mais nós e são opcionais para uma configuração com dois nós.
 
 Diferentes opções e configurações estão disponíveis com base na plataforma de storage selecionada. Consulte seu representante de vendas para obter detalhes sobre esses componentes adicionais.
 

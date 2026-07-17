@@ -7330,11 +7330,6 @@
   <block id="91770f038cd944a1d3b9b347edeb2b10" category="sidebar">Novidades</block>
   <block id="17c3771ed0b6c1ae15740eff715e9922" category="sidebar">Vídeos e demonstrações</block>
   <block id="d6b9ea32b921a9f56de32062ba4b94f3" category="sidebar">Blogs</block>
-  <block id="cfa345d8fdba7b2e9598cce9c0e3c744" category="sidebar">AI e análises de dados modernas com o FlexPod</block>
-  <block id="7d15915b1c0d83b2d07ba91bb371d99c" category="sidebar">Aplicações empresariais da FlexPod e bancos de dados empresariais</block>
-  <block id="9651c3a3b7cbc999c2c50c39dbf61c04" category="sidebar">Nuvem híbrida com FlexPod</block>
-  <block id="7cb27dbb321a2dda7b1a59417ac87d24" category="sidebar">FlexPod para VDI</block>
-  <block id="e24bc29daa40702c050f7f3b61476c6f" category="sidebar">Saúde com FlexPod</block>
   <block id="17cfc2f2b50e58c93aaf0a477ff54037" category="sidebar">Documentação das soluções da FlexPod</block>
   <block id="bf8e2974cd692b57a29e42874b662b52" category="sidebar">Bancos de dados empresariais</block>
   <block id="999bc6b18351bbe817d26f559ba408ae" category="sidebar">SAP</block>
@@ -7755,7 +7750,6 @@
   <block id="7013f56669c02dbe795614370d0c956e" category="list-text">Dois switches Ethernet padrão de 10 Gbps em configuração redundante (Cisco Nexus 9200 e 9300)</block>
   <block id="5f7768fa622b0c0e0bf05d27d8097e12" category="list-text">Servidores de rack autônomos Cisco UCS Série C com configuração de servidor de rack autônomo baseada em CIMC ou configuração autônoma Intersight, ou o Cisco UCS Série X Direct com configuração gerenciada pelo Cisco Intersight (IMM).</block>
   <block id="8cf756e67e6fe3a58a1405610ba75ad9" category="paragraph">Controladores redundantes das séries AFF, ASA ou FAS são necessários na arquitetura FlexPod Express. Os controladores executam o software ONTAP. Ao encomendar os controladores de storage, a versão de software preferida pode ser pré-carregada nos controladores. Para ONTAP, o cluster pode ser implementado com um par de switches de interconexão de cluster ou em uma configuração de cluster sem switch.</block>
-  <block id="d5c565b8a9c9c59fa0b692c9cbf65edd" category="admonition">Uma configuração de cluster sem switch é suportada apenas para uma configuração de dois nós. Switches de interconexão de cluster são necessários para configurações com mais de 4 nós e opcionais para uma configuração de dois nós.</block>
   <block id="230b6be042c6a9e09ceea70fd8e2f108" category="paragraph">Diferentes opções e configurações estão disponíveis com base na plataforma de storage selecionada. Consulte seu representante de vendas para obter detalhes sobre esses componentes adicionais.</block>
   <block id="ee65a1f1b80c1d59eba7dc665cc831bc" category="paragraph">As famílias de controladoras listadas na tabela abaixo são adequadas para uso em uma solução FlexPod, pois sua conexão com os switches Cisco Nexus é perfeita. Consulte a <block ref="0012c2b4de81607ee8d0f71acdd6c9ab" category="inline-link-rx"></block> para obter detalhes específicos de compatibilidade para cada modelo de controladora.</block>
   <block id="b77cf317a6bb3b0806632ae61052e3ed" category="cell">NetApp Família de armazenamento básico para FlexPod Express</block>
@@ -8351,4 +8345,8 @@
   <block id="111f4df7e87e518570ab7b1b197da1ff" category="paragraph"><block ref="111f4df7e87e518570ab7b1b197da1ff" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3f8b76f392fdab66088707ea680cdf9c" category="paragraph"><block ref="3f8b76f392fdab66088707ea680cdf9c" category="inline-image-macro-rx" type="image"></block></block>
   <block id="01d78a1cc76d70d71c21461704721f1f" category="paragraph"><block ref="01d78a1cc76d70d71c21461704721f1f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d31ed23a1faa3e74607a17176c090e5e" category="admonition">Uma configuração de cluster sem switch é suportada apenas para uma configuração com dois nós. Os switches de interconexão de cluster são necessários para configurações com 4 ou mais nós e são opcionais para uma configuração com dois nós.</block>
+  <block id="29d1fb15319805edca77b8cc05b35dfb" category="sidebar">FlexPod Guias de design</block>
+  <block id="26672345b32420d3708cd3bd0f7b1e88" category="sidebar">FlexPod Guias de Design Validados</block>
+  <block id="21b29303b1c3acf1c3bbd54b69cf697d" category="sidebar">FlexPod Especificações técnicas</block>
 </blocks>
