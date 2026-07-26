@@ -14,7 +14,7 @@ summary: 'A arquitetura FlexPod é definida pelo conjunto de regras descritas ne
 
 
 [role="lead"]
-A arquitetura FlexPod é definida pelo conjunto de regras descritas neste documento. Os componentes de hardware e as configurações de software devem ser suportados pelo  https://ucshcltool.cloudapps.cisco.com/public/hcl["Lista de compatibilidade de hardware Cisco (HCL)"^] e pelo  http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade NetApp (IMT)"^].
+A arquitetura FlexPod é definida pelo conjunto de regras descritas neste documento. Os componentes de hardware e as configurações de software devem ser suportados pelo  https://ucshcltool.cloudapps.cisco.com/public["Lista de compatibilidade de hardware Cisco (HCL)"^] e pelo  http://mysupport.netapp.com/matrix["Ferramenta de Matriz de interoperabilidade NetApp (IMT)"^].
 
 Cada Cisco Validated Design (CVD) ou NetApp Verified Architecture (NVA) representa uma configuração validada do FlexPod. A Cisco e a NetApp documentam essas combinações de configuração e as validam por meio de extensos testes completamente de ponta a ponta. As implantações do FlexPod que se desviam dessas configurações são totalmente suportadas se seguirem as diretrizes deste documento e todos os componentes estiverem listados como compatíveis na Cisco HCL e NetApp IMT.
 

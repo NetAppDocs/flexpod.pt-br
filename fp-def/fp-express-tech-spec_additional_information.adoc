@@ -46,7 +46,7 @@ https://hwu.netapp.com/["https://hwu.netapp.com/"^]
 
 * HCL do Cisco
 +
-https://ucshcltool.cloudapps.cisco.com/public/hcl["https://ucshcltool.cloudapps.cisco.com/public/hcl"^]
+https://ucshcltool.cloudapps.cisco.com/public["https://ucshcltool.cloudapps.cisco.com/public"^]
 
 * Suporte à NetApp
 +
