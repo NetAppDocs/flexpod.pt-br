@@ -451,7 +451,7 @@ Todos os modelos atuais de controladores de storage NetApp AFF ASA A-Series são
 [[netapp-disk-shelves]]
 === Compartimentos de disco NetApp
 
-As especificações técnicas dos compartimentos de disco NetApp incluem o tamanho do fator forma, o número de unidades por compartimento e os módulos de e/S de gaveta. Essa documentação pode ser encontrada na tabela a seguir. Para obter mais informações, consulte http://www.netapp.com/us/products/storage-systems/disk-shelves-and-storage-media/disk-shelves-tech-specs.aspx["Especificações técnicas dos compartimentos de disco e Mídia de storage da NetApp"^] e https://hwu.netapp.com/["NetApp Hardware Universe"^] .
+As especificações técnicas para os NetApp disk shelves incluem o fator forma, o número de unidades por gabinete e os módulos de E/S do gabinete; esta documentação pode ser encontrada na tabela a seguir. Para mais informações, consulte a https://www.netapp.com/data-storage/disk-shelves-storage-media/["Especificações técnicas dos compartimentos de disco e Mídia de storage da NetApp"^] e a https://hwu.netapp.com/["NetApp Hardware Universe"^].
 
 |===
 | Componente | Documentação do compartimento de disco NetApp FAS/AFF 

@@ -170,7 +170,6 @@
   <block id="d07fcb7cf18db6967389e48e7d52b359" category="list-text">Fornecendo convergência rápida se o link ou um dispositivo falhar</block>
   <block id="d4f0d60a4707f76a85e3d6e99f1bb27b" category="list-text">Fornecer resiliência no nível de link</block>
   <block id="667aebed9a572b1092807b3a67347cc1" category="list-text">Ajudando a fornecer alta disponibilidade</block>
-  <block id="873cc4b856f51dc9b638c8526c34cf8f" category="paragraph">O recurso VPC requer alguma configuração inicial entre os dois switches Cisco Nexus para funcionar corretamente. Se você usar a configuração back-to-back mgmt0, use os endereços definidos nas interfaces e verifique se eles podem se comunicar usando o comando ping<block ref="a3272962a299e1674a09b65628724103" prefix=" " category="inline-code"></block> Management.</block>
   <block id="6d9d5265d82817220cd555ff72bd9c8c" category="paragraph">No modo de configuração <block ref="831098133c692dea5e769980d4687d5f" prefix="(" category="inline-code"></block>), execute os seguintes comandos para configurar a configuração global da VPC para ambos os switches:</block>
   <block id="dde60cc05f5cd317898f22e472806dc4" category="section-title">Configurar canais de porta de armazenamento</block>
   <block id="7785c26c19fdbc8adb47dceaa2b566ad" category="paragraph">Os controladores de armazenamento NetApp permitem uma conexão ativo-ativo à rede usando o protocolo de controle de agregação de link (LACP). O uso do LACP é preferido porque adiciona negociação e Registro entre os switches. Como a rede está configurada para VPC, essa abordagem permite que você tenha conexões ativo-ativo do armazenamento para switches físicos separados. Cada controlador tem dois links para cada um dos switches. No entanto, todos os quatro links fazem parte do mesmo VPC e grupo de interfaces (IFGRP).</block>
@@ -895,9 +894,7 @@
   <block id="547fc5bd978901e7f14102e120c1c2a4" category="list-text">Utilize a barra de espaço para desativar o IPv6 desmarcando a opção Ativar IPv6 (reiniciar necessário). Prima Enter.</block>
   <block id="ad6687c91ac5b4af0504565f6f0a2b53" category="list-text">Aceda ao menu para configurar as definições de DNS.</block>
   <block id="bbdc737e4c3c6bd9d52ec16eb72fe615" category="list-text">Como o endereço IP é atribuído manualmente, as informações de DNS também devem ser inseridas manualmente.</block>
-  <block id="9a58ea10f98cff4401341b2ba604267a" category="list-text">Introduza o endereço IP do servidor DNS primário<block ref="1248fc96df5c7ceb4748fd8c4ee9b4ee" prefix=" " category="inline-code"></block> .</block>
   <block id="69e6412d5031e31e8bb6306b539c3b3a" category="list-text">(Opcional) Introduza o endereço IP do servidor DNS secundário.</block>
-  <block id="163295e39f6f6c6274874bdf0832cebf" category="list-text">Digite o FQDN para o nome do host VMware ESXi:<block ref="e82af8bb67673d907fd942571d384098" prefix=" " category="inline-code"></block>.</block>
   <block id="ef6b20c42721a263a5f77d64f3257563" category="list-text">Pressione Enter para aceitar as alterações na configuração DNS.</block>
   <block id="4b6a09c30f65021a1b78d875e1feeb3e" category="list-text">Saia do submenu Configurar rede de gerenciamento pressionando ESC.</block>
   <block id="7a4b623ba865327294944781e8b6e497" category="list-text">Pressione Y para confirmar as alterações e reinicializar o servidor.</block>
@@ -1040,14 +1037,12 @@
   <block id="69eb600743385e09f1817ed2115dd3d8" category="paragraph">Essa solução aproveita dois dos mais novos produtos NetApp: O software NetApp AFF A220 e ONTAP 9.4.</block>
   <block id="b7fd98415b49fad63bd1c70591fdfcf1" category="section-title">Sistema AFF A220</block>
   <block id="b26fc919cdf51f47525ea1a80e97e6bd" category="inline-link">Página inicial do AFF Série A.</block>
-  <block id="2bb9786b102d72f3ac1678f26a2fd3a2" category="paragraph">Para obter mais informações sobre o sistema de hardware AFF A220, consulte<block ref="f8981ed71ad385ab244aedb904bf89fa" category="inline-link-rx"></block>.</block>
   <block id="2bf2d97c7417a82d48f6f360cbb7f34f" category="section-title">Software ONTAP 9.4</block>
   <block id="60f87f26139c7c98ce1efa4f599bf2da" category="paragraph">Os sistemas NetApp AFF A220 usam o novo software ONTAP 9.4. O ONTAP 9.4 é o software empresarial de gerenciamento de dados líder do setor. Ele combina novos níveis de simplicidade e flexibilidade com funcionalidades avançadas de gerenciamento de dados, eficiências de storage e integração com a nuvem líder.</block>
   <block id="c75d1aa75a9492e87f9e865c4ed770b7" category="paragraph">O ONTAP 9.4 tem vários recursos que são adequados para a solução FlexPod Express. O mais importante é o compromisso da NetApp com a eficiência de storage, que pode ser um dos recursos mais importantes para implantações de pequeno porte. Os recursos de eficiência de storage da NetApp, como deduplicação, compressão e thin Provisioning, estão disponíveis no ONTAP 9.4 com uma nova adição e compactação. Como o sistema NetApp WAFL grava sempre blocos 4KB, a compactação combina vários blocos em um bloco 4KB quando os blocos não estão usando o espaço alocado de 4KB. A figura a seguir ilustra esse processo.</block>
   <block id="f9cb4e27ae4d5a107a9b1c2f92404f03" category="paragraph">Além disso, o particionamento de dados raiz pode ser aproveitado no sistema AFF A220. Esse particionamento permite que o agregado raiz e dois agregados de dados sejam distribuídos pelos discos no sistema. Portanto, ambas as controladoras em um cluster de AFF A220 de dois nós podem aproveitar o desempenho de todos os discos no agregado. Consulte a figura a seguir.</block>
   <block id="67aecab353cdb62ae537a3a6ef787df6" category="inline-link">Folha de dados do software de gerenciamento de dados ONTAP 9</block>
   <block id="774a065cb3548cc61fb0ec3bc1494fbe" category="inline-link">Centro de Documentação do ONTAP 9</block>
-  <block id="19829de524ac9c6ea351e3ffc56ea16e" category="paragraph">Esses são apenas alguns dos principais recursos que complementam a solução FlexPod Express. Para obter detalhes sobre os recursos adicionais e a funcionalidade do ONTAP 9.4, consulte<block ref="c633298bec990e426b7e2b06b94ab53d" category="inline-link-rx"></block>. Além disso, consulte o NetApp<block ref="acaccc868f6222e64c0f11237becafd9" category="inline-link-rx"></block> , que foi atualizado para incluir o ONTAP 9.4.</block>
   <block id="b9cf63c64f69fd1a67d8936fa9ccdc8a" category="section-title">Cisco Série Nexus 3000</block>
   <block id="465d13822b2f2e54a46fa68974747e8f" category="paragraph">O Cisco Nexus 3172P é um switch robusto e econômico que oferece comutação 1/10/40/100Gbps. O switch Cisco Nexus 3172PQ, parte da família Unified Fabric, é um switch compacto de 1 unidades de rack (1RUU) para implantações de data center topo do rack. (Consulte a figura a seguir.) Ele oferece até setenta e duas portas 1/10GbE em 1RU ou quarenta e oito 1/10GbE mais seis portas 40GbE em 1RU. E para a máxima flexibilidade da camada física, ele também suporta 1/10/40Gbps.</block>
   <block id="65616b47a64dd1f2f0def7e9a8ba8095" category="paragraph">Como todos os vários modelos da série Cisco Nexus executam o mesmo sistema operacional subjacente, NX-os, vários modelos Cisco Nexus são suportados nas soluções FlexPod Express e FlexPod Datacenter.</block>
@@ -1727,9 +1722,7 @@
   <block id="9e50dd67be8816f481acd44e67d346d7" category="cell">Valor Detalhe do cluster</block>
   <block id="a2043122b8801ad2705490c04568eff2" category="cell">URL do ONTAP 9.5</block>
   <block id="295ea9d95e18d68f8bede8887a86b4b4" category="cell">SERVIDOR NTP UM IP</block>
-  <block id="c0510c2623c207e42af24bfe93307128" category="cell">o switch-a-ntp-ip &gt;&gt;</block>
   <block id="2114e7b181a5a5dc424a141ea0a5fa4c" category="cell">IP DO SERVIDOR NTP B.</block>
-  <block id="48aeb4573d8a7f5bf35e29e652041020" category="cell">o switch-b-ntp-ip &gt;&gt;</block>
   <block id="b5fd64f5175eb9b13fc5ecdb3f9ff486" category="section-title">Configure o nó A</block>
   <block id="cd4d807955f127e1e206027921e4b6b7" category="list-text">Conete-se à porta do console do sistema de armazenamento. Você deve ver um prompt Loader-A. No entanto, se o sistema de armazenamento estiver em um loop de reinicialização, pressione Ctrl- C para sair do loop autoboot quando você vir esta mensagem:</block>
   <block id="54202896f32ea6eb2fb991c970e26826" category="list-text">Pressione Ctrl- C para entrar no menu Boot (Inicialização).</block>
@@ -3531,7 +3524,6 @@
   <block id="1d9f38092927f6d65753edab7ca3d039" category="inline-link">Documentação do NetApp: Switches Cisco Nexus 3132Q-V.</block>
   <block id="392fceb5a4d064176abe344715627cfb" category="cell"><block ref="bc5b55d95c18c102e8300585910ae029" category="inline-link-rx"></block></block>
   <block id="0bc97a80630d922e5e5de8dd8689bcaa" category="inline-link">Documentação do NetApp: Switches Cisco Nexus 9336C-FX2</block>
-  <block id="040d804b2c70516766d21ab594bc39bb" category="cell"><block ref="040d804b2c70516766d21ab594bc39bb" category="inline-link-rx"></block></block>
   <block id="bfdd18e32fc0e9981825376863beb7a1" category="section-title">Opções de compartimento de disco e unidade NetApp</block>
   <block id="ce9c0b8b6c23f9fbba191e4d302b977e" category="paragraph">É necessário no mínimo um compartimento de disco NetApp para todos os controladores de storage.</block>
   <block id="c590db225b3b8f81ea877e347416fc4b" category="paragraph">O tipo de compartimento NetApp selecionado determina quais tipos de unidade estão disponíveis nesse compartimento.</block>
@@ -3562,7 +3554,6 @@
   <block id="d956bf5f6c667ff127e0c3ff6feecfb6" category="cell"><block ref="d956bf5f6c667ff127e0c3ff6feecfb6" category="inline-link-rx"></block></block>
   <block id="bab7ecc6925e954c51d985d3cfebfa4b" category="summary">O software NetApp ONTAP é instalado em todos os sistemas NetApp FAS ou AFF. O FlexPod é validado com o software ONTAP, fornecendo uma arquitetura de storage altamente dimensionável que habilita operações ininterruptas, upgrades sem interrupções e uma infraestrutura de dados ágil.</block>
   <block id="9c58e11f96200548fd2f5932b391509a" category="inline-link">Software de gerenciamento de dados ONTAP</block>
-  <block id="bc4050fb27f781ecbcefa1ccdeac344d" category="paragraph">Para obter mais informações sobre o ONTAP, consulte<block ref="1eb8c52ba0319aa3751cd7ed82b4945b" category="inline-link-rx"></block> a página do produto.</block>
   <block id="ec16d244107eb1b39aae2c83633061e7" category="summary">O NetApp oferece suporte a vários componentes opcionais para aprimorar ainda mais as arquiteturas de data center do FlexPod. Os componentes opcionais estão descritos nas subseções a seguir.</block>
   <block id="010a6cb0eccdea35662ad711d443f2ec" category="doc">Recursos opcionais</block>
   <block id="1749d12df3df2319d3eee218a277ff83" category="section-title">MetroCluster</block>
@@ -3580,7 +3571,6 @@
   <block id="a152d851b543a6ecd1fe98d32802053d" category="inline-link">Apresentação do white paper NVMe completo para FlexPod.</block>
   <block id="866ad53e2454a700c7d99a0f7dec80e8" category="paragraph">Mais detalhes sobre as configurações do FlexPod e os benefícios de desempenho, consulte<block ref="04abdacba4c78c835f0c4c4ee5dcd30c" category="inline-link-rx"></block></block>
   <block id="37baea605e04392e4eb7f7acb8348221" category="inline-link">TR-4684: Implementando e configurando SANs modernas com NVMe</block>
-  <block id="add67b673b393b16b252a2a470fff3ed" category="paragraph">Para obter mais informações sobre a implementação do ONTAP,<block ref="368bf61ae02bd1c150d4e236c35ced8c" category="inline-link-rx"></block> consulte .</block>
   <block id="5c951adc7211c25ede0a0809548d1c04" category="section-title">Inicialização FC SAN por meio do Cisco MDS</block>
   <block id="fb29d3ee85e306f56ff802135b3407c0" category="paragraph">Para aumentar a escalabilidade usando uma rede SAN dedicada, o FlexPod oferece suporte ao FC por meio de switches MDS Cisco e switches Nexus com suporte a FC, como o Cisco Nexus 93108TC-FX. A opção de inicialização SAN FC por meio do Cisco MDS tem os seguintes requisitos de licenciamento e hardware:</block>
   <block id="363c90b1f8508b80dbb831bafb51f838" category="list-text">Um mínimo de duas portas FC por controlador de storage NetApp; uma porta para cada malha SAN</block>
@@ -3895,7 +3885,6 @@
   <block id="0fe164f47d43f2cbfd102d0aa1d2dfb9" category="inline-link">Documentação da plataforma AFF ASA A220</block>
   <block id="35e833762d254950955265d789112b72" category="cell"><block ref="35e833762d254950955265d789112b72" category="inline-link-rx"></block></block>
   <block id="b0318f7a50c45231a138f7fe1f7ff669" category="inline-link">Especificações técnicas dos compartimentos de disco e Mídia de storage da NetApp</block>
-  <block id="7d04ea5a4ab5376b6fc167c024508e50" category="paragraph">As especificações técnicas dos compartimentos de disco NetApp incluem o tamanho do fator forma, o número de unidades por compartimento e os módulos de e/S de gaveta. Essa documentação pode ser encontrada na tabela a seguir. Para obter mais informações, consulte<block ref="38bd9540948719c989b4d751845e8bfd" category="inline-link-rx"></block> e<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block> .</block>
   <block id="7f0e76e050a690f383ba518e5dc386f3" category="cell">Documentação do compartimento de disco NetApp FAS/AFF</block>
   <block id="e76c07915a60bfdaf4c9dd87979fa449" category="cell">Compartimento de disco NetApp DS212C</block>
   <block id="b539e925204802559371bf5b81d79954" category="inline-link">DS212C Documentação do compartimento de disco</block>
@@ -4102,7 +4091,6 @@
   <block id="5846e1714fe6b3a59fbf92fb13144912" category="paragraph"><block ref="5846e1714fe6b3a59fbf92fb13144912" category="inline-link-rx"></block></block>
   <block id="db49f76a2f051143f3026604e3d59f00" category="list-text">Ai na saúde</block>
   <block id="2275a2c3460c7a300ff1ccd02b364046" category="inline-link"><block ref="2275a2c3460c7a300ff1ccd02b364046" category="inline-link-rx"></block></block>
-  <block id="0b921bb1595764dd70d91a0ac86cb9fe" category="paragraph"><block ref="0b921bb1595764dd70d91a0ac86cb9fe" category="inline-link-rx"></block></block>
   <block id="61180aaf0b2d71322476b407dec66f81" category="list-text">FlexPod para o setor de saúde facilite sua transformação</block>
   <block id="51715f6336f71f0c342d4f6d79941b19" category="inline-link"><block ref="51715f6336f71f0c342d4f6d79941b19" category="inline-link-rx"></block></block>
   <block id="2331140ce18354b448afad499fd44f5d" category="paragraph"><block ref="2331140ce18354b448afad499fd44f5d" category="inline-link-rx"></block></block>
@@ -4319,30 +4307,11 @@
   <block id="5584df5caffb3ed702d2c5eecefc2fb3" category="inline-link-macro">Próximo: Genômica - configuração e execução do GATK.</block>
   <block id="3b500bb5c5d09fb0d60887b38cb44a83" category="paragraph"><block ref="3b500bb5c5d09fb0d60887b38cb44a83" category="inline-link-macro-rx"></block></block>
   <block id="0f68b904e33d9ac04605aecc958bcf52" category="doc">Informações adicionais</block>
-  <block id="cfb5002996819a05fe90d726fd35abef" category="list-text">FlexPod Datacenter para AI/ML com Cisco UCS 480 ml para Guia de design de deep learning</block>
-  <block id="d8db37def441e613da56054e80444482" category="inline-link"><block ref="d8db37def441e613da56054e80444482" category="inline-link-rx"></block></block>
-  <block id="803b4cf0a6dff431dd84af1244606078" category="paragraph"><block ref="803b4cf0a6dff431dd84af1244606078" category="inline-link-rx"></block></block>
   <block id="4ed40b420afd136d687a39fd0ba1767e" category="list-text">Infraestrutura de data center do FlexPod com VMware vSphere 6,7 U1, Cisco UCS 4tha geração e NetApp AFF A-Series</block>
-  <block id="b2e20f9d5f102b1bf7c6006869f645fa" category="inline-link"><block ref="b2e20f9d5f102b1bf7c6006869f645fa" category="inline-link-rx"></block></block>
-  <block id="05d9c462d2d92f4b8b843ffb3d5cc2d9" category="paragraph"><block ref="05d9c462d2d92f4b8b843ffb3d5cc2d9" category="inline-link-rx"></block></block>
   <block id="c1efc3a813b82683fd82867cadc93894" category="list-text">Resumo da solução FlexPod Datacenter Backup de banco de dados Oracle com SnapCenter</block>
-  <block id="7eaa65b694e48ad614d73c5bde253e3a" category="inline-link"><block ref="7eaa65b694e48ad614d73c5bde253e3a" category="inline-link-rx"></block></block>
-  <block id="2bd59f07acc84ae5bcea7882570e52e3" category="paragraph"><block ref="2bd59f07acc84ae5bcea7882570e52e3" category="inline-link-rx"></block></block>
-  <block id="c9f5a7de9319fd88f3852ab111fbe13e" category="inline-link"><block ref="c9f5a7de9319fd88f3852ab111fbe13e" category="inline-link-rx"></block></block>
-  <block id="d315da59ec6b2858fdfe7767a8f70ab9" category="paragraph"><block ref="d315da59ec6b2858fdfe7767a8f70ab9" category="inline-link-rx"></block></block>
-  <block id="8fdb0a15f77769d8bdbbda45ac9ac292" category="inline-link"><block ref="8fdb0a15f77769d8bdbbda45ac9ac292" category="inline-link-rx"></block></block>
-  <block id="4a7f323e5606571ca38ca7b695beafe1" category="paragraph"><block ref="4a7f323e5606571ca38ca7b695beafe1" category="inline-link-rx"></block></block>
   <block id="99074e2be4a23f8c72f4dbbb9f7713cd" category="list-text">FlexPod para Microsoft SQL Server</block>
-  <block id="4bfd12a70dc5aca25050ffed66a69baf" category="inline-link"><block ref="4bfd12a70dc5aca25050ffed66a69baf" category="inline-link-rx"></block></block>
-  <block id="944191196c4e08e68a0f4392568f098e" category="paragraph"><block ref="944191196c4e08e68a0f4392568f098e" category="inline-link-rx"></block></block>
   <block id="550ff411af842971b5bef45c5d9d1a59" category="list-text">TR-4700: Plug-in SnapCenter para banco de dados Oracle</block>
-  <block id="43522657c8f1a5c2e1329e74dea52592" category="inline-link"><block ref="43522657c8f1a5c2e1329e74dea52592" category="inline-link-rx"></block></block>
-  <block id="8574ec5b04753a6354428058a5209e5d" category="paragraph"><block ref="8574ec5b04753a6354428058a5209e5d" category="inline-link-rx"></block></block>
-  <block id="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link"><block ref="c9617ae303d0bce89d13bebecca2ea1b" category="inline-link-rx"></block></block>
-  <block id="bf78332b32395471af72955679895502" category="paragraph"><block ref="bf78332b32395471af72955679895502" category="inline-link-rx"></block></block>
   <block id="470e33cee2a0a930ccdebb855f6d92d6" category="list-text">FlexPod para soluções de infraestrutura de desktops virtuais (VDI)</block>
-  <block id="f6aaafd9f98422c31959e223903e9a71" category="inline-link"><block ref="f6aaafd9f98422c31959e223903e9a71" category="inline-link-rx"></block></block>
-  <block id="de18980572f5c8c06c547cf7593dfef1" category="paragraph"><block ref="de18980572f5c8c06c547cf7593dfef1" category="inline-link-rx"></block></block>
   <block id="3efd43d603f98d46d6707c05552b037a" category="summary">A arquitetura do FlexPod foi projetada para fornecer alta disponibilidade se um componente ou um link falhar em toda a sua pilha de computação, rede e storage. Vários caminhos de rede para acesso ao cliente e acesso ao storage fornecem balanceamento de carga e utilização ideal de recursos.</block>
   <block id="2d242bb36ec91b32005f9296ff03a912" category="doc">Arquitetura</block>
   <block id="220e76f33c6565f8361231d3fbea063c" category="paragraph">A figura a seguir ilustra a topologia Ethernet de 16GB GB/40GB GB (40GbE) para a implantação da solução de sistema de imagem médica.</block>
@@ -4470,7 +4439,6 @@
   <block id="b762f29d5919c51dd9fa4a8ac151ab9a" category="paragraph">O sistema de imagem médica pode fornecer acesso à imagem a uma comunidade de médicos ou a médicos participantes da NIC. Os sistemas de imagem médica típicos incluem componentes que permitem a interoperabilidade da imagem com outros sistemas DE TI DE saúde dentro e fora da sua organização de saúde. Os médicos comunitários podem acessar imagens através de um aplicativo baseado na Web ou aproveitar uma plataforma de troca de imagens para interoperabilidade de imagens. As plataformas de troca de imagens utilizam normalmente WADO ou DICOM como o protocolo de troca de imagens subjacente.</block>
   <block id="b6a2b8b9e3c52b935411a3773e14ac66" category="paragraph">Os sistemas de imagiologia médica também podem suportar centros médicos académicos que necessitam de PACS ou sistemas de imagiologia para utilização numa sala de aula. Para apoiar atividades acadêmicas, um sistema de imagem médica típico pode ter as capacidades de um sistema PACS em uma pegada menor ou em um ambiente de imagem somente ensino. Os sistemas de arquivamento neutros e alguns sistemas de imagiologia médica de classe empresarial oferecem capacidades de morphing de etiquetas de imagem DICOM para anonimizar as imagens que são utilizadas para fins de ensino. A tag morphing permite que a organização de saúde troque imagens DICOM entre diferentes sistemas de imagem médica de fornecedores de forma neutra em termos de fornecedor. Além disso, a tag morphing permite que os sistemas de imagem médica implementem uma capacidade de arquivamento neutra para imagens médicas em toda a empresa.</block>
   <block id="997d167631f94cf1d98666c861fca71a" category="inline-link">Recursos de computação baseados em GPU</block>
-  <block id="bb9a94a4d903c351296fd45362188434" category="paragraph">Os sistemas de imagiologia médica estão a começar a utilizar<block ref="37957c9cec904fac611da11b53751bc9" category="inline-link-rx"></block> para melhorar os fluxos de trabalho humanos através do pré-processamento das imagens e, assim, melhorar a eficiência. Os sistemas típicos de imagiologia médica empresarial aproveitam as funcionalidades de eficiência de storage da NetApp líderes do setor. Os sistemas de imagiologia médica empresarial normalmente utilizam o RMAN para atividades de backup, recuperação e restauração. Para melhor performance e reduzir o tempo necessário para criar backups, a tecnologia Snapshot está disponível para operações de backup e a tecnologia SnapMirror está disponível para replicação.</block>
   <block id="f818fd27f91a7d28ab90b68d30fde20b" category="paragraph">A figura abaixo mostra os componentes lógicos da aplicação numa vista arquitetónica em camadas.</block>
   <block id="4a943883c65931730e17caccdf75beda" category="paragraph">A figura abaixo mostra os componentes físicos da aplicação.</block>
   <block id="20343c5b4b171fdd628e796ebaca10e7" category="paragraph">Os componentes da aplicação lógica exigem que a infraestrutura dê suporte a um conjunto diversificado de protocolos e sistemas de arquivos. O software NetApp ONTAP é compatível com um conjunto líder do setor de protocolos e sistemas de arquivos.</block>
@@ -4594,7 +4562,6 @@
   <block id="318245cf077eb2f36c50adf4aa79740e" category="list-text">Trabalhe com o fornecedor do sistema de imagem médica para identificar a melhor abordagem para preparar modelos de VM para implantação e manutenção rápidas.</block>
   <block id="b122cbb51e08e5873db5c423182f46a5" category="list-text">As redes de gerenciamento, armazenamento e produção exigem segregação de LAN para o banco de dados, com VLANs isoladas para VMware vMotion.</block>
   <block id="794cb725c5631ad99b5b7c000307f0df" category="inline-link">SnapMirror</block>
-  <block id="1d67bd1875e6da2263eb607498fabcd6" category="list-text">Use a tecnologia de replicação baseada em storage array do NetApp chamada<block ref="39a14c05fc1bd143daa91287826ba7cf" category="inline-link-rx"></block> em vez de replicação baseada no vSphere.</block>
   <block id="e3679fa0631ab408c36d8aed9abdf535" category="list-text">Use tecnologias de backup que utilizam APIs VMware; as janelas de backup devem estar fora do horário normal de produção.</block>
   <block id="908d1090a048f73a870cac28af4673b0" category="summary">Ao executar um ambiente de imagem médica no FlexPod, sua organização de saúde pode esperar uma melhoria na produtividade da equipe e uma diminuição no capital e nas despesas operacionais.</block>
   <block id="ab9ec8ece67b4869a1277a5cec11aa53" category="paragraph">Ao executar um ambiente de imagem médica no FlexPod, sua organização de saúde pode esperar uma melhoria na produtividade da equipe e uma diminuição no capital e nas despesas operacionais. O FlexPod fornece uma infraestrutura convergente pré-validada e rigorosamente testada pela parceria estratégica da Cisco com a NetApp. Ele foi projetado e projetado especificamente para fornecer desempenho previsível do sistema de baixa latência e alta disponibilidade. Essa abordagem resulta em uma experiência de usuário superior e tempo de resposta ideal para usuários do sistema de imagem médica.</block>
@@ -4642,7 +4609,6 @@
   <block id="907252d9f6c712cc5f8fcc12251441b1" category="inline-link">Data fabric desenvolvido pela NetApp</block>
   <block id="424085d73e2bf68920f52c0e421ec644" category="list-text">As modalidades móveis, como dispositivos portáteis de digitalização sem fio (por exemplo, scanners de ultrassom portáteis de bolso conetados a um telefone), exigem uma infraestrutura de rede robusta com segurança, confiabilidade e latência no nível DoD na borda, no núcleo e na nuvem.<block ref="3eee67b0b37da60b6460fdf023f854d0" category="inline-link-rx"></block> proporcionar às organizações essa capacidade em escala.</block>
   <block id="2ea6325cbb00626fd010bdc2c9b84882" category="inline-link">desempenho, confiabilidade e dimensionamento como caraterísticas fundamentais</block>
-  <block id="e32a847a51de0f2bf0c5155055a77faf" category="list-text">As modalidades mais recentes têm necessidades exponenciais de armazenamento; por exemplo, a TC e a RM requerem algumas centenas de MBs para cada modalidade, mas as imagens de patologia digital (incluindo imagens de lâminas inteiras) podem ter alguns GBs de tamanho. FlexPod é projetado com<block ref="9b0c7a9abb2c8ca94b7d93529ec55080" category="inline-link-rx"></block>.</block>
   <block id="37a955b83843b3a60895704bbaa81329" category="paragraph">Uma plataforma de sistema de imagem médica bem arquitetada está no centro da inovação. A arquitetura do FlexPod oferece funcionalidades flexíveis de computação e storage com eficiência de storage líder do setor.</block>
   <block id="1ec59953da3ae57022920e20e60729a1" category="paragraph">Ao executar um ambiente de aplicação de imagem em uma base arquitetônica da FlexPod, sua organização de saúde pode esperar uma melhoria na produtividade da equipe e uma diminuição no capital e nas despesas operacionais. O FlexPod fornece uma convergente, pré-validada e rigorosamente testada que foi projetada para oferecer alta disponibilidade e performance previsível do sistema de baixa latência. Esta abordagem resulta em elevados níveis de conforto e, em última análise, tempos de resposta ideais para os utilizadores do sistema de imagiologia médica.</block>
   <block id="4867c50a5e495b4481202baed4852e61" category="paragraph">Componentes diferentes do sistema de imagem podem exigir o armazenamento de dados em sistemas de arquivos SMB/CIFS, NFS, EXT4 ou NTFS. Esse requisito significa que a infraestrutura precisa fornecer acesso aos dados pelos protocolos NFS, SMB/CIFS e SAN. Um único sistema de storage NetApp pode dar suporte aos protocolos NFS, SMB/CIFS e SAN, eliminando a necessidade de práticas legadas de sistemas de storage específicos a protocolos.</block>
@@ -6387,14 +6353,9 @@
   <block id="11db24b66c77035ede185430bf9d09f9" category="inline-link"><block ref="11db24b66c77035ede185430bf9d09f9" category="inline-link-rx"></block></block>
   <block id="23c1509f5b84de26c4b1055eb21193f6" category="paragraph"><block ref="23c1509f5b84de26c4b1055eb21193f6" category="inline-link-rx"></block></block>
   <block id="a5119a6bd0f4d733e0f1f4c10f9d063b" category="list-text">NetApp ONTAP 9</block>
-  <block id="56069277df4c901b9bbe8e803e67db24" category="inline-link"><block ref="56069277df4c901b9bbe8e803e67db24" category="inline-link-rx"></block></block>
-  <block id="e5fd571885e12d60c887ac4ff16b1b18" category="paragraph"><block ref="e5fd571885e12d60c887ac4ff16b1b18" category="inline-link-rx"></block></block>
   <block id="30d37924aae959f5f8be738ca035502f" category="list-text">NetApp AFF Série A.</block>
-  <block id="c6a079892f1cff76919834401bb28e4c" category="inline-link"><block ref="c6a079892f1cff76919834401bb28e4c" category="inline-link-rx"></block></block>
-  <block id="91fbc750242e3f6e73b7346d7de4255d" category="paragraph"><block ref="91fbc750242e3f6e73b7346d7de4255d" category="inline-link-rx"></block></block>
   <block id="581a5130c89459868713aba87d5ddef8" category="list-text">Práticas recomendadas para SAN moderna</block>
   <block id="28cf8118bed6bfff2d8c5e8b980c1d1d" category="inline-link"><block ref="28cf8118bed6bfff2d8c5e8b980c1d1d" category="inline-link-rx"></block></block>
-  <block id="677fb357d39403a07e558202ee9cd079" category="paragraph"><block ref="677fb357d39403a07e558202ee9cd079" category="inline-link-rx"></block></block>
   <block id="0d226f32134d70adc638b78bc53393a8" category="list-text">Apresentação do NVMe completo para FlexPod</block>
   <block id="651d79725508fd0119e3f81dd49cf222" category="inline-link"><block ref="651d79725508fd0119e3f81dd49cf222" category="inline-link-rx"></block></block>
   <block id="7b00214f336cfd8e3b6c48d0df0025a3" category="paragraph"><block ref="7b00214f336cfd8e3b6c48d0df0025a3" category="inline-link-rx"></block></block>
@@ -7101,38 +7062,22 @@
   <block id="6e5ddeab7c2ea3c3727ca9c7e09a0364" category="doc">Agradecimentos, histórico de versões e onde encontrar informações adicionais</block>
   <block id="830c285c18762ac0a98894fa6f8dd540" category="paragraph"><block ref="830c285c18762ac0a98894fa6f8dd540" category="inline-link-macro-rx"></block></block>
   <block id="f7675364c353916abc1f96f5872aa8e7" category="list-text">Guia de configuração de segurança da família NX-os do Cisco MDS 9000</block>
-  <block id="c0b7d89a6b3af8b52cca447e38e433b7" category="paragraph"><block ref="c0b7d89a6b3af8b52cca447e38e433b7" category="inline-link-rx"></block></block>
   <block id="e0b3190a3f64f7be872934136d7a8207" category="list-text">Guia de configuração de segurança do Cisco Nexus 9000, versão 9,3(x)</block>
-  <block id="5aeaa6d8ef03bc5f49185431ec147dcc" category="paragraph"><block ref="5aeaa6d8ef03bc5f49185431ec147dcc" category="inline-link-rx"></block></block>
   <block id="20038822e4002375d07dbbaa2f842177" category="list-text">Publicação NetApp e Federal Information Processing Standard (FIPS) 140-2</block>
-  <block id="01ad4c25dc606d42af63966d1d192007" category="paragraph"><block ref="01ad4c25dc606d42af63966d1d192007" category="inline-link-rx"></block></block>
   <block id="b142182673eaef19aa257c978e64bdf6" category="list-text">Guia de endurecimento da NetApp ONTAP 9</block>
-  <block id="63a419e94ce5e89636cfdf48da2b7298" category="paragraph"><block ref="63a419e94ce5e89636cfdf48da2b7298" category="inline-link-rx"></block></block>
-  <block id="32a205a6c059cf9285d47b38c93cfe7e" category="paragraph"><block ref="32a205a6c059cf9285d47b38c93cfe7e" category="inline-link-rx"></block></block>
   <block id="8976b0d9a3096c54654d952ae6a99888" category="list-text">Detalhes completos do NVE e NAE</block>
-  <block id="8f409251340bc75610f76c62ab133dbd" category="paragraph"><block ref="8f409251340bc75610f76c62ab133dbd" category="inline-link-rx"></block></block>
   <block id="d945a8f23239206005994bedcd92d467" category="list-text">Folha de dados NSE</block>
-  <block id="c209b24d903630d5e2c4c76e84bf6ed4" category="paragraph"><block ref="c209b24d903630d5e2c4c76e84bf6ed4" category="inline-link-rx"></block></block>
   <block id="245ccd4cdd5cb484215315baf93697ce" category="list-text">Conformidade com Cisco e FIPS 140-2-2</block>
-  <block id="2d817d24735f352fea82322ab2c9e621" category="paragraph"><block ref="2d817d24735f352fea82322ab2c9e621" category="inline-link-rx"></block></block>
   <block id="6770ff13f95abd8619a19519877aedf9" category="list-text">Módulo de segurança criptográfica NetApp</block>
-  <block id="02817beae9581784d8cd2f39ddda543b" category="paragraph"><block ref="02817beae9581784d8cd2f39ddda543b" category="inline-link-rx"></block></block>
   <block id="bf7fa6fb49dfa01515f774f7a86c6270" category="list-text">Práticas de segurança cibernética para organizações de saúde de médio e grande porte</block>
   <block id="8f8e7f38245f5c357d275915df1fb3d6" category="list-text">Criptografia de storage NetApp, unidades com criptografia automática NVMe, criptografia de volume NetApp e criptografia agregada NetApp</block>
-  <block id="617326e2119d8781b2c939871e7a5f48" category="paragraph"><block ref="617326e2119d8781b2c939871e7a5f48" category="inline-link-rx"></block></block>
   <block id="64f1ff1b6f99d34e2d1a43f8332c7947" category="list-text">Criptografia de volumes do NetApp e criptografia agregada do NetApp</block>
   <block id="826703b67408dd5973ff8ccc401a9b8b" category="list-text">Criptografia de storage do NetApp</block>
   <block id="187fa0150d76f09beb9a3b74c448990a" category="list-text">FlexPod para sistemas de Registro Eletrônico de Saúde</block>
-  <block id="c7387de998aff4cdf0301a2c3c14a06b" category="paragraph"><block ref="c7387de998aff4cdf0301a2c3c14a06b" category="inline-link-rx"></block></block>
   <block id="6b57a182c5aa4ead2e88ed686db467c6" category="list-text">Dados agora: Melhoria da performance em ambientes EHR da Epic com a tecnologia flash conectada à nuvem</block>
-  <block id="ceb561875427a5be47ba89bdfcf68b15" category="paragraph"><block ref="ceb561875427a5be47ba89bdfcf68b15" category="inline-link-rx"></block></block>
   <block id="2864ff7bf8dd51d85b7cc971111d79e6" category="list-text">Data center FlexPod para infraestrutura EHR da Epic</block>
-  <block id="55281df24e22fc716f53cc920cd0aec7" category="paragraph"><block ref="55281df24e22fc716f53cc920cd0aec7" category="inline-link-rx"></block></block>
   <block id="f4bb968e88fa8aec8a3ffd847dc271cd" category="list-text">Guia de implantação do FlexPod Datacenter para EPIC EHR</block>
   <block id="a63e6ef2bab4a03e7407c66118723fd7" category="list-text">FlexPod para imagens médicas</block>
-  <block id="e997ca20dd931bcae1a9cc1d32eeeca7" category="paragraph"><block ref="e997ca20dd931bcae1a9cc1d32eeeca7" category="inline-link-rx"></block></block>
-  <block id="2af4f6ea027bdaba1ccaa895b5f614b0" category="list-text">Ai em saúde</block>
-  <block id="bc90617add028be9c25b19d974d1e04b" category="paragraph"><block ref="bc90617add028be9c25b19d974d1e04b" category="inline-link-rx"></block></block>
   <block id="a53f09b2bd331120c3b796cb9e4ff287" category="list-text">Abhinav Singh, Engenheiro de Marketing Técnico, NetApp</block>
   <block id="fadcd2d3cf8bcd04af16c2062209bfa7" category="list-text">Brian o'Mahony, arquiteto de soluções de saúde (Epic), NetApp</block>
   <block id="60b698d29839935a0d9df481d942789f" category="list-text">Brian Pruitt, Gerente de Desenvolvimento de Negócios da Pursuit, NetApp</block>
@@ -7146,20 +7091,10 @@
   <block id="fde6ac598cf6efa555760f2f4ad1b29e" category="list-text">Jorge Gomez Navarrete, NetApp</block>
   <block id="a14d6c8d0eed1f3cd0f5d06966fb22fc" category="list-text">Ganesh Kamath, NetApp</block>
   <block id="48efbff74b258f64be8c1ea74338d9cc" category="list-text">Software Snapshot da NetApp</block>
-  <block id="7ff07bbb9b194e6add1dff1671f1fef1" category="inline-link"><block ref="7ff07bbb9b194e6add1dff1671f1fef1" category="inline-link-rx"></block></block>
-  <block id="f908ca0ccbd5aba28a02bfff5409159e" category="paragraph"><block ref="f908ca0ccbd5aba28a02bfff5409159e" category="inline-link-rx"></block></block>
   <block id="93437c5d15c2d7a89baab3b7b5d7b776" category="list-text">Gerenciamento de backup do SnapCenter</block>
-  <block id="d496da41659cc8aba75fe7fcc6569dc2" category="inline-link"><block ref="d496da41659cc8aba75fe7fcc6569dc2" category="inline-link-rx"></block></block>
-  <block id="6cd3850f619cf4c62d5a5d7ec42c7adf" category="paragraph"><block ref="6cd3850f619cf4c62d5a5d7ec42c7adf" category="inline-link-rx"></block></block>
   <block id="7f735cc3901ac79a29f885ee29067657" category="list-text">Conformidade de dados do SnapLock</block>
-  <block id="1556081885bee2b1199ce1c1050fc53f" category="inline-link"><block ref="1556081885bee2b1199ce1c1050fc53f" category="inline-link-rx"></block></block>
-  <block id="e533e82d44fe1f3ecb9f8d5d1ad0bd01" category="paragraph"><block ref="e533e82d44fe1f3ecb9f8d5d1ad0bd01" category="inline-link-rx"></block></block>
   <block id="a6ef6a1f1fade13d608e9cd3b923a147" category="list-text">Proteção avançada contra malware (AMP) da Cisco</block>
-  <block id="81ff6ae302c6102611eccb1af066353d" category="inline-link"><block ref="81ff6ae302c6102611eccb1af066353d" category="inline-link-rx"></block></block>
-  <block id="48fd7d6aead3c8374a568df93ccdb562" category="paragraph"><block ref="48fd7d6aead3c8374a568df93ccdb562" category="inline-link-rx"></block></block>
   <block id="03f8112d3104cf25535ef6e5e6b63b69" category="list-text">Cisco Stealthwatch</block>
-  <block id="fa606984ee37bfd77b545fbc173bed0d" category="inline-link"><block ref="fa606984ee37bfd77b545fbc173bed0d" category="inline-link-rx"></block></block>
-  <block id="ef6c1507932c316dc83df1a8d0373850" category="paragraph"><block ref="ef6c1507932c316dc83df1a8d0373850" category="inline-link-rx"></block></block>
   <block id="72ebab8e55af1921046b579c24e2b91b" category="summary">Os autores recomendam não pagar um resgate em caso de ataque, porque isso reforça a fé do invasor em seu modelo de negócios. As operações de backup e restauração de dados desempenham um papel importante na recuperação de ransomware. Portanto, eles devem ser incluídos como parte integrante do Planejamento de negócios.</block>
   <block id="7d75ecfb576e2cb56e9e599273830bf8" category="paragraph">O ransomware é um produto do crime organizado, e os atacantes não operam com ética. Eles podem abster-se de fornecer a chave para descriptografia, mesmo depois de receber o resgate. A vítima não só perde seus dados, mas também uma quantidade substancial de dinheiro e enfrentará consequências associadas à perda de dados de produção.</block>
   <block id="135496fa2abd759284a72c66add2bc34" category="inline-link">Artigo da Forbes</block>
@@ -7492,7 +7427,6 @@
   <block id="54a9695c1cd20fe3c1b3de7d2d0849da" category="section-title">Baixe a imagem personalizada do Cisco ESXi 6.7</block>
   <block id="a6b0b2988c5db0d3f9904da3baa7fb5d" category="inline-link">Portal de download do suporte Broadcom</block>
   <block id="322c1bf6212e7c54c320d39396d4813e" category="list-text">Navegue até a <block ref="5d4583965b99d38471744b638e2c1be9" category="inline-link-rx"></block> seção de ISOs personalizadas.</block>
-  <block id="5dfe98d918fd68be7991890eae196c52" category="list-text">Navegue até <block ref="bac24f0712f47dd060823c6839812795" prefix=" " category="inline-code"></block>.</block>
   <block id="a4bb6a234ad5eb67804c313bb9a8b3db" category="list-text">Faça login em <block ref="3a2c98d485b24d204e43f97cb6f53439" prefix=" " category="inline-code"></block>, digite root como nome de usuário e digite a senha root.</block>
   <block id="9155aed337ee7c7997d16763eddc06ed" category="section-title">Baixe a imagem personalizada do Cisco ESXi 6.7U2</block>
   <block id="fcee695f2f7ba8610259081393553d28" category="paragraph">Siga os procedimentos de instalação física para os controladores no <block ref="55c19dfac75c3e1e113dbbd2306df844" category="inline-link-rx"></block>.</block>
@@ -7513,8 +7447,6 @@
   <block id="6ae41a6d5ab9be50ac1fd70e15a3605b" category="cell"><block ref="6ae41a6d5ab9be50ac1fd70e15a3605b" category="inline-link-rx"></block></block>
   <block id="a05525388d2fadefda4af92395d016ea" category="summary">NetApp storage controllers fornecem a base de storage na arquitetura FlexPod Express, tanto para boot quanto para storage de dados de aplicações. Esta seção lista as diferentes opções de storage NetApp na arquitetura FlexPod Express.</block>
   <block id="af112978bf9cee28fb168e71aab3d4ae" category="list-text">NetApp Soluções para MongoDB Solution Brief (NetApp login necessário)</block>
-  <block id="a8bddb0790f3d82f5935ad877c2c8f3d" category="inline-link"><block ref="a8bddb0790f3d82f5935ad877c2c8f3d" category="inline-link-rx"></block></block>
-  <block id="594630526d34281f26c3bf5187f5e3d8" category="paragraph"><block ref="594630526d34281f26c3bf5187f5e3d8" category="inline-link-rx"></block></block>
   <block id="9072e73f90a3122db465943dc5f6d767" category="paragraph">NetApp MetroCluster configurações são usadas por milhares de empresas em todo o mundo para alta disponibilidade (HA), zero perda de dados e operações não disruptivas, tanto dentro quanto fora do data center. MetroCluster é um recurso gratuito do ONTAP que espelha de forma síncrona dados e configurações entre dois clusters ONTAP em locais separados ou domínios de falha. MetroCluster fornece armazenamento continuamente disponível para aplicações ao gerenciar automaticamente dois objetivos: zero ponto de recuperação (RPO), espelhando de forma síncrona os dados gravados no cluster. Objetivo de tempo de recuperação (RTO) próximo de zero, espelhando a configuração e automatizando o acesso aos dados no segundo site. MetroCluster oferece simplicidade com espelhamento automático de dados e configurações entre os dois clusters independentes localizados nos dois sites. À medida que o armazenamento é provisionado em um cluster, ele é automaticamente espelhado para o segundo cluster no segundo site. NetApp SyncMirror tecnologia fornece uma cópia completa de todos os dados com RPO zero. Portanto, as cargas de trabalho de um site podem ser transferidas a qualquer momento para o site oposto e continuar fornecendo dados sem perda de dados. Mais informações podem ser encontradas <block ref="252ef593d9bf7568715463e2b3001bf8" category="inline-link-rx"></block>.</block>
   <block id="f6ffd6bf62da0ce01cbe488ec1418d21" category="paragraph">A assistência médica, como a conhecemos, gira em torno de profissionais de saúde (médicos, enfermeiros, radiologistas, técnicos de dispositivos médicos e assim por diante) e pacientes. À medida que aproximamos pacientes e profissionais, tornando a localização geográfica apenas um ponto de dado, torna-se ainda mais importante que a plataforma subjacente esteja disponível quando profissionais e pacientes precisarem dela. A plataforma deve ser eficiente e econômica a longo prazo. Em seus esforços para reduzir ainda mais os custos da assistência ao paciente, <block ref="ab98a32d34bc836c52b92cfa7414def8" category="inline-link-rx"></block> (ACOs) seriam fortalecidas por uma plataforma eficiente.</block>
   <block id="eac92879caa54910e9169210a18a9d55" category="inline-link"><block ref="eac92879caa54910e9169210a18a9d55" category="inline-link-rx"></block></block>
@@ -7572,10 +7504,7 @@
   <block id="1f0959472c490db731aef4df43c76bcf" category="paragraph">Para obter mais informações sobre os recursos abrangidos pelos vários níveis de licenciamento, acesse <block ref="84da4971ea1dce018cc4c538da0b57e0" category="inline-link-rx"></block>.</block>
   <block id="8f72166809bd14273400709b3f6cfcd9" category="inline-link">Central de Ajuda do Cisco Intersight SaaS</block>
   <block id="e8ac26e3a0e8241a8797e926a8dee395" category="paragraph"><block ref="e8ac26e3a0e8241a8797e926a8dee395" category="inline-link-rx"></block></block>
-  <block id="31a8bd5b6513f4b28a49b0f4fa593ea1" category="paragraph"><block ref="31a8bd5b6513f4b28a49b0f4fa593ea1" category="inline-link-rx"></block></block>
-  <block id="dbcf0c0af59248a26baac52cf95548ba" category="paragraph"><block ref="dbcf0c0af59248a26baac52cf95548ba" category="inline-link-rx"></block></block>
   <block id="bf0fa264ebff0a1dd06b44917432af6c" category="list-text">Programa de Validação de Módulos Criptográficos (CMVP). Banco de dados CMVP do NIST para módulos criptográficos validados, incluindo as ofertas da Cisco.</block>
-  <block id="68f4b2a68639107f1b9c2abd797f0fdd" category="paragraph"><block ref="68f4b2a68639107f1b9c2abd797f0fdd" category="inline-link-rx"></block></block>
   <block id="01746a889bf1ac1270477dda1b827f3b" category="inline-link">Índice de Inteligência de Ameaças IBM X‑Force 2026</block>
   <block id="a4c3cafba2f5af9c423c8bbff3746437" category="paragraph">De acordo com o<block ref="fc482ff1efeaa57e047ef3bbed9c0c66" category="inline-link-rx"></block>, a exploração de vulnerabilidades tornou-se a principal causa de incidentes cibernéticos, com a IA permitindo que os atacantes descubram e explorem rapidamente as falhas de segurança.</block>
   <block id="dff5636721c6dae942f96fad4036b036" category="list-text">Documentação do produto ONTAP</block>
@@ -7651,7 +7580,6 @@
   <block id="f5ccd1d71c2ed21d0f2d220921fb6e39" category="cell">UCSC-C220-M8</block>
   <block id="79c949339648467243f2664b108888d1" category="inline-link">Servidor Rack Cisco UCS C220 M8</block>
   <block id="0e0837a63f73d1416f17f871c1d92529" category="cell"><block ref="0e0837a63f73d1416f17f871c1d92529" category="inline-link-rx"></block></block>
-  <block id="08f90c3f9daaa88b26f047dc5d0cf3b2" category="cell"><block ref="08f90c3f9daaa88b26f047dc5d0cf3b2" category="inline-link-rx"></block></block>
   <block id="c49cf51806c8304f47ef0af1cc3583b1" category="cell">Cisco UCS C225 M8</block>
   <block id="5eb4b81081e3e747c520c2d5f4dc8ccf" category="cell">UCSC-C225-M8</block>
   <block id="32de8c4c7d70c5cef467c42019e17abb" category="inline-link">Servidor Rack Cisco UCS C225 M8</block>
@@ -7664,7 +7592,6 @@
   <block id="5d9fc3ec46a458610c3b12248cb0d9a9" category="cell">UCSC-C240-M8</block>
   <block id="4480a773cf291aad9f12830614e6a55c" category="inline-link">Servidor Rack Cisco UCS C240 M8</block>
   <block id="540548b7de484075cad2e648e62b24d4" category="cell"><block ref="540548b7de484075cad2e648e62b24d4" category="inline-link-rx"></block></block>
-  <block id="fbf3f8d4623d9c4266b5e270ab5a0ee9" category="cell"><block ref="fbf3f8d4623d9c4266b5e270ab5a0ee9" category="inline-link-rx"></block></block>
   <block id="1088a815c23b6f882393e6097af48661" category="cell">Cisco UCS C245 M8</block>
   <block id="2c29504598d658ae397498e3692de0bb" category="cell">UCSC-C245-M8</block>
   <block id="2e53148601f2552843e772c481eceb95" category="inline-link">Servidor Rack Cisco UCS C245 M8</block>
@@ -7701,11 +7628,9 @@
   <block id="cafcfb62a3817ba891aedc53eac918db" category="list-text">Consulte os resultados para as datas de fim de suporte do seu equipamento na seção *Disponibilidade e Suporte do Sistema*.</block>
   <block id="5d6a8d8405102cd62e69809cfd7e401f" category="section-title">Verificando o suporte para equipamentos Cisco</block>
   <block id="cefd77c23405c7970e8d1e9b33525532" category="paragraph">Cisco fornece as datas de Fim de Venda e Fim de Suporte nas páginas de suporte de produtos da Cisco.</block>
-  <block id="02c77112881a1039ae92393fb58a2fc9" category="section-title">Informações sobre o fim de vendas e o fim de suporte dos servidores Cisco UCS</block>
   <block id="62ce2d08823981ec29d9e4fd69951e80" category="inline-link-macro">Página de suporte de produtos da Cisco</block>
   <block id="e484f7903c5f369e9493f59053a6378f" category="list-text">Navegue até <block ref="9b40b46826945f53ab56b613c10f59ae" category="inline-link-macro-rx"></block>.</block>
   <block id="abf28fd815e777ca5ad08a30836ee461" category="list-text">Em *Categorias de Produtos* selecione *Servidores - UCS e HCI* e clique no tipo de servidor (exemplo: *Servidores Rack da Série C UCS*). Localize seu modelo específico (exemplo: *UCS C220 M5*) e verifique as datas de Fim de Venda e Fim de Suporte.</block>
-  <block id="fe9e03944c1ebda74e1a96a1b3f102a8" category="section-title">Informações sobre o fim de vendas e o fim de suporte dos switches Cisco Nexus</block>
   <block id="8a322afc68ef8e2da7e6250166c12898" category="list-text">Em *Categorias de Produtos*, selecione *Switches* e clique no seu tipo de switch (exemplo: *Nexus 9000*). Localize seu modelo específico (exemplo: *9236C*) e verifique as datas de Fim de Venda e Fim de Suporte.</block>
   <block id="22ad26f4e67085b1cd6a5742b809fd08" category="summary">Esta seção descreve as topologias de exemplo para FlexPod Express.</block>
   <block id="2ea9ce84b799c89ddb5d1c7f53873666" category="doc">FlexPod Topologias Express</block>
@@ -7733,7 +7658,6 @@
   <block id="fae448d6493ee7d2d49e09dd44355455" category="list-text">Os canais de porta virtuais (vPCs) são necessários para conectar os switches Cisco Nexus aos controladores de storage NetApp.</block>
   <block id="88e94731037f61b85edb37e3090ac406" category="list-text">A solução pode ser dimensionada para até 5 servidores autônomos da série UCS C, exigindo duas portas de switch em cada switch por servidor.</block>
   <block id="b939dd27134a94e2d13f7af762e19808" category="paragraph">O Cisco UCS Série C pode ser gerenciado via CIMC ou Cisco Intersight pelo gerenciamento autônomo.</block>
-  <block id="442bfd9fac3597c2fc0150258d1099ca" category="admonition">A topologia de exemplo acima refere-se a uma solução de storage conectada diretamente usando NetApp AFF. No entanto, a mesma topologia pode ser usada para NetApp ASA e FAS também.</block>
   <block id="fb66e225c208e8a2a8e269baeda360a9" category="inline-link">FlexPod express para VMware vSphere 8.0 com Cisco UCS C-Series Standalone e NetApp AFF</block>
   <block id="0137ec0525e7eeef1896cc53583326f2" category="paragraph">Para obter mais informações sobre esta configuração, consulte <block ref="e78beee96fa6f1308f0aa7c7952ea1c3" category="inline-link-rx"></block>.</block>
   <block id="9f6736a86d887c68e1a5fedbcc1b2295" category="list-text">*FlexPod Datacenter.* Esta plataforma é uma infraestrutura de data center altamente dimensionável, adequada para cargas de trabalho e aplicativos empresariais, virtualização, VDI e nuvem pública e privada. O FlexPod Datacenter tem suas próprias especificações, que estão documentadas em<block ref="0bb629a24a99e06d4ec011831def694a" category="inline-link-rx"></block>.</block>
@@ -7890,7 +7814,6 @@
   <block id="2f8c8167cbd5b188c2acb5b0a76ab823" category="cell"><block ref="2f8c8167cbd5b188c2acb5b0a76ab823" category="inline-link-rx"></block></block>
   <block id="3be0b9eb854192d2431d15457d10d8a7" category="cell">Cisco Unified Edge nós de computação</block>
   <block id="209cd1b2adaf0192afee5eb93e3dd701" category="cell">UCSXE-130C-M8</block>
-  <block id="1eb104e144deb30940d14e57122c736a" category="cell"><block ref="1eb104e144deb30940d14e57122c736a" category="inline-link-rx"></block></block>
   <block id="22bd40a63ed2c9c49187fbd0583bf9fe" category="cell">UCSXE-150C-M8</block>
   <block id="7930817dcb9af22b46e0b2ab1c7127fb" category="cell"><block ref="7930817dcb9af22b46e0b2ab1c7127fb" category="inline-link-rx"></block></block>
   <block id="161c9027d6afcc8652df79c032c01c41" category="list-text">Dois controladores de nível básico das séries NetApp AFF (A20, A30 ou C30), NetApp ASA (A20, A30 ou C30) ou NetApp FAS (2750, 2820 ou FAS 50) em uma configuração de par de alta disponibilidade (HA) implantada como um cluster de dois nós</block>
@@ -8344,4 +8267,67 @@
   <block id="10869ea6345111f91c959d006b281746" category="inline-link">NetApp ASA Especificações técnicas</block>
   <block id="80eae4b252a85f4d42cd6f7c8964dc81" category="paragraph">Os modelos de entrada dos controladores de armazenamento NetApp ASA são suportados para uso no FlexPod Express. Informações adicionais podem ser encontradas na<block ref="0121d7eee41574793aaf62f464ee106c" category="inline-link-rx"></block> datasheet e na<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block>. Consulte a documentação específica da plataforma listada na tabela a seguir para obter informações detalhadas sobre um modelo ASA específico.</block>
   <block id="93227a3c59a6f0dd8e3e3d2920c96a7c" category="cell">NetApp Documentação da plataforma do controlador ASA</block>
+  <block id="dc1eaa4ad2490a09527da2689ed82474" category="paragraph">Para obter mais informações sobre o AFF A220, consulte o <block ref="c5716267ac07278f14a57d5364f0e236" category="inline-link-rx"></block>.</block>
+  <block id="bced4e004278ae3f8fe2d0860e3a5c88" category="paragraph">Esses são apenas alguns dos principais recursos que complementam a solução FlexPod Express. Para obter detalhes sobre os recursos e funcionalidades adicionais do ONTAP 9.4, consulte o <block ref="801da968bbc9c8d2b52141795afbca8c" category="inline-link-rx"></block>. Consulte também o NetApp<block ref="acaccc868f6222e64c0f11237becafd9" category="inline-link-rx"></block>, que foi atualizado para incluir o ONTAP 9.4.</block>
+  <block id="8e68a890bb357beef5baec0f26a86f89" category="list-text">Navegue até <block ref="fd22f8e1577c596611eb5eba6e2d91df" prefix=" " category="inline-code"></block>.</block>
+  <block id="4173ba8445cafde255576d64c1ba2aff" category="cell">+&lt;&lt; switch-a-ntp-ip &gt;&gt;+</block>
+  <block id="c93de18088f202964b302c299371f447" category="cell">+&lt;&lt; switch-b-ntp-ip &gt;&gt;+</block>
+  <block id="950b29028f5077cacae319f7ad6294ec" category="cell"><block ref="950b29028f5077cacae319f7ad6294ec" category="inline-link-rx"></block></block>
+  <block id="df7608fec077c8036a60e059d13ccb5c" category="paragraph">Para obter mais informações sobre o ONTAP, consulte a <block ref="d4d46a1efab17e9b442654f23d03b317" category="inline-link-rx"></block>página do produto.</block>
+  <block id="09f54f084d01fd099b66e39c53c62efd" category="paragraph">Para obter mais informações sobre a implementação do ONTAP, consulte <block ref="ae1bde5f7e3b1fedbbc99c274d4be2c8" category="inline-link-rx"></block>.</block>
+  <block id="f6d60fde875ebafa17013bc65360b5f7" category="paragraph">As especificações técnicas para os NetApp disk shelves incluem o fator forma, o número de unidades por gabinete e os módulos de E/S do gabinete; esta documentação pode ser encontrada na tabela a seguir. Para mais informações, consulte a<block ref="46a7ca34fc5c1635563f1b54fd36ba0c" category="inline-link-rx"></block> e a<block ref="bb9c67b5a4c15a85b5e6aa6c9afd0285" category="inline-link-rx"></block>.</block>
+  <block id="4aeeffd6249244b72becdd8abb4b91b8" category="section-title">Informações sobre o fim de vendas e o fim de suporte para os Cisco UCS Servers</block>
+  <block id="077dcb6cb8c7743fcd866caad2504246" category="section-title">Informações sobre o fim de vendas e o fim de suporte para os switches Cisco Nexus</block>
+  <block id="276b19f07e935494e35cb8ce4ab0b89e" category="admonition">A topologia acima refere-se a uma solução de storage usando o NetApp AFF. No entanto, a mesma topologia pode ser usada para o NetApp ASA e o FAS também.</block>
+  <block id="93e21e86654863e4013e68ea668f72c7" category="paragraph">Para obter dados detalhados sobre o consumo de energia do Cisco UCS, consulte o <block ref="59cb3cc33cfa1c95cae2745e363d6098" category="inline-link-rx"></block>.</block>
+  <block id="007d51be12dcd94f1607e4a6480c308e" category="paragraph"><block ref="007d51be12dcd94f1607e4a6480c308e" category="inline-link-rx"></block></block>
+  <block id="99f300b06d57a75d8bba76ce1467c06c" category="inline-link">FlexPod Datacenter para IA/ML com Cisco UCS 480 ML para Deep Learning Guia de Design</block>
+  <block id="1cd3c89f6ca1eae1826c3e3efa89749c" category="list-text"><block ref="1cd3c89f6ca1eae1826c3e3efa89749c" category="inline-link-rx"></block></block>
+  <block id="e13e82b154f88675f91f476d15a52284" category="list-text"><block ref="e13e82b154f88675f91f476d15a52284" category="inline-link-rx"></block></block>
+  <block id="7fa7098c5354070430756efc33ecf28d" category="list-text"><block ref="7fa7098c5354070430756efc33ecf28d" category="inline-link-rx"></block></block>
+  <block id="b569a1600011f131318eb17e7d6942a9" category="list-text"><block ref="b569a1600011f131318eb17e7d6942a9" category="inline-link-rx"></block></block>
+  <block id="dfef9b7d7f7fd24854247a9ec0c9b097" category="list-text"><block ref="dfef9b7d7f7fd24854247a9ec0c9b097" category="inline-link-rx"></block></block>
+  <block id="7679d1d4fc7e61c376070b3fd9358aac" category="list-text"><block ref="7679d1d4fc7e61c376070b3fd9358aac" category="inline-link-rx"></block></block>
+  <block id="bd7e7097ed14c334129620f5eef1b4ec" category="list-text"><block ref="bd7e7097ed14c334129620f5eef1b4ec" category="inline-link-rx"></block></block>
+  <block id="485ed3d612e47909faaffda09652e250" category="list-text"><block ref="485ed3d612e47909faaffda09652e250" category="inline-link-rx"></block></block>
+  <block id="2c7b4a7cfd7910e959b3899cdd539867" category="list-text"><block ref="2c7b4a7cfd7910e959b3899cdd539867" category="inline-link-rx"></block></block>
+  <block id="f4a758bff5b1344757829dee4b5fa548" category="list-text"><block ref="f4a758bff5b1344757829dee4b5fa548" category="inline-link-rx"></block></block>
+  <block id="d4d4eb6b1fddb59ff7ece66b0818b888" category="list-text"><block ref="d4d4eb6b1fddb59ff7ece66b0818b888" category="inline-link-rx"></block></block>
+  <block id="56849a78b3dcf5fb7702e003f881c10e" category="paragraph">Os sistemas de imagem médica estão começando a usar <block ref="8bfb3531f397b91b41e862cc76281b5b" category="inline-link-rx"></block> para aprimorar os fluxos de trabalho humanos, pré-processando as imagens e, assim, aumentando a eficiência. Os sistemas de imagem médica corporativos típicos aproveitam as capacidades de eficiência de storage líderes do setor da NetApp. Os sistemas de imagem médica corporativos normalmente usam o RMAN para atividades de backup, recuperação e restauração. Para melhor desempenho e para reduzir o tempo necessário para criar backups, a tecnologia Snapshot está disponível para operações de backup e a tecnologia SnapMirror está disponível para replicação.</block>
+  <block id="5191c02dcbd3b5b018cd21c293937f7c" category="list-text">Use a tecnologia de replicação baseada em array de storage da NetApp chamada <block ref="f69488830e13a400e66b0b8df9270189" category="inline-link-rx"></block> em vez da replicação baseada em vSphere.</block>
+  <block id="b741f88b82981b95645cb8241daf3635" category="list-text">As modalidades mais recentes têm necessidades de armazenamento exponenciais; por exemplo, a TC e a RM requerem algumas centenas de MB para cada modalidade, mas as imagens de patologia digital (incluindo imagens de lâminas inteiras) podem ter alguns GB de tamanho. FlexPod é projetado com <block ref="623a72fdcf3436720db4138545cd049b" category="inline-link-rx"></block>.</block>
+  <block id="a92e88134d3accfc1d9920721715f966" category="inline-link"><block ref="a92e88134d3accfc1d9920721715f966" category="inline-link-rx"></block></block>
+  <block id="ef854b81531246a9b4dcf221a58cc76e" category="paragraph"><block ref="ef854b81531246a9b4dcf221a58cc76e" category="inline-link-rx"></block></block>
+  <block id="beca071ad49a9c68928cfdd7e5db33c2" category="inline-link"><block ref="beca071ad49a9c68928cfdd7e5db33c2" category="inline-link-rx"></block></block>
+  <block id="939097de2d6ac448a6a39221d1b90a3f" category="paragraph"><block ref="939097de2d6ac448a6a39221d1b90a3f" category="inline-link-rx"></block></block>
+  <block id="5af50fd9e954cbe3c661fc170e4a2376" category="paragraph"><block ref="5af50fd9e954cbe3c661fc170e4a2376" category="inline-link-rx"></block></block>
+  <block id="6a0c4d835993be89b9eb42caa8fa1866" category="list-text"><block ref="6a0c4d835993be89b9eb42caa8fa1866" category="inline-link-rx"></block></block>
+  <block id="82127460a336cd4f47749a85629e1b2d" category="list-text"><block ref="82127460a336cd4f47749a85629e1b2d" category="inline-link-rx"></block></block>
+  <block id="6b5b66c68ffbe6a4b2bfc334a76635fb" category="list-text"><block ref="6b5b66c68ffbe6a4b2bfc334a76635fb" category="inline-link-rx"></block></block>
+  <block id="bacb1fb3e20ba87a9fe4721bb19b7fa5" category="list-text"><block ref="bacb1fb3e20ba87a9fe4721bb19b7fa5" category="inline-link-rx"></block></block>
+  <block id="d1694789df16ce0fc3c0b63ea9a5a40a" category="list-text"><block ref="d1694789df16ce0fc3c0b63ea9a5a40a" category="inline-link-rx"></block></block>
+  <block id="98ff6e48b3e17f75ef713045f4b7ee8b" category="list-text"><block ref="98ff6e48b3e17f75ef713045f4b7ee8b" category="inline-link-rx"></block></block>
+  <block id="9a8fd2ed54e980d6e35851da9f320055" category="list-text"><block ref="9a8fd2ed54e980d6e35851da9f320055" category="inline-link-rx"></block></block>
+  <block id="cb903df177caf7551ebf1b05d753c119" category="list-text"><block ref="cb903df177caf7551ebf1b05d753c119" category="inline-link-rx"></block></block>
+  <block id="04b0bb6aae6dc41149097cc24034df97" category="list-text"><block ref="04b0bb6aae6dc41149097cc24034df97" category="inline-link-rx"></block></block>
+  <block id="53b39687b5dc1a16da0eb68a00f1ad70" category="list-text"><block ref="53b39687b5dc1a16da0eb68a00f1ad70" category="inline-link-rx"></block></block>
+  <block id="03eafaadf1f43f467e0c29703ab1932f" category="list-text"><block ref="03eafaadf1f43f467e0c29703ab1932f" category="inline-link-rx"></block></block>
+  <block id="ec5ce571da818f4da52a1da1e2dbd33b" category="list-text"><block ref="ec5ce571da818f4da52a1da1e2dbd33b" category="inline-link-rx"></block></block>
+  <block id="c66725685883abd77914fbc7480ce223" category="list-text"><block ref="c66725685883abd77914fbc7480ce223" category="inline-link-rx"></block></block>
+  <block id="6e0e67876b025b8aabc5fb9194f724b4" category="list-text"><block ref="6e0e67876b025b8aabc5fb9194f724b4" category="inline-link-rx"></block></block>
+  <block id="56d596ac1534ec88a5d46b8da9ec5a19" category="list-text"><block ref="56d596ac1534ec88a5d46b8da9ec5a19" category="inline-link-rx"></block></block>
+  <block id="2a5cf8dbaae42a04d9e87f9084f8f7dc" category="list-text"><block ref="2a5cf8dbaae42a04d9e87f9084f8f7dc" category="inline-link-rx"></block></block>
+  <block id="3fb849296843f6d74893a1dbb36f741b" category="list-text"><block ref="3fb849296843f6d74893a1dbb36f741b" category="inline-link-rx"></block></block>
+  <block id="ab96fc59f1fc979f0ebb5dbfa3d4b239" category="list-text"><block ref="ab96fc59f1fc979f0ebb5dbfa3d4b239" category="inline-link-rx"></block></block>
+  <block id="9ad8f34f903f7e1518877fe416f909c6" category="list-text"><block ref="9ad8f34f903f7e1518877fe416f909c6" category="inline-link-rx"></block></block>
+  <block id="00736c700a560672bdc81000c4976e5b" category="list-text"><block ref="00736c700a560672bdc81000c4976e5b" category="inline-link-rx"></block></block>
+  <block id="b4da22bddb7cc3cdda646c87433699e4" category="list-text"><block ref="b4da22bddb7cc3cdda646c87433699e4" category="inline-link-rx"></block></block>
+  <block id="8852f4a44cd4f89f946e06fbee2c73b1" category="inline-link">Inteligência Artificial na Saúde</block>
+  <block id="a243feb470a463b7cec25011d0a353d9" category="list-text"><block ref="a243feb470a463b7cec25011d0a353d9" category="inline-link-rx"></block></block>
+  <block id="efc681962b02c4db581afc1a5bfe3e1e" category="list-text"><block ref="efc681962b02c4db581afc1a5bfe3e1e" category="inline-link-rx"></block></block>
+  <block id="39f94785a443c50a5707aefd3063e8bc" category="list-text"><block ref="39f94785a443c50a5707aefd3063e8bc" category="inline-link-rx"></block></block>
+  <block id="a52214b0509bb0015f7c49be0b033fe5" category="list-text"><block ref="a52214b0509bb0015f7c49be0b033fe5" category="inline-link-rx"></block></block>
+  <block id="bce9908f4541b67e5acaa7389d3ac785" category="list-text"><block ref="bce9908f4541b67e5acaa7389d3ac785" category="inline-link-rx"></block></block>
+  <block id="a2d81194092c58e2bbe51654477726a7" category="list-text"><block ref="a2d81194092c58e2bbe51654477726a7" category="inline-link-rx"></block></block>
+  <block id="db8805d5104d5291fd66b0e18a458f18" category="list-text"><block ref="db8805d5104d5291fd66b0e18a458f18" category="inline-link-rx"></block></block>
 </blocks>

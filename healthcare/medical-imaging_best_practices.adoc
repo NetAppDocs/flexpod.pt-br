@@ -220,6 +220,6 @@ Consulte as práticas recomendadas a seguir e alguns requisitos de um sistema de
 * Certifique-se de que as VMDKs VM os estejam hospedadas em storage rápido de camada 1.
 * Trabalhe com o fornecedor do sistema de imagem médica para identificar a melhor abordagem para preparar modelos de VM para implantação e manutenção rápidas.
 * As redes de gerenciamento, armazenamento e produção exigem segregação de LAN para o banco de dados, com VLANs isoladas para VMware vMotion.
-* Use a tecnologia de replicação baseada em storage array do NetApp chamada https://www.netapp.com/pdf.html?item=/media/17229-tr4015pdf.pdf["SnapMirror"^] em vez de replicação baseada no vSphere.
+* Use a tecnologia de replicação baseada em array de storage da NetApp chamada  https://www.netapp.com/pdf.html?item=/media/17229-tr4015.pdf["SnapMirror"^] em vez da replicação baseada em vSphere.
 * Use tecnologias de backup que utilizam APIs VMware; as janelas de backup devem estar fora do horário normal de produção.
 

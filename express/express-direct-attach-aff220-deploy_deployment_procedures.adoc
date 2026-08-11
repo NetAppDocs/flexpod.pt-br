@@ -527,10 +527,10 @@ NOTE: Este sistema é configurado em uma configuração de cluster sem switch de
 | IP do servidor DNS (pode introduzir mais de um) | "cliente <var_dns_server_ip>> 
 
 
-| SERVIDOR NTP UM IP | o switch-a-ntp-ip >> 
+| SERVIDOR NTP UM IP | +<< switch-a-ntp-ip >>+ 
 
 
-| IP DO SERVIDOR NTP B. | o switch-b-ntp-ip >> 
+| IP DO SERVIDOR NTP B. | +<< switch-b-ntp-ip >>+ 
 |===
 
 

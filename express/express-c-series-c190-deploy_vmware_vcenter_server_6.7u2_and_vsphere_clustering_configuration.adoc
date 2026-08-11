@@ -16,7 +16,7 @@ summary: Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execu
 [role="lead"]
 Para configurar o cluster do VMware vCenter Server 6,7 e vSphere, execute as seguintes etapas:
 
-. Navegue até  `https://<<FQDN or IP of vCenter>>/vsphere-client/`.
+. Navegue até  `+https://<<FQDN or IP of vCenter>>/vsphere-client/+`.
 . Clique em Launch vSphere Client.
 . Faça login com o nome de usuário mailto:administrator e a senha SSO que você inseriu durante o processo de configuração do VCSA.
 . Clique com o botão direito no nome do vCenter e selecione novo data center.
