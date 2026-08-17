@@ -15,9 +15,9 @@ Para saber mais sobre as informações descritas neste documento, consulte os se
 +
 https://docs.netapp.com/platstor/index.jsp["https://docs.netapp.com/platstor/index.jsp"^]
 
-* Página de recursos da documentação do AFF
+* Documentação dos sistemas AFF C-Series
 +
-https://www.netapp.com/us/documentation/all-flash-fas.aspx["https://www.netapp.com/us/documentation/all-flash-fas.aspx"^]
+https://docs.netapp.com/us-en/ontap-systems/aff-cseries/["https://docs.netapp.com/us-en/ontap-systems/aff-cseries/"^]
 
 * FlexPod Express com o VMware vSphere 6,7 e o Guia de implantação do NetApp AFF C190 (em andamento)
 * Documentação do NetApp

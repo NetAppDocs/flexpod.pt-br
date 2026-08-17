@@ -129,9 +129,9 @@ https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["http
 +
 https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices"^]
 
-* NetApp ONTAP com NetApp SnapMirror Business Continuity (SM-BC) com VMware vSphere Metro Storage Cluster (vMSC). (83370)
+* NetApp ONTAP com SnapMirror active sync (anteriormente SM-BC) com VMware vSphere Metro Storage Cluster (vMSC)
 +
-https://kb.vmware.com/s/article/83370["https://kb.vmware.com/s/article/83370"^]
+https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vmsc-with-smas.html["https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vmsc-with-smas.html"^]
 
 * Proteja aplicativos e bancos de dados de camada 1 com o VMware vSphere Metro Storage Cluster e o ONTAP
 +

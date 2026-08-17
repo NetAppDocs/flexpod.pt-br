@@ -69,13 +69,13 @@ O tipo de compartimento NetApp selecionado determina quais tipos de unidade est�
 
 NOTE: Para todos os compartimentos de disco e números de peça de disco, consulte o seu representante de vendas.
 
-Para obter mais informações sobre as unidades suportadas, clique no link NetApp Hardware Universe na tabela a seguir e selecione unidades suportadas.
+Para obter mais informações sobre os gabinetes de discos e mídias de armazenamento, consulte o link "Especificações técnicas dos gabinetes de discos e mídias de armazenamento" na tabela a seguir.
 
 |===
 | Compartimento de disco | Especificações técnicas 
 
 
-| DS224C .4+| http://www.netapp.com/us/products/storage-systems/disk-shelves-and-storage-media/disk-shelves-tech-specs.aspx["Compartimentos de disco e Mídia de armazenamento unidades com suporte no NetApp Hardware Universe"] 
+| DS224C .4+| https://www.netapp.com/data-storage/disk-shelves-storage-media/["Especificações técnicas de prateleiras para discos e mídias de armazenamento"] 
 
 
 | DS212C 

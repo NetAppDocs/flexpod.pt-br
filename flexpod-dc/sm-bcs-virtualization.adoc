@@ -94,6 +94,6 @@ Para o datastore heartbeat, especifique os quatro datastores compartilhados do c
 
 image:sm-bcs-image46.png[""]
 
-Para obter práticas recomendadas e configurações adicionais para o cluster de armazenamento VMware HA Cluster e VMware vSphere Metro, consulte https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html["Criação e uso de clusters de HA do vSphere"^] https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro Storage Cluster (vMSC)"^] e o KB da VMware para https://kb.vmware.com/s/article/83370["NetApp ONTAP com NetApp SnapMirror Business Continuity (SM-BC) e VMware vSphere Metro Storage Cluster (vMSC)"^].
+Para obter práticas recomendadas e configurações adicionais para o VMware HA Cluster e o VMware vSphere Metro storage cluster, consulte  https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.avail.doc/GUID-5432CA24-14F1-44E3-87FB-61D937831CF6.html["Criação e uso de clusters de HA do vSphere"^],  https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-vmsc["VMware vSphere Metro Storage Cluster (vMSC)"^] e  https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vmsc-with-smas.html["NetApp ONTAP com SnapMirror active sync (anteriormente SM-BC) e VMware vSphere Metro Storage Cluster (vMSC)"^].
 
 link:sm-bcs-validated-scenarios.html["Próximo: Validação da solução - cenários validados."]
