@@ -72,7 +72,7 @@ NOTE: Para todos os compartimentos de disco e números de peça de disco, consul
 
 A tabela a seguir lista as opções de gaveta de discos NetApp para FlexPod Express, juntamente com links para suas especificações técnicas.
 
-Para obter a lista de unidades compatíveis com seu disk shelf, acesse link:https://hwu.netapp.com/DetailViews/Home.aspx["NetApp Hardware Universe"^], em *Products > Storage > Shelves* selecione *ONTAP (AFF, ASA, FAS)*, selecione a versão do ONTAP que você está usando, depois selecione o tipo de shelf (exemplo: *DS212C*) e clique em *Show Results*. Clique em *Supported Drives* para ver as unidades compatíveis com versões específicas do ONTAP e os disk shelves.
+Para obter a lista de unidades compatíveis com seu disk shelf, acesse link:https://hwu.netapp.com["NetApp Hardware Universe"^], em *Products > Storage > Shelves* selecione *ONTAP (AFF, ASA, FAS)*, selecione a versão do ONTAP que você está usando, depois selecione o tipo de shelf (exemplo: *DS212C*) e clique em *Show Results*. Clique em *Supported Drives* para ver as unidades compatíveis com versões específicas do ONTAP e os disk shelves.
 
 |===
 | Compartimento de disco | Especificações técnicas 

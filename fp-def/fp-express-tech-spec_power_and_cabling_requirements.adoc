@@ -27,7 +27,7 @@ Para obter mais dados sobre a potência máxima necessária e outras informaçõ
 
 Para obter dados detalhados sobre o consumo de energia do Cisco UCS, consulte o  https://ucspowercalculator.cisco.com/["Calculadora de energia Cisco UCS"^].
 
-Para obter dados de energia do controlador de armazenamento NetApp, consulte a  http://hwu.netapp.com/Controller/Index?platformTypeId=6780858["NetApp Hardware Universe"^]. Em *Plataformas*, selecione a plataforma de storage que você deseja usar (por exemplo, AFF A20), selecione a versão do ONTAP e clique em *Mostrar Resultados*. Os dados do cabo de alimentação estão listados na seção *Cabos de Alimentação Compatíveis* e, para detalhes sobre tamanho, peso, potência etc., consulte a seção *Tamanho, Peso, Acústica, Alimentação*.
+Para obter dados de energia do controlador de armazenamento NetApp, consulte a  https://hwu.netapp.com["NetApp Hardware Universe"^]. Em *Plataformas*, selecione a plataforma de storage que você deseja usar (por exemplo, AFF A20), selecione a versão do ONTAP e clique em *Mostrar Resultados*. Os dados do cabo de alimentação estão listados na seção *Cabos de Alimentação Compatíveis* e, para detalhes sobre tamanho, peso, potência etc., consulte a seção *Tamanho, Peso, Acústica, Alimentação*.
 
 
 
