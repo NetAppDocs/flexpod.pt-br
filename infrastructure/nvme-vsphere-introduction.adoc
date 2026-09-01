@@ -10,7 +10,7 @@ summary: Essa solução fornece um resumo de alto nível da performance de FC-NV
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Chris Schmitt e Kamini Singh, NetApp

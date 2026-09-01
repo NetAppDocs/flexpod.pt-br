@@ -10,7 +10,7 @@ summary: Ao executar um ambiente de imagem médica no FlexPod, sua organização
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

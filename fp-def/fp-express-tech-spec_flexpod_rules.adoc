@@ -10,7 +10,7 @@ summary: O design do FlexPod permite uma infraestrutura flexível que abrange mu
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: O público-alvo e os casos aos quais esta solução se aplica estão li
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

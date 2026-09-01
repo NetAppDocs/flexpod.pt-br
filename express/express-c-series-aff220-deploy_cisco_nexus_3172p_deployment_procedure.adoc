@@ -10,7 +10,7 @@ summary: A seção a seguir detalha a configuração do switch Cisco Nexus 3172P
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

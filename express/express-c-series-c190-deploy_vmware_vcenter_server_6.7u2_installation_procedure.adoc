@@ -10,7 +10,7 @@ summary: Esta seção fornece procedimentos detalhados para instalar o VMware vC
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

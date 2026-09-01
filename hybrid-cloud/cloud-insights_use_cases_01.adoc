@@ -10,7 +10,7 @@ summary: Com o Cloud Insights configurado e configurado para monitorar sua solu√
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

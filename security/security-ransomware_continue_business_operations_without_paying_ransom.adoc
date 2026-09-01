@@ -10,7 +10,7 @@ summary: As funcionalidades do NetApp descritas neste documento ajudam a restaur
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Na solução FlexPod SM-BC para vários locais, um único VMware vCente
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:sm-bcs-storage.html["Anterior: Validação da solução - armazenamento."]

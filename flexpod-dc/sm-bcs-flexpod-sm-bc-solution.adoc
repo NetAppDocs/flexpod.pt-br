@@ -10,7 +10,7 @@ summary: Em um alto nível, uma solução FlexPod SM-BC consiste em dois sistema
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:sm-bcs-introduction.html["Anterior: Introdução."]

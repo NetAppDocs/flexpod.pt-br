@@ -10,7 +10,7 @@ summary: As tabelas a seguir listam os componentes de hardware e software, respe
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

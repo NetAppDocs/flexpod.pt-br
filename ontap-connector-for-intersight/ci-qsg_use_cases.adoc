@@ -10,7 +10,7 @@ summary: Estes são alguns exemplos de casos de uso para monitoramento e orquest
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

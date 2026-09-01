@@ -10,7 +10,7 @@ summary: Esta seção fornece um resumo de alto nível do FC-NVMe no teste de va
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:nvme-vsphere-introduction.html["Anterior: Introdução."]

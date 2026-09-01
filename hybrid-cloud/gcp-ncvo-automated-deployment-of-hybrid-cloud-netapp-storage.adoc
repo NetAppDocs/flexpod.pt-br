@@ -10,7 +10,7 @@ summary: Esta seção descreve a implantação automatizada do storage NetApp de
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-configure-public-cloud-service-provider.html["Anterior: Configurar provedor de serviços de nuvem pública."]

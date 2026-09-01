@@ -10,7 +10,7 @@ summary: Esta seção descreve o procedimento de implantação de storage do Net
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

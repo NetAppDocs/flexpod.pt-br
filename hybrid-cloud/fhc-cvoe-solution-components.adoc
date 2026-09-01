@@ -10,7 +10,7 @@ summary: Esta secção fornece uma visão geral dos vários componentes necessá
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:fhc-cvoe-solution-overview.html["Anterior: Visão geral da solução."]

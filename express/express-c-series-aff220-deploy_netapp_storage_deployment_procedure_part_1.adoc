@@ -10,7 +10,7 @@ summary: Você pode seguir as etapas abaixo para concluir o procedimento de impl
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

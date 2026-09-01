@@ -10,7 +10,7 @@ summary: Esta seção descreve especificações técnicas importantes adicionais
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

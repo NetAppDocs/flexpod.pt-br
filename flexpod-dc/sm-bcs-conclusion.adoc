@@ -10,7 +10,7 @@ summary: O data center FlexPod com SM-BC usa um design de data center ativo-ativ
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:sm-bcs-validated-scenarios.html["Anterior: Validação da solução - cenários validados."]

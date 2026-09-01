@@ -10,7 +10,7 @@ summary: Esta página fornece uma introdução à solução de datacenter FlexPo
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Jyh-shing Chen, NetApp

@@ -10,7 +10,7 @@ summary: 'Este documento é uma visão geral técnica de um sistema de computaç
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 NetApp, John Mcebel, Cisco

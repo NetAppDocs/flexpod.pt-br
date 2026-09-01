@@ -10,7 +10,7 @@ summary: Uma variedade de produtos Cisco Nexus podem ser usados como o component
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

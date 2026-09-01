@@ -10,7 +10,7 @@ summary: Você pode configurar o cluster do VMware vCenter Server 6,7 e vSphere 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

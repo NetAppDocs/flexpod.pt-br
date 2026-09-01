@@ -10,7 +10,7 @@ summary: Nesta seção, analisamos a arquitetura de uma infraestrutura convergen
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

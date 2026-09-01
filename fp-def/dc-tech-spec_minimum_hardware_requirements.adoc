@@ -10,7 +10,7 @@ summary: Uma configuração de data center do FlexPod tem requisitos mínimos de
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 'O FlexPod Express é uma arquitetura pré-projetada e de práticas rec
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Rio de Janeiro, NetApp

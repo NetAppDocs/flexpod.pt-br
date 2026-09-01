@@ -10,7 +10,7 @@ summary: O NetApp oferece uma variedade de hardware, software e serviços, que p
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-fips-flexpod-cisco-networking-and-fips-140-2.html["Anterior: Rede FlexPod Cisco e FIPS 140-2."]

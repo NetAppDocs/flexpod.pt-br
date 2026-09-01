@@ -10,7 +10,7 @@ summary: Esta seção descreve a execução da saída ./gatk.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-genomics-appendix-a.html["Anterior: Saída para execução do GATK usando o arquivo jar."]

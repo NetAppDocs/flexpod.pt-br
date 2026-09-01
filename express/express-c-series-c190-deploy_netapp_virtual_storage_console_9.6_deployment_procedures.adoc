@@ -10,7 +10,7 @@ summary: 'Esta seção descreve os procedimentos de implantação do console de 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

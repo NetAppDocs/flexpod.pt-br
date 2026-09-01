@@ -10,7 +10,7 @@ summary: Nessa solução, o serviço de dados de nuvem NetApp, o Cloud Volumes O
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-solution-validation.html["Anterior: Validação da solução."]

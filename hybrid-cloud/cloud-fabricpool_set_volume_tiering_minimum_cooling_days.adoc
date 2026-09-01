@@ -10,7 +10,7 @@ summary: A configuração disposição em camadas de dias mínimos de resfriamen
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Uma arquitetura FlexPod tem os seguintes requisitos adicionais de inter
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

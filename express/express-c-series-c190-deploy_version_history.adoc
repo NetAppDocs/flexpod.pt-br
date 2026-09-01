@@ -10,7 +10,7 @@ summary: Abaixo está o histórico de versões deste documento.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 |===

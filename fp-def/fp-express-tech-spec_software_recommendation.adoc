@@ -10,7 +10,7 @@ summary: Esta seção descreve os requisitos de software recomendados para as di
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: A configuração de computação da solução FlexPod SM-BC segue as pr
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:sm-bcs-solution-validation_overview.html["Preívous: Validação da solução - Visão geral."]

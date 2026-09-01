@@ -10,7 +10,7 @@ summary: Depois de adquirir um ficheiro de licença do NetApp, pode instalá-lo 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

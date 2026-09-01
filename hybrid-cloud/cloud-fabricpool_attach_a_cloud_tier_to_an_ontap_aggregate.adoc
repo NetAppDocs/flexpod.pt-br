@@ -10,7 +10,7 @@ summary: Depois que um armazenamento de objetos tiver sido adicionado e identifi
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

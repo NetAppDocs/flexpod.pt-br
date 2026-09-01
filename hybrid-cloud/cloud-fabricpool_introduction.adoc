@@ -10,7 +10,7 @@ summary: Este relatório técnico analisa o recurso de disposição em camadas d
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Scott Kovacs, NetApp

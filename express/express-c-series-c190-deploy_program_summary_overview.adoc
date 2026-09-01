@@ -10,7 +10,7 @@ summary: O data center FlexPod e o FlexPod Express oferecem uma configuração d
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Saraiva, NetApp

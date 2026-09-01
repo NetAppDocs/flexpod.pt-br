@@ -10,7 +10,7 @@ summary: Para criar grupos, execute os seguintes comandos a partir da conexão S
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

@@ -10,7 +10,7 @@ summary: Antes de começar, instale ou atualize o AIQ UM, crie uma conta do Cisc
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

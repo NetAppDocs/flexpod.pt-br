@@ -10,7 +10,7 @@ summary: Esta secção descreve o número de estudos e os requisitos de infra-es
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

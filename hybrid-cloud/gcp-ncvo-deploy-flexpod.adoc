@@ -10,7 +10,7 @@ summary: Esta página lista os recursos necessários para implantar uma instânc
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-solution-components.html["Anterior: Componentes da solução."]

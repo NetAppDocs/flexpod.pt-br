@@ -10,7 +10,7 @@ summary: O FIPS 140-2 especifica os requisitos de segurança para um módulo cri
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-fips-cybersecurity-threats-in-healthcare.html["Anterior: Ameaças de segurança cibernética na saúde."]

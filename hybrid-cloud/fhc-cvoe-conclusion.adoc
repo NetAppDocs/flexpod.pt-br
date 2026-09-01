@@ -10,7 +10,7 @@ summary: Criar uma nuvem híbrida é o objetivo que a maioria das organizações
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:fhc-cvoe-solution-validation.html["Anterior: Validação da solução."]

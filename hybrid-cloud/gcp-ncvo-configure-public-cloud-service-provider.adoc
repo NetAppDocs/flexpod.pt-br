@@ -10,7 +10,7 @@ summary: Esta página descreve como acessar o NetApp Cloud Manager e como implan
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-terraform-cloud-integration-with-ico-prerequisite.html["Anterior: Integração da nuvem Terraform com o pré-requisito da ICO."]

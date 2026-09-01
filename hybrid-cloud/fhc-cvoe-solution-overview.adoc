@@ -10,7 +10,7 @@ summary: A NetApp oferece uma solução única de gerenciamento de dados para ap
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Kamini Singh, NetApp

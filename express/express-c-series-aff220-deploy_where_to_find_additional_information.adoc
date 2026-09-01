@@ -10,7 +10,7 @@ summary: Você pode consultar o site da NetApp e o FlexPod Express com o VMware 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Um design FlexPod tem requisitos mínimos de energia e cabeamento.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

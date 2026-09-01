@@ -10,7 +10,7 @@ summary: Esta seção fornece procedimentos detalhados para a instalação do VM
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

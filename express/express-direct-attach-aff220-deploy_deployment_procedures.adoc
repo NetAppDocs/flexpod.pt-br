@@ -10,7 +10,7 @@ summary: Este documento fornece detalhes para configurar um sistema FlexPod Expr
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

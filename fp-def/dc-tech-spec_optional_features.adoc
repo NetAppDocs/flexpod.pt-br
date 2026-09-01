@@ -10,7 +10,7 @@ summary: O NetApp oferece suporte a vários componentes opcionais para aprimorar
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

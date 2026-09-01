@@ -10,7 +10,7 @@ summary: Esta seção discute os principais recursos do software de gerenciament
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

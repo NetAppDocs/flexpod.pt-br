@@ -10,7 +10,7 @@ summary: A implantação automatizada do FlexPod Express está disponível por m
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

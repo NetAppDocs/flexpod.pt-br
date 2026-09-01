@@ -10,7 +10,7 @@ summary: Com o FlexPod, a Cisco e a NetApp criaram uma plataforma flexível e es
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./..media/
+:imagesdir: ../media/
 
 
 link:nvme-vsphere-test-results.html["Anterior: Resultados do teste."]

@@ -10,7 +10,7 @@ summary: O Cisco contribuiu substancialmente para o design e a arquitetura do Fl
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

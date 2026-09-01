@@ -10,7 +10,7 @@ summary: Muitas organizações de saúde em todo o mundo padronizaram o FlexPod 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-genomics-appendix-d-gpu-setup.html["Anterior: Configuração da GPU."]

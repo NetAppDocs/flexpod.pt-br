@@ -10,7 +10,7 @@ summary: Com o FlexPod, você tem uma única plataforma compatível com FC, FCoE
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 São Paulo, Brasil and Atul Bhalodia, NetApp

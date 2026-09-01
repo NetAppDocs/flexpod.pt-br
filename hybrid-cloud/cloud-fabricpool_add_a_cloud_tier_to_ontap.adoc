@@ -10,7 +10,7 @@ summary: Antes que um armazenamento de objetos possa ser anexado a um agregado, 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

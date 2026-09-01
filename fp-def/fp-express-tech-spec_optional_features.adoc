@@ -10,7 +10,7 @@ summary: Esta seção descreve os recursos opcionais do FlexPod Express.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

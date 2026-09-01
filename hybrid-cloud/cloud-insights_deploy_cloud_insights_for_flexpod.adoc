@@ -10,7 +10,7 @@ summary: As tarefas a seguir devem ser concluídas para implantar o Cloud Insigh
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

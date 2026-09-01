@@ -10,7 +10,7 @@ summary: Esta seção mostra a saída depois de executar o GATK usando o motor C
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

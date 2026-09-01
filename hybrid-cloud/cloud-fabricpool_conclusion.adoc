@@ -10,7 +10,7 @@ summary: A jornada para a nuvem varia entre organizações, entre unidades de ne
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

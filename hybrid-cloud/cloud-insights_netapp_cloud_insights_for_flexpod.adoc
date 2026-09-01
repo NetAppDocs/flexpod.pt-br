@@ -10,7 +10,7 @@ summary: A solução detalhada neste relatório técnico é a configuração do 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 Alan Cowles, NetApp

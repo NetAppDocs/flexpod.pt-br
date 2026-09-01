@@ -10,7 +10,7 @@ summary: 'A infraestrutura do FlexPod é uma plataforma modular, convergente, op
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-fips-solution-benefits-of-flexpod-converged-infrastructure.html["Anterior: Benefícios da solução da infraestrutura convergente do FlexPod."]

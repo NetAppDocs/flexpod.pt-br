@@ -10,7 +10,7 @@ summary: Para criar grupos, você precisa do iniciador iSCSI IQNs e deve conclui
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

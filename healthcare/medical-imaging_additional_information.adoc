@@ -10,7 +10,7 @@ summary: Para saber mais sobre as informações descritas neste documento, consu
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

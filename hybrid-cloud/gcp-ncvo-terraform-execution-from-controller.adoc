@@ -10,7 +10,7 @@ summary: Podemos executar o plano Terraform usando um controlador. Você pode ig
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-dr-workflow.html["Anterior: Fluxo de trabalho de DR."]

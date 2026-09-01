@@ -10,7 +10,7 @@ summary: O cabeamento de validação de referência está documentado nas tabela
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

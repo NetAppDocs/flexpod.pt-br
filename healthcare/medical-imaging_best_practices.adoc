@@ -10,7 +10,7 @@ summary: Esta seção aborda as práticas recomendadas para o design do cluster 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

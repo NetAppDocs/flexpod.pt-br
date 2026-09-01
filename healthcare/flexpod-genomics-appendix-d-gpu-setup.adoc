@@ -10,7 +10,7 @@ summary: No momento da publicação, a ferramenta GATK não tem suporte nativo p
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-genomics-appendix-c.html["Anterior: Saída para execução do GATK usando o motor Cromwell."]

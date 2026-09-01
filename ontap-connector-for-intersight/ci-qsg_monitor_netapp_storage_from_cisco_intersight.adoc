@@ -10,7 +10,7 @@ summary: Depois que os destinos são reivindicados, os widgets de armazenamento 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

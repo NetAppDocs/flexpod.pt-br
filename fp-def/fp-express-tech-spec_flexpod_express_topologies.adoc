@@ -10,7 +10,7 @@ summary: Esta seção descreve as topologias de exemplo para FlexPod Express.
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

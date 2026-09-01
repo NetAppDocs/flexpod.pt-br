@@ -10,7 +10,7 @@ summary: O AIQ UM com configurações de servidor proxy requer configuração po
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

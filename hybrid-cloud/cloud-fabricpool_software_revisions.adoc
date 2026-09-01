@@ -10,7 +10,7 @@ summary: A tabela a seguir ilustra versões validadas de hardware e software, e 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

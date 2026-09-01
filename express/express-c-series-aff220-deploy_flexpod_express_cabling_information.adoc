@@ -10,7 +10,7 @@ summary: Esta seção detalha uma referência para informações de cabeamento e
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

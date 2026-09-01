@@ -10,7 +10,7 @@ summary: Esta validação de referência é cabeada como mostrado nas figuras e 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

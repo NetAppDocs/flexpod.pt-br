@@ -10,7 +10,7 @@ summary: Esta seção descreve a configuração do lado do host necessária pela
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:fhc-cvoe-installation-and-configuration.html["Anterior: Instalação e configuração."]

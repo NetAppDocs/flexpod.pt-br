@@ -10,7 +10,7 @@ summary: O software NetApp ONTAP é instalado em todos os sistemas NetApp FAS ou
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

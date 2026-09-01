@@ -10,7 +10,7 @@ summary: O FlexPod Express requer uma combinação de componentes de hardware e 
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

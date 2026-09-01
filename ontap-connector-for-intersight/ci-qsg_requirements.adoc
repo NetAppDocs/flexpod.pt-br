@@ -10,7 +10,7 @@ summary: Verifique se você atende aos requisitos de hardware, software e licenc
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

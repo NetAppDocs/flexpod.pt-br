@@ -10,7 +10,7 @@ summary: As arquiteturas de referência do FlexPod são entregues como designs v
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 

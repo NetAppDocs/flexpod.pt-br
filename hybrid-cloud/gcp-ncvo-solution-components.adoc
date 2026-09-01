@@ -10,7 +10,7 @@ summary: Esta seção descreve todos os componentes da solução necessários pa
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-solution-overview.html["Anterior: Visão geral da solução."]

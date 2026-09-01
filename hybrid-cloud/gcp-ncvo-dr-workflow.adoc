@@ -10,7 +10,7 @@ summary: Esta página lista 11 procedimentos necessários para implementar um fl
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:gcp-ncvo-automated-deployment-of-hybrid-cloud-netapp-storage.html["Anterior: Implantação automatizada de storage NetApp de nuvem híbrida."]

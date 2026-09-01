@@ -10,7 +10,7 @@ summary: Esta seção descreve a configuração do FlexPod e GATK e a execução
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 link:flexpod-genomics-solution-infrastructure-hardware-and-software-components.html["Anterior: Componentes de hardware e software de infraestrutura de solução."]

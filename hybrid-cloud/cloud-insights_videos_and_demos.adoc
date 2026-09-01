@@ -10,7 +10,7 @@ summary: Você pode ver uma demonstração em vídeo do uso do NetApp Cloud Insi
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

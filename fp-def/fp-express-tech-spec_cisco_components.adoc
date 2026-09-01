@@ -10,7 +10,7 @@ summary: O Cisco contribui substancialmente para o design e a arquitetura do Fle
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
