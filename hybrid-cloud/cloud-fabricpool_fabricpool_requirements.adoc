@@ -90,7 +90,7 @@ A latência de leitura do FabricPool é uma função da conectividade à camada 
 
 NOTE: Ao usar o FabricPool em ambientes de baixa performance, os requisitos mínimos de desempenho para aplicações clientes devem continuar a ser atendidos. Os objetivos de tempo de recuperação devem ser ajustados adequadamente.
 
-image:cloud-fabricpool_image6.png[""]
+image:cloud-fabricpool_image6.png["Um diagrama que mostra dois controladores NetApp AFF A300 conectando LIFs intercluster ao Amazon S3"]
 
 
 
@@ -114,7 +114,7 @@ storage aggregate object-store profiler show
 ....
 As camadas de nuvem não fornecem performance semelhante à encontrada na categoria de performance (geralmente GB por segundo). Embora os agregados FabricPool possam fornecer facilmente performance semelhante a SATA, eles também podem tolerar latências de até 10 segundos e taxa de transferência baixa para soluções em camadas que não exigem performance semelhante a SATA.
 
-image:cloud-fabricpool_image7.png[""]
+image:cloud-fabricpool_image7.png["Uma captura de tela dos resultados do profiler de armazenamento de objetos da CLI do ONTAP, mostrando a latência e a taxa de transferência das operações PUT e GET"]
 
 
 

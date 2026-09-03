@@ -24,7 +24,7 @@ Depois de adquirir um ficheiro de licença do NetApp, pode instalá-lo com o OnC
 . Clique em Adicionar.
 
 
-image:cloud-fabricpool_image8.png[""]
+image:cloud-fabricpool_image8.png["Uma captura de tela da caixa de diálogo Adicionar Pacotes de Licença do OnCommand System Manager, com os botões Escolher Arquivos e Adicionar"]
 
 
 
@@ -43,7 +43,7 @@ No OnCommand System Manager, execute as seguintes etapas:
 . Clique na guia Detalhes.
 
 
-image:cloud-fabricpool_image9.png[""]
+image:cloud-fabricpool_image9.png["Uma captura de tela dos detalhes das licenças do ONTAP System Manager mostrando a capacidade de licença do FabricPool de 10 TB e a capacidade atual de 0 Byte"]
 
 A capacidade máxima e a capacidade atual estão listadas na linha Licença FabricPool.
 

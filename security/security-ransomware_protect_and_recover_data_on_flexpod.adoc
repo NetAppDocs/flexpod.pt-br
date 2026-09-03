@@ -34,15 +34,15 @@ Esta seção mostra o estado dos arquivos antes de um ataque à VM e o compartil
 
 A pasta documentos da VM tinha um conjunto de arquivos PDF que ainda não foram criptografados pelo malware WannaCry.
 
-image:security-ransomware_image3.png[""]
+image:security-ransomware_image3.png["Uma captura de tela de uma pasta Documentos do Windows listando arquivos PDF WorkDoc não criptografados"]
 
 A captura de tela a seguir mostra o compartilhamento CIFS que foi mapeado para a VM.
 
-image:security-ransomware_image4.png[""]
+image:security-ransomware_image4.png["Uma captura de tela que mostra o compartilhamento CIFS fpolicy_share mapeado como unidade Z: no Explorador de Arquivos do Windows"]
 
 A captura de tela a seguir mostra os arquivos no compartilhamento CIFS `fpolicy_share` que ainda não foram criptografados pelo malware WannaCry.
 
-image:security-ransomware_image5.png[""]
+image:security-ransomware_image5.png["Uma captura de tela do Explorador de Arquivos mostrando arquivos não criptografados no compartilhamento CIFS fpolicy_share mapeado como unidade Z"]
 
 
 
@@ -53,19 +53,19 @@ Os detalhes de eficiência de storage e o tamanho da cópia Snapshot antes de um
 
 Economias de storage de 19% foram obtidas com a deduplicação no volume que hospeda a VM.
 
-image:security-ransomware_image6.png[""]
+image:security-ransomware_image6.png["Uma captura de tela da eficiência de storage do infra_datastore1 mostrando uma economia de 5,84 GB (19%) na deduplicação"]
 
 Economias de storage de 45% foram obtidas com a deduplicação no compartilhamento CIFS `fpolicy_share` .
 
-image:security-ransomware_image7.png[""]
+image:security-ransomware_image7.png["Uma captura de tela da eficiência de storage do cifS_volume mostrando uma economia de 5,05 GB (45%) na deduplicação"]
 
 Foi observado um tamanho de cópia Snapshot de 456KB para o volume que hospeda a VM.
 
-image:security-ransomware_image8.png[""]
+image:security-ransomware_image8.png["Uma captura de tela das cópias Snapshot do infra_datastore1 mostrando before_attack com um tamanho total de 456 KB"]
 
 Foi observado um tamanho de cópia Snapshot de 160KB para o compartilhamento CIFS `fpolicy_share` .
 
-image:security-ransomware_image9.png[""]
+image:security-ransomware_image9.png["Uma captura de tela da aba Cópias de Snapshot do volume CIFS mostrando o Snapshot before_attack_cifs com um tamanho total de 160 KB"]
 
 
 
@@ -78,11 +78,11 @@ As etapas a seguir demonstram como o binário do malware WannaCry foi introduzid
 
 . O malware protegido foi extraído.
 +
-image:security-ransomware_image10.png[""]
+image:security-ransomware_image10.png["Um ícone para uma pasta compactada chamada Ransomware.WannaCry"]
 
 . O binário foi executado.
 +
-image:security-ransomware_image11.png[""]
+image:security-ransomware_image11.png["Uma captura de tela do Explorador de Arquivos do Windows mostrando um WannaCry executável selecionado com a opção \"Executar como administrador\" no menu"]
 
 
 
@@ -95,11 +95,11 @@ O sistema de arquivos local e o compartilhamento CIFS mapeado foram criptografad
 
 O malware começa a criptografar arquivos com extensões WNCRY.
 
-image:security-ransomware_image12.png[""]
+image:security-ransomware_image12.png["Uma captura de tela do Explorador de Arquivos do Windows mostrando arquivos PDF e arquivos WNCRY criptografados em Documentos"]
 
 O malware criptografa todos os arquivos na VM local e o compartilhamento mapeado.
 
-image:security-ransomware_image13.png[""]
+image:security-ransomware_image13.png["Uma captura de tela mostrando arquivos de compartilhamento CIFS locais e mapeados criptografados com extensões WNCRY"]
 
 
 
@@ -109,15 +109,15 @@ A partir do momento em que o malware começou a criptografar os arquivos, ele de
 
 Detetamos um aumento dramático no tamanho do Snapshot para 820,98MB para o volume que hospeda o compartilhamento CIFS durante o ataque.
 
-image:security-ransomware_image14.png[""]
+image:security-ransomware_image14.png["Uma captura de tela que mostra a guia Cópias de Snapshot do volume CIFS com um tamanho de Snapshot de 820,98 MB"]
 
 Detetamos um aumento no tamanho da cópia Snapshot para 404,3MB para o volume que hospeda a VM.
 
-image:security-ransomware_image15.png[""]
+image:security-ransomware_image15.png["Uma captura de tela da guia Cópias Snapshot do infra_datastore1 mostrando uma cópia Snapshot before_attack de 404,3 MB"]
 
 A eficiência de storage do volume que hospeda o compartilhamento CIFS diminuiu para 34%.
 
-image:security-ransomware_image16.png[""]
+image:security-ransomware_image16.png["Uma captura de tela da eficiência de storage do cifsv_volume mostrando uma economia total de 5 GB a 34%"]
 
 
 
@@ -131,23 +131,23 @@ Para restaurar a VM, execute as seguintes etapas:
 
 . Use a cópia Snapshot criada com o SnapCenter para restaurar a VM.
 +
-image:security-ransomware_image17.png[""]
+image:security-ransomware_image17.png["Uma captura de tela do menu Ações do vSphere para WannaCry-2016-1 com a opção Restaurar do NetApp SnapCenter selecionada"]
 
 . Selecione a cópia Snapshot consistente VMware desejada para restauração.
 +
-image:security-ransomware_image18.png[""]
+image:security-ransomware_image18.png["Uma captura de tela do assistente de restauração listando os backups de Snapshot do VMware disponíveis, com um selecionado"]
 
 . Toda a VM é restaurada e reiniciada.
 +
-image:security-ransomware_image19.png[""]
+image:security-ransomware_image19.png["Um assistente de restauração selecionando toda a máquina virtual WannaCry-2016-1 e reiniciando-a em um host ESXi"]
 
 . Clique em concluir para iniciar o processo de restauração.
 +
-image:security-ransomware_image20.png[""]
+image:security-ransomware_image20.png["Resumo do assistente de restauração para a máquina virtual WannaCry-2016-1 com um botão Concluir e aviso de desligamento"]
 
 . A VM e seus arquivos são restaurados.
 +
-image:security-ransomware_image21.png[""]
+image:security-ransomware_image21.png["Uma captura de tela do Explorador de Arquivos do Windows mostrando os arquivos PDF restaurados na pasta Documentos"]
 
 
 
@@ -157,15 +157,15 @@ Para restaurar o compartilhamento CIFS, execute as seguintes etapas:
 
 . Use a cópia Snapshot do volume obtido antes do ataque para restaurar o compartilhamento.
 +
-image:security-ransomware_image22.png[""]
+image:security-ransomware_image22.png["Uma captura de tela que mostra a guia Snapshot Copies para cifs_volume com a ação Restore selecionada"]
 
 . Clique em OK para iniciar a operação de restauração.
 +
-image:security-ransomware_image23.png[""]
+image:security-ransomware_image23.png["Uma caixa de diálogo de confirmação de restauração de volume com botões OK e Cancelar para restaurar o cif_volume a partir de uma cópia Snapshot"]
 
 . Visualize o compartilhamento CIFS após a restauração.
 +
-image:security-ransomware_image24.png[""]
+image:security-ransomware_image24.png["Uma captura de tela do Explorador de Arquivos do Windows mostrando a unidade CIFS mapeada fpolicy_share com pastas, imagens de disco e arquivos PDF"]
 
 
 
@@ -192,8 +192,8 @@ Com essa política, arquivos com extensões WNCRY, Locky e ad4c não têm permis
 
 Visualize o status dos arquivos antes do ataque – eles não são criptografados e em um sistema limpo.
 
-image:security-ransomware_image25.png[""]
+image:security-ransomware_image25.png["Uma captura de tela que mostra arquivos PDF não criptografados do WorkDoc em Documentos e na unidade fpolicy_share"]
 
 Os arquivos na VM são criptografados. O malware WannaCry tenta criptografar os arquivos no compartilhamento CIFS, mas o FPolicy impede que ele afete os arquivos.
 
-image:security-ransomware_image26.png[""]
+image:security-ransomware_image26.png["Uma captura de tela de arquivos de máquina virtual criptografados ao lado de arquivos PDF intactos em um compartilhamento CIFS"]

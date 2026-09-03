@@ -27,10 +27,10 @@ Aqui está um conjunto de pontos-chave durante esta configuração:
 
 . Usamos uma GPU PCIe NVIDIA Tesla P6 em um slot mezzanine nos servidores UCS B200 M5.
 +
-image:flexpod-genomics-image18.png[""]
+image:flexpod-genomics-image18.png["Uma captura de tela da guia GPUs do Inventário do Cisco UCS Manager mostrando uma placa gráfica P6 no modo Compute"]
 
 +
-image:flexpod-genomics-image19.png[""]
+image:flexpod-genomics-image19.png["Uma captura de tela do Cisco UCS Manager mostrando o inventário de GPUs com uma UCSB-GPU-P6-R no modo Compute"]
 
 . Para essa configuração, nos registramos no portal de parceiros da NVIDIA e obtivemos uma licença de avaliação (também conhecida como direito) para poder usar as GPUs no modo de computação.
 . Nós baixamos o software vGPU NVIDIA necessário no site do parceiro NVIDIA.
@@ -75,32 +75,32 @@ Wed Aug 18 21:37:19 2021
 ....
 . Usando o vCenter, https://blogs.vmware.com/apps/2018/09/using-gpus-with-virtual-machines-on-vsphere-part-2-vmdirectpath-i-o.html["configurar"^] as configurações do dispositivo gráfico para "Shared Direct".
 +
-image:flexpod-genomics-image20.png[""]
+image:flexpod-genomics-image20.png["Uma captura de tela do vSphere Client mostrando o dispositivo gráfico NVIDIA Tesla P6 configurado para Shared Direct"]
 
 +
-image:flexpod-genomics-image21.png[""]
+image:flexpod-genomics-image21.png["Uma captura de tela da janela \"Editar configurações do dispositivo gráfico\" com a opção \"Compartilhado direto\" selecionada e a opção \"Reiniciar servidor X.Org\" marcada"]
 
 . Certifique-se de que a inicialização segura esteja desativada para a VM RedHat.
 . Certifique-se de que o firmware das opções de inicialização da VM está definido como EFI ( https://docs.vmware.com/en/VMware-vSphere-Bitfusion/3.0/Install-Guide/GUID-2005A8C6-4FDC-46DF-BB6B-989F6E91F3E2.html["ref"^]).
 +
-image:flexpod-genomics-image22.png[""]
+image:flexpod-genomics-image22.png["Uma captura de tela das Opções de Inicialização da VM do vCenter mostrando o firmware EFI e a Inicialização Segura desativados"]
 
 . Certifique-se de que os PARÂMETROS a seguir sejam adicionados à Configuração de edição avançada de opções da VM. O valor do `pciPassthru.64bitMMIOSizeGB` parâmetro depende da memória da GPU e do número de GPUs atribuídas à VM. Por exemplo:
 +
 .. Se uma VM tiver 4 GPUs x 32GB V100, esse valor deverá ser 128.
 .. Se uma VM tiver 4 GPUs x 16GB P6, esse valor deverá ser 64.
 +
-image:flexpod-genomics-image23.png[""]
+image:flexpod-genomics-image23.png["Uma captura de tela que mostra a seção Editar configurações avançadas do vCenter com um link Editar configuração"]
 
 +
-image:flexpod-genomics-image24.png[""]
+image:flexpod-genomics-image24.png["Uma captura de tela da caixa de diálogo Parâmetros de Configuração listando pciPassthru.64bitMMIOSizeGB e pciPassthru.use64bitMMIO valores"]
 
 
 
 . Ao adicionar vGPUs como um novo dispositivo PCI à máquina virtual no vCenter, certifique-se de selecionar NVIDIA GRID vGPU como o tipo de dispositivo PCI.
 . Escolha o perfil de GPU correto que combina a GPU que está sendo usada, a memória de GPU e o propósito de uso: Por exemplo, gráficos versus computação.
 +
-image:flexpod-genomics-image25.png[""]
+image:flexpod-genomics-image25.png["Uma captura de tela do vCenter Edit Settings mostrando o perfil vGPU NVIDIA GRID grid_p6-16c selecionado para um dispositivo PCI"]
 
 . Na VM RedHat Linux, os drivers NVIDIA podem ser instalados executando o seguinte comando:
 +
@@ -159,7 +159,7 @@ Wed Aug 18 20:30:56 2021
 
 . Depois de reiniciar a VM, você deve ver uma entrada sob Clientes Licenciados no servidor de licenças, conforme mostrado abaixo.
 +
-image:flexpod-genomics-image26.png[""]
+image:flexpod-genomics-image26.png["Uma captura de tela da página de Clientes Licenciados do NVIDIA License Server, listando um cliente Ethernet virtual"]
 
 . Consulte a seção Configuração de soluções para obter mais informações sobre como baixar o software GATK e Cromwell.
 . Depois que o GATK pode usar GPUs no local, a linguagem de descrição do fluxo de trabalho `*. wdl` tem os atributos de tempo de execução, como mostrado abaixo.

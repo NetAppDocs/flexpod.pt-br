@@ -44,7 +44,7 @@ Para criar uma VM VMware para configurar como uma unidade de aquisição, execut
 . Inicie um navegador da Web e faça login no VMware vSphere e selecione o cluster que deseja hospedar uma VM.
 . Clique com o botão direito do rato nesse cluster e selecione criar Uma máquina virtual a partir do menu.
 +
-image:cloud-insights_image3.png[""]
+image:cloud-insights_image3.png["Um menu de contexto do vSphere com \"Nova Máquina Virtual\" destacada entre as ações do cluster"]
 
 . No assistente Nova Máquina Virtual, clique em Avançar.
 . Especifique o nome da VM e selecione o data center no qual você deseja instalá-lo e clique em Avançar.
@@ -53,7 +53,7 @@ image:cloud-insights_image3.png[""]
 . Confirme se o modo de compatibilidade para a VM está definido como `ESXi 6.7 or later` e clique em seguinte.
 . Select Guest os Family Linux, Guest os versão: Red Hat Enterprise Linux 7 (64 bits).
 +
-image:cloud-insights_image4.png[""]
+image:cloud-insights_image4.png["Uma captura de tela do assistente Selecionar um sistema operacional convidado com Linux e Red Hat Enterprise Linux 7 (64-bit) selecionados"]
 
 . A próxima página permite a personalização de recursos de hardware na VM. A Unidade de aquisição Cloud Insights requer os seguintes recursos. Depois que os recursos forem selecionados, clique em Avançar:
 +
@@ -63,7 +63,7 @@ image:cloud-insights_image4.png[""]
 .. Uma rede que pode alcançar recursos no datacenter FlexPod e no servidor Cloud Insights através de uma conexão SSL na porta 443.
 .. Uma imagem ISO da distribuição Linux escolhida (Red Hat Enterprise Linux) para inicializar.
 +
-image:cloud-insights_image5.png[""]
+image:cloud-insights_image5.png["Uma captura de tela da página \"Personalizar configurações de hardware\" do VMware com CPU, memória, disco, rede e unidade de CD/DVD configuradas"]
 
 
 
@@ -79,7 +79,7 @@ Para instalar o Red Hat Enterprise Linux, execute as seguintes etapas:
 
 . Ligue a VM, clique na janela para iniciar o console virtual e selecione a opção Instalar o Red Hat Enterprise Linux 7,6.
 +
-image:cloud-insights_image6.png[""]
+image:cloud-insights_image6.png["Uma captura de tela do menu de inicialização do Red Hat Enterprise Linux 7.6 com a opção Instalar selecionada"]
 
 . Selecione o idioma preferido e clique em continuar.
 +
@@ -90,14 +90,14 @@ A página seguinte é o Resumo da instalação. As configurações padrão devem
 .. Para personalizar o particionamento para o servidor, clique em Installation Destination (destino de instalação).
 .. Confirme se o VMware Virtual Disk of 100GiB está selecionado com uma marca de seleção preta e selecione o botão de opção I will Configure Partitioning (Configurar particionamento).
 +
-image:cloud-insights_image7.png[""]
+image:cloud-insights_image7.png["Uma captura de tela que mostra um disco virtual VMware de 100 GiB selecionado e a opção de particionamento manual"]
 
 .. Clique em Concluído.
 +
 É apresentado um novo menu que permite personalizar a tabela de partições. Dedique 25 GB cada a `/opt/netapp` e `/var/log/netapp`. Você pode alocar automaticamente o restante do storage ao sistema.
 
 +
-image:cloud-insights_image8.png[""]
+image:cloud-insights_image8.png["Uma captura de tela do particionamento manual do Red Hat Enterprise Linux com volumes de 25 GiB para /opt/netapp e /var/log/netapp"]
 
 .. Para retornar ao Resumo da instalação, clique em Concluído.
 
@@ -107,7 +107,7 @@ image:cloud-insights_image8.png[""]
 .. Insira um nome de host para o servidor.
 .. Ligue o adaptador de rede clicando no botão deslizante. Se o DHCP (Dynamic Host Configuration Protocol) estiver configurado na rede, receberá um endereço IP. Se não estiver, clique em Configurar e atribua um endereço manualmente.
 +
-image:cloud-insights_image9.png[""]
+image:cloud-insights_image9.png["Uma captura de tela da tela de Rede e Nome do Host do Red Hat Enterprise Linux com Ethernet habilitada e um nome de host inserido"]
 
 .. . Clique em Concluído para retornar ao Resumo da instalação.
 
@@ -115,15 +115,15 @@ image:cloud-insights_image9.png[""]
 . Na página Resumo da instalação, clique em Iniciar instalação.
 . Na página progresso da instalação, você pode definir a senha raiz ou criar uma conta de usuário local. Quando a instalação terminar, clique em Reiniciar para reiniciar o servidor.
 +
-image:cloud-insights_image10.png[""]
+image:cloud-insights_image10.png["Uma captura de tela da tela de conclusão da instalação do Red Hat Enterprise Linux com um botão Reboot"]
 
 . Depois que o sistema reiniciar, faça login no seu servidor e Registre-o no Red Hat Subscription Manager.
 +
-image:cloud-insights_image11.png[""]
+image:cloud-insights_image11.png["Um terminal mostrando o registro bem-sucedido do Red Hat Subscription Manager para o sistema Netapp-AU"]
 
 . Anexe uma assinatura disponível para o Red Hat Enterprise Linux.
 +
-image:cloud-insights_image12.png[""]
+image:cloud-insights_image12.png["Um terminal mostrando a conexão bem-sucedida de uma assinatura do Red Hat Enterprise Linux"]
 
 
 
@@ -136,32 +136,32 @@ Para criar uma instância de unidade de aquisição no portal Cloud Insights e i
 
 . Na página inicial do Cloud Insights, passe o Mouse sobre a entrada Admin no menu principal à esquerda e selecione coletores de dados no menu.
 +
-image:cloud-insights_image13.png[""]
+image:cloud-insights_image13.png["Uma captura de tela que mostra o menu Administrador com os Coletores de Dados selecionados no Cloud Insights"]
 
 . No centro superior da página coletores de dados, clique no link para unidades de aquisição.
 +
-image:cloud-insights_image14.png[""]
+image:cloud-insights_image14.png["Uma captura de tela que mostra as abas Coletores de Dados e Unidades de Aquisição, com Unidades de Aquisição selecionada"]
 
 . Para criar uma nova unidade de aquisição, clique no botão à direita.
 +
-image:cloud-insights_image15.png[""]
+image:cloud-insights_image15.png["Uma captura de tela que mostra o botão Adicionar Unidade de Aquisição e um campo de filtro"]
 
 . Selecione o sistema operacional que deseja usar para hospedar sua Unidade de aquisição e siga as etapas para copiar o script de instalação da página da Web.
 +
 Neste exemplo, é um servidor Linux, que fornece um snippet e um token para colar na CLI em nosso host. A página da Web aguarda a ligação da unidade de aquisição.
 
 +
-image:cloud-insights_image16.png[""]
+image:cloud-insights_image16.png["Uma captura de tela que mostra as instruções de instalação da Unidade de Aquisição Linux do Cloud Insights e um trecho do instalador."]
 
 . Cole o snippet na CLI da máquina Red Hat Enterprise Linux que foi provisionada e clique em Enter.
 +
-image:cloud-insights_image17.png[""]
+image:cloud-insights_image17.png["Uma janela de terminal mostrando um comando de token para instalar a unidade de aquisição do Cloud Insights no Linux"]
 
 +
 O programa de instalação baixa um pacote compactado e inicia a instalação. Quando a instalação estiver concluída, você receberá uma mensagem informando que a Unidade de aquisição foi registrada no NetApp Cloud Insights.
 
 +
-image:cloud-insights_image18.png[""]
+image:cloud-insights_image18.png["Um terminal mostrando a instalação e o registro bem-sucedidos da Unidade de Aquisição do NetApp Cloud Insights"]
 
 
 
@@ -174,24 +174,24 @@ Para adicionar o sistema de storage ONTAP a partir de uma implantação do FlexP
 
 . Regresse à página unidades de aquisição no portal Cloud Insights e encontre a unidade recém-registada listada. Para apresentar um resumo da unidade, clique na unidade.
 +
-image:cloud-insights_image19.png[""]
+image:cloud-insights_image19.png["Uma captura de tela do resumo da Unidade de Aquisição NetApp-AU mostrando o IP, o status OK e a última hora relatada"]
 
 . Para iniciar um assistente para adicionar o sistema de armazenamento, na página Resumo, clique no botão para criar um coletor de dados. A primeira página exibe todos os sistemas a partir dos quais os dados podem ser coletados. Utilize a barra de pesquisa para procurar ONTAP.
 +
-image:cloud-insights_image20.png[""]
+image:cloud-insights_image20.png["Uma captura de tela que mostra as opções filtradas do coletor de dados ONTAP na página Adicionar Coletor de Dados"]
 
 . Selecione Software de gerenciamento de dados ONTAP.
 +
 É apresentada uma página que lhe permite atribuir um nome à sua implementação e selecionar a Unidade de aquisição que pretende utilizar. Você pode fornecer as informações de conetividade e credenciais para o sistema ONTAP e testar a conexão para confirmar.
 
 +
-image:cloud-insights_image21.png[""]
+image:cloud-insights_image21.png["Uma captura de tela da página Configurar Coletor com credenciais ONTAP validadas e configurações da Unidade de Aquisição"]
 
 . Clique em concluir configuração.
 +
 O portal retorna à página coletores de dados e o coletor de dados começa sua primeira pesquisa para coletar dados do sistema de armazenamento ONTAP no datacenter FlexPod.
 
 +
-image:cloud-insights_image22.png[""]
+image:cloud-insights_image22.png["Uma captura de tela de uma linha do coletor de dados do Cloud Insights mostrando o status de pesquisa do FlexPod Datacenter"]
 
 

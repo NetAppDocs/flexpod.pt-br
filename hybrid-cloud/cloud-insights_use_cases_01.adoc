@@ -39,15 +39,15 @@ Para acessar as informações do Digital Advisor por meio do painel do Cloud Ins
 
 . Clique na opção Coletor de dados no menu Admin à esquerda.
 +
-image:cloud-insights_image13.png[""]
+image:cloud-insights_image13.png["Uma captura de tela que mostra o menu Administrador com os Coletores de Dados selecionados no Cloud Insights"]
 
 . Filtro para o coletor de dados específico em seu ambiente. Neste exemplo, filtramos pelo termo FlexPod.
 +
-image:cloud-insights_image23.png[""]
+image:cloud-insights_image23.png["Uma captura de tela que mostra a página Coletores de Dados filtrada para FlexPod Datacenter"]
 
 . Clique no coletor de dados para obter um resumo do ambiente e dos dispositivos que estão sendo monitorados por esse coletor.
 +
-image:cloud-insights_image24.png[""]
+image:cloud-insights_image24.png["Uma captura de tela do FlexPod Datacenter resumo do coletor de dados com a linha do tempo dos eventos e dispositivo de storage relatado"]
 
 +
 Na lista de dispositivos perto da parte inferior, clique no nome do sistema de armazenamento ONTAP que está a ser monitorizado. Isso exibe um painel de informações coletadas sobre o sistema, incluindo os seguintes detalhes:
@@ -61,19 +61,19 @@ Na lista de dispositivos perto da parte inferior, clique no nome do sistema de a
 ** Latência média
 ** Taxa de transferência média
 +
-image:cloud-insights_image25.png[""]
+image:cloud-insights_image25.png["Uma captura de tela do painel de storage aa14-a800 com resumo, riscos, dados de usuário e gráfico de latência"]
 
 +
 Além disso, nesta página, na seção Políticas de Desempenho, você pode encontrar um link para NetApp Digital Advisor.
 
 +
-image:cloud-insights_image26.png[""]
+image:cloud-insights_image26.png["Uma captura de tela que mostra as Políticas de Desempenho com 35 riscos detectados pelo Active IQ e um ícone de link externo"]
 
 
 
 . Para abrir uma nova aba do navegador e acessar a página de mitigação de riscos, que mostra quais nós estão afetados, quão críticos são os riscos e qual é a ação apropriada que precisa ser tomada para corrigir os problemas identificados, clique no link para Digital Advisor.
 +
-image:cloud-insights_image27.png[""]
+image:cloud-insights_image27.png["Uma captura de tela do Active IQ Digital Advisor listando riscos à saúde e ações corretivas para um sistema de storage"]
 
 
 
@@ -90,15 +90,15 @@ O Cloud Insights pode exibir painéis em tempo real das informações que foram 
 
 No painel do sistema de armazenamento, você pode ver a última vez que o Data Collector atualizou as informações. Um exemplo disso é mostrado na figura abaixo.
 
-image:cloud-insights_image28.png[""]
+image:cloud-insights_image28.png["Uma captura de tela dos detalhes do Cloud Insights Data Collector mostrando a aquisição bem-sucedida há 3 minutos, às 13h21"]
 
 Por padrão, o painel do sistema de armazenamento exibe vários gráficos interativos que mostram métricas de todo o sistema do sistema de armazenamento a ser polled, ou de cada nó individual, incluindo: Latência, IOPS e taxa de transferência, na seção Expert View. Exemplos desses gráficos padrão são mostrados na figura abaixo.
 
-image:cloud-insights_image29.png[""]
+image:cloud-insights_image29.png["Uma captura de tela do Cloud Insights Expert View com gráficos de latência, IOPS e taxa de transferência, além de detalhes dos recursos"]
 
 Por padrão, os gráficos mostram informações das últimas três horas, mas você pode definir isso para um número de valores diferentes ou um valor personalizado na lista suspensa próxima à parte superior direita do painel do sistema de armazenamento. Isto é mostrado na figura abaixo.
 
-image:cloud-insights_image30.png[""]
+image:cloud-insights_image30.png["Uma captura de tela do painel de storage com o menu suspenso de intervalo de tempo mostrando \"Últimos 15 minutos\" até \"Personalizado\""]
 
 
 
@@ -115,21 +115,21 @@ Para criar um painel personalizado para avaliar os recursos de armazenamento, ex
 
 . Para criar um painel personalizado, passe o Mouse sobre painéis no menu principal do Cloud Insights e clique em novo painel na lista suspensa.
 +
-image:cloud-insights_image31.png[""]
+image:cloud-insights_image31.png["Uma captura de tela do menu Dashboards do Cloud Insights com + Novo Painel destacado"]
 
 +
 Abre-se a janela novo painel de instrumentos.
 
 . Nomeie o painel e selecione o tipo de widget usado para exibir os dados. Você pode selecionar entre vários tipos de gráfico ou até mesmo notas ou tipos de tabela para apresentar os dados coletados.
 +
-image:cloud-insights_image32.png[""]
+image:cloud-insights_image32.png["Uma captura de tela dos novos widgets de seleção do painel, incluindo gráficos, indicadores, notas e tabelas"]
 
 . Escolha variáveis personalizadas no menu Adicionar variável.
 +
 Isso permite que os dados apresentados sejam focados para exibir fatores mais específicos ou especializados.
 
 +
-image:cloud-insights_image33.png[""]
+image:cloud-insights_image33.png["Uma captura de tela que mostra o menu Adicionar Variável com um campo de pesquisa e uma lista de variáveis em um novo painel"]
 
 . Para criar um painel personalizado, selecione o tipo de widget que você gostaria de usar, por exemplo, um gráfico de pizza para exibir a utilização do armazenamento por volume:
 +
@@ -140,13 +140,13 @@ image:cloud-insights_image33.png[""]
 .. Personalize as informações a serem exibidas. Por padrão, essa seleção mostra os volumes de dados do ONTAP e lista os 10 principais.
 .. Para salvar o painel personalizado, clique em Salvar.
 +
-image:cloud-insights_image34.png[""]
+image:cloud-insights_image34.png["Uma captura de tela que mostra um widget de gráfico de pizza de Capacidade Utilizada configurado para a capacidade de volume de storage utilizada"]
 
 +
 Depois de salvar o widget personalizado, o navegador retorna à página novo painel, onde exibe o widget recém-criado e permite a ação interativa a ser realizada, como modificar o período de polling de dados.
 
 +
-image:cloud-insights_image35.png[""]
+image:cloud-insights_image35.png["Uma captura de tela que mostra um painel do Cloud Insights com um widget de gráfico de pizza de Capacidade Utilizada"]
 
 
 

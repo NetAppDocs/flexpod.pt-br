@@ -68,7 +68,7 @@ Para que a Cloud Insights colete dados, uma organização deve implantar uma Uni
 
 A figura a seguir mostra a arquitetura da solução.
 
-image:cloud-insights_image2.png[""]
+image:cloud-insights_image2.png["Um diagrama que mostra Cisco UCS, switches Nexus, controladoras NetApp AFF A800 e switches MDS interconectados por links de rede"]
 
 
 

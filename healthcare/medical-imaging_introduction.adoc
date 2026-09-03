@@ -103,7 +103,7 @@ O suporte cooperativo do FlexPod é especialmente valioso se sua organização d
 
 
 
-image:medical-imaging_image2.png[""]
+image:medical-imaging_image2.png["Um diagrama que mostra o modelo de suporte cooperativo do FlexPod entre clientes, Cisco e NetApp"]
 
 
 

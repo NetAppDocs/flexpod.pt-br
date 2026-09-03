@@ -45,7 +45,7 @@ No campo Nome do contentor, insira o nome do bucket ou do contentor do armazenam
 . Clique em Salvar e anexar agregados.
 
 
-image:cloud-fabricpool_image13.png[""]
+image:cloud-fabricpool_image13.png["Uma captura de tela do formulário Adicionar Camada de Nuvem configurado para um provedor de camada de nuvem Amazon S3"]
 
 
 

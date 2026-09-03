@@ -46,7 +46,7 @@ Em um nível elevado, a genômica pode ser classificada nas seguintes etapas. Es
 
 A figura a seguir mostra o processo de amostragem à identificação, anotação e previsão da variante.
 
-image:flexpod-genomics-image8.png[""]
+image:flexpod-genomics-image8.png["Um diagrama que mostra um fluxo de trabalho genômico desde a coleta de amostras até o sequenciamento, análise de variantes, integração com EHR e modelos preditivos"]
 
 O projeto Genoma humano foi concluído em abril de 2003, e o projeto fez uma simulação de alta qualidade da sequência do genoma humano disponível no domínio público. Este genoma de referência iniciou uma explosão na pesquisa e desenvolvimento de capacidades genômicas. Praticamente toda doença humana tem uma assinatura nos genes desse ser humano. Até recentemente, os médicos estavam alavancando genes para prever e determinar defeitos congênitos como anemia falciforme, que é causada por um certo padrão de herança causado por uma mudança em um único gene. O tesouro dos dados que estão sendo disponibilizados pelo projeto do genoma humano levou ao advento do estado atual das capacidades genômicas.
 
@@ -95,40 +95,40 @@ Para executar a configuração do laboratório do FlexPod, execute as seguintes 
 
 . A configuração e a validação do laboratório FlexPod usam as seguintes reservas e VLANs IP4.1X.
 +
-image:flexpod-genomics-image10.png[""]
+image:flexpod-genomics-image10.png["Uma tabela de reservas de IP de VLAN mostrando intervalos, máscaras de sub-rede e finalidades de gerenciamento, VM, NFS e iSCSI"]
 
 . Configurar LUNs de inicialização baseados em iSCSI no ONTAP SVM.
 +
-image:flexpod-genomics-image9.png[""]
+image:flexpod-genomics-image9.png["Uma captura de tela do ONTAP System Manager mostrando seis LUNs de inicialização do ESXi na storage VM Healthcare_SVM"]
 
 . Mapear LUNs para grupos de iniciadores iSCSI.
 +
-image:flexpod-genomics-image11.png[""]
+image:flexpod-genomics-image11.png["Uma captura de tela que mostra ESXi_Boot_Lun_1 mapeado para o grupo de iniciadores iSCSI GenomicsESXi_1"]
 
 +
-image:flexpod-genomics-image12.png[""]
+image:flexpod-genomics-image12.png["Uma captura de tela do ONTAP System Manager mostrando os detalhes do LUN de inicialização do ESXi mapeados para o grupo iniciador GenomicsESXi_2"]
 
 . Instale o vSphere 7,0 com a inicialização iSCSI.
 . Registre hosts ESXi com o vCenter.
 +
-image:flexpod-genomics-image13.png[""]
+image:flexpod-genomics-image13.png["Uma captura de tela do inventário do vSphere Client mostrando a pasta Genomics com hosts ESXi e máquinas virtuais"]
 
 . Provisionar um armazenamento de dados NFS `infra_datastore_nfs` no storage ONTAP.
 +
-image:flexpod-genomics-image14.png[""]
+image:flexpod-genomics-image14.png["Uma captura de tela do ONTAP System Manager mostrando o volume NFS Healthcare_Workload_NFS_Vol selecionado online"]
 
 . Adicione o datastore ao vCenter.
 +
-image:flexpod-genomics-image16.png[""]
+image:flexpod-genomics-image16.png["Uma captura de tela do vSphere Client mostrando o resumo do datastore NFS 3 infra_datastore_nfs"]
 
 . Usando o vCenter, adicione um datastore NFS aos hosts ESXi.
 +
-image:flexpod-genomics-image15.png[""]
+image:flexpod-genomics-image15.png["Uma captura de tela do vSphere Client mostrando os hosts infra_datastore_nfs conectados com status normal"]
 
 . Usando o vCenter, crie uma VM Red Hat Enterprise Linux (RHEL) 8,3 para executar o GATK.
 . Um datastore NFS é apresentado à VM e montado no `/mnt/genomics`, que é usado para armazenar executáveis GATK, scripts, arquivos de mapa de alinhamento binário (BAM), arquivos de referência, arquivos de índice, arquivos de dicionário e arquivos de saída para chamadas variantes.
 +
-image:flexpod-genomics-image17.png[""]
+image:flexpod-genomics-image17.png["Captura de tela de um terminal Linux mostrando /dev/sdb montado em /mnt/genomics com 2% de uso"]
 
 
 

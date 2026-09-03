@@ -53,7 +53,7 @@ Para alterar a política de disposição em camadas de um volume usando o OnComm
 . Selecione a política de disposição em camadas a aplicar ao volume.
 . Clique em Guardar.
 +
-image:cloud-fabricpool_image16.png[""]
+image:cloud-fabricpool_image16.png["Uma captura de tela que mostra a caixa de diálogo Alterar Política de Hierarquização de Volume com as opções de política de hierarquização expandidas"]
 
 
 

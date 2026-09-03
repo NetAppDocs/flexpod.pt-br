@@ -25,11 +25,11 @@ A configuração de computação da solução FlexPod SM-BC segue as práticas r
 
 A conetividade entre os servidores blade UCS B200 e os IOMs é fornecida pela placa UCS VIC através das conexões do backplane do chassi UCS 5108. Os extensores de malha UCS 2204XP usados para a validação têm dezesseis portas 10G cada para se conetar aos oito servidores blade de meia largura, por exemplo, duas para cada servidor. Para aumentar a largura de banda da conetividade do servidor, um VIC adicional baseado no mezanino pode ser adicionado para conetar o servidor à alternativa UCS 2408 IOM, que fornece quatro conexões 10G para cada servidor.
 
-image:sm-bcs-image17.png[""]
+image:sm-bcs-image17.png["Um diagrama que mostra UCS 2204XP A e B conectados a um B200 M5 VIC via 10GBASE-KR"]
 
 A conetividade entre o chassi do UCS 5108 e as FIs do UCS 6454 usadas para a validação é fornecida pela IOM 2204XP que usa quatro conexões 10G. As PORTAS FI 1 a 4 são configuradas como portas de servidor para essas conexões. As portas FI 25 a 28 são configuradas como portas uplink de rede para o switch Nexus A e B no local. A figura e a tabela a seguir fornecem o diagrama de conetividade e os detalhes de conexão de porta para que as unidades UCS 6454 se conetem ao chassi UCS 5108 e aos switches Nexus.
 
-image:sm-bcs-image18.png[""]
+image:sm-bcs-image18.png["Um diagrama que mostra os módulos IOM UCS 5108 conectados aos switches FI 6454 e aos switches Nexus A e B"]
 
 |===
 | Dispositivo local | Porta local | Dispositivo remoto | Porta remota 
@@ -132,7 +132,7 @@ Para a configuração de arranque SAN iSCSI, os parâmetros de arranque iSCSI s�
 
 O destino estático iSCSI pode ser configurado na política de inicialização dos modelos de perfil de serviço sob a caixa de diálogo Definir parâmetro de inicialização iSCSI, conforme mostrado na figura a seguir. A configuração recomendada do parâmetro de inicialização iSCSI é mostrada na tabela a seguir, que implementa a estratégia de inicialização discutida acima para obter alta disponibilidade.
 
-image:sm-bcs-image19.png[""]
+image:sm-bcs-image19.png["Uma captura de tela que mostra a caixa de diálogo \"Definir parâmetros de inicialização iSCSI\" do Cisco UCS Manager com dois destinos estáticos configurados"]
 
 |===
 | Malha iSCSI | Prioridade | Destino iSCSI | LIF iSCSI 
