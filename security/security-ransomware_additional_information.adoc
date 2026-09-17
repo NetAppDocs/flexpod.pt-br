@@ -13,6 +13,7 @@ summary: Para saber mais sobre as informações descritas neste documento, consu
 :imagesdir: ../media/
 
 
+[role="lead"]
 Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e/ou sites:
 
 * https://docs.netapp.com/us-en/ontap/concepts/snapshot-copies-concept.html["Software Snapshot da NetApp"^]

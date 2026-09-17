@@ -174,16 +174,11 @@ Switches Cisco Nexus redundantes são necessários na arquitetura FlexPod.
 [[cisco-support-licensing-options]]
 == Opções de licenciamento do suporte da Cisco
 
-Contratos de suporte TSANet válidos são obrigatórios em todos os equipamentos Cisco na arquitetura FlexPod Express.
 
+NOTE: Recomenda-se confirmar os requisitos de licenciamento com seu representante de vendas da Cisco ou da NetApp antes de fazer o pedido.
 
-NOTE: As licenças necessárias e os respectivos números de peça podem variar de acordo com o produto e a configuração. Recomenda-se confirmar os requisitos de licenciamento com seu representante de vendas da Cisco ou da NetApp antes de fazer o pedido.
+link:https://www.cisco.com/c/dam/en_us/about/doing_business/legal/service_descriptions/docs/solution-support-smart-total-care.pdf["Suporte a Soluções Cisco"^]É uma oferta de serviço de suporte técnico que se aplica às soluções da Cisco que incluem tanto hardware quanto software apenas da Cisco ou da Cisco e dos Solution Support Alliance Partners, e são compostas exclusivamente por produtos da Cisco e produtos fornecidos por fornecedores terceirizados (Solution Support Alliance Partner(s)).
 
-A tabela a seguir lista as opções de licenciamento de suporte do Cisco.
+Cisco oferece suporte a ambientes complexos de clientes por meio de seu link:https://www.cisco.com/c/en/us/support/web/tac/technical-services-resource-guide.html["Centro de Assistência Técnica"]. O Cisco Solution Support garante ao cliente acesso a uma equipe de engenheiros do TAC, que atuam como ponto de contato principal para problemas encontrados na solução, além de fornecer suporte para o hardware e o software que a compõem.
 
-|===
-| Licenciamento do suporte da Cisco | Guia de licença 
-
-
-| TSANet | https://www.tsanet.org/cisco-tsanet-case-study/[] 
-|===
+Cisco utiliza a link:https://www.tsanet.org/cisco-tsanet-case-study/["Programa de Parceiros TSANet"^] estrutura para integrar os Parceiros de Suporte a Soluções em um grupo privado no sistema TSANet Connect. O TSANet Connect oferece um método consistente para que os Engenheiros de Suporte colaborem com as equipes técnicas dos Parceiros, garantindo comunicação eficiente e resolução de problemas mais rápida, sem os atritos causados por esforços informais de colaboração com os parceiros.

@@ -25,12 +25,12 @@ Uma configuração do FlexPod tem os seguintes requisitos mínimos de hardware:
 NOTE: Se você estiver implementando uma arquitetura ACI, deverá observar os seguintes requisitos adicionais: * Implemente os switches Cisco Nexus série 9000 em uma topologia leaf-spine. * Utilize três Cisco Application Policy Infrastructure Controllers (APICs).
 
 * Dois Cisco UCS 6400, 6500 ou 6600 Series Fabric Interconnects em uma configuração redundante, caso você esteja utilizando os UCS C-Series Rack Servers ou os X-Series Modular systems.
-* Dois servidores de rack Cisco UCS Série C com conectividade FI e configuração gerenciada pelo Cisco Intersight (IMM), ou o Cisco UCS Série X Direct com Cisco IMM, ou o Cisco UCS Série X Modular com configuração gerenciada pelo Cisco Intersight (IMM).
+* Dois servidores de rack Cisco UCS Série C com conectividade FI e configuração Intersight Managed Mode (IMM), ou o Cisco UCS Série X Direct com Cisco IMM, ou o Cisco UCS Série X Modular com Cisco IMM.
 
 
 
-NOTE: Se você estiver usando os servidores de rack UCS sem conectividade FI, poderá usar o CIMC ou o modo autônomo do Intersight para gerenciamento.
+NOTE: Se você estiver usando os servidores de rack UCS sem conectividade FI, poderá usar o CIMC ou o modo autônomo do Intersight (ISM) para gerenciamento.
 
-* Dois controladores NetApp AFF, NetApp ASA ou NetApp FAS em uma configuração de alta disponibilidade (HA) implantados como um cluster de dois nós. Se você estiver usando NetApp AFX, são necessários no mínimo quatro controladores NetApp AFX, que devem ser implantados como um cluster HA de quatro nós, juntamente com um par de switches de interconexão de cluster.
+* Dois controladores NetApp AFF, NetApp ASA ou NetApp FAS em uma configuração de alta disponibilidade (HA) implantados como um cluster de dois nós. Se estiver usando NetApp AFX, são necessários no mínimo quatro controladores NetApp AFX, que devem ser implantados como um cluster de quatro nós com 2 pares HA, juntamente com um par de switches de interconexão de cluster.
 * É necessário, no mínimo, um compartimento para discos NetApp para os controladores de armazenamento que não possuem um compartimento para discos incorporado.
 
