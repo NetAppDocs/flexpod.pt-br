@@ -1,0 +1,10 @@
+---
+section: ontap-select-cisco-unified-edge
+title: ONTAP Select no Cisco Unified Edge
+entries:
+- title: Visão geral
+  url: "/ontap-select-cisco-unified-edge/ontap-select-cisco-unified-edge-overview.html"
+- title: Metodologia de implantação de alto nível
+  url: "/ontap-select-cisco-unified-edge/ontap-select-cisco-unified-edge-deployment-methodology.html"
+- title: Conclusão
+  url: "/ontap-select-cisco-unified-edge/ontap-select-cisco-unified-edge-conclusion.html"

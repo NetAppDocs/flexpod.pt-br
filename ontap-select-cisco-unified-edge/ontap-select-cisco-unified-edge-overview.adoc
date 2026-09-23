@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: ontap-select-cisco-unified-edge/ontap-select-cisco-unified-edge-overview.html 
+keywords: ontap select, cisco unified edge, overview, flexpod 
+summary: O ONTAP Select é executado como uma máquina virtual nos nós de computação Cisco Unified Edge para fornecer uma arquitetura de storage consolidada de controlador único para sites de borda, com compensações operacionais que você deve considerar no planejamento. 
+---
+= Implementando o ONTAP Select no Cisco Unified Edge
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Como uma alternativa de storage definido por software a um appliance NetApp dedicado, o ONTAP Select é executado como uma máquina virtual em um hipervisor compatível (KVM ou VMware vSphere) e utiliza storage conectado localmente para fornecer serviços NAS e SAN. O ONTAP Select é ideal para escritórios remotos, locais de back-office, implantações de edge dedicadas, ambientes móveis e outros cenários em que os clientes desejam o conjunto completo de recursos de serviços de dados do ONTAP.
+
+
+NOTE: O ONTAP Select (OTS) no Cisco Unified Edge é implementado como uma instância de nó único sem alta disponibilidade (HA).
+
+Quando implementados em conjunto, o ONTAP Select e o Cisco Unified Edge criam uma arquitetura de borda consolidada. Um nó de computação otimizado para storage fornece a mídia NVMe local. O hipervisor apresenta os recursos apropriados para a máquina virtual ONTAP Select. O ONTAP Select então organiza a mídia local em agregados e volumes ONTAP, expondo o storage para cargas de trabalho de aplicativos executadas localmente no mesmo chassi ou em outro local no site de borda. Esse design mantém os dados próximos aos aplicativos, reduz a dependência da conectividade WAN para as operações do dia a dia e está alinhado com as práticas de gerenciamento centralizado e proteção de dados.
+
+image::ots-on-cue.png[O ONTAP Select na arquitetura Cisco Unified Edge]
+
+A limitação de quatro unidades e a dependência de RAID por software nos nós de computação XE130c e XE150c restringem as implementações do ONTAP Select a uma arquitetura de controlador único. Ao contrário de uma arquitetura de storage com vários nós e failover de controlador, um único controlador de storage não pode ser desligado para manutenção em nível de controlador sem afetar os serviços de storage local que ele hospeda.
+
+Essa limitação não elimina o valor da arquitetura, mas deve ser refletida no modelo operacional. As cargas de trabalho adequadas são aquelas que podem tolerar interrupções planejadas de storage, dependem da resiliência no nível da aplicação ou utilizam replicação para um ambiente central do ONTAP para recuperação. Os clientes devem definir calendários de manutenção, comunicar as janelas de serviço aos proprietários das aplicações, verificar os backups ou réplicas atuais antes de trabalhos disruptivos e documentar os procedimentos para reverter. Se as cargas de trabalho exigirem disponibilidade contínua de storage durante a manutenção do controlador, os clientes devem avaliar um array de storage ONTAP externo em vez de uma configuração ONTAP Select com um único controlador.
