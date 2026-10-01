@@ -174,7 +174,7 @@ image:sm-bcs-image11.png["Um diagrama que mostra os controladores NetApp AFF e A
 | Série AFF | link:https://mysupport.netapp.com/documentation/productlibrary/index.html?productID=62247["Documentação da série AFF"^] 
 
 
-| Série ASA | link:https://docs.netapp.com/allsan/index.jsp["Documentação da série ASA"^] 
+| Sistemas ASA r2 | link:https://docs.netapp.com/us-en/ontap-systems/asa-r2/index.html["Documentação de sistemas ASA r2"^] 
 |===
 Consulte https://www.netapp.com/data-storage/disk-shelves-storage-media/["Compartimentos de disco NetApp e documentação de Mídia de storage"^] a e https://hwu.netapp.com/["NetApp Hardware Universe"^] para obter detalhes sobre as gavetas de disco e os compartimentos de disco com suporte para cada modelo de controladora de storage.
 
