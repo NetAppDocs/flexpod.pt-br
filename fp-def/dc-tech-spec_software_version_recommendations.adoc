@@ -10,7 +10,7 @@ summary: As informações a seguir descrevem as recomendações de versão de so
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

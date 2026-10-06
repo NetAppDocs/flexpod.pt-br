@@ -10,7 +10,7 @@ summary: A implantação automatizada para o FlexPod Datacenter está disponíve
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

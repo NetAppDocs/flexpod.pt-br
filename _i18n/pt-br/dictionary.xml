@@ -3419,7 +3419,6 @@
   <block id="de288244a836060886fb7b1be0145031" category="summary">Para saber mais sobre as informações descritas neste documento, consulte os seguintes documentos e sites</block>
   <block id="8c1317d4f19bd6389bb778a92db3747a" category="inline-link"><block ref="8c1317d4f19bd6389bb778a92db3747a" category="inline-link-rx"></block></block>
   <block id="f2846b6af94fed2f6c4d51065b4b8e2f" category="paragraph"><block ref="f2846b6af94fed2f6c4d51065b4b8e2f" category="inline-link-rx"></block></block>
-  <block id="767945ca8f676ff25ce389fce1df6c41" category="summary">O Cisco contribui substancialmente para o design e a arquitetura do FlexPod Express; ele contribui com as camadas de computação e rede da solução.</block>
   <block id="ae19f05a830d151c2615c3f564dbf6e4" category="paragraph">O Cisco contribui substancialmente para o design e a arquitetura do FlexPod Express; ele contribui com as camadas de computação e rede da solução. Esta seção descreve os componentes do Cisco UCS e do Cisco Nexus que estão disponíveis para o FlexPod Express.</block>
   <block id="c6300f8f433dd2ce7fbf121a8739ab01" category="section-title">Switches Cisco Nexus</block>
   <block id="83842e9d3448fa9b32e931956ae716a9" category="section-title">Opções de licenciamento do suporte da Cisco</block>
@@ -8564,4 +8563,6 @@
   <block id="22d05c38a6e8032e35e9ff8d6b826ee0" category="inline-link-macro">Documentação de sistemas ASA r2</block>
   <block id="5a043bdfd29a9c2a632078901fc0d525" category="cell"><block ref="5a043bdfd29a9c2a632078901fc0d525" category="inline-link-macro-rx"></block></block>
   <block id="a04fde0f303f9cefcbd34e8be1810d1e" category="paragraph">Centros médicos acadêmicos e outras organizações de saúde e ciências da vida estão no caminho certo para estabelecer centros de excelência (COE) em ciência do genoma. De acordo com o Dr. Charlie Gersbach, o Dr. Greg Crawford e o Dr. Tim E Reddy, da Duke University, "sabemos que os genes não são ativados ou desativados por um simples interruptor binário, mas sim que isso é o resultado de múltiplos interruptores regulatórios gênicos que trabalham em conjunto. " Eles também determinaram que "nenhuma dessas partes do genoma funciona isoladamente. O genoma é uma teia muito complexa tecida pela evolução" (<block ref="7e5e4c153f3bad20a8e4230a913e554e" category="inline-link-rx"></block>).</block>
+  <block id="a9100704d09dc0243e72fa3e969a3376" category="doc">Visão geral dos procedimentos de implantação</block>
+  <block id="c94f9bfe6b4fcd272eb296a929c3be2f" category="summary">Cisco contribui com as camadas de computação e rede do design e da arquitetura do FlexPod Express, incluindo servidores UCS e switches Nexus.</block>
 </blocks>

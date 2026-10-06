@@ -10,7 +10,7 @@ summary: Esta seção explica como verificar o status de suporte de equipamentos
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Esta seção descreve os exemplos de topologias para o FlexPod Datacent
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../media/
 
 
 [role="lead"]
