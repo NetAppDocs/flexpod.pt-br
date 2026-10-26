@@ -158,7 +158,7 @@ Nós baixamos os arquivos BAM e os arquivos correspondentes de índice, dicioná
 
 Cromwell é um mecanismo de código aberto voltado para fluxos de trabalho científicos que permite o gerenciamento de fluxos de trabalho. O mecanismo Cromwell pode ser executado em dois https://cromwell.readthedocs.io/en/stable/Modes/["modos"^] modos , servidor ou em um modo de execução de fluxo de trabalho único. O comportamento do motor Cromwell pode ser controlado com o https://github.com/broadinstitute/cromwell/blob/develop/cromwell.example.backends/cromwell.examples.conf["Ficheiro de configuração do motor Cromwell"^].
 
-* *Modo servidor.* Permite https://cromwell.readthedocs.io/en/stable/api/RESTAPI/["Repousante"^] a execução de fluxos de trabalho no motor Cromwell.
+* *Modo servidor.* Permite https://cromwell.readthedocs.io/en/stable/Modes/["Repousante"^] a execução de fluxos de trabalho no mecanismo Cromwell.
 * *Modo de execução.* O modo de execução é mais adequado para a execução de fluxos de trabalho individuais no Cromwell, https://cromwell.readthedocs.io/en/stable/CommandLine/["ref"^] para um conjunto completo de opções disponíveis no modo de execução.
 
 
