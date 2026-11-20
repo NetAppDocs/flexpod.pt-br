@@ -16,4 +16,63 @@ summary: O software NetApp ONTAP está instalado em todos os sistemas NetApp AFF
 [role="lead"]
 O software NetApp ONTAP é o sistema operacional que roda nos sistemas de armazenamento AFF, ASA, FAS e AFX. O ONTAP oferece uma arquitetura de storage dimensionável altamente escalável que permite operações sem interrupções, upgrades sem interrupções e uma infraestrutura de dados ágil. Com o modelo de licenciamento ONTAP One, todos os serviços de dados corporativos estão incluídos em um único pacote, simplificando a implantação e o gerenciamento, enquanto proporciona acesso completo a recursos avançados. O ONTAP oferece proteção robusta de dados por meio de tecnologias como o SnapMirror para replicação e recuperação de desastres, assim como o SnapCenter para backup e restauração consistentes de aplicações. Ele também incorpora recursos de segurança incorporados, incluindo a Proteção Autônoma contra Ransomware e criptografia, para proteger seus dados contra ameaças modernas. Além disso, o ONTAP permite integração perfeita com nuvem híbrida, com recursos como o SnapMirror Cloud e replicação baseada em S3, possibilitando mobilidade de dados entre ambientes locais e em nuvem, mantendo a consistência e o controle.
 
-Para obter mais informações sobre o ONTAP, consulte a  https://www.netapp.com/ontap-data-management-software/["Software de gerenciamento de dados ONTAP"^]página do produto.
+Para obter mais informações sobre ONTAP, consulte o  https://docs.netapp.com/us-en/ontap-family/["Documentação do produto ONTAP"^].
+
+
+
+[[recommended-ontap-featuresconfigurations]]
+== Recursos/configurações recomendados do ONTAP
+
+O FlexPod atinge o desempenho máximo, a redundância de nível empresarial e a alta disponibilidade descritos em nossas arquiteturas verificadas, utilizando os seguintes recursos/configurações:
+
+
+
+[[multipathing-and-logical-interfaces]]
+=== Multipathing e interfaces lógicas
+
+A arquitetura do FlexPod foi projetada para fornecer alta disponibilidade se um componente ou um link falhar em toda a sua pilha de computação, rede e storage. Vários caminhos de rede para acesso ao cliente e acesso ao storage fornecem balanceamento de carga e utilização ideal de recursos.
+
+A E/S de múltiplos caminhos no ONTAP é obtida usando interfaces lógicas. Uma LIF (interface lógica) é um endereço IP ou WWPN com características associadas, como uma função, uma porta inicial, um nó inicial, uma lista de portas para as quais fazer failover e uma política de firewall.
+
+A tabela a seguir lista o número mínimo de interfaces lógicas que devem ser criadas para cada protocolo por nó em um par de HA.
+
+|===
+| Protocolo de armazenamento | Número de interfaces lógicas por nó em um par de HA | Número de interfaces lógicas por par de HA 
+
+
+| NFS / CIFS / S3 | 1 | 2 
+
+
+| iSCSI / NVMe sobre TCP | 2 | 4 
+
+
+| FC / NVMe sobre FC | 2 | 4 
+|===
+
+
+[[ontap-snapshot-snapmirror-and-snapcenter]]
+=== O ONTAP Snapshot, o SnapMirror e o SnapCenter
+
+Um snapshot é uma imagem pontual somente para leitura de um volume. Após a criação de um snapshot, o sistema de arquivos ativo e o snapshot apontam para os mesmos blocos de disco; portanto, o snapshot não usa espaço de disco extra. Com o tempo, a imagem consome um espaço de storage mínimo e incorre em uma sobrecarga de desempenho insignificante, pois registra apenas as alterações nos arquivos desde a criação do último snapshot. Você pode usar um snapshot para recuperar arquivos individuais ou LUNs, ou para restaurar todo o conteúdo de um volume. O ONTAP compara as informações de ponteiro no snapshot com os dados no disco para reconstruir o objeto ausente ou danificado, sem tempo de inatividade nem custo significativo de desempenho.
+
+O SnapMirror é uma tecnologia de recuperação de desastres, projetada para failover do storage primário para o storage secundário em um local geograficamente remoto. Como o próprio nome indica, o SnapMirror cria uma réplica, ou espelho, dos seus dados de trabalho no storage secundário, a partir da qual você pode continuar a disponibilizar dados em caso de catástrofe no local primário.
+
+O SnapCenter Software é uma plataforma simples, centralizada e escalável que fornece proteção de dados consistente com aplicativos para aplicações, bancos de dados, sistemas de arquivos do host e VMs executados em sistemas ONTAP em qualquer lugar na nuvem híbrida.
+
+Recomendamos que os clientes incorporem a proteção de dados na arquitetura do FlexPod, utilizando tecnologias como o SnapMirror para replicação e recuperação de desastres, bem como o SnapCenter para backup e restauração consistentes com aplicativos.
+
+
+
+[[secure-multi-tenancy]]
+=== Alocação segura a vários clientes
+
+A alocação segura a vários clientes é o uso de partições virtuais seguras em um ambiente de storage físico compartilhado com o objetivo de compartilhar o ambiente físico entre vários clientes distintos. Por exemplo, um provedor de serviços de storage pode configurar um array de storage de forma que cada um de três clientes diferentes receba uma determinada parte da capacidade de disco e dos recursos de rede do array. Em um ambiente com alocação segura a vários clientes, cada cliente teria acesso apenas aos recursos explicitamente provisionados para esse cliente. O cliente não teria acesso aos dados de outros clientes nem mesmo saberia da existência dos outros clientes ou do fato de que compartilham um array físico comum. Os ambientes com alocação segura a vários clientes também devem fornecer uma forma de garantir que nenhum cliente consuma tanta capacidade de desempenho compartilhada a ponto de afetar os outros clientes.
+
+A alocação a vários clientes no ONTAP é alcançada por meio de máquinas virtuais de storage (SVMs) e IP Spaces.
+
+Assim como uma máquina virtual em execução em um hipervisor, uma SVM é uma entidade lógica que abstrai recursos físicos. Uma SVM fornece dados para clientes e hosts a partir de um ou mais volumes, por meio de uma ou mais interfaces lógicas de rede (LIFs).
+
+O recurso IPspaces permite configurar um único cluster do ONTAP para que ele possa ser acessado por clientes de mais de um domínio de rede administrativamente separado, mesmo que esses clientes estejam usando o mesmo intervalo de sub-rede de endereços IP. Isso permite separar o tráfego de clientes para maior privacidade e segurança.
+
+
+NOTE: Para conhecer as melhores práticas do FlexPod para a configuração do ONTAP, consulte o https://www.cisco.com/c/en/us/td/docs/unified_computing/ucs/UCS_CVDs/flexpod_vvf_9_fc_boot_manual_deploy.html#NetAppONTAPStorageConfiguration["FlexPod CVD: configuração de storage do NetApp ONTAP"^].
